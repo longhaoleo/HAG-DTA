@@ -90,6 +90,10 @@ for dataset in datasets:
     else:
         train_data = TestbedDataset(root='data', dataset=dataset + '_train')
         test_data = TestbedDataset(root='data', dataset=dataset + '_test')
+        # [DATA LEAKAGE WARNING] 以下从 test_data 中拆分出 valid_data 的做法仍存在数据泄漏。
+        # 原因：valid_data 和 test_data 来自同一个原始测试集，分布完全一致，测试集信息已经泄漏到了 validation 中。
+        # 正确做法：应该从 train_data 中划分出 validation set，
+        # 而不是从 test_data 中拆分。
         test_size = int(0.5 * len(test_data))
         valid_size = len(test_data) - test_size
         test_data, valid_data = torch.utils.data.random_split(test_data, [test_size, valid_size])

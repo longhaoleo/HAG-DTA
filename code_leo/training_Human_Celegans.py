@@ -30,12 +30,14 @@ def train(model, device, train_loader, optimizer, epoch):
         loss_all.backward()
         optimizer.step()
         if batch_idx % LOG_INTERVAL == 0:
-            print('Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(epoch,
-                                                                           batch_idx * len(data.x),
-                                                                           len(train_loader.dataset),
-                                                                           100. * batch_idx / len(train_loader),
-                                                                           loss.item(), loss_all.item()))
-
+            print('Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(
+                        epoch,
+                        batch_idx * len(data.x),
+                        len(train_loader.dataset),
+                        100. * batch_idx / len(train_loader),
+                        loss.item(),
+                        loss_all.item()
+                    ))
 
 def predicting(model, device, loader):
     model.eval()

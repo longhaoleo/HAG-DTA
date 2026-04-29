@@ -36,11 +36,7 @@ def train(model, device, train_loader, optimizer, epoch):
         num_sample = num_sample + data.y.shape[0]
         optimizer.step()
         if batch_idx % LOG_INTERVAL == 0:
-            print('Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(epoch,
-                                                                           batch_idx * len(data.x),
-                                                                           len(train_loader.dataset),
-                                                                           100. * batch_idx / len(train_loader),
-                                                                           loss.item(), loss_all.item()))
+            print('Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(epoch,batch_idx * len(data.x), len(train_loader.dataset), 100. * batch_idx / len(train_loader), loss.item(), loss_all.item()))
         a = a.cpu().detach().numpy().sum(axis=0)/data.y.shape[0]
         a_all.append(list(a.flatten()))
     print("注意力分数 x_H_1, x_H_2, xt, x_G:", np.array(a_all).sum(axis=0)/len(a_all))
@@ -98,6 +94,11 @@ for seed in [100,1000,2000]:# 设置随机种子
             # make data PyTorch mini-batch processing ready
             train_loader = DenseDataLoader(train_data, batch_size=TRAIN_BATCH_SIZE, shuffle=True)
             test_loader = DenseDataLoader(test_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
+            # [DATA LEAKAGE WARNING] 以下代码没有划分独立的 validation set，
+            # 每个 epoch 都直接在 test_loader 上评估并用 test MSE 保存最优模型。
+            # 这导致测试集参与了模型选择，属于典型的数据泄漏。
+            # 正确做法：从 train_data 中划分出 validation set，用 val MSE 选最优模型，
+            # test set 仅在训练结束后最终评估一次。
             if dataset=='kiba':
                 train_data1 = TestbedDataset(root='data', dataset=dataset+'_train1')
                 test_data1 = TestbedDataset(root='data', dataset=dataset+'_test1')
@@ -128,6 +129,8 @@ for seed in [100,1000,2000]:# 设置随机种子
                     loss_train,a = train(model, device, train_loader, optimizer, epoch+1)
                     loss_train_list.append(loss_train)
                     a_list.append(list(a))
+                # [DATA LEAKAGE] 以下代码每个 epoch 都在 test_loader 上预测，
+                # 并用 test MSE 保存最优模型。测试集参与了模型选择，导致数据泄漏。
                 if dataset=='kiba':
                     G,P = predicting(model, device, test_loader)
                     G1,P1 = predicting(model, device, test_loader1)
@@ -139,6 +142,7 @@ for seed in [100,1000,2000]:# 设置随机种子
                 P = P.numpy().flatten()
                 ret = [mse(G,P), get_rm2(G,P)]
                 loss_test_list.append(ret[0])
+                # [DATA LEAKAGE] 以下用 test MSE 保存最优模型，test 参与了模型选择。
                 if ret[0]<best_mse:
                     torch.save(model.state_dict(), model_file_name)
                     best_epoch = epoch+1
