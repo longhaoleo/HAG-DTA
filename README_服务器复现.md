@@ -1,7 +1,5 @@
 # HAG-DTA 服务器复现指南
 
-本文件为服务器环境下的完整复现流程。本地 macOS 无法直接运行，因为 PyG 扩展的 wheel 文件为 Linux x86_64 版本。
-
 ---
 
 ## 1. 环境配置
@@ -16,20 +14,21 @@
 ```bash
 cd ~/HAG-DTA
 
-# 1. 安装 PyTorch 2.0.0（根据服务器 CUDA 版本调整，以下为 CUDA 11.8 示例）
+# 1. 安装 PyTorch 2.0.0 GPU 版（必须根据服务器 CUDA 版本选择，以下为 CUDA 11.8 示例）
+# 如果服务器是 CUDA 11.7，将 cu118 改为 cu117
 pip install torch==2.0.0 torchvision==0.15.0 torchaudio==2.0.0 --index-url https://download.pytorch.org/whl/cu118
 
-# 2. 安装 PyTorch Geometric
-pip install torch_geometric==2.3.0
+# 2. 安装 PyTorch Geometric（匹配 PyTorch 和 CUDA 版本）
+pip install torch_geometric==2.3.0 -f https://data.pyg.org/whl/torch-2.0.0+cu118.html
 
-# 3. 安装 PyG 扩展（项目目录下已提供 Linux wheel）
+# 3. 安装 PyG 扩展（项目目录下已提供 Linux GPU wheel，直接安装即可）
 pip install 服务器配置/torch_cluster-1.5.9-cp38-cp38-linux_x86_64.whl
 pip install 服务器配置/torch_scatter-2.0.7-cp38-cp38-linux_x86_64.whl
 pip install 服务器配置/torch_sparse-0.6.10-cp38-cp38-linux_x86_64.whl
 pip install 服务器配置/torch_spline_conv-1.2.1-cp38-cp38-linux_x86_64.whl
 
 # 4. 其他依赖
-pip install rdkit pandas numpy scikit-learn scipy networkx
+pip install rdkit-pypi pandas numpy scikit-learn scipy networkx
 ```
 
 ### 1.3 验证环境
