@@ -19,7 +19,7 @@ cd ~/HAG-DTA
 pip install torch==2.0.0 torchvision==0.15.0 torchaudio==2.0.0 --index-url https://download.pytorch.org/whl/cu118
 
 # 2. 安装 PyTorch Geometric（匹配 PyTorch 和 CUDA 版本）
-pip install torch_geometric==2.3.0 -f https://data.pyg.org/whl/torch-2.0.0+cu118.html
+pip install torch_geometric==2.6.1 -f https://data.pyg.org/whl/torch-2.0.0+cu118.html
 
 # 3. 安装 PyG 扩展（项目目录下已提供 Linux GPU wheel，直接安装即可）
 pip install 服务器配置/torch_cluster-1.5.9-cp38-cp38-linux_x86_64.whl
