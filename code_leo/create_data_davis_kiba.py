@@ -6,6 +6,7 @@ from collections import OrderedDict
 from rdkit import Chem
 from rdkit.Chem import MolFromSmiles
 import networkx as nx
+from sklearn.model_selection import train_test_split
 from utils import *
 
 class MyFilter(object):
@@ -60,15 +61,41 @@ def seq_cat(prot):
     return x
 
 
-# from DeepDTA data
-all_prots = []
+def write_split_csv(dataset, split_name, rows, cols, drugs, prots, affinity):
+    with open('data/' + dataset + '_' + split_name + '.csv', 'w') as f:
+        f.write('compound_iso_smiles,target_sequence,affinity\n')
+        for row_idx, col_idx in zip(rows, cols):
+            ls = [drugs[row_idx], prots[col_idx], affinity[row_idx, col_idx]]
+            f.write(','.join(map(str, ls)) + '\n')
+
+
+def encode_split(df):
+    drugs = np.asarray(list(df['compound_iso_smiles']))
+    prots = np.asarray([seq_cat(t) for t in df['target_sequence']])
+    labels = np.asarray(list(df['affinity']))
+    return drugs, prots, labels
+
+
+def rebuild_processed_dataset(dataset_name, split_name, drugs, prots, labels, smile_graph, pre_transform, pre_filter=None):
+    processed_path = 'data/processed/' + dataset_name + '_' + split_name + '.pt'
+    if os.path.isfile(processed_path):
+        os.remove(processed_path)
+    print('preparing ', dataset_name + '_' + split_name + '.pt in pytorch format!')
+    TestbedDataset(
+        root='data',
+        dataset=dataset_name + '_' + split_name,
+        xd=drugs,
+        xt=prots,
+        y=labels,
+        smile_graph=smile_graph,
+        pre_transform=pre_transform,
+        pre_filter=pre_filter,
+    )
+
 datasets = ['davis','kiba']
 for dataset in datasets:
     print('convert data from DeepDTA for ', dataset)
     fpath = 'data/' + dataset + '/'
-    train_fold = json.load(open(fpath + "folds/train_fold_setting1.txt"))
-    train_fold = [ee for e in train_fold for ee in e ]
-    valid_fold = json.load(open(fpath + "folds/test_fold_setting1.txt"))
     ligands = json.load(open(fpath + "ligands_can.txt"), object_pairs_hook=OrderedDict)
     proteins = json.load(open(fpath + "proteins.txt"), object_pairs_hook=OrderedDict)
     affinity = pickle.load(open(fpath + "Y","rb"), encoding='latin1')
@@ -82,26 +109,21 @@ for dataset in datasets:
     if dataset == 'davis':
         affinity = [-np.log10(y/1e9) for y in affinity]
     affinity = np.asarray(affinity)
-    opts = ['train','test']
-    for opt in opts:
-        rows, cols = np.where(np.isnan(affinity)==False)
-        if opt=='train':
-            rows,cols = rows[train_fold], cols[train_fold]
-        elif opt=='test':
-            rows,cols = rows[valid_fold], cols[valid_fold]
-        with open('data/' + dataset + '_' + opt + '.csv', 'w') as f:
-            f.write('compound_iso_smiles,target_sequence,affinity\n')
-            for pair_ind in range(len(rows)):
-                ls = []
-                ls += [ drugs[rows[pair_ind]]  ]
-                ls += [ prots[cols[pair_ind]]  ]
-                ls += [ affinity[rows[pair_ind],cols[pair_ind]]  ]
-                f.write(','.join(map(str,ls)) + '\n')
+    rows, cols = np.where(np.isnan(affinity) == False)
+    pair_indices = np.arange(len(rows))
+    train_idx, test_idx = train_test_split(pair_indices, test_size=0.2, random_state=42)
+    train_idx, val_idx = train_test_split(train_idx, test_size=0.2, random_state=42)
+
+    split_indices = {
+        'train': train_idx,
+        'val': val_idx,
+        'test': test_idx,
+    }
+    for split_name, split_idx in split_indices.items():
+        write_split_csv(dataset, split_name, rows[split_idx], cols[split_idx], drugs, prots, affinity)
     print('\ndataset:', dataset)
-    print('train_fold:', len(train_fold))
-    print('test_fold:', len(valid_fold))
+    print('train/val/test:', len(train_idx), len(val_idx), len(test_idx))
     print('len(set(drugs)),len(set(prots)):', len(set(drugs)),len(set(prots)))
-    all_prots += list(set(prots))
 
 
 seq_voc = "ABCDEFGHIKLMNOPQRSTUVWXYZ"
@@ -111,7 +133,7 @@ max_seq_len = 1000
 
 compound_iso_smiles = []
 for dt_name in ['davis','kiba']:
-    opts = ['train','test']
+    opts = ['train','val','test']
     for opt in opts:
         df = pd.read_csv('data/' + dt_name + '_' + opt + '.csv')
         compound_iso_smiles += list( df['compound_iso_smiles'] )
@@ -124,49 +146,14 @@ for smile in compound_iso_smiles:
 datasets = ['davis','kiba']
 # convert to PyTorch data format
 for dataset in datasets:
-    processed_data_file_train = 'data/processed/' + dataset + '_train.pt'
-    processed_data_file_test = 'data/processed/' + dataset + '_test.pt'
-    if ((not os.path.isfile(processed_data_file_train)) or (not os.path.isfile(processed_data_file_test))):
-        pre_transform = T.ToDense(46)
-        df = pd.read_csv('data/' + dataset + '_train.csv')
-        train_drugs, train_prots,  train_Y = list(df['compound_iso_smiles']),list(df['target_sequence']),list(df['affinity'])
-        XT = [seq_cat(t) for t in train_prots]
-        train_drugs, train_prots,  train_Y = np.asarray(train_drugs), np.asarray(XT), np.asarray(train_Y)
-        df = pd.read_csv('data/' + dataset + '_test.csv')
-        test_drugs, test_prots,  test_Y = list(df['compound_iso_smiles']),list(df['target_sequence']),list(df['affinity'])
-        XT = [seq_cat(t) for t in test_prots]
-        test_drugs, test_prots,  test_Y = np.asarray(test_drugs), np.asarray(XT), np.asarray(test_Y)
-
-        # make data PyTorch Geometric ready
-        print('preparing ', dataset + '_train.pt in pytorch format!')
-        train_data = TestbedDataset(root='data', dataset=dataset+'_train', xd=train_drugs, xt=train_prots, y=train_Y,smile_graph=smile_graph,pre_transform=pre_transform,pre_filter=MyFilter())
-        print('preparing ', dataset + '_test.pt in pytorch format!')
-        test_data = TestbedDataset(root='data', dataset=dataset+'_test', xd=test_drugs, xt=test_prots, y=test_Y,smile_graph=smile_graph
-                                   ,pre_transform=pre_transform,pre_filter=MyFilter())
-        print(processed_data_file_train, ' and ', processed_data_file_test, ' have been created')
-    else:
-        print(processed_data_file_train, ' and ', processed_data_file_test, ' are already created')
+    pre_transform = T.ToDense(46)
+    for split_name in ['train', 'val', 'test']:
+        df = pd.read_csv('data/' + dataset + '_' + split_name + '.csv')
+        split_drugs, split_prots, split_y = encode_split(df)
+        rebuild_processed_dataset(dataset, split_name, split_drugs, split_prots, split_y, smile_graph, pre_transform, MyFilter())
     if dataset == 'kiba':
-        processed_data_file_train = 'data/processed/' + dataset + '_train1.pt'
-        processed_data_file_test = 'data/processed/' + dataset + '_test1.pt'
         pre_transform = T.ToDense(268)
-        if ((not os.path.isfile(processed_data_file_train)) or (not os.path.isfile(processed_data_file_test))):
-            df = pd.read_csv('data/' + dataset + '_train.csv')
-            train_drugs, train_prots,  train_Y = list(df['compound_iso_smiles']),list(df['target_sequence']),list(df['affinity'])
-            XT = [seq_cat(t) for t in train_prots]
-            train_drugs, train_prots,  train_Y = np.asarray(train_drugs), np.asarray(XT), np.asarray(train_Y)
-            # make data PyTorch Geometric ready
-            print('preparing ', dataset + '_train.pt in pytorch format!')
-            train_data = TestbedDataset(root='data', dataset=dataset+'_train1', xd=train_drugs, xt=train_prots, y=train_Y,smile_graph=smile_graph,pre_transform=pre_transform,pre_filter=MyFilter1())
-            df = pd.read_csv('data/' + dataset + '_test.csv')
-            test_drugs, test_prots,  test_Y = list(df['compound_iso_smiles']),list(df['target_sequence']),list(df['affinity'])
-            XT = [seq_cat(t) for t in test_prots]
-            test_drugs, test_prots,  test_Y = np.asarray(test_drugs), np.asarray(XT), np.asarray(test_Y)
-
-            # make data PyTorch Geometric ready
-            print('preparing ', dataset + '_test.pt in pytorch format!')
-            test_data = TestbedDataset(root='data', dataset=dataset+'_test1', xd=test_drugs, xt=test_prots, y=test_Y,smile_graph=smile_graph
-                                       ,pre_transform=pre_transform,pre_filter=MyFilter1())
-            print(processed_data_file_train, ' and ', processed_data_file_test, ' have been created')
-        else:
-            print(processed_data_file_train, ' and ', processed_data_file_test, ' are already created')
+        for split_name in ['train', 'val', 'test']:
+            df = pd.read_csv('data/' + dataset + '_' + split_name + '.csv')
+            split_drugs, split_prots, split_y = encode_split(df)
+            rebuild_processed_dataset(dataset, split_name + '1', split_drugs, split_prots, split_y, smile_graph, pre_transform, MyFilter1())

@@ -75,35 +75,53 @@ print('Epochs: ', NUM_EPOCHS)
 mse_list = []
 ci_list = []
 r2_list = []
+
+
+def evaluate_regression(model, device, loader):
+    labels, preds = predicting(model, device, loader)
+    labels = labels.numpy().flatten()
+    preds = preds.numpy().flatten()
+    return labels, preds
+
+
+def regression_metrics(labels, preds):
+    metrics = {
+        'mse': mse(labels, preds),
+        'r2': get_rm2(labels, preds),
+        'ci': ci(labels, preds),
+    }
+    return metrics
+
+
 for seed in [100,1000,2000]:# 设置随机种子
     same_seeds(seed)
     # Main program: iterate over different datasets
     loss_train_list = []
-    loss_test_list = []
+    loss_val_list = []
     a_list = []
     for dataset in datasets:
         print('\nrunning on ', dataset )
         processed_data_file_train = 'data/processed/' + dataset + '_train.pt'
+        processed_data_file_val = 'data/processed/' + dataset + '_val.pt'
         processed_data_file_test = 'data/processed/' + dataset + '_test.pt'
-        if ((not os.path.isfile(processed_data_file_train)) or (not os.path.isfile(processed_data_file_test))):
+        if ((not os.path.isfile(processed_data_file_train)) or (not os.path.isfile(processed_data_file_val)) or (not os.path.isfile(processed_data_file_test))):
             print('please run create_data_davis_kiba.py to prepare data in pytorch format!')
         else:
             train_data = TestbedDataset(root='data', dataset=dataset+'_train')
+            val_data = TestbedDataset(root='data', dataset=dataset+'_val')
             test_data = TestbedDataset(root='data', dataset=dataset+'_test')
 
             # make data PyTorch mini-batch processing ready
             train_loader = DenseDataLoader(train_data, batch_size=TRAIN_BATCH_SIZE, shuffle=True)
+            val_loader = DenseDataLoader(val_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
             test_loader = DenseDataLoader(test_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
-            # [DATA LEAKAGE WARNING] 以下代码没有划分独立的 validation set，
-            # 每个 epoch 都直接在 test_loader 上评估并用 test MSE 保存最优模型。
-            # 这导致测试集参与了模型选择，属于典型的数据泄漏。
-            # 正确做法：从 train_data 中划分出 validation set，用 val MSE 选最优模型，
-            # test set 仅在训练结束后最终评估一次。
             if dataset=='kiba':
                 train_data1 = TestbedDataset(root='data', dataset=dataset+'_train1')
+                val_data1 = TestbedDataset(root='data', dataset=dataset+'_val1')
                 test_data1 = TestbedDataset(root='data', dataset=dataset+'_test1')
                 # make data PyTorch mini-batch processing ready
                 train_loader1 = DenseDataLoader(train_data1, batch_size=TRAIN_BATCH_SIZE, shuffle=True)
+                val_loader1 = DenseDataLoader(val_data1, batch_size=TEST_BATCH_SIZE, shuffle=False)
                 test_loader1 = DenseDataLoader(test_data1, batch_size=TEST_BATCH_SIZE, shuffle=False)
             # training the model
             device = torch.device(cuda_name if torch.cuda.is_available() else "cpu")
@@ -112,8 +130,7 @@ for seed in [100,1000,2000]:# 设置随机种子
             # model.load_state_dict(torch.load('model_GINConvNet_davis.model')) # 导入网络的参数
             loss_fn = nn.MSELoss()
             optimizer = torch.optim.Adam(model.parameters(), lr=LR)
-            best_mse = 1000000
-            best_ci = 0
+            best_val_mse = float('inf')
             best_epoch = -1
             model_file_name = 'model_' + dataset + '_' + model_name + '_' + str(seed) + '.model'
             for epoch in range(NUM_EPOCHS):
@@ -121,49 +138,58 @@ for seed in [100,1000,2000]:# 设置随机种子
                 if dataset=='kiba':
                     loss_train,a  = train(model, device, train_loader, optimizer, epoch+1)
                     loss_train1,a1 = train(model, device, train_loader1, optimizer, epoch+1)
-                    loss_train = (loss_train * 19576 + loss_train1 * 133) / (19576+133)
+                    train_sample_count = len(train_data) + len(train_data1)
+                    loss_train = (loss_train * len(train_data) + loss_train1 * len(train_data1)) / train_sample_count
                     loss_train_list.append(loss_train)
-                    a = (a * 19576 + a1 * 133) / (19576+133)
+                    a = (a * len(train_data) + a1 * len(train_data1)) / train_sample_count
                     a_list.append(list(a))
                 else:
                     loss_train,a = train(model, device, train_loader, optimizer, epoch+1)
                     loss_train_list.append(loss_train)
                     a_list.append(list(a))
-                # [DATA LEAKAGE] 以下代码每个 epoch 都在 test_loader 上预测，
-                # 并用 test MSE 保存最优模型。测试集参与了模型选择，导致数据泄漏。
                 if dataset=='kiba':
-                    G,P = predicting(model, device, test_loader)
-                    G1,P1 = predicting(model, device, test_loader1)
-                    G = torch.cat((G, G1), 0)
-                    P = torch.cat((P, P1), 0)
+                    G, P = evaluate_regression(model, device, val_loader)
+                    G1, P1 = evaluate_regression(model, device, val_loader1)
+                    val_metrics = regression_metrics(np.concatenate((G, G1)), np.concatenate((P, P1)))
                 else:
-                    G,P = predicting(model, device, test_loader)
-                G = G.numpy().flatten()
-                P = P.numpy().flatten()
-                ret = [mse(G,P), get_rm2(G,P)]
-                loss_test_list.append(ret[0])
-                # [DATA LEAKAGE] 以下用 test MSE 保存最优模型，test 参与了模型选择。
-                if ret[0]<best_mse:
+                    G, P = evaluate_regression(model, device, val_loader)
+                    val_metrics = regression_metrics(G, P)
+                val_mse = val_metrics['mse']
+                val_r2 = val_metrics['r2']
+                loss_val_list.append(val_mse)
+                if val_mse < best_val_mse:
                     torch.save(model.state_dict(), model_file_name)
                     best_epoch = epoch+1
-                    best_mse = ret[0]
-                    best_r2 = ret[1]
-                    G_ = G
-                    P_ = P
-                    print('rmse improved at epoch ', best_epoch, '; best_mse, rm2:', best_mse, best_r2 ,dataset)
+                    best_val_mse = val_mse
+                    best_val_r2 = val_r2
+                    print('val mse improved at epoch ', best_epoch, '; best_val_mse, best_val_r2:', best_val_mse, best_val_r2 ,dataset)
                 else:
-                    print(ret[0],'No improvement since epoch ', best_epoch, '; best_mse, rm2:', best_mse, best_r2, dataset)
+                    print(val_mse,'No improvement since epoch ', best_epoch, '; best_val_mse, best_val_r2:', best_val_mse, best_val_r2, dataset)
                 time_end = time.time()
                 print("spend time：", time_end - time_begin, "s")
                 d = pd.DataFrame(loss_train_list,columns=['train_loss'])
-                d['test_loss'] = loss_test_list
+                d['val_loss'] = loss_val_list
                 d.to_csv(dataset + "训练损失_" + str(seed) + "_" + model_name + ".csv",index=0)
                 d = pd.DataFrame(a_list,columns=['x_H_1', 'x_H_2', 'xt', 'x_G'])
                 d.to_csv(dataset + "注意力分数_" + str(seed) + "_" + model_name + ".csv",index=0)
-    mse_list.append(best_mse)
-    ci_list.append(ci(G_,P_))
-    r2_list.append(get_rm2(G_,P_))
-    d = pd.DataFrame(mse_list,columns=['mse'])
-    d['ci'] = ci_list
-    d['r2'] = r2_list
+            model.load_state_dict(torch.load(model_file_name, map_location=device))
+            if dataset == 'kiba':
+                G, P = evaluate_regression(model, device, test_loader)
+                G1, P1 = evaluate_regression(model, device, test_loader1)
+                test_metrics = regression_metrics(np.concatenate((G, G1)), np.concatenate((P, P1)))
+            else:
+                G, P = evaluate_regression(model, device, test_loader)
+                test_metrics = regression_metrics(G, P)
+            final_mse = test_metrics['mse']
+            final_ci = test_metrics['ci']
+            final_r2 = test_metrics['r2']
+            print('final test metrics at best val epoch ', best_epoch, ': mse=', final_mse, ' ci=', final_ci, ' rm2=', final_r2)
+    mse_list.append(final_mse)
+    ci_list.append(final_ci)
+    r2_list.append(final_r2)
+    d = pd.DataFrame({
+        'mse': mse_list,
+        'ci': ci_list,
+        'r2': r2_list,
+    })
     d.to_csv(dataset+'_'+model_name+'_random.csv',index=0)

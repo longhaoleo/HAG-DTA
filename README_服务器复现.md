@@ -58,7 +58,11 @@ cd ~/HAG-DTA/code_leo
 python create_data_davis_kiba.py
 ```
 
-生成文件：`data/processed/davis_train.pt`、`data/processed/davis_test.pt`、`data/processed/kiba_train.pt`、`data/processed/kiba_test.pt`
+生成文件：`data/processed/davis_train.pt`、`davis_val.pt`、`davis_test.pt`、`kiba_train.pt`、`kiba_val.pt`、`kiba_test.pt`
+
+说明：
+- 当前统一使用 `64% / 16% / 20%` 的 `train / val / test` 划分。
+- Davis/KIBA 的旧实现没有显式保留 validation set，训练过程中测试集信息曾被用于模型选择；当前版本已改为显式生成 `val` 并仅用 `val` 选模型。
 
 ### 2.2 Human / C.elegans（二分类任务）
 
@@ -114,14 +118,14 @@ python <training_script.py> <dataset_id> <model_id>
 
 ## 4. 待修复项目前的注意事项
 
-以下是返修前已确认的代码问题，上服务器请按此复现：
+以下是当前需要注意的实验设置说明：
 
 | 项 | 状态 | 说明 |
 |---|------|------|
-| Human/C.elegans 8:1:1 划分 | 已修 | 已修改 `create_data_Human_Celegans.py`，请重新生成 .pt |
+| 数据集划分 | 已统一 | 四个数据集当前统一为 `64% / 16% / 20%` 的 train / val / test 划分，请重新生成 `.pt` |
 | Human/C.elegans AUPRC bug | 已修 | 已修改 `training_Human_Celegans.py`，测试集单独重新计算 PR 曲线 |
 | 随机种子 3→5 | 待修 | 需改 `training_davis_kiba.py` 和 `training_Human_Celegans.py` 中的种子列表为 `[100, 1000, 2000, 3000, 4000]`，然后重新跑实验 |
-| Davis/KIBA validation 设置 | 待修 | 当前用 test set 选最优模型，存在数据泄漏风险，后续需要修改训练逻辑 |
+| Davis/KIBA validation 设置 | 已修 | 当前已显式划分 validation set，并用 validation 选模型，test 仅用于最终评估 |
 
 ---
 

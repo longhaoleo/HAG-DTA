@@ -96,8 +96,8 @@ for dataset in datasets:
         pre_transform = T.ToDense(184)
     if dataset=='Celegans':
         pre_transform = T.ToDense(184)
-    train_data, test_data = train_test_split(df, test_size=0.1, stratify=df[2], random_state=42)
-    train_data, val_data = train_test_split(train_data, test_size=1/9, stratify=train_data[2], random_state=42)
+    train_data, test_data = train_test_split(df, test_size=0.2, stratify=df[2], random_state=42)
+    train_data, val_data = train_test_split(train_data, test_size=0.2, stratify=train_data[2], random_state=42)
     train_drugs, train_prots, train_Y = list(train_data[0]), list(train_data[1]), list(train_data[2])
     train_prots = [seq_cat(t) for t in train_prots]
     train_drugs, train_prots, train_Y = np.asarray(train_drugs), np.asarray(train_prots), np.asarray(train_Y)
