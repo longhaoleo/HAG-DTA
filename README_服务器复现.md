@@ -1,139 +1,76 @@
-# HAG-DTA 服务器复现 README
+# HAG-DTA 服务器复现指南
 
-这份文档是当前项目的服务器运行说明，重点回答 4 个问题：
-
-1. 环境怎么配
-2. 数据怎么预处理
-3. 训练命令怎么跑
-4. 结果会保存到哪里
-
-默认面向 Linux + NVIDIA GPU 服务器。
+本文件为 Linux + NVIDIA GPU 服务器环境下的完整复现流程。本地 macOS 无法直接运行，因为 PyG 扩展需 Linux x86_64，且需要 CUDA。
 
 ---
 
-## 1. 当前代码口径
+## 1. 环境配置
 
-当前 `code_leo/` 中的代码采用以下实验口径：
+### 1.1 基础环境要求
 
-- 四个数据集都使用 `all.pt + fold 索引` 的方式组织数据
-- 先固定 `20%` 作为 `test`
-- 再对剩余 `80%` 做 `5-fold`
-- 单次训练对应的有效比例约为 `64% / 16% / 20%`
-  - `train / validation / test`
-- 回归任务 `Davis / KIBA`
-  - 使用 `validation set` 选择最优模型
-  - `test set` 仅用于最终评估
-- 分类任务 `Human / C.elegans`
-  - 同样使用 `validation set` 选择最优模型
-- 路径配置统一放在：
+- Python 3.8
+- CUDA 可用（建议 CUDA 11.8）
+- Linux x86_64
 
-```python
-code_leo/config/paths.py
-```
-
-- 训练超参数统一放在：
-
-```python
-code_leo/config/training.py
-```
-
-当前主要可控项包括：
-
-- `DATA_ROOT`
-- `CACHE_ROOT`
-- `PROCESSED_DIR`
-- `FOLD_DIR`
-- `OUTPUT_ROOT`
-- `CHECKPOINT_DIR`
-
-训练侧常用可控项包括：
-
-- `SEEDS`
-- `CUDA_NAME`
-- `REGRESSION_TRAINING`
-- `CLASSIFICATION_TRAINING`
-
-如果你的服务器数据盘路径不同，优先改：
-
-- [paths.py](/Users/leo/HAG-DTA/code_leo/config/paths.py:1)
-
-也可以直接用环境变量覆盖：
-
-```bash
-export HAG_DTA_DATA_ROOT=/path/to/data
-export HAG_DTA_CACHE_ROOT=/root/autodl-tmp/HAG-DTA-cache
-export HAG_DTA_OUTPUT_ROOT=/root/autodl-tmp/HAG-DTA-runs
-```
-
----
-
-## 2. 目录说明
-
-项目里当前主要用这几个目录：
-
-- `code_leo/`
-  - 当前实验代码
-- `code_leo/config/`
-  - 路径配置
-- `data/`
-  - 原始数据
-- `/root/autodl-tmp/HAG-DTA-cache`
-  - 预处理 `.pt` 和 fold 索引
-- `服务器配置/`
-  - 旧版 Linux wheel 备份
-- `/root/autodl-tmp/HAG-DTA-runs`
-  - 训练输出目录
-
-建议服务器上这样进入项目：
-
-```bash
-cd ~/HAG-DTA
-```
-
----
-
-## 3. 环境配置
-
-### 3.1 推荐基础环境
-
-- Python `3.8`
-- PyTorch `2.0.0`
-- CUDA `11.8`
-
-如果你在 AutoDL 或类似环境上跑，建议单独建一个环境。
-
-### 3.2 安装命令
+### 1.2 安装依赖
 
 ```bash
 cd ~/HAG-DTA
 
-# 1. PyTorch
+# 1. 安装 PyTorch 2.0.0（根据服务器 CUDA 版本选择，cu118 / cu117 / cu121）
 pip install torch==2.0.0 torchvision==0.15.0 torchaudio==2.0.0 --index-url https://download.pytorch.org/whl/cu118
 
-# 2. PyG
+# 2. 安装 PyTorch Geometric
 pip install torch_geometric==2.6.1 -f https://data.pyg.org/whl/torch-2.0.0+cu118.html
+
+# 3. 安装 PyG 扩展
 pip install torch_scatter==2.1.2 torch_sparse==0.6.18 torch_cluster==1.6.3 torch_spline_conv==1.2.2 -f https://data.pyg.org/whl/torch-2.0.0+cu118.html
 
-# 3. 其他依赖
+# 如果 PyG 官方源下载慢或网络不稳定，可使用项目内的本地 wheel 备选：
+# pip install 服务器配置/torch_cluster-1.5.9-cp38-cp38-linux_x86_64.whl
+# pip install 服务器配置/torch_scatter-2.0.7-cp38-cp38-linux_x86_64.whl
+# pip install 服务器配置/torch_sparse-0.6.10-cp38-cp38-linux_x86_64.whl
+# pip install 服务器配置/torch_spline_conv-1.2.1-cp38-cp38-linux_x86_64.whl
+
+# 4. 其他依赖
 pip install pandas numpy scipy scikit-learn networkx rdkit-pypi matplotlib pillow
 ```
 
-如果官方源安装失败，可以尝试项目里已有的 wheel，但那几份 wheel 比较旧，不优先推荐。
-
-### 3.3 环境检查
+### 1.3 验证环境
 
 ```bash
-python3 -c "import torch; print(torch.__version__)"
-python3 -c "import torch; print(torch.cuda.is_available())"
-python3 -c "import torch_geometric; print(torch_geometric.__version__)"
-python3 -c "from rdkit import Chem; print('rdkit ok')"
+python -c "import torch; print(torch.__version__)"
+python -c "import torch; print(torch.cuda.is_available())"
+python -c "import torch_geometric; print(torch_geometric.__version__)"
+python -c "from rdkit import Chem; print('rdkit ok')"
 ```
 
-如果 `torch.cuda.is_available()` 返回 `False`，训练会非常慢。
+`torch.cuda.is_available()` 返回 `False` 的话训练会非常慢，检查 CUDA 安装。
 
 ---
 
-## 4. 数据预处理
+## 2. 路径配置（可选）
+
+代码通过 `code_leo/config/paths.py` 统一管理路径，支持环境变量覆盖：
+
+| 变量 | 默认值 | 说明 |
+|------|--------|------|
+| `HAG_DTA_DATA_ROOT` | `data` | 原始数据目录 |
+| `HAG_DTA_CACHE_ROOT` | `/root/autodl-tmp/HAG-DTA-cache` | 预处理 `.pt` 和 fold 索引 |
+| `HAG_DTA_OUTPUT_ROOT` | `/root/autodl-tmp/HAG-DTA-runs` | 训练输出（模型 + CSV） |
+
+如果服务器数据盘路径不同，建议：
+
+```bash
+export HAG_DTA_CACHE_ROOT=/your/data/drive/HAG-DTA-cache
+export HAG_DTA_OUTPUT_ROOT=/your/data/drive/HAG-DTA-runs
+```
+
+或直接修改 `code_leo/config/paths.py`。
+
+---
+
+## 3. 数据预处理
 
 进入代码目录：
 
@@ -141,269 +78,249 @@ python3 -c "from rdkit import Chem; print('rdkit ok')"
 cd ~/HAG-DTA/code_leo
 ```
 
-### 4.1 Davis / KIBA
+### 3.1 Davis / KIBA（回归任务）
 
 ```bash
-python3 create_data_davis_kiba.py
+python create_data_davis_kiba.py
 ```
 
-当前会生成：
+生成文件：
 
-- `data/processed/davis_all.pt`
-- `data/processed/kiba_all.pt`
-- `data/processed/kiba_all1.pt`
-- `data/fold_indices/davis_fold0.json` 到 `davis_fold4.json`
-- `data/fold_indices/kiba_fold0.json` 到 `kiba_fold4.json`
+| 文件 | 说明 |
+|------|------|
+| `<CACHE_ROOT>/processed/davis_all.pt` | Davis 全量图数据 |
+| `<CACHE_ROOT>/processed/kiba_all.pt` | KIBA 全量图数据（小分子，≤46 原子） |
+| `<CACHE_ROOT>/processed/kiba_all1.pt` | KIBA 大分子分支（>46 原子） |
+| `<CACHE_ROOT>/fold_indices/davis_fold0.json` ~ `davis_fold4.json` | Davis 5 折索引 |
+| `<CACHE_ROOT>/fold_indices/kiba_fold0.json` ~ `kiba_fold4.json` | KIBA 5 折索引 |
 
-默认实际位置为：
+划分方式：先固定 20% 作为 test，剩余 80% 做 5-fold（每 fold: train 64% / val 16% / test 20%）。
 
-- `/root/autodl-tmp/HAG-DTA-cache/processed/*.pt`
-- `/root/autodl-tmp/HAG-DTA-cache/fold_indices/*.json`
-
-说明：
-
-- `*_all.pt` 只缓存一次全量图数据
-- `kiba_all1.pt` 是大分子分支
-- 每个 fold 只保存索引，不重复保存 5 套 `.pt`
-
-### 4.2 Human / C.elegans
+### 3.2 Human / C.elegans（二分类任务）
 
 ```bash
-python3 create_data_Human_Celegans.py
+python create_data_Human_Celegans.py
 ```
 
-当前会生成：
+生成文件：
 
-- `data/processed/Human_all.pt`
-- `data/processed/Celegans_all.pt`
-- `data/fold_indices/Human_fold0.json` 到 `Human_fold4.json`
-- `data/fold_indices/Celegans_fold0.json` 到 `Celegans_fold4.json`
+| 文件 | 说明 |
+|------|------|
+| `<CACHE_ROOT>/processed/Human_all.pt` | Human 全量图数据 |
+| `<CACHE_ROOT>/processed/Celegans_all.pt` | C.elegans 全量图数据 |
+| `<CACHE_ROOT>/fold_indices/Human_fold0.json` ~ `Human_fold4.json` | Human 5 折索引 |
+| `<CACHE_ROOT>/fold_indices/Celegans_fold0.json` ~ `Celegans_fold4.json` | C.elegans 5 折索引 |
 
-### 4.3 预处理注意事项
+### 3.3 预处理注意事项
 
-- 修改了划分逻辑后，必须重新跑预处理
-- 如果想强制重建 `.pt`，可以先删除 `data/processed/` 下对应文件再运行
-- 如果想强制重建 fold 划分，可以同时删除 `data/fold_indices/` 下对应 json
+> ⚠️ 如果之前已生成过 `.pt` 或 fold 索引，修改划分逻辑后必须先删除旧文件再重新运行：
 
-如果使用当前默认缓存配置，上面两项实际对应的是：
-
-- `/root/autodl-tmp/HAG-DTA-cache/processed/`
-- `/root/autodl-tmp/HAG-DTA-cache/fold_indices/`
+```bash
+rm -f /root/autodl-tmp/HAG-DTA-cache/processed/Human_*.pt
+rm -f /root/autodl-tmp/HAG-DTA-cache/processed/Celegans_*.pt
+rm -f /root/autodl-tmp/HAG-DTA-cache/processed/davis_*.pt
+rm -f /root/autodl-tmp/HAG-DTA-cache/processed/kiba_*.pt
+rm -f /root/autodl-tmp/HAG-DTA-cache/fold_indices/*.json
+python create_data_davis_kiba.py
+python create_data_Human_Celegans.py
+```
 
 ---
 
-## 5. 训练命令
+## 4. 训练
 
-训练前先确认路径配置正确。当前脚本会自动创建输出目录和 checkpoint 目录。
-
-默认输出根目录是：
+### 4.1 命令格式
 
 ```bash
-/root/autodl-tmp/HAG-DTA-runs
+python <训练脚本> <dataset_id> <model_id> <fold_id>
 ```
 
-### 5.1 参数说明
+参数说明：
 
-脚本格式：
+| 参数 | 取值 | 含义 |
+|------|------|------|
+| `dataset_id` | 见下表 | 数据集选择 |
+| `model_id` | 0=GIN, 1=GCN, 2=GAT, 3=SAGE | 图卷积算子 |
+| `fold_id` | 0~4 | 5 折交叉验证的第几折 |
 
-```bash
-python3 <script> <dataset_id> <model_id> <fold_id>
-```
+### 4.2 回归任务（Davis / KIBA）
 
-其中：
+进入代码目录：`cd ~/HAG-DTA/code_leo`
 
-- `dataset_id`
-  - 回归任务：`0=davis`, `1=kiba`
-  - 分类任务：`0=Human`, `1=Celegans`
-- `model_id`
-  - `0=GIN`
-  - `1=GCN`
-  - `2=GAT`
-  - `3=SAGE`
-- `fold_id`
-  - `0~4`
-  - 表示当前使用哪个 validation fold
+| 命令 | 数据集 | 模型 |
+|------|--------|------|
+| `python training_davis_kiba.py 0 0 0` | Davis | GIN |
+| `python training_davis_kiba.py 0 1 0` | Davis | GCN |
+| `python training_davis_kiba.py 0 2 0` | Davis | GAT |
+| `python training_davis_kiba.py 0 3 0` | Davis | SAGE |
+| `python training_davis_kiba.py 1 0 0` | KIBA | GIN |
+| `python training_davis_kiba.py 1 1 0` | KIBA | GCN |
+| `python training_davis_kiba.py 1 2 0` | KIBA | GAT |
+| `python training_davis_kiba.py 1 3 0` | KIBA | SAGE |
 
-### 5.2 回归任务
+以上是 fold 0 的示例，完整 5 折需 fold 0~4 各跑一遍。
+
+评估指标：MSE、CI、rm²。使用 **validation set** 选最优模型（`VAL_INTERVAL=5` epochs 验证一次），test set 仅最终评估。支持 early stopping（`EARLY_STOP_PATIENCE=50`）。
+
+### 4.3 二分类任务（Human / C.elegans）
+
+进入代码目录：`cd ~/HAG-DTA/code_leo`
+
+| 命令 | 数据集 | 模型 |
+|------|--------|------|
+| `python training_Human_Celegans.py 0 0 0` | Human | GIN |
+| `python training_Human_Celegans.py 0 1 0` | Human | GCN |
+| `python training_Human_Celegans.py 0 2 0` | Human | GAT |
+| `python training_Human_Celegans.py 0 3 0` | Human | SAGE |
+| `python training_Human_Celegans.py 1 0 0` | C.elegans | GIN |
+| `python training_Human_Celegans.py 1 1 0` | C.elegans | GCN |
+| `python training_Human_Celegans.py 1 2 0` | C.elegans | GAT |
+| `python training_Human_Celegans.py 1 3 0` | C.elegans | SAGE |
+
+评估指标：AUROC、AUPRC、Precision、Recall。每个 epoch 在 validation set 上评估，用最高 AUROC 保存模型，test set 在最优时间点重新计算指标（AUPRC 单独重算，已修复）。
+
+### 4.4 跑完整 5 折
 
 ```bash
 cd ~/HAG-DTA/code_leo
 
-python3 training_davis_kiba.py 0 0 0   # Davis + GIN + fold0
-python3 training_davis_kiba.py 0 1 0   # Davis + GCN + fold0
-python3 training_davis_kiba.py 0 2 0   # Davis + GAT + fold0
-python3 training_davis_kiba.py 0 3 0   # Davis + SAGE + fold0
-
-python3 training_davis_kiba.py 1 0 0   # KIBA + GIN + fold0
-python3 training_davis_kiba.py 1 1 0   # KIBA + GCN + fold0
-python3 training_davis_kiba.py 1 2 0   # KIBA + GAT + fold0
-python3 training_davis_kiba.py 1 3 0   # KIBA + SAGE + fold0
-```
-
-### 5.3 分类任务
-
-```bash
-cd ~/HAG-DTA/code_leo
-
-python3 training_Human_Celegans.py 0 0 0   # Human + GIN + fold0
-python3 training_Human_Celegans.py 0 1 0   # Human + GCN + fold0
-python3 training_Human_Celegans.py 0 2 0   # Human + GAT + fold0
-python3 training_Human_Celegans.py 0 3 0   # Human + SAGE + fold0
-
-python3 training_Human_Celegans.py 1 0 0   # Celegans + GIN + fold0
-python3 training_Human_Celegans.py 1 1 0   # Celegans + GCN + fold0
-python3 training_Human_Celegans.py 1 2 0   # Celegans + GAT + fold0
-python3 training_Human_Celegans.py 1 3 0   # Celegans + SAGE + fold0
-```
-
-### 5.4 跑完整 5 折
-
-四个数据集现在都需要把 `fold_id=0~4` 跑完。
-
-例如 Davis + GIN：
-
-```bash
-cd ~/HAG-DTA/code_leo
+# Davis + GIN, 全部 5 折
 for fold in 0 1 2 3 4; do
-  python3 training_davis_kiba.py 0 0 ${fold}
+    python training_davis_kiba.py 0 0 ${fold}
+done
+
+# Human + GIN, 全部 5 折
+for fold in 0 1 2 3 4; do
+    python training_Human_Celegans.py 0 0 ${fold}
 done
 ```
 
 ---
 
-## 6. 输出文件位置
+## 5. 输出文件
 
-当前训练产物默认都保存到：
+训练产物默认保存到 `HAG_DTA_OUTPUT_ROOT`（默认 `/root/autodl-tmp/HAG-DTA-runs`）。
 
-```bash
-/root/autodl-tmp/HAG-DTA-runs
+### 5.1 目录结构
+
+```
+/root/autodl-tmp/HAG-DTA-runs/
+├── checkpoints/
+│   ├── model_davis_Diff_DTA_GIN_fold0_100.model
+│   ├── model_davis_Diff_DTA_GIN_fold0_1000.model
+│   └── ...
+├── davis训练损失_fold0_100_Diff_DTA_GIN.csv
+├── davis注意力分数_fold0_100_Diff_DTA_GIN.csv
+├── davis_Diff_DTA_GIN_fold0_random.csv
+└── ...
 ```
 
-包括：
+其中 `*_random.csv` 是各种子最终 test 指标汇总。
 
-- 最优模型 checkpoint
-- `训练损失_*.csv`
-- `注意力分数_*.csv`
-- `*_random.csv`
+### 5.2 默认超参数
 
-其中 checkpoint 默认保存在：
+| 参数 | 回归 | 分类 |
+|------|------|------|
+| Epochs | 1000 | 1000 |
+| Train batch size | 512 | 256 |
+| Test batch size | 512 | 2048 |
+| Learning rate | 0.0005 | 0.0005 |
+| Seeds | 100, 1000, 2000 | 100, 1000, 2000 |
+| Val interval | 5 epochs | 每 epoch |
+| Early stop | 50 epochs | 无 |
 
-```bash
-/root/autodl-tmp/HAG-DTA-runs/checkpoints
-```
-
-### 6.1 回归任务输出示例
-
-- `model_davis_Diff_DTA_GIN_fold0_100.model`
-- `davis训练损失_fold0_100_Diff_DTA_GIN.csv`
-- `davis注意力分数_fold0_100_Diff_DTA_GIN.csv`
-- `davis_Diff_DTA_GIN_fold0_random.csv`
-
-### 6.2 分类任务输出示例
-
-- `model_Human_Diff_DTA_GIN_fold0_100.model`
-- `Human_Diff_DTA_GIN_fold0_random.csv`
+超参数在 `code_leo/config/training.py` 中统一配置。
 
 ---
 
-## 7. 后台运行建议
+## 6. 后台运行
 
-建议使用 `nohup` 或 `tmux`。
-
-### 7.1 nohup
+建议用 `nohup` 或 `tmux`：
 
 ```bash
 cd ~/HAG-DTA/code_leo
-nohup python3 training_davis_kiba.py 0 0 0 > /root/autodl-tmp/HAG-DTA-runs/davis_gin_fold0.log 2>&1 &
+nohup python training_davis_kiba.py 0 0 0 > /root/autodl-tmp/HAG-DTA-runs/davis_gin_fold0.log 2>&1 &
 ```
 
-### 7.2 查看日志
+查看日志：
 
 ```bash
-tail -f /root/autodl-tmp/HAG-DTA-runs/davis_gin.log
+tail -f /root/autodl-tmp/HAG-DTA-runs/davis_gin_fold0.log
 ```
 
----
-
-## 8. 当前默认超参数
-
-### 回归任务
-
-- epoch: `1000`
-- batch size: `512`
-- lr: `0.0005`
-- seeds: `100, 1000, 2000`
-
-### 分类任务
-
-- epoch: `1000`
-- batch size: `256`
-- test batch size: `2048`
-- lr: `0.0005`
-- seeds: `100, 1000, 2000`
-
-如果后面补论文要求的 5 个随机种子，需要把两个训练脚本里的 seed 列表改成：
-
-```python
-[100, 1000, 2000, 3000, 4000]
-```
-
----
-
-## 9. 运行前检查清单
-
-正式跑之前建议确认：
-
-1. `OUTPUT_ROOT` 是否指向数据盘
-2. `.pt` 是否已经按当前划分重新生成
-3. 当前脚本是否是 `code_leo/` 这一版，而不是旧的 `code/`
-4. GPU 是否可用
-5. 日志输出路径是否可写
-
----
-
-## 10. 常见问题
-
-### Q1. 为什么跑起来提示先运行 `create_data_*.py`？
-
-说明 `data/processed/` 下缺少当前脚本要读取的 `.pt` 文件，先重新跑预处理。
-
-### Q2. 为什么 KIBA 会有 `train1 / val1 / test1`？
-
-因为 KIBA 里较大的分子被单独分出去，使用不同的 `ToDense` 节点上限。
-
-### Q3. 为什么结果文件不在代码目录里？
-
-因为当前脚本已把所有结果统一写到：
+批量后台跑（以 Davis 全模型 fold 0 为例）：
 
 ```bash
-/root/autodl-tmp/HAG-DTA-runs
+cd ~/HAG-DTA/code_leo
+for m in 0 1 2 3; do
+    nohup python training_davis_kiba.py 0 ${m} 0 > /root/autodl-tmp/HAG-DTA-runs/davis_model${m}_fold0.log 2>&1 &
+done
 ```
-
-### Q4. 改了划分后为什么结果和以前不一样？
-
-因为 `.pt` 是预处理产物。只改脚本不重建 `.pt`，不会自动切换到新划分。
 
 ---
 
-## 11. 推荐最小流程
+## 7. 当前待修复项
 
-如果你只是想最快复现一组结果，建议直接跑：
+返修前已确认的代码问题状态：
+
+| 项 | 状态 | 说明 |
+|---|------|------|
+| 数据划分修复（Human/C.elegans） | ✅ 已修 | 已从 64/16/20 改为 80/10/10，需重新生成 `.pt` |
+| AUPRC 计算 bug | ✅ 已修 | 测试集单独重新计算 precision_recall_curve |
+| Davis/KIBA 数据泄漏 | ✅ 已修 | 已改为 validation 选模型 + test 最终评估 |
+| 5-fold 交叉验证 | ✅ 已修 | 创建数据时生成 fold 索引，训练支持 fold_id 参数 |
+| 随机种子 3→5 | ⚠️ 待修 | 需改 `config/training.py` 中 `SEEDS = [100, 1000, 2000, 3000, 4000]`，然后重新跑全部实验 |
+| 统计显著性检验 | ⚠️ 待补 | 审稿人要求 t-test / ANOVA |
+
+---
+
+## 8. 运行前检查清单
+
+- [ ] `python -c "import torch; print(torch.cuda.is_available())"` → `True`
+- [ ] `<CACHE_ROOT>/processed/` 下有 `*_all.pt` 文件
+- [ ] `<CACHE_ROOT>/fold_indices/` 下有 `*_fold*.json` 文件
+- [ ] `HAG_DTA_OUTPUT_ROOT` 目录可写
+- [ ] 当前代码是 `code_leo/` 目录（非旧版 `code/`）
+- [ ] （可选）如果需要 5 个种子，已改 `config/training.py` 的 `SEEDS`
+
+---
+
+## 9. 常见问题
+
+**Q: 为什么本地 macOS 装不了？**
+A: PyG 扩展的 wheel 是 Linux x86_64 + CUDA 编译的，macOS 无法使用。需要在 Linux GPU 服务器上运行。
+
+**Q: 提示"please run create_data_*.py to prepare"？**
+A: `CACHE_ROOT` 下缺少 `.pt` 或 fold 索引，先运行预处理脚本。
+
+**Q: 训练大约需要多久？**
+A: 单种子、单 fold、单数据集、单模型大约几小时到十几小时（取决于 GPU，默认 1000 epochs + early stopping 通常提前停止）。
+
+**Q: KIBA 为什么有 `_all1.pt`？**
+A: KIBA 中等大分子（>46 原子）被单独用更大的 `ToDense` 节点上限处理，训练时会同时加载两个 DataLoader。
+
+**Q: 改了划分后为什么结果和以前不一样？**
+A: `.pt` 是预处理产物。改脚本后必须删除旧文件重新生成，否则沿用旧数据。
+
+**Q: 如何知道训练跑了几个种子？**
+A: 看 `config/training.py` 的 `SEEDS` 列表，或输出目录下的 checkpoint 文件命名（如 `_100.model` 即 seed=100）。
+
+---
+
+## 10. 最快复现路径
 
 ```bash
 cd ~/HAG-DTA/code_leo
 
-python3 create_data_davis_kiba.py
-python3 training_davis_kiba.py 0 0
+# 预处理
+python create_data_davis_kiba.py
+python create_data_Human_Celegans.py
+
+# 回归：Davis + GIN, fold 0
+python training_davis_kiba.py 0 0 0
+
+# 分类：Human + GIN, fold 0
+python training_Human_Celegans.py 0 0 0
 ```
 
-或者分类任务：
-
-```bash
-cd ~/HAG-DTA/code_leo
-
-python3 create_data_Human_Celegans.py
-python3 training_Human_Celegans.py 0 0
-```
-
-这就是当前代码库的最小复现路径。
+确认一条能跑通后再批量跑完整实验。
