@@ -30,6 +30,8 @@ def same_seeds(seed):
 def train(model, device, train_loader, optimizer, epoch):
     print('Training on {} samples...'.format(len(train_loader.dataset)))
     model.train()
+    loss_train = 0
+    num_sample = 0
     for batch_idx, data in enumerate(train_loader):
         data = data.to(device)
         optimizer.zero_grad()
@@ -39,6 +41,8 @@ def train(model, device, train_loader, optimizer, epoch):
         cl_loss = criterion(x_local, x_global)
         loss_all = loss + 0.05 * l_loss + 0.05 * e_loss + 0.05 * cl_loss
         loss_all.backward()
+        loss_train = loss_train + data.y.shape[0] * loss.item()
+        num_sample = num_sample + data.y.shape[0]
         optimizer.step()
         if batch_idx % LOG_INTERVAL == 0:
             print(
@@ -51,6 +55,9 @@ def train(model, device, train_loader, optimizer, epoch):
                     loss_all.item(),
                 )
             )
+    epoch_loss = loss_train / num_sample
+    print('Train epoch: {}\tLoss: {:.6f}'.format(epoch, epoch_loss))
+    return epoch_loss
 
 
 def predicting(model, device, loader):
@@ -113,6 +120,11 @@ def subset_from_original_ids(dataset, pos_map, original_ids):
 
 for seed in SEEDS:
     same_seeds(seed)
+    loss_train_list = []
+    val_auroc_list = []
+    val_auprc_list = []
+    val_precision_list = []
+    val_recall_list = []
     for dataset in datasets:
         print('\nrunning on ', dataset)
         processed_data_file_all = processed_file(dataset + '_all')
@@ -141,7 +153,7 @@ for seed in SEEDS:
             model_file_name = os.path.join(CHECKPOINT_DIR, f'model_{dataset}_{model_name}_fold{fold_id}_{seed}.model')
             for epoch in range(NUM_EPOCHS):
                 time_begin = time.time()
-                train(model, device, train_loader, optimizer, epoch + 1)
+                train_loss = train(model, device, train_loader, optimizer, epoch + 1)
                 G, P, pred = predicting(model, device, val_loader)
                 precision_val, recall_val, _ = precision_recall_curve(G, P)
                 val_ret = [
@@ -150,6 +162,11 @@ for seed in SEEDS:
                     precision_score(G, pred),
                     recall_score(G, pred),
                 ]
+                loss_train_list.append(train_loss)
+                val_auroc_list.append(val_ret[0])
+                val_auprc_list.append(val_ret[1])
+                val_precision_list.append(val_ret[2])
+                val_recall_list.append(val_ret[3])
                 if val_ret[0] > best_val_roc:
                     torch.save(model.state_dict(), model_file_name)
                     best_epoch = epoch + 1
@@ -187,6 +204,14 @@ for seed in SEEDS:
                     )
                 time_end = time.time()
                 print("spend time：", time_end - time_begin, "s")
+                d = pd.DataFrame({
+                    'train_loss': loss_train_list,
+                    'val_AUROC': val_auroc_list,
+                    'val_AUPRC': val_auprc_list,
+                    'val_precision': val_precision_list,
+                    'val_recall': val_recall_list,
+                })
+                d.to_csv(output_file(f'{dataset}训练损失_fold{fold_id}_{seed}_{model_name}.csv'), index=0)
     ret_list.append(best_ret)
     d = pd.DataFrame(ret_list, columns=['AUROC', 'AUPRC', 'Precision', 'Recall'])
     d.to_csv(output_file(f'{dataset}_{model_name}_fold{fold_id}_random.csv'), index=0)
