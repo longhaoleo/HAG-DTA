@@ -70,7 +70,7 @@ TRAIN_BATCH_SIZE = 256
 TEST_BATCH_SIZE = 2048
 LR = 0.0005
 LOG_INTERVAL = 10
-NUM_EPOCHS = 500
+NUM_EPOCHS = 1000
 OUTPUT_ROOT = '/root/autodl-tmp/HAG-DTA-runs'
 
 print('Learning rate: ', LR)
@@ -82,7 +82,7 @@ os.makedirs(OUTPUT_ROOT, exist_ok=True)
 def output_path(filename):
     return os.path.join(OUTPUT_ROOT, filename)
 # Main program: iterate over different datasets
-for seed in [100]:# 设置随机种子
+for seed in [100,1000,2000]:# 设置随机种子
     same_seeds(seed)
     for dataset in datasets:
         print('\nrunning on ', dataset)
