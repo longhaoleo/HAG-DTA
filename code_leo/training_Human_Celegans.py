@@ -71,10 +71,16 @@ TEST_BATCH_SIZE = 2048
 LR = 0.0005
 LOG_INTERVAL = 10
 NUM_EPOCHS = 1000
+OUTPUT_ROOT = '/root/autodl-tmp/HAG-DTA-runs'
 
 print('Learning rate: ', LR)
 print('Epochs: ', NUM_EPOCHS)
 ret_list = []
+os.makedirs(OUTPUT_ROOT, exist_ok=True)
+
+
+def output_path(filename):
+    return os.path.join(OUTPUT_ROOT, filename)
 # Main program: iterate over different datasets
 for seed in [100,1000,2000]:# 设置随机种子
     same_seeds(seed)
@@ -103,7 +109,7 @@ for seed in [100,1000,2000]:# 设置随机种子
             optimizer = torch.optim.Adam(model.parameters(), lr=LR)
             best_roc = 0
             best_epoch = -1
-            model_file_name = 'model_' + dataset + '_' + model_name + '.model'
+            model_file_name = output_path('model_' + dataset + '_' + model_name + '_' + str(seed) + '.model')
             for epoch in range(NUM_EPOCHS):
                 time_begin = time.time()
                 train(model, device, train_loader, optimizer, epoch + 1)
@@ -131,4 +137,4 @@ for seed in [100,1000,2000]:# 设置随机种子
                 print("spend time：", time_end - time_begin, "s")
     ret_list.append(best_ret)
     d = pd.DataFrame(ret_list)
-    d.to_csv(dataset+'_'+model_name+'_random.csv',index=0)
+    d.to_csv(output_path(dataset+'_'+model_name+'_random.csv'),index=0)

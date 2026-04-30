@@ -69,12 +69,15 @@ TEST_BATCH_SIZE = 512
 LR = 0.0005
 LOG_INTERVAL = 20
 NUM_EPOCHS = 1000
+OUTPUT_ROOT = '/root/autodl-tmp/HAG-DTA-runs'
 
 print('Learning rate: ', LR)
 print('Epochs: ', NUM_EPOCHS)
 mse_list = []
 ci_list = []
 r2_list = []
+
+os.makedirs(OUTPUT_ROOT, exist_ok=True)
 
 
 def evaluate_regression(model, device, loader):
@@ -91,6 +94,10 @@ def regression_metrics(labels, preds):
         'ci': ci(labels, preds),
     }
     return metrics
+
+
+def output_path(filename):
+    return os.path.join(OUTPUT_ROOT, filename)
 
 
 for seed in [100,1000,2000]:# 设置随机种子
@@ -132,7 +139,7 @@ for seed in [100,1000,2000]:# 设置随机种子
             optimizer = torch.optim.Adam(model.parameters(), lr=LR)
             best_val_mse = float('inf')
             best_epoch = -1
-            model_file_name = 'model_' + dataset + '_' + model_name + '_' + str(seed) + '.model'
+            model_file_name = output_path('model_' + dataset + '_' + model_name + '_' + str(seed) + '.model')
             for epoch in range(NUM_EPOCHS):
                 time_begin = time.time()
                 if dataset=='kiba':
@@ -169,9 +176,9 @@ for seed in [100,1000,2000]:# 设置随机种子
                 print("spend time：", time_end - time_begin, "s")
                 d = pd.DataFrame(loss_train_list,columns=['train_loss'])
                 d['val_loss'] = loss_val_list
-                d.to_csv(dataset + "训练损失_" + str(seed) + "_" + model_name + ".csv",index=0)
+                d.to_csv(output_path(dataset + "训练损失_" + str(seed) + "_" + model_name + ".csv"),index=0)
                 d = pd.DataFrame(a_list,columns=['x_H_1', 'x_H_2', 'xt', 'x_G'])
-                d.to_csv(dataset + "注意力分数_" + str(seed) + "_" + model_name + ".csv",index=0)
+                d.to_csv(output_path(dataset + "注意力分数_" + str(seed) + "_" + model_name + ".csv"),index=0)
             model.load_state_dict(torch.load(model_file_name, map_location=device))
             if dataset == 'kiba':
                 G, P = evaluate_regression(model, device, test_loader)
@@ -192,4 +199,4 @@ for seed in [100,1000,2000]:# 设置随机种子
         'ci': ci_list,
         'r2': r2_list,
     })
-    d.to_csv(dataset+'_'+model_name+'_random.csv',index=0)
+    d.to_csv(output_path(dataset+'_'+model_name+'_random.csv'),index=0)
