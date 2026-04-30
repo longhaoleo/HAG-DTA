@@ -94,9 +94,13 @@ TEST_BATCH_SIZE = CLASSIFICATION_TRAINING['test_batch_size']
 LR = CLASSIFICATION_TRAINING['lr']
 LOG_INTERVAL = CLASSIFICATION_TRAINING['log_interval']
 NUM_EPOCHS = CLASSIFICATION_TRAINING['num_epochs']
+VAL_INTERVAL = CLASSIFICATION_TRAINING['val_interval']
+EARLY_STOP_PATIENCE = CLASSIFICATION_TRAINING['early_stop_patience']
 
 print('Learning rate: ', LR)
 print('Epochs: ', NUM_EPOCHS)
+print('Validation interval: ', VAL_INTERVAL)
+print('Early stop patience: ', EARLY_STOP_PATIENCE)
 ret_list = []
 ensure_runtime_dirs()
 
@@ -150,57 +154,74 @@ for seed in SEEDS:
             optimizer = torch.optim.Adam(model.parameters(), lr=LR)
             best_val_roc = -1
             best_epoch = -1
+            epochs_since_improvement = 0
             model_file_name = os.path.join(CHECKPOINT_DIR, f'model_{dataset}_{model_name}_fold{fold_id}_{seed}.model')
             for epoch in range(NUM_EPOCHS):
                 time_begin = time.time()
                 train_loss = train(model, device, train_loader, optimizer, epoch + 1)
-                G, P, pred = predicting(model, device, val_loader)
-                precision_val, recall_val, _ = precision_recall_curve(G, P)
-                val_ret = [
-                    roc_auc_score(G, P),
-                    auc(recall_val, precision_val),
-                    precision_score(G, pred),
-                    recall_score(G, pred),
-                ]
                 loss_train_list.append(train_loss)
-                val_auroc_list.append(val_ret[0])
-                val_auprc_list.append(val_ret[1])
-                val_precision_list.append(val_ret[2])
-                val_recall_list.append(val_ret[3])
-                if val_ret[0] > best_val_roc:
-                    torch.save(model.state_dict(), model_file_name)
-                    best_epoch = epoch + 1
-                    best_val_roc = val_ret[0]
-                    G_test, P_test, pred_test = predicting(model, device, test_loader)
-                    precision_test, recall_test, _ = precision_recall_curve(G_test, P_test)
-                    auprc_test = auc(recall_test, precision_test)
-                    best_ret = [
-                        roc_auc_score(G_test, P_test),
-                        auprc_test,
-                        precision_score(G_test, pred_test),
-                        recall_score(G_test, pred_test),
+                should_validate = ((epoch + 1) == 1) or ((epoch + 1) % VAL_INTERVAL == 0)
+                if should_validate:
+                    G, P, pred = predicting(model, device, val_loader)
+                    precision_val, recall_val, _ = precision_recall_curve(G, P)
+                    val_ret = [
+                        roc_auc_score(G, P),
+                        auc(recall_val, precision_val),
+                        precision_score(G, pred),
+                        recall_score(G, pred),
                     ]
-                    print(
-                        'val AUROC improved at epoch ',
-                        best_epoch,
-                        '; best_AUROC, best_AUPRC, best_precision, best_recall:',
-                        best_ret[0],
-                        best_ret[1],
-                        best_ret[2],
-                        best_ret[3],
-                        dataset,
-                    )
+                    val_auroc_list.append(val_ret[0])
+                    val_auprc_list.append(val_ret[1])
+                    val_precision_list.append(val_ret[2])
+                    val_recall_list.append(val_ret[3])
+                    if val_ret[0] > best_val_roc:
+                        torch.save(model.state_dict(), model_file_name)
+                        best_epoch = epoch + 1
+                        best_val_roc = val_ret[0]
+                        epochs_since_improvement = 0
+                        G_test, P_test, pred_test = predicting(model, device, test_loader)
+                        precision_test, recall_test, _ = precision_recall_curve(G_test, P_test)
+                        auprc_test = auc(recall_test, precision_test)
+                        best_ret = [
+                            roc_auc_score(G_test, P_test),
+                            auprc_test,
+                            precision_score(G_test, pred_test),
+                            recall_score(G_test, pred_test),
+                        ]
+                        print(
+                            'val AUROC improved at epoch ',
+                            best_epoch,
+                            '; best_AUROC, best_AUPRC, best_precision, best_recall:',
+                            best_ret[0],
+                            best_ret[1],
+                            best_ret[2],
+                            best_ret[3],
+                            dataset,
+                        )
+                    else:
+                        epochs_since_improvement += 1
+                        print(
+                            val_ret[0],
+                            'No improvement since epoch ',
+                            best_epoch,
+                            '; best_AUROC, best_AUPRC, best_precision, best_recall:',
+                            best_ret[0],
+                            best_ret[1],
+                            best_ret[2],
+                            best_ret[3],
+                            dataset,
+                        )
                 else:
+                    val_auroc_list.append(np.nan)
+                    val_auprc_list.append(np.nan)
+                    val_precision_list.append(np.nan)
+                    val_recall_list.append(np.nan)
                     print(
-                        val_ret[0],
-                        'No improvement since epoch ',
-                        best_epoch,
-                        '; best_AUROC, best_AUPRC, best_precision, best_recall:',
-                        best_ret[0],
-                        best_ret[1],
-                        best_ret[2],
-                        best_ret[3],
-                        dataset,
+                        'skip validation at epoch ',
+                        epoch + 1,
+                        '; next validation every',
+                        VAL_INTERVAL,
+                        'epochs'
                     )
                 time_end = time.time()
                 print("spend time：", time_end - time_begin, "s")
@@ -212,6 +233,9 @@ for seed in SEEDS:
                     'val_recall': val_recall_list,
                 })
                 d.to_csv(output_file(f'{dataset}训练损失_fold{fold_id}_{seed}_{model_name}.csv'), index=0)
+                if epochs_since_improvement >= EARLY_STOP_PATIENCE:
+                    print('early stopping at epoch ', epoch + 1, ' due to no validation improvement.')
+                    break
     ret_list.append(best_ret)
     d = pd.DataFrame(ret_list, columns=['AUROC', 'AUPRC', 'Precision', 'Recall'])
     d.to_csv(output_file(f'{dataset}_{model_name}_fold{fold_id}_random.csv'), index=0)

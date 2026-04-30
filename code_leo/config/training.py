@@ -1,3 +1,4 @@
+
 CUDA_NAME = "cuda:0"
 SEEDS = [100, 1000, 2000]
 
@@ -19,4 +20,6 @@ CLASSIFICATION_TRAINING = {
     'lr': 0.0005,
     'log_interval': 10,
     'num_epochs': 1000,
+    'val_interval': 1,
+    'early_stop_patience': 50,
 }

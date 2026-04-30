@@ -147,6 +147,17 @@ python <训练脚本> <dataset_id> <model_id> <fold_id>
 
 进入代码目录：`cd ~/HAG-DTA/code_leo`
 
+命令格式固定为：
+
+```bash
+python training_davis_kiba.py <dataset_id> <model_id> <fold_id>
+```
+
+注意：
+
+- 现在必须传第 3 个参数 `fold_id`
+- 如果还按旧写法只传两个参数，会报 `IndexError: list index out of range`
+
 | 命令 | 数据集 | 模型 |
 |------|--------|------|
 | `python training_davis_kiba.py 0 0 0` | Davis | GIN |
@@ -166,6 +177,12 @@ python <训练脚本> <dataset_id> <model_id> <fold_id>
 
 进入代码目录：`cd ~/HAG-DTA/code_leo`
 
+命令格式固定为：
+
+```bash
+python training_Human_Celegans.py <dataset_id> <model_id> <fold_id>
+```
+
 | 命令 | 数据集 | 模型 |
 |------|--------|------|
 | `python training_Human_Celegans.py 0 0 0` | Human | GIN |
@@ -176,6 +193,13 @@ python <训练脚本> <dataset_id> <model_id> <fold_id>
 | `python training_Human_Celegans.py 1 1 0` | C.elegans | GCN |
 | `python training_Human_Celegans.py 1 2 0` | C.elegans | GAT |
 | `python training_Human_Celegans.py 1 3 0` | C.elegans | SAGE |
+
+最常用示例：
+
+```bash
+python training_Human_Celegans.py 1 0 0
+python training_davis_kiba.py 0 0 0
+```
 
 评估指标：AUROC、AUPRC、Precision、Recall。每个 epoch 在 validation set 上评估，用最高 AUROC 保存模型，test set 在最优时间点重新计算指标（AUPRC 单独重算，已修复）。
 
