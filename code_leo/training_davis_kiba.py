@@ -75,12 +75,12 @@ print('Epochs: ', NUM_EPOCHS)
 mse_list = []
 ci_list = []
 r2_list = []
-a_list = []
 for seed in [100,1000,2000]:# 设置随机种子
     same_seeds(seed)
     # Main program: iterate over different datasets
     loss_train_list = []
     loss_test_list = []
+    a_list = []
     for dataset in datasets:
         print('\nrunning on ', dataset )
         processed_data_file_train = 'data/processed/' + dataset + '_train.pt'
