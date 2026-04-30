@@ -1,47 +1,67 @@
-import pandas as pd
-import numpy as np
+import json
 import os
-import json,pickle
+import pickle
 from collections import OrderedDict
-from rdkit import Chem
-from rdkit.Chem import MolFromSmiles
+
 import networkx as nx
-from sklearn.model_selection import train_test_split
+import numpy as np
+import pandas as pd
+from rdkit import Chem
+from sklearn.model_selection import KFold, train_test_split
+
+from config.paths import CACHE_ROOT, DATA_ROOT, FOLD_DIR, ensure_runtime_dirs, processed_file, raw_data_dir
 from utils import *
+
+NUM_FOLDS = 5
+TEST_RATIO = 0.2
+
 
 class MyFilter(object):
     def __call__(self, data):
         return data.x.shape[0] <= 46
+
+
 class MyFilter1(object):
     def __call__(self, data):
         return data.x.shape[0] > 46
+
+
 def atom_features(atom):
-    return np.array(one_of_k_encoding_unk(atom.GetSymbol(),['C', 'N', 'O', 'S', 'F', 'Si', 'P', 'Cl', 'Br', 'Mg', 'Na','Ca', 'Fe', 'As', 'Al', 'I', 'B', 'V', 'K', 'Tl', 'Yb','Sb', 'Sn', 'Ag', 'Pd', 'Co', 'Se', 'Ti', 'Zn', 'H','Li', 'Ge', 'Cu', 'Au', 'Ni', 'Cd', 'In', 'Mn', 'Zr','Cr', 'Pt', 'Hg', 'Pb', 'Unknown']) +
-                    one_of_k_encoding(atom.GetDegree(), [0, 1, 2, 3, 4, 5, 6,7,8,9,10]) +
-                    one_of_k_encoding_unk(atom.GetTotalNumHs(), [0, 1, 2, 3, 4, 5, 6,7,8,9,10]) +
-                    one_of_k_encoding_unk(atom.GetImplicitValence(), [0, 1, 2, 3, 4, 5, 6,7,8,9,10]) +
-                    [atom.GetIsAromatic()])
+    return np.array(
+        one_of_k_encoding_unk(
+            atom.GetSymbol(),
+            ['C', 'N', 'O', 'S', 'F', 'Si', 'P', 'Cl', 'Br', 'Mg', 'Na', 'Ca', 'Fe', 'As', 'Al',
+             'I', 'B', 'V', 'K', 'Tl', 'Yb', 'Sb', 'Sn', 'Ag', 'Pd', 'Co', 'Se', 'Ti', 'Zn',
+             'H', 'Li', 'Ge', 'Cu', 'Au', 'Ni', 'Cd', 'In', 'Mn', 'Zr', 'Cr', 'Pt', 'Hg', 'Pb',
+             'Unknown']
+        ) +
+        one_of_k_encoding(atom.GetDegree(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) +
+        one_of_k_encoding_unk(atom.GetTotalNumHs(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) +
+        one_of_k_encoding_unk(atom.GetImplicitValence(), [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) +
+        [atom.GetIsAromatic()]
+    )
+
 
 def one_of_k_encoding(x, allowable_set):
     if x not in allowable_set:
         raise Exception("input {0} not in allowable set{1}:".format(x, allowable_set))
     return list(map(lambda s: x == s, allowable_set))
 
+
 def one_of_k_encoding_unk(x, allowable_set):
-    """Maps inputs not in the allowable set to the last element."""
     if x not in allowable_set:
         x = allowable_set[-1]
     return list(map(lambda s: x == s, allowable_set))
 
+
 def smile_to_graph(smile):
     mol = Chem.MolFromSmiles(smile)
-
     c_size = mol.GetNumAtoms()
 
     features = []
     for atom in mol.GetAtoms():
         feature = atom_features(atom)
-        features.append( feature / sum(feature) )
+        features.append(feature / sum(feature))
 
     edges = []
     for bond in mol.GetBonds():
@@ -54,6 +74,7 @@ def smile_to_graph(smile):
         edge_index.append([i, i])
     return c_size, features, edge_index
 
+
 def seq_cat(prot):
     x = np.zeros(max_seq_len)
     for i, ch in enumerate(prot[:max_seq_len]):
@@ -61,29 +82,30 @@ def seq_cat(prot):
     return x
 
 
-def write_split_csv(dataset, split_name, rows, cols, drugs, prots, affinity):
-    with open('data/' + dataset + '_' + split_name + '.csv', 'w') as f:
-        f.write('compound_iso_smiles,target_sequence,affinity\n')
-        for row_idx, col_idx in zip(rows, cols):
-            ls = [drugs[row_idx], prots[col_idx], affinity[row_idx, col_idx]]
-            f.write(','.join(map(str, ls)) + '\n')
+def build_full_dataframe(drugs, prots, affinity):
+    rows, cols = np.where(np.isnan(affinity) == False)
+    return pd.DataFrame({
+        'compound_iso_smiles': [drugs[row_idx] for row_idx in rows],
+        'target_sequence': [prots[col_idx] for col_idx in cols],
+        'affinity': [affinity[row_idx, col_idx] for row_idx, col_idx in zip(rows, cols)],
+    })
 
 
-def encode_split(df):
+def encode_dataframe(df):
     drugs = np.asarray(list(df['compound_iso_smiles']))
     prots = np.asarray([seq_cat(t) for t in df['target_sequence']])
     labels = np.asarray(list(df['affinity']))
     return drugs, prots, labels
 
 
-def rebuild_processed_dataset(dataset_name, split_name, drugs, prots, labels, smile_graph, pre_transform, pre_filter=None):
-    processed_path = 'data/processed/' + dataset_name + '_' + split_name + '.pt'
+def rebuild_processed_dataset(dataset_name, drugs, prots, labels, smile_graph, pre_transform, pre_filter=None):
+    processed_path = processed_file(dataset_name)
     if os.path.isfile(processed_path):
         os.remove(processed_path)
-    print('preparing ', dataset_name + '_' + split_name + '.pt in pytorch format!')
+    print('preparing ', dataset_name + '.pt in pytorch format!')
     TestbedDataset(
-        root='data',
-        dataset=dataset_name + '_' + split_name,
+        root=CACHE_ROOT,
+        dataset=dataset_name,
         xd=drugs,
         xt=prots,
         y=labels,
@@ -92,68 +114,77 @@ def rebuild_processed_dataset(dataset_name, split_name, drugs, prots, labels, sm
         pre_filter=pre_filter,
     )
 
-datasets = ['davis','kiba']
-for dataset in datasets:
-    print('convert data from DeepDTA for ', dataset)
-    fpath = 'data/' + dataset + '/'
-    ligands = json.load(open(fpath + "ligands_can.txt"), object_pairs_hook=OrderedDict)
-    proteins = json.load(open(fpath + "proteins.txt"), object_pairs_hook=OrderedDict)
-    affinity = pickle.load(open(fpath + "Y","rb"), encoding='latin1')
-    drugs = []
-    prots = []
-    for d in ligands.keys():
-        lg = Chem.MolToSmiles(Chem.MolFromSmiles(ligands[d]),isomericSmiles=True)
-        drugs.append(lg)
-    for t in proteins.keys():
-        prots.append(proteins[t])
-    if dataset == 'davis':
-        affinity = [-np.log10(y/1e9) for y in affinity]
-    affinity = np.asarray(affinity)
-    rows, cols = np.where(np.isnan(affinity) == False)
-    pair_indices = np.arange(len(rows))
-    train_idx, test_idx = train_test_split(pair_indices, test_size=0.2, random_state=42)
-    train_idx, val_idx = train_test_split(train_idx, test_size=0.2, random_state=42)
 
-    split_indices = {
-        'train': train_idx,
-        'val': val_idx,
-        'test': test_idx,
-    }
-    for split_name, split_idx in split_indices.items():
-        write_split_csv(dataset, split_name, rows[split_idx], cols[split_idx], drugs, prots, affinity)
-    print('\ndataset:', dataset)
-    print('train/val/test:', len(train_idx), len(val_idx), len(test_idx))
-    print('len(set(drugs)),len(set(prots)):', len(set(drugs)),len(set(prots)))
+def write_fold_indices(dataset, num_samples):
+    all_indices = np.arange(num_samples)
+    trainval_idx, test_idx = train_test_split(all_indices, test_size=TEST_RATIO, random_state=42)
+    kf = KFold(n_splits=NUM_FOLDS, shuffle=True, random_state=42)
+
+    for fold_id, (inner_train_pos, val_pos) in enumerate(kf.split(trainval_idx)):
+        train_idx = trainval_idx[inner_train_pos]
+        val_idx = trainval_idx[val_pos]
+        fold_indices = {
+            'train': train_idx.tolist(),
+            'val': val_idx.tolist(),
+            'test': test_idx.tolist(),
+        }
+        fold_path = os.path.join(FOLD_DIR, f'{dataset}_fold{fold_id}.json')
+        with open(fold_path, 'w') as f:
+            json.dump(fold_indices, f)
+        print(f'fold {fold_id}: train={len(train_idx)} val={len(val_idx)} test={len(test_idx)}')
 
 
 seq_voc = "ABCDEFGHIKLMNOPQRSTUVWXYZ"
-seq_dict = {v:(i+1) for i,v in enumerate(seq_voc)}
+seq_dict = {v: (i + 1) for i, v in enumerate(seq_voc)}
 seq_dict_len = len(seq_dict)
 max_seq_len = 1000
 
+datasets = ['davis', 'kiba']
+full_frames = {}
+ensure_runtime_dirs()
+
+for dataset in datasets:
+    print('convert data from DeepDTA for ', dataset)
+    fpath = raw_data_dir(dataset) + '/'
+    ligands = json.load(open(fpath + 'ligands_can.txt'), object_pairs_hook=OrderedDict)
+    proteins = json.load(open(fpath + 'proteins.txt'), object_pairs_hook=OrderedDict)
+    affinity = pickle.load(open(fpath + 'Y', 'rb'), encoding='latin1')
+
+    drugs = []
+    prots = []
+    for d in ligands.keys():
+        lg = Chem.MolToSmiles(Chem.MolFromSmiles(ligands[d]), isomericSmiles=True)
+        drugs.append(lg)
+    for t in proteins.keys():
+        prots.append(proteins[t])
+
+    if dataset == 'davis':
+        affinity = [-np.log10(y / 1e9) for y in affinity]
+    affinity = np.asarray(affinity)
+
+    full_df = build_full_dataframe(drugs, prots, affinity)
+    full_df.to_csv(os.path.join(DATA_ROOT, f'{dataset}_all.csv'), index=False)
+    full_frames[dataset] = full_df
+    print('\ndataset:', dataset)
+    print('num_samples:', len(full_df))
+    print('len(set(drugs)),len(set(prots)):', len(set(drugs)), len(set(prots)))
+    write_fold_indices(dataset, len(full_df))
+
+
+print('\nCreating graph for all SMILES...')
 compound_iso_smiles = []
-for dt_name in ['davis','kiba']:
-    opts = ['train','val','test']
-    for opt in opts:
-        df = pd.read_csv('data/' + dt_name + '_' + opt + '.csv')
-        compound_iso_smiles += list( df['compound_iso_smiles'] )
+for dataset in datasets:
+    compound_iso_smiles += list(full_frames[dataset]['compound_iso_smiles'])
 compound_iso_smiles = set(compound_iso_smiles)
 smile_graph = {}
 for smile in compound_iso_smiles:
-    g = smile_to_graph(smile)
-    smile_graph[smile] = g
+    smile_graph[smile] = smile_to_graph(smile)
+print('Finished.')
 
-datasets = ['davis','kiba']
-# convert to PyTorch data format
+
 for dataset in datasets:
-    pre_transform = T.ToDense(46)
-    for split_name in ['train', 'val', 'test']:
-        df = pd.read_csv('data/' + dataset + '_' + split_name + '.csv')
-        split_drugs, split_prots, split_y = encode_split(df)
-        rebuild_processed_dataset(dataset, split_name, split_drugs, split_prots, split_y, smile_graph, pre_transform, MyFilter())
+    df = full_frames[dataset]
+    all_drugs, all_prots, all_y = encode_dataframe(df)
+    rebuild_processed_dataset(dataset + '_all', all_drugs, all_prots, all_y, smile_graph, T.ToDense(46), MyFilter())
     if dataset == 'kiba':
-        pre_transform = T.ToDense(268)
-        for split_name in ['train', 'val', 'test']:
-            df = pd.read_csv('data/' + dataset + '_' + split_name + '.csv')
-            split_drugs, split_prots, split_y = encode_split(df)
-            rebuild_processed_dataset(dataset, split_name + '1', split_drugs, split_prots, split_y, smile_graph, pre_transform, MyFilter1())
+        rebuild_processed_dataset(dataset + '_all1', all_drugs, all_prots, all_y, smile_graph, T.ToDense(268), MyFilter1())

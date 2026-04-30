@@ -3,6 +3,7 @@ import sys
 import torch.nn as nn
 from model import Diff_DTA_GIN,Diff_DTA_GCN,Diff_DTA_GAT,Diff_DTA_SAGE
 from sklearn.metrics import r2_score
+from config.paths import CHECKPOINT_DIR, DATA_ROOT, OUTPUT_ROOT, ensure_runtime_dirs, output_file, processed_file
 from utils import *
 from torch_geometric.data import DenseDataLoader
 import time
@@ -73,6 +74,7 @@ TEST_BATCH_SIZE = 2048
 LR = 0.0005
 LOG_INTERVAL = 20
 NUM_EPOCHS = 1000
+ensure_runtime_dirs()
 
 print('Learning rate: ', LR)
 print('Epochs: ', NUM_EPOCHS)
@@ -83,13 +85,13 @@ seed = 962
 same_seeds(seed)
 for dataset in datasets:
     print('\nrunning on ', dataset)
-    processed_data_file_train = 'data/processed/' + dataset + '_train.pt'
-    processed_data_file_test = 'data/processed/' + dataset + '_test.pt'
+    processed_data_file_train = processed_file(dataset + '_train')
+    processed_data_file_test = processed_file(dataset + '_test')
     if ((not os.path.isfile(processed_data_file_train)) or (not os.path.isfile(processed_data_file_test))):
         print('please run create_data_davis_kiba.py to prepare data in pytorch format!')
     else:
-        train_data = TestbedDataset(root='data', dataset=dataset + '_train')
-        test_data = TestbedDataset(root='data', dataset=dataset + '_test')
+        train_data = TestbedDataset(root=DATA_ROOT, dataset=dataset + '_train')
+        test_data = TestbedDataset(root=DATA_ROOT, dataset=dataset + '_test')
         # [DATA LEAKAGE WARNING] 以下从 test_data 中拆分出 valid_data 的做法仍存在数据泄漏。
         # 原因：valid_data 和 test_data 来自同一个原始测试集，分布完全一致，测试集信息已经泄漏到了 validation 中。
         # 正确做法：应该从 train_data 中划分出 validation set，
@@ -102,8 +104,8 @@ for dataset in datasets:
         valid_loader = DenseDataLoader(valid_data, batch_size=TRAIN_BATCH_SIZE, shuffle=False)
         test_loader = DenseDataLoader(test_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
         if dataset == 'kiba':
-            train_data1 = TestbedDataset(root='data', dataset=dataset + '_train1')
-            test_data1 = TestbedDataset(root='data', dataset=dataset + '_test1')
+            train_data1 = TestbedDataset(root=DATA_ROOT, dataset=dataset + '_train1')
+            test_data1 = TestbedDataset(root=DATA_ROOT, dataset=dataset + '_test1')
             test_size1 = int(0.5 * len(test_data1))
             valid_size1 = len(test_data1) - test_size1
             test_data1, valid_data1 = torch.utils.data.random_split(test_data1, [test_size1, valid_size1])
@@ -127,7 +129,7 @@ for seed in [100,1000,2000]:# 设置随机种子
     best_mse = 1000000
     best_ci = 0
     best_epoch = -1
-    model_file_name = 'model_' + dataset + '_' + model_name + '.model'
+    model_file_name = os.path.join(CHECKPOINT_DIR, 'model_' + dataset + '_' + model_name + '.model')
     for epoch in range(NUM_EPOCHS):
         time_begin = time.time()
         if dataset=='kiba':
@@ -173,11 +175,11 @@ for seed in [100,1000,2000]:# 设置随机种子
         print("spend time：", time_end - time_begin, "s")
         d = pd.DataFrame(loss_train_list,columns=['train_loss'])
         d['test_loss'] = loss_test_list
-        d.to_csv("训练验证损失.csv",index=0)
+        d.to_csv(output_file("训练验证损失.csv"),index=0)
     mse_list.append(mse(G_,P_))
     ci_list.append(ci(G_,P_))
     r2_list.append(get_rm2(G_,P_))
     d = pd.DataFrame(mse_list,columns=['mse'])
     d['ci'] = ci_list
     d['r2'] = r2_list
-    d.to_csv(dataset+'_'+model_name+'_random.csv',index=0)
+    d.to_csv(output_file(dataset+'_'+model_name+'_random.csv'),index=0)

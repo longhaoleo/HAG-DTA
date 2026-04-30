@@ -1,47 +1,74 @@
-import pandas as pd
+import json
+import os
 import sys
-import torch.nn as nn
-from model import Diff_DTA_GIN,Diff_DTA_GCN,Diff_DTA_GAT,Diff_DTA_SAGE
-from sklearn.metrics import r2_score
-from utils import *
-from torch_geometric.data import DenseDataLoader
 import time
+
+import numpy as np
+import pandas as pd
+import torch
+import torch.nn as nn
+from torch_geometric.data import DenseDataLoader
+
+from config.paths import CACHE_ROOT, CHECKPOINT_DIR, ensure_runtime_dirs, fold_file, output_file, processed_file
+from config.training import CUDA_NAME, REGRESSION_TRAINING, SEEDS
 from MMDLoss import *
-# fix random seed
+from model import Diff_DTA_GAT, Diff_DTA_GCN, Diff_DTA_GIN, Diff_DTA_SAGE
+from utils import *
+
+
 def same_seeds(seed):
-    torch.manual_seed(seed)  # 固定随机种子（CPU）
-    if torch.cuda.is_available():  # 固定随机种子（GPU)
-        torch.cuda.manual_seed(seed)  # 为当前GPU设置
-        torch.cuda.manual_seed_all(seed)  # 为所有GPU设置
-    np.random.seed(seed)  # 保证后续使用random函数时，产生固定的随机数
-    torch.backends.cudnn.benchmark = False  # GPU、网络结构固定，可设置为True
-    torch.backends.cudnn.deterministic = True  # 固定网络结构
-# training function at each epoch
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True
+
+
 def train(model, device, train_loader, optimizer, epoch):
     print('Training on {} samples...'.format(len(train_loader.dataset)))
     model.train()
-    loss_train = 0
+    criterion = MMDLoss()
+    loss_train = torch.zeros(1, device=device)
     num_sample = 0
-    a_all = []
+    attention_sum = None
+    num_batches = 0
     for batch_idx, data in enumerate(train_loader):
         data = data.to(device)
         optimizer.zero_grad()
         output, l_loss, e_loss, a, x_local, x_global = model(data)
         loss = loss_fn(output, data.y.view(-1, 1).float().to(device))
-        criterion = MMDLoss()
         cl_loss = criterion(x_local, x_global)
         loss_all = loss + 0.05 * l_loss + 0.05 * e_loss + 0.05 * cl_loss
         loss_all.backward()
-        loss_train = loss_train + data.y.shape[0] * loss.item()
+        loss_train = loss_train + data.y.shape[0] * loss.detach()
         num_sample = num_sample + data.y.shape[0]
         optimizer.step()
         if batch_idx % LOG_INTERVAL == 0:
-            print('Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(epoch,batch_idx * len(data.x), len(train_loader.dataset), 100. * batch_idx / len(train_loader), loss.item(), loss_all.item()))
-        a = a.cpu().detach().numpy().sum(axis=0)/data.y.shape[0]
-        a_all.append(list(a.flatten()))
-    print("注意力分数 x_H_1, x_H_2, xt, x_G:", np.array(a_all).sum(axis=0)/len(a_all))
-    print('Train epoch: {}\tLoss: {:.6f}'.format(epoch, loss_train / num_sample))
-    return loss_train / num_sample, np.array(a_all).sum(axis=0)/len(a_all)
+            print(
+                'Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(
+                    epoch,
+                    batch_idx * len(data.x),
+                    len(train_loader.dataset),
+                    100. * batch_idx / len(train_loader),
+                    loss.item(),
+                    loss_all.item(),
+                )
+            )
+        batch_attention = a.detach().mean(dim=0).flatten()
+        if attention_sum is None:
+            attention_sum = batch_attention
+        else:
+            attention_sum = attention_sum + batch_attention
+        num_batches += 1
+    epoch_attention = (attention_sum / num_batches).cpu().numpy()
+    epoch_loss = (loss_train / num_sample).item()
+    print("注意力分数 x_H_1, x_H_2, xt, x_G:", epoch_attention)
+    print('Train epoch: {}\tLoss: {:.6f}'.format(epoch, epoch_loss))
+    return epoch_loss, epoch_attention
+
+
 def predicting(model, device, loader):
     model.eval()
     total_preds = torch.Tensor()
@@ -50,135 +77,190 @@ def predicting(model, device, loader):
     with torch.no_grad():
         for data in loader:
             data = data.to(device)
-            # output = model(data)
-            output,_,_,_,_,_ = model(data)
+            output, _, _, _, _, _ = model(data)
             total_preds = torch.cat((total_preds, output.cpu()), 0)
             total_labels = torch.cat((total_labels, data.y.view(-1, 1).cpu()), 0)
-    return total_labels,total_preds
+    return total_labels, total_preds
 
 
-datasets = [['davis','kiba'][int(sys.argv[1])]] 
-model_select = [Diff_DTA_GIN,Diff_DTA_GCN,Diff_DTA_GAT,Diff_DTA_SAGE][int(sys.argv[2])] # 选择模型
+datasets = [['davis', 'kiba'][int(sys.argv[1])]]
+model_select = [Diff_DTA_GIN, Diff_DTA_GCN, Diff_DTA_GAT, Diff_DTA_SAGE][int(sys.argv[2])]
+fold_id = int(sys.argv[3])
 model_name = model_select.__name__
 print(model_name)
-cuda_name = "cuda:0"
+print('fold_id:', fold_id)
+cuda_name = CUDA_NAME
 print('cuda_name:', cuda_name)
 
-TRAIN_BATCH_SIZE = 512
-TEST_BATCH_SIZE = 512
-LR = 0.0005
-LOG_INTERVAL = 20
-NUM_EPOCHS = 1000
-OUTPUT_ROOT = '/root/autodl-tmp/HAG-DTA-runs'
+TRAIN_BATCH_SIZE = REGRESSION_TRAINING['train_batch_size']
+TEST_BATCH_SIZE = REGRESSION_TRAINING['test_batch_size']
+LR = REGRESSION_TRAINING['lr']
+LOG_INTERVAL = REGRESSION_TRAINING['log_interval']
+NUM_EPOCHS = REGRESSION_TRAINING['num_epochs']
+VAL_INTERVAL = REGRESSION_TRAINING['val_interval']
+EARLY_STOP_PATIENCE = REGRESSION_TRAINING['early_stop_patience']
 
 print('Learning rate: ', LR)
 print('Epochs: ', NUM_EPOCHS)
+print('Validation interval: ', VAL_INTERVAL)
+print('Early stop patience: ', EARLY_STOP_PATIENCE)
 mse_list = []
 ci_list = []
 r2_list = []
 
-os.makedirs(OUTPUT_ROOT, exist_ok=True)
+ensure_runtime_dirs()
+
+
+def load_fold_indices(dataset, fold_id):
+    with open(fold_file(dataset, fold_id), 'r') as f:
+        return json.load(f)
+
+
+def build_position_map(dataset):
+    pos_map = {}
+    for pos in range(len(dataset)):
+        pos_map[int(dataset[pos].index)] = pos
+    return pos_map
+
+
+def subset_from_original_ids(dataset, pos_map, original_ids):
+    positions = [pos_map[idx] for idx in original_ids if idx in pos_map]
+    return torch.utils.data.Subset(dataset, positions)
 
 
 def evaluate_regression(model, device, loader):
     labels, preds = predicting(model, device, loader)
-    labels = labels.numpy().flatten()
-    preds = preds.numpy().flatten()
-    return labels, preds
+    return labels.numpy().flatten(), preds.numpy().flatten()
 
 
 def regression_metrics(labels, preds):
-    metrics = {
+    return {
         'mse': mse(labels, preds),
         'r2': get_rm2(labels, preds),
         'ci': ci(labels, preds),
     }
-    return metrics
 
 
-def output_path(filename):
-    return os.path.join(OUTPUT_ROOT, filename)
-
-
-for seed in [100,1000,2000]:# 设置随机种子
+for seed in SEEDS:
     same_seeds(seed)
-    # Main program: iterate over different datasets
     loss_train_list = []
     loss_val_list = []
     a_list = []
     for dataset in datasets:
-        print('\nrunning on ', dataset )
-        processed_data_file_train = 'data/processed/' + dataset + '_train.pt'
-        processed_data_file_val = 'data/processed/' + dataset + '_val.pt'
-        processed_data_file_test = 'data/processed/' + dataset + '_test.pt'
-        if ((not os.path.isfile(processed_data_file_train)) or (not os.path.isfile(processed_data_file_val)) or (not os.path.isfile(processed_data_file_test))):
-            print('please run create_data_davis_kiba.py to prepare data in pytorch format!')
+        print('\nrunning on ', dataset)
+        processed_data_file_all = processed_file(dataset + '_all')
+        current_fold_file = fold_file(dataset, fold_id)
+        if (not os.path.isfile(processed_data_file_all)) or (not os.path.isfile(current_fold_file)):
+            print('please run create_data_davis_kiba.py to prepare all.pt and fold indices!')
         else:
-            train_data = TestbedDataset(root='data', dataset=dataset+'_train')
-            val_data = TestbedDataset(root='data', dataset=dataset+'_val')
-            test_data = TestbedDataset(root='data', dataset=dataset+'_test')
+            fold_indices = load_fold_indices(dataset, fold_id)
+            all_data = TestbedDataset(root=CACHE_ROOT, dataset=dataset + '_all')
+            pos_map = build_position_map(all_data)
+            train_data = subset_from_original_ids(all_data, pos_map, fold_indices['train'])
+            val_data = subset_from_original_ids(all_data, pos_map, fold_indices['val'])
+            test_data = subset_from_original_ids(all_data, pos_map, fold_indices['test'])
 
-            # make data PyTorch mini-batch processing ready
             train_loader = DenseDataLoader(train_data, batch_size=TRAIN_BATCH_SIZE, shuffle=True)
             val_loader = DenseDataLoader(val_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
             test_loader = DenseDataLoader(test_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
-            if dataset=='kiba':
-                train_data1 = TestbedDataset(root='data', dataset=dataset+'_train1')
-                val_data1 = TestbedDataset(root='data', dataset=dataset+'_val1')
-                test_data1 = TestbedDataset(root='data', dataset=dataset+'_test1')
-                # make data PyTorch mini-batch processing ready
+
+            if dataset == 'kiba':
+                processed_data_file_all1 = processed_file(dataset + '_all1')
+                if not os.path.isfile(processed_data_file_all1):
+                    print('please run create_data_davis_kiba.py to prepare kiba_all1.pt!')
+                    continue
+                all_data1 = TestbedDataset(root=CACHE_ROOT, dataset=dataset + '_all1')
+                pos_map1 = build_position_map(all_data1)
+                train_data1 = subset_from_original_ids(all_data1, pos_map1, fold_indices['train'])
+                val_data1 = subset_from_original_ids(all_data1, pos_map1, fold_indices['val'])
+                test_data1 = subset_from_original_ids(all_data1, pos_map1, fold_indices['test'])
                 train_loader1 = DenseDataLoader(train_data1, batch_size=TRAIN_BATCH_SIZE, shuffle=True)
                 val_loader1 = DenseDataLoader(val_data1, batch_size=TEST_BATCH_SIZE, shuffle=False)
                 test_loader1 = DenseDataLoader(test_data1, batch_size=TEST_BATCH_SIZE, shuffle=False)
-            # training the model
+
             device = torch.device(cuda_name if torch.cuda.is_available() else "cpu")
-            model = model_select(num_nodes_1=6,num_nodes_2 = 3)
+            model = model_select(num_nodes_1=6, num_nodes_2=3)
             model = model.to(device)
-            # model.load_state_dict(torch.load('model_GINConvNet_davis.model')) # 导入网络的参数
             loss_fn = nn.MSELoss()
             optimizer = torch.optim.Adam(model.parameters(), lr=LR)
             best_val_mse = float('inf')
             best_epoch = -1
-            model_file_name = output_path('model_' + dataset + '_' + model_name + '_' + str(seed) + '.model')
+            epochs_since_improvement = 0
+            model_file_name = os.path.join(CHECKPOINT_DIR, f'model_{dataset}_{model_name}_fold{fold_id}_{seed}.model')
+
             for epoch in range(NUM_EPOCHS):
                 time_begin = time.time()
-                if dataset=='kiba':
-                    loss_train,a  = train(model, device, train_loader, optimizer, epoch+1)
-                    loss_train1,a1 = train(model, device, train_loader1, optimizer, epoch+1)
+                if dataset == 'kiba':
+                    loss_train, a = train(model, device, train_loader, optimizer, epoch + 1)
+                    loss_train1, a1 = train(model, device, train_loader1, optimizer, epoch + 1)
                     train_sample_count = len(train_data) + len(train_data1)
                     loss_train = (loss_train * len(train_data) + loss_train1 * len(train_data1)) / train_sample_count
                     loss_train_list.append(loss_train)
                     a = (a * len(train_data) + a1 * len(train_data1)) / train_sample_count
                     a_list.append(list(a))
                 else:
-                    loss_train,a = train(model, device, train_loader, optimizer, epoch+1)
+                    loss_train, a = train(model, device, train_loader, optimizer, epoch + 1)
                     loss_train_list.append(loss_train)
                     a_list.append(list(a))
-                if dataset=='kiba':
-                    G, P = evaluate_regression(model, device, val_loader)
-                    G1, P1 = evaluate_regression(model, device, val_loader1)
-                    val_metrics = regression_metrics(np.concatenate((G, G1)), np.concatenate((P, P1)))
+
+                should_validate = ((epoch + 1) == 1) or ((epoch + 1) % VAL_INTERVAL == 0)
+                if should_validate:
+                    if dataset == 'kiba':
+                        G, P = evaluate_regression(model, device, val_loader)
+                        G1, P1 = evaluate_regression(model, device, val_loader1)
+                        val_metrics = regression_metrics(np.concatenate((G, G1)), np.concatenate((P, P1)))
+                    else:
+                        G, P = evaluate_regression(model, device, val_loader)
+                        val_metrics = regression_metrics(G, P)
+
+                    val_mse = val_metrics['mse']
+                    val_r2 = val_metrics['r2']
+                    loss_val_list.append(val_mse)
+                    if val_mse < best_val_mse:
+                        torch.save(model.state_dict(), model_file_name)
+                        best_epoch = epoch + 1
+                        best_val_mse = val_mse
+                        best_val_r2 = val_r2
+                        epochs_since_improvement = 0
+                        print(
+                            'val mse improved at epoch ',
+                            best_epoch,
+                            '; best_val_mse, best_val_r2:',
+                            best_val_mse,
+                            best_val_r2,
+                            dataset
+                        )
+                    else:
+                        epochs_since_improvement += 1
+                        print(
+                            val_mse,
+                            'No improvement since epoch ',
+                            best_epoch,
+                            '; best_val_mse, best_val_r2:',
+                            best_val_mse,
+                            best_val_r2,
+                            dataset
+                        )
                 else:
-                    G, P = evaluate_regression(model, device, val_loader)
-                    val_metrics = regression_metrics(G, P)
-                val_mse = val_metrics['mse']
-                val_r2 = val_metrics['r2']
-                loss_val_list.append(val_mse)
-                if val_mse < best_val_mse:
-                    torch.save(model.state_dict(), model_file_name)
-                    best_epoch = epoch+1
-                    best_val_mse = val_mse
-                    best_val_r2 = val_r2
-                    print('val mse improved at epoch ', best_epoch, '; best_val_mse, best_val_r2:', best_val_mse, best_val_r2 ,dataset)
-                else:
-                    print(val_mse,'No improvement since epoch ', best_epoch, '; best_val_mse, best_val_r2:', best_val_mse, best_val_r2, dataset)
+                    loss_val_list.append(np.nan)
+                    print(
+                        'skip validation at epoch ',
+                        epoch + 1,
+                        '; next validation every',
+                        VAL_INTERVAL,
+                        'epochs'
+                    )
                 time_end = time.time()
                 print("spend time：", time_end - time_begin, "s")
-                d = pd.DataFrame(loss_train_list,columns=['train_loss'])
+                d = pd.DataFrame(loss_train_list, columns=['train_loss'])
                 d['val_loss'] = loss_val_list
-                d.to_csv(output_path(dataset + "训练损失_" + str(seed) + "_" + model_name + ".csv"),index=0)
-                d = pd.DataFrame(a_list,columns=['x_H_1', 'x_H_2', 'xt', 'x_G'])
-                d.to_csv(output_path(dataset + "注意力分数_" + str(seed) + "_" + model_name + ".csv"),index=0)
+                d.to_csv(output_file(f'{dataset}训练损失_fold{fold_id}_{seed}_{model_name}.csv'), index=0)
+                d = pd.DataFrame(a_list, columns=['x_H_1', 'x_H_2', 'xt', 'x_G'])
+                d.to_csv(output_file(f'{dataset}注意力分数_fold{fold_id}_{seed}_{model_name}.csv'), index=0)
+                if epochs_since_improvement >= EARLY_STOP_PATIENCE:
+                    print('early stopping at epoch ', epoch + 1, ' due to no validation improvement.')
+                    break
+
             model.load_state_dict(torch.load(model_file_name, map_location=device))
             if dataset == 'kiba':
                 G, P = evaluate_regression(model, device, test_loader)
@@ -194,9 +276,5 @@ for seed in [100,1000,2000]:# 设置随机种子
     mse_list.append(final_mse)
     ci_list.append(final_ci)
     r2_list.append(final_r2)
-    d = pd.DataFrame({
-        'mse': mse_list,
-        'ci': ci_list,
-        'r2': r2_list,
-    })
-    d.to_csv(output_path(dataset+'_'+model_name+'_random.csv'),index=0)
+    d = pd.DataFrame({'mse': mse_list, 'ci': ci_list, 'r2': r2_list})
+    d.to_csv(output_file(f'{dataset}_{model_name}_fold{fold_id}_random.csv'), index=0)

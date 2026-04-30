@@ -15,23 +15,55 @@
 
 当前 `code_leo/` 中的代码采用以下实验口径：
 
-- 数据划分统一为 `64% / 16% / 20%`
+- 四个数据集都使用 `all.pt + fold 索引` 的方式组织数据
+- 先固定 `20%` 作为 `test`
+- 再对剩余 `80%` 做 `5-fold`
+- 单次训练对应的有效比例约为 `64% / 16% / 20%`
   - `train / validation / test`
 - 回归任务 `Davis / KIBA`
   - 使用 `validation set` 选择最优模型
   - `test set` 仅用于最终评估
 - 分类任务 `Human / C.elegans`
   - 同样使用 `validation set` 选择最优模型
-- 训练输出目录统一为：
+- 路径配置统一放在：
 
 ```python
-OUTPUT_ROOT = '/root/autodl-tmp/HAG-DTA-runs'
+code_leo/config/paths.py
 ```
 
-如果你的服务器数据盘路径不同，先改：
+- 训练超参数统一放在：
 
-- [training_davis_kiba.py](/Users/leo/HAG-DTA/code_leo/training_davis_kiba.py:72)
-- [training_Human_Celegans.py](/Users/leo/HAG-DTA/code_leo/training_Human_Celegans.py:74)
+```python
+code_leo/config/training.py
+```
+
+当前主要可控项包括：
+
+- `DATA_ROOT`
+- `CACHE_ROOT`
+- `PROCESSED_DIR`
+- `FOLD_DIR`
+- `OUTPUT_ROOT`
+- `CHECKPOINT_DIR`
+
+训练侧常用可控项包括：
+
+- `SEEDS`
+- `CUDA_NAME`
+- `REGRESSION_TRAINING`
+- `CLASSIFICATION_TRAINING`
+
+如果你的服务器数据盘路径不同，优先改：
+
+- [paths.py](/Users/leo/HAG-DTA/code_leo/config/paths.py:1)
+
+也可以直接用环境变量覆盖：
+
+```bash
+export HAG_DTA_DATA_ROOT=/path/to/data
+export HAG_DTA_CACHE_ROOT=/root/autodl-tmp/HAG-DTA-cache
+export HAG_DTA_OUTPUT_ROOT=/root/autodl-tmp/HAG-DTA-runs
+```
 
 ---
 
@@ -41,8 +73,12 @@ OUTPUT_ROOT = '/root/autodl-tmp/HAG-DTA-runs'
 
 - `code_leo/`
   - 当前实验代码
+- `code_leo/config/`
+  - 路径配置
 - `data/`
-  - 原始数据和预处理结果
+  - 原始数据
+- `/root/autodl-tmp/HAG-DTA-cache`
+  - 预处理 `.pt` 和 fold 索引
 - `服务器配置/`
   - 旧版 Linux wheel 备份
 - `/root/autodl-tmp/HAG-DTA-runs`
@@ -113,18 +149,22 @@ python3 create_data_davis_kiba.py
 
 当前会生成：
 
-- `data/processed/davis_train.pt`
-- `data/processed/davis_val.pt`
-- `data/processed/davis_test.pt`
-- `data/processed/kiba_train.pt`
-- `data/processed/kiba_val.pt`
-- `data/processed/kiba_test.pt`
+- `data/processed/davis_all.pt`
+- `data/processed/kiba_all.pt`
+- `data/processed/kiba_all1.pt`
+- `data/fold_indices/davis_fold0.json` 到 `davis_fold4.json`
+- `data/fold_indices/kiba_fold0.json` 到 `kiba_fold4.json`
 
-以及 KIBA 大分子部分：
+默认实际位置为：
 
-- `data/processed/kiba_train1.pt`
-- `data/processed/kiba_val1.pt`
-- `data/processed/kiba_test1.pt`
+- `/root/autodl-tmp/HAG-DTA-cache/processed/*.pt`
+- `/root/autodl-tmp/HAG-DTA-cache/fold_indices/*.json`
+
+说明：
+
+- `*_all.pt` 只缓存一次全量图数据
+- `kiba_all1.pt` 是大分子分支
+- 每个 fold 只保存索引，不重复保存 5 套 `.pt`
 
 ### 4.2 Human / C.elegans
 
@@ -134,23 +174,29 @@ python3 create_data_Human_Celegans.py
 
 当前会生成：
 
-- `data/processed/Human_train.pt`
-- `data/processed/Human_val.pt`
-- `data/processed/Human_test.pt`
-- `data/processed/Celegans_train.pt`
-- `data/processed/Celegans_val.pt`
-- `data/processed/Celegans_test.pt`
+- `data/processed/Human_all.pt`
+- `data/processed/Celegans_all.pt`
+- `data/fold_indices/Human_fold0.json` 到 `Human_fold4.json`
+- `data/fold_indices/Celegans_fold0.json` 到 `Celegans_fold4.json`
 
 ### 4.3 预处理注意事项
 
 - 修改了划分逻辑后，必须重新跑预处理
 - 如果想强制重建 `.pt`，可以先删除 `data/processed/` 下对应文件再运行
+- 如果想强制重建 fold 划分，可以同时删除 `data/fold_indices/` 下对应 json
+
+如果使用当前默认缓存配置，上面两项实际对应的是：
+
+- `/root/autodl-tmp/HAG-DTA-cache/processed/`
+- `/root/autodl-tmp/HAG-DTA-cache/fold_indices/`
 
 ---
 
 ## 5. 训练命令
 
-训练前先确认输出目录存在。当前脚本会自动创建：
+训练前先确认路径配置正确。当前脚本会自动创建输出目录和 checkpoint 目录。
+
+默认输出根目录是：
 
 ```bash
 /root/autodl-tmp/HAG-DTA-runs
@@ -161,7 +207,7 @@ python3 create_data_Human_Celegans.py
 脚本格式：
 
 ```bash
-python3 <script> <dataset_id> <model_id>
+python3 <script> <dataset_id> <model_id> <fold_id>
 ```
 
 其中：
@@ -174,21 +220,24 @@ python3 <script> <dataset_id> <model_id>
   - `1=GCN`
   - `2=GAT`
   - `3=SAGE`
+- `fold_id`
+  - `0~4`
+  - 表示当前使用哪个 validation fold
 
 ### 5.2 回归任务
 
 ```bash
 cd ~/HAG-DTA/code_leo
 
-python3 training_davis_kiba.py 0 0   # Davis + GIN
-python3 training_davis_kiba.py 0 1   # Davis + GCN
-python3 training_davis_kiba.py 0 2   # Davis + GAT
-python3 training_davis_kiba.py 0 3   # Davis + SAGE
+python3 training_davis_kiba.py 0 0 0   # Davis + GIN + fold0
+python3 training_davis_kiba.py 0 1 0   # Davis + GCN + fold0
+python3 training_davis_kiba.py 0 2 0   # Davis + GAT + fold0
+python3 training_davis_kiba.py 0 3 0   # Davis + SAGE + fold0
 
-python3 training_davis_kiba.py 1 0   # KIBA + GIN
-python3 training_davis_kiba.py 1 1   # KIBA + GCN
-python3 training_davis_kiba.py 1 2   # KIBA + GAT
-python3 training_davis_kiba.py 1 3   # KIBA + SAGE
+python3 training_davis_kiba.py 1 0 0   # KIBA + GIN + fold0
+python3 training_davis_kiba.py 1 1 0   # KIBA + GCN + fold0
+python3 training_davis_kiba.py 1 2 0   # KIBA + GAT + fold0
+python3 training_davis_kiba.py 1 3 0   # KIBA + SAGE + fold0
 ```
 
 ### 5.3 分类任务
@@ -196,15 +245,28 @@ python3 training_davis_kiba.py 1 3   # KIBA + SAGE
 ```bash
 cd ~/HAG-DTA/code_leo
 
-python3 training_Human_Celegans.py 0 0   # Human + GIN
-python3 training_Human_Celegans.py 0 1   # Human + GCN
-python3 training_Human_Celegans.py 0 2   # Human + GAT
-python3 training_Human_Celegans.py 0 3   # Human + SAGE
+python3 training_Human_Celegans.py 0 0 0   # Human + GIN + fold0
+python3 training_Human_Celegans.py 0 1 0   # Human + GCN + fold0
+python3 training_Human_Celegans.py 0 2 0   # Human + GAT + fold0
+python3 training_Human_Celegans.py 0 3 0   # Human + SAGE + fold0
 
-python3 training_Human_Celegans.py 1 0   # Celegans + GIN
-python3 training_Human_Celegans.py 1 1   # Celegans + GCN
-python3 training_Human_Celegans.py 1 2   # Celegans + GAT
-python3 training_Human_Celegans.py 1 3   # Celegans + SAGE
+python3 training_Human_Celegans.py 1 0 0   # Celegans + GIN + fold0
+python3 training_Human_Celegans.py 1 1 0   # Celegans + GCN + fold0
+python3 training_Human_Celegans.py 1 2 0   # Celegans + GAT + fold0
+python3 training_Human_Celegans.py 1 3 0   # Celegans + SAGE + fold0
+```
+
+### 5.4 跑完整 5 折
+
+四个数据集现在都需要把 `fold_id=0~4` 跑完。
+
+例如 Davis + GIN：
+
+```bash
+cd ~/HAG-DTA/code_leo
+for fold in 0 1 2 3 4; do
+  python3 training_davis_kiba.py 0 0 ${fold}
+done
 ```
 
 ---
@@ -224,17 +286,23 @@ python3 training_Human_Celegans.py 1 3   # Celegans + SAGE
 - `注意力分数_*.csv`
 - `*_random.csv`
 
+其中 checkpoint 默认保存在：
+
+```bash
+/root/autodl-tmp/HAG-DTA-runs/checkpoints
+```
+
 ### 6.1 回归任务输出示例
 
-- `model_davis_Diff_DTA_GIN_100.model`
-- `davis训练损失_100_Diff_DTA_GIN.csv`
-- `davis注意力分数_100_Diff_DTA_GIN.csv`
-- `davis_Diff_DTA_GIN_random.csv`
+- `model_davis_Diff_DTA_GIN_fold0_100.model`
+- `davis训练损失_fold0_100_Diff_DTA_GIN.csv`
+- `davis注意力分数_fold0_100_Diff_DTA_GIN.csv`
+- `davis_Diff_DTA_GIN_fold0_random.csv`
 
 ### 6.2 分类任务输出示例
 
-- `model_Human_Diff_DTA_GIN_100.model`
-- `Human_Diff_DTA_GIN_random.csv`
+- `model_Human_Diff_DTA_GIN_fold0_100.model`
+- `Human_Diff_DTA_GIN_fold0_random.csv`
 
 ---
 
@@ -246,7 +314,7 @@ python3 training_Human_Celegans.py 1 3   # Celegans + SAGE
 
 ```bash
 cd ~/HAG-DTA/code_leo
-nohup python3 training_davis_kiba.py 0 0 > /root/autodl-tmp/HAG-DTA-runs/davis_gin.log 2>&1 &
+nohup python3 training_davis_kiba.py 0 0 0 > /root/autodl-tmp/HAG-DTA-runs/davis_gin_fold0.log 2>&1 &
 ```
 
 ### 7.2 查看日志

@@ -1,21 +1,32 @@
-import pandas as pd
+import json
+import os
 import sys
-import torch.nn as nn
-from model import Diff_DTA_GIN,Diff_DTA_GCN,Diff_DTA_GAT,Diff_DTA_SAGE
-from utils import *
-from torch_geometric.data import DenseDataLoader
 import time
-from sklearn.metrics import roc_auc_score, precision_recall_curve, auc, precision_score, recall_score
+
+import numpy as np
+import pandas as pd
+import torch
+import torch.nn as nn
+from sklearn.metrics import auc, precision_recall_curve, precision_score, recall_score, roc_auc_score
+from torch_geometric.data import DenseDataLoader
+
+from config.paths import CACHE_ROOT, CHECKPOINT_DIR, ensure_runtime_dirs, fold_file, output_file, processed_file
+from config.training import CLASSIFICATION_TRAINING, CUDA_NAME, SEEDS
 from MMDLoss import *
+from model import Diff_DTA_GAT, Diff_DTA_GCN, Diff_DTA_GIN, Diff_DTA_SAGE
+from utils import *
+
+
 def same_seeds(seed):
-    torch.manual_seed(seed)  # 固定随机种子（CPU）
-    if torch.cuda.is_available():  # 固定随机种子（GPU)
-        torch.cuda.manual_seed(seed)  # 为当前GPU设置
-        torch.cuda.manual_seed_all(seed)  # 为所有GPU设置
-    np.random.seed(seed)  # 保证后续使用random函数时，产生固定的随机数
-    torch.backends.cudnn.benchmark = False  # GPU、网络结构固定，可设置为True
-    torch.backends.cudnn.deterministic = True  # 固定网络结构
-# training function at each epoch
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+    np.random.seed(seed)
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True
+
+
 def train(model, device, train_loader, optimizer, epoch):
     print('Training on {} samples...'.format(len(train_loader.dataset)))
     model.train()
@@ -30,14 +41,17 @@ def train(model, device, train_loader, optimizer, epoch):
         loss_all.backward()
         optimizer.step()
         if batch_idx % LOG_INTERVAL == 0:
-            print('Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(
-                        epoch,
-                        batch_idx * len(data.x),
-                        len(train_loader.dataset),
-                        100. * batch_idx / len(train_loader),
-                        loss.item(),
-                        loss_all.item()
-                    ))
+            print(
+                'Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(
+                    epoch,
+                    batch_idx * len(data.x),
+                    len(train_loader.dataset),
+                    100. * batch_idx / len(train_loader),
+                    loss.item(),
+                    loss_all.item(),
+                )
+            )
+
 
 def predicting(model, device, loader):
     model.eval()
@@ -47,94 +61,132 @@ def predicting(model, device, loader):
     with torch.no_grad():
         for data in loader:
             data = data.to(device)
-            output,_,_,_,_,_ = model(data)
-            predicted_values = torch.sigmoid(output)  # continuous
-            predicted_labels = torch.round(predicted_values)  # binary
-
-            total_pred_values = torch.cat((total_pred_values, predicted_values.cpu()), 0)  # continuous
-            total_pred_labels = torch.cat((total_pred_labels, predicted_labels.cpu()), 0)  # binary
+            output, _, _, _, _, _ = model(data)
+            predicted_values = torch.sigmoid(output)
+            predicted_labels = torch.round(predicted_values)
+            total_pred_values = torch.cat((total_pred_values, predicted_values.cpu()), 0)
+            total_pred_labels = torch.cat((total_pred_labels, predicted_labels.cpu()), 0)
             total_true_labels = torch.cat((total_true_labels, data.y.view(-1, 1).cpu()), 0)
+    return (
+        total_true_labels.numpy().flatten(),
+        total_pred_values.numpy().flatten(),
+        total_pred_labels.numpy().flatten(),
+    )
 
-    return total_true_labels.numpy().flatten(), total_pred_values.numpy().flatten(), total_pred_labels.numpy().flatten()
 
-
-
-
-datasets = [['Human','Celegans'][int(sys.argv[1])]]
-model_select = [Diff_DTA_GIN,Diff_DTA_GCN,Diff_DTA_GAT,Diff_DTA_SAGE][int(sys.argv[2])] # 选择模型
+datasets = [['Human', 'Celegans'][int(sys.argv[1])]]
+model_select = [Diff_DTA_GIN, Diff_DTA_GCN, Diff_DTA_GAT, Diff_DTA_SAGE][int(sys.argv[2])]
+fold_id = int(sys.argv[3])
 model_name = model_select.__name__
 print(model_name)
-cuda_name = "cuda:0"
+print('fold_id:', fold_id)
+cuda_name = CUDA_NAME
 
-TRAIN_BATCH_SIZE = 256
-TEST_BATCH_SIZE = 2048
-LR = 0.0005
-LOG_INTERVAL = 10
-NUM_EPOCHS = 1000
-OUTPUT_ROOT = '/root/autodl-tmp/HAG-DTA-runs'
+TRAIN_BATCH_SIZE = CLASSIFICATION_TRAINING['train_batch_size']
+TEST_BATCH_SIZE = CLASSIFICATION_TRAINING['test_batch_size']
+LR = CLASSIFICATION_TRAINING['lr']
+LOG_INTERVAL = CLASSIFICATION_TRAINING['log_interval']
+NUM_EPOCHS = CLASSIFICATION_TRAINING['num_epochs']
 
 print('Learning rate: ', LR)
 print('Epochs: ', NUM_EPOCHS)
 ret_list = []
-os.makedirs(OUTPUT_ROOT, exist_ok=True)
+ensure_runtime_dirs()
 
 
-def output_path(filename):
-    return os.path.join(OUTPUT_ROOT, filename)
-# Main program: iterate over different datasets
-for seed in [100,1000,2000]:# 设置随机种子
+def load_fold_indices(dataset, fold_id):
+    with open(fold_file(dataset, fold_id), 'r') as f:
+        return json.load(f)
+
+
+def build_position_map(dataset):
+    pos_map = {}
+    for pos in range(len(dataset)):
+        pos_map[int(dataset[pos].index)] = pos
+    return pos_map
+
+
+def subset_from_original_ids(dataset, pos_map, original_ids):
+    positions = [pos_map[idx] for idx in original_ids if idx in pos_map]
+    return torch.utils.data.Subset(dataset, positions)
+
+
+for seed in SEEDS:
     same_seeds(seed)
     for dataset in datasets:
         print('\nrunning on ', dataset)
-        processed_data_file_train = 'data/processed/' + dataset + '_train.pt'
-        processed_data_file_val = 'data/processed/' + dataset + '_val.pt'
-        processed_data_file_test = 'data/processed/' + dataset + '_test.pt'
-        if ((not os.path.isfile(processed_data_file_train)) or (not os.path.isfile(processed_data_file_test))):
-            print('please run create_data_Human_Celegans.py to prepare data in pytorch format!')
+        processed_data_file_all = processed_file(dataset + '_all')
+        current_fold_file = fold_file(dataset, fold_id)
+        if (not os.path.isfile(processed_data_file_all)) or (not os.path.isfile(current_fold_file)):
+            print('please run create_data_Human_Celegans.py to prepare all.pt and fold indices!')
         else:
-            train_data = TestbedDataset(root='data', dataset=dataset + '_train')
-            val_data = TestbedDataset(root='data', dataset=dataset + '_val')
-            test_data = TestbedDataset(root='data', dataset=dataset + '_test')
+            fold_indices = load_fold_indices(dataset, fold_id)
+            all_data = TestbedDataset(root=CACHE_ROOT, dataset=dataset + '_all')
+            pos_map = build_position_map(all_data)
+            train_data = subset_from_original_ids(all_data, pos_map, fold_indices['train'])
+            val_data = subset_from_original_ids(all_data, pos_map, fold_indices['val'])
+            test_data = subset_from_original_ids(all_data, pos_map, fold_indices['test'])
 
-            # make data PyTorch mini-batch processing ready
             train_loader = DenseDataLoader(train_data, batch_size=TRAIN_BATCH_SIZE, shuffle=True)
             val_loader = DenseDataLoader(val_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
             test_loader = DenseDataLoader(test_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
-            # training the model
+
             device = torch.device(cuda_name if torch.cuda.is_available() else "cpu")
             model = model_select()
             model = model.to(device)
-            # model.load_state_dict(torch.load('model_GINConvNet_davis.model')) # 导入网络的参数
             loss_fn = nn.BCEWithLogitsLoss()
             optimizer = torch.optim.Adam(model.parameters(), lr=LR)
-            best_roc = 0
+            best_val_roc = -1
             best_epoch = -1
-            model_file_name = output_path('model_' + dataset + '_' + model_name + '_' + str(seed) + '.model')
+            model_file_name = os.path.join(CHECKPOINT_DIR, f'model_{dataset}_{model_name}_fold{fold_id}_{seed}.model')
             for epoch in range(NUM_EPOCHS):
                 time_begin = time.time()
                 train(model, device, train_loader, optimizer, epoch + 1)
                 G, P, pred = predicting(model, device, val_loader)
-                tpr, fpr, _ = precision_recall_curve(G, P)
-                ret = [roc_auc_score(G, P), auc(fpr, tpr), precision_score(G,pred), recall_score(G,pred)]
-                test_roc = ret[0]
-                test_prc = ret[1]
-                if ret[0] > best_roc:
+                precision_val, recall_val, _ = precision_recall_curve(G, P)
+                val_ret = [
+                    roc_auc_score(G, P),
+                    auc(recall_val, precision_val),
+                    precision_score(G, pred),
+                    recall_score(G, pred),
+                ]
+                if val_ret[0] > best_val_roc:
                     torch.save(model.state_dict(), model_file_name)
                     best_epoch = epoch + 1
-                    best_roc = ret[0]
+                    best_val_roc = val_ret[0]
                     G_test, P_test, pred_test = predicting(model, device, test_loader)
-                    G_ = G_test
-                    P_ = P_test
                     precision_test, recall_test, _ = precision_recall_curve(G_test, P_test)
                     auprc_test = auc(recall_test, precision_test)
-                    best_ret = [roc_auc_score(G_test, P_test), auprc_test, precision_score(G_test, pred_test), recall_score(G_test, pred_test)]
-                    print('rmse improved at epoch ', best_epoch, '; best_AUROC, best_AUPRC, best_precision, best_recall:', best_ret[0]
-                          , best_ret[1],best_ret[2],best_ret[3], dataset)
+                    best_ret = [
+                        roc_auc_score(G_test, P_test),
+                        auprc_test,
+                        precision_score(G_test, pred_test),
+                        recall_score(G_test, pred_test),
+                    ]
+                    print(
+                        'val AUROC improved at epoch ',
+                        best_epoch,
+                        '; best_AUROC, best_AUPRC, best_precision, best_recall:',
+                        best_ret[0],
+                        best_ret[1],
+                        best_ret[2],
+                        best_ret[3],
+                        dataset,
+                    )
                 else:
-                    print(ret[0], 'No improvement since epoch ',  best_epoch, '; best_AUROC, best_AUPRC, best_precision, best_recall:', best_ret[0]
-                          , best_ret[1],best_ret[2],best_ret[3], dataset)
+                    print(
+                        val_ret[0],
+                        'No improvement since epoch ',
+                        best_epoch,
+                        '; best_AUROC, best_AUPRC, best_precision, best_recall:',
+                        best_ret[0],
+                        best_ret[1],
+                        best_ret[2],
+                        best_ret[3],
+                        dataset,
+                    )
                 time_end = time.time()
                 print("spend time：", time_end - time_begin, "s")
     ret_list.append(best_ret)
-    d = pd.DataFrame(ret_list)
-    d.to_csv(output_path(dataset+'_'+model_name+'_random.csv'),index=0)
+    d = pd.DataFrame(ret_list, columns=['AUROC', 'AUPRC', 'Precision', 'Recall'])
+    d.to_csv(output_file(f'{dataset}_{model_name}_fold{fold_id}_random.csv'), index=0)
