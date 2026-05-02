@@ -147,7 +147,9 @@ for seed in SEEDS:
             test_loader = DenseDataLoader(test_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
 
             device = torch.device(cuda_name if torch.cuda.is_available() else "cpu")
-            model = model_select()
+            n1 = int(os.environ.get('HAG_DTA_N1', 6))
+            n2 = int(os.environ.get('HAG_DTA_N2', 3))
+            model = model_select(num_nodes_1=n1, num_nodes_2=n2)
             model = model.to(device)
             loss_fn = nn.BCEWithLogitsLoss()
             optimizer = torch.optim.Adam(model.parameters(), lr=LR)
