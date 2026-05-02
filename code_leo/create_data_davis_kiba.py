@@ -115,6 +115,19 @@ def rebuild_processed_dataset(dataset_name, drugs, prots, labels, smile_graph, p
     )
 
 
+def save_fold_pt(dataset, fold_id, fold_indices, drugs, prots, labels, smile_graph, pre_transform, pre_filter=None):
+    """Save pre-split .pt files for a single fold (instead of Subset at runtime)."""
+    for split_name in ['train', 'val', 'test']:
+        idx = fold_indices[split_name]
+        ds_name = f'{dataset}_fold{fold_id}_{split_name}'
+        print(f'  creating {ds_name}.pt ({len(idx)} samples) ...')
+        rebuild_processed_dataset(
+            ds_name,
+            drugs[idx], prots[idx], labels[idx],
+            smile_graph, pre_transform, pre_filter
+        )
+
+
 def write_fold_indices(dataset, num_samples):
     all_indices = np.arange(num_samples)
     trainval_idx, test_idx = train_test_split(all_indices, test_size=TEST_RATIO, random_state=42)
@@ -185,6 +198,18 @@ print('Finished.')
 for dataset in datasets:
     df = full_frames[dataset]
     all_drugs, all_prots, all_y = encode_dataframe(df)
+
+    # 仍生成 _all.pt（兼容）但训练不再用它
     rebuild_processed_dataset(dataset + '_all', all_drugs, all_prots, all_y, smile_graph, T.ToDense(46), MyFilter())
     if dataset == 'kiba':
         rebuild_processed_dataset(dataset + '_all1', all_drugs, all_prots, all_y, smile_graph, T.ToDense(268), MyFilter1())
+
+    # ⚡ 核心优化：预生成 per-fold 分割 .pt 文件（避免训练时 Subset + DenseDataLoader 极慢）
+    print(f'\nGenerating per-fold .pt files for {dataset} ...')
+    for fold_id in range(NUM_FOLDS):
+        fold_path = os.path.join(FOLD_DIR, f'{dataset}_fold{fold_id}.json')
+        with open(fold_path, 'r') as f:
+            fold_indices = json.load(f)
+        save_fold_pt(dataset, fold_id, fold_indices, all_drugs, all_prots, all_y, smile_graph, T.ToDense(46), MyFilter())
+        if dataset == 'kiba':
+            save_fold_pt(dataset + '_sub1', fold_id, fold_indices, all_drugs, all_prots, all_y, smile_graph, T.ToDense(268), MyFilter1())

@@ -131,17 +131,16 @@ for seed in SEEDS:
     val_recall_list = []
     for dataset in datasets:
         print('\nrunning on ', dataset)
-        processed_data_file_all = processed_file(dataset + '_all')
-        current_fold_file = fold_file(dataset, fold_id)
-        if (not os.path.isfile(processed_data_file_all)) or (not os.path.isfile(current_fold_file)):
-            print('please run create_data_Human_Celegans.py to prepare all.pt and fold indices!')
+        # ⚡ 直接加载预分割的 per-fold .pt 文件（避免 Subset + DenseDataLoader 极慢）
+        train_pt = processed_file(f'{dataset}_fold{fold_id}_train')
+        val_pt = processed_file(f'{dataset}_fold{fold_id}_val')
+        test_pt = processed_file(f'{dataset}_fold{fold_id}_test')
+        if not all(os.path.isfile(p) for p in [train_pt, val_pt, test_pt]):
+            print('please run create_data_Human_Celegans.py to prepare per-fold .pt files!')
         else:
-            fold_indices = load_fold_indices(dataset, fold_id)
-            all_data = TestbedDataset(root=CACHE_ROOT, dataset=dataset + '_all')
-            pos_map = build_position_map(all_data)
-            train_data = subset_from_original_ids(all_data, pos_map, fold_indices['train'])
-            val_data = subset_from_original_ids(all_data, pos_map, fold_indices['val'])
-            test_data = subset_from_original_ids(all_data, pos_map, fold_indices['test'])
+            train_data = TestbedDataset(root=CACHE_ROOT, dataset=f'{dataset}_fold{fold_id}_train')
+            val_data = TestbedDataset(root=CACHE_ROOT, dataset=f'{dataset}_fold{fold_id}_val')
+            test_data = TestbedDataset(root=CACHE_ROOT, dataset=f'{dataset}_fold{fold_id}_test')
 
             train_loader = DenseDataLoader(train_data, batch_size=TRAIN_BATCH_SIZE, shuffle=True)
             val_loader = DenseDataLoader(val_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
