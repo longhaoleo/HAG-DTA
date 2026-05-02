@@ -39,7 +39,8 @@ def train(model, device, train_loader, optimizer, epoch):
         loss = loss_fn(output, data.y.view(-1, 1).float().to(device))
         criterion = MMDLoss()
         cl_loss = criterion(x_local, x_global)
-        loss_all = loss + 0.05 * l_loss + 0.05 * e_loss + 0.05 * cl_loss
+        mmd_beta = float(os.environ.get('HAG_DTA_MMD_BETA', 0.05))
+        loss_all = loss + mmd_beta * l_loss + mmd_beta * e_loss + mmd_beta * cl_loss
         loss_all.backward()
         loss_train = loss_train + data.y.shape[0] * loss.item()
         num_sample = num_sample + data.y.shape[0]

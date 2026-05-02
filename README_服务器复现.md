@@ -287,19 +287,19 @@ done
 
 | 脚本 | 数据集 | 任务 | 命令 |
 |------|--------|------|------|
-| `run_davis.sh` | Davis | 回归 | `python training_davis_kiba.py 0 0 {fold}` |
-| `run_kiba.sh` | KIBA | 回归 | `python training_davis_kiba.py 1 0 {fold}` |
-| `run_human.sh` | Human | 分类 | `python training_Human_Celegans.py 0 0 {fold}` |
-| `run_celegans.sh` | C.elegans | 分类 | `python training_Human_Celegans.py 1 0 {fold}` |
+| `scripts/run_davis.sh` | Davis | 回归 | `python training_davis_kiba.py 0 0 {fold}` |
+| `scripts/run_kiba.sh` | KIBA | 回归 | `python training_davis_kiba.py 1 0 {fold}` |
+| `scripts/run_human.sh` | Human | 分类 | `python training_Human_Celegans.py 0 0 {fold}` |
+| `scripts/run_celegans.sh` | C.elegans | 分类 | `python training_Human_Celegans.py 1 0 {fold}` |
 
 ```bash
 cd ~/HAG-DTA/code_leo
 
 # 四个任务同时跑（确保 GPU 显存足够，否则分批）
-nohup bash run_davis.sh    > /dev/null 2>&1 &
-nohup bash run_kiba.sh     > /dev/null 2>&1 &
-nohup bash run_human.sh    > /dev/null 2>&1 &
-nohup bash run_celegans.sh > /dev/null 2>&1 &
+nohup bash scripts/run_davis.sh    > /dev/null 2>&1 &
+nohup bash scripts/run_kiba.sh     > /dev/null 2>&1 &
+nohup bash scripts/run_human.sh    > /dev/null 2>&1 &
+nohup bash scripts/run_celegans.sh > /dev/null 2>&1 &
 
 # 分别查看各数据集进度
 tail -f /root/autodl-tmp/HAG-DTA-runs/logs/davis.log
