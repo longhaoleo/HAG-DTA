@@ -281,6 +281,38 @@ for m in 0 1 2 3; do
 done
 ```
 
+### 6.2 四数据集并行跑（推荐）
+
+项目提供了 4 个独立脚本，每个负责一个数据集的 GIN 全量实验（5 folds × 5 seeds = 25 runs），可同时启动：
+
+| 脚本 | 数据集 | 任务 | 命令 |
+|------|--------|------|------|
+| `run_davis.sh` | Davis | 回归 | `python training_davis_kiba.py 0 0 {fold}` |
+| `run_kiba.sh` | KIBA | 回归 | `python training_davis_kiba.py 1 0 {fold}` |
+| `run_human.sh` | Human | 分类 | `python training_Human_Celegans.py 0 0 {fold}` |
+| `run_celegans.sh` | C.elegans | 分类 | `python training_Human_Celegans.py 1 0 {fold}` |
+
+```bash
+cd ~/HAG-DTA/code_leo
+
+# 四个任务同时跑（确保 GPU 显存足够，否则分批）
+nohup bash run_davis.sh    > /dev/null 2>&1 &
+nohup bash run_kiba.sh     > /dev/null 2>&1 &
+nohup bash run_human.sh    > /dev/null 2>&1 &
+nohup bash run_celegans.sh > /dev/null 2>&1 &
+
+# 分别查看各数据集进度
+tail -f /root/autodl-tmp/HAG-DTA-runs/logs/davis.log
+tail -f /root/autodl-tmp/HAG-DTA-runs/logs/kiba.log
+tail -f /root/autodl-tmp/HAG-DTA-runs/logs/human.log
+tail -f /root/autodl-tmp/HAG-DTA-runs/logs/celegans.log
+
+# 统计完成数
+grep 'DONE' /root/autodl-tmp/HAG-DTA-runs/logs/davis.log | wc -l
+```
+
+> ⚠️ 每个脚本内部是**串行**（5 个 fold 一个一个跑）。如果显存不足以同时跑 4 个 GIN 模型，建议分两批：先 Davis+KIBA，再 Human+C.elegans。
+
 ---
 
 ## 7. 当前待修复项
@@ -293,7 +325,7 @@ done
 | AUPRC 计算 bug | ✅ 已修 | 测试集单独重新计算 precision_recall_curve |
 | Davis/KIBA 数据泄漏 | ✅ 已修 | 已改为 validation 选模型 + test 最终评估 |
 | 5-fold 交叉验证 | ✅ 已修 | 创建数据时生成 fold 索引，训练支持 fold_id 参数 |
-| 随机种子 3→5 | ⚠️ 待修 | 需改 `config/training.py` 中 `SEEDS = [100, 1000, 2000, 3000, 4000]`，然后重新跑全部实验 |
+| 随机种子 3→5 | ✅ 已修 | `config/training.py` 中 `SEEDS = [100, 1000, 2000, 3000, 4000]` |
 | 统计显著性检验 | ⚠️ 待补 | 审稿人要求 t-test / ANOVA |
 
 ---
@@ -301,11 +333,11 @@ done
 ## 8. 运行前检查清单
 
 - [ ] `python -c "import torch; print(torch.cuda.is_available())"` → `True`
-- [ ] `<CACHE_ROOT>/processed/` 下有 `*_all.pt` 文件
-- [ ] `<CACHE_ROOT>/fold_indices/` 下有 `*_fold*.json` 文件
+- [ ] `<CACHE_ROOT>/processed/` 下有 `*_fold*_train.pt` / `*_fold*_val.pt` / `*_fold*_test.pt` 文件
+- [ ] （可选）JSON fold 索引在 `<CACHE_ROOT>/fold_indices/` 下（仅参考，训练不读取）
 - [ ] `HAG_DTA_OUTPUT_ROOT` 目录可写
 - [ ] 当前代码是 `code_leo/` 目录（非旧版 `code/`）
-- [ ] （可选）如果需要 5 个种子，已改 `config/training.py` 的 `SEEDS`
+- [ ] `config/training.py` 的 `SEEDS` 为 `[100, 1000, 2000, 3000, 4000]`
 
 ---
 
