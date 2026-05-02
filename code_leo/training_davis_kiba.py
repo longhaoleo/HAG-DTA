@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
+import copy
 from torch_geometric.data import DenseDataLoader
 
 from config.paths import CACHE_ROOT, CHECKPOINT_DIR, ensure_runtime_dirs, fold_file, output_file, processed_file
@@ -186,11 +187,11 @@ for seed in SEEDS:
             model = model.to(device)
             loss_fn = nn.MSELoss()
             optimizer = torch.optim.Adam(model.parameters(), lr=LR)
-            best_val_ci = -1.0          # CI 越大越好，选 CI 最优模型替代原来只看 MSE
-            best_val_mse = float('inf') # 记录对应 epoch 的 MSE（参考用）
+            best_val_ci = -1.0
+            best_val_mse = float('inf')
             best_epoch = -1
+            best_state_dict = None     # 内存暂存最优权重，不落盘
             epochs_since_improvement = 0
-            model_file_name = os.path.join(CHECKPOINT_DIR, f'model_{dataset}_{model_name}_fold{fold_id}_{seed}.model')
 
             for epoch in range(NUM_EPOCHS):
                 time_begin = time.time()
@@ -222,7 +223,7 @@ for seed in SEEDS:
                     val_r2 = val_metrics['r2']
                     loss_val_list.append(val_mse)
                     if val_ci > best_val_ci:
-                        torch.save(model.state_dict(), model_file_name)
+                        best_state_dict = copy.deepcopy(model.state_dict())
                         best_epoch = epoch + 1
                         best_val_ci = val_ci
                         best_val_mse = val_mse
@@ -269,7 +270,7 @@ for seed in SEEDS:
                     print('early stopping at epoch ', epoch + 1, ' due to no validation improvement.')
                     break
 
-            model.load_state_dict(torch.load(model_file_name, map_location=device))
+            model.load_state_dict(best_state_dict)
             if dataset == 'kiba':
                 G, P = evaluate_regression(model, device, test_loader)
                 G1, P1 = evaluate_regression(model, device, test_loader1)

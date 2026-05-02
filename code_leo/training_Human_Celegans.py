@@ -157,7 +157,6 @@ for seed in SEEDS:
             best_val_roc = -1
             best_epoch = -1
             epochs_since_improvement = 0
-            model_file_name = os.path.join(CHECKPOINT_DIR, f'model_{dataset}_{model_name}_fold{fold_id}_{seed}.model')
             for epoch in range(NUM_EPOCHS):
                 time_begin = time.time()
                 train_loss = train(model, device, train_loader, optimizer, epoch + 1)
@@ -177,7 +176,6 @@ for seed in SEEDS:
                     val_precision_list.append(val_ret[2])
                     val_recall_list.append(val_ret[3])
                     if val_ret[0] > best_val_roc:
-                        torch.save(model.state_dict(), model_file_name)
                         best_epoch = epoch + 1
                         best_val_roc = val_ret[0]
                         epochs_since_improvement = 0
