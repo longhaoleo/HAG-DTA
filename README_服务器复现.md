@@ -171,7 +171,7 @@ python training_davis_kiba.py <dataset_id> <model_id> <fold_id>
 
 以上是 fold 0 的示例，完整 5 折需 fold 0~4 各跑一遍。
 
-评估指标：MSE、CI、rm²。使用 **validation set** 选最优模型（`VAL_INTERVAL=5` epochs 验证一次），test set 仅最终评估。支持 early stopping（`EARLY_STOP_PATIENCE=50`）。
+评估指标：MSE、CI、rm²。使用 **validation CI** 选最优模型（`VAL_INTERVAL=5` epochs 验证一次），test set 仅最终评估。支持 early stopping（`EARLY_STOP_PATIENCE=50`）。
 
 ### 4.3 二分类任务（Human / C.elegans）
 

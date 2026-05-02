@@ -183,7 +183,8 @@ for seed in SEEDS:
             model = model.to(device)
             loss_fn = nn.MSELoss()
             optimizer = torch.optim.Adam(model.parameters(), lr=LR)
-            best_val_mse = float('inf')
+            best_val_ci = -1.0          # CI 越大越好，选 CI 最优模型替代原来只看 MSE
+            best_val_mse = float('inf') # 记录对应 epoch 的 MSE（参考用）
             best_epoch = -1
             epochs_since_improvement = 0
             model_file_name = os.path.join(CHECKPOINT_DIR, f'model_{dataset}_{model_name}_fold{fold_id}_{seed}.model')
@@ -214,18 +215,21 @@ for seed in SEEDS:
                         val_metrics = regression_metrics(G, P)
 
                     val_mse = val_metrics['mse']
+                    val_ci = val_metrics['ci']
                     val_r2 = val_metrics['r2']
                     loss_val_list.append(val_mse)
-                    if val_mse < best_val_mse:
+                    if val_ci > best_val_ci:
                         torch.save(model.state_dict(), model_file_name)
                         best_epoch = epoch + 1
+                        best_val_ci = val_ci
                         best_val_mse = val_mse
                         best_val_r2 = val_r2
                         epochs_since_improvement = 0
                         print(
-                            'val mse improved at epoch ',
+                            'val CI improved at epoch ',
                             best_epoch,
-                            '; best_val_mse, best_val_r2:',
+                            '; best_val_ci, best_val_mse, best_val_r2:',
+                            best_val_ci,
                             best_val_mse,
                             best_val_r2,
                             dataset
@@ -233,10 +237,11 @@ for seed in SEEDS:
                     else:
                         epochs_since_improvement += 1
                         print(
-                            val_mse,
+                            val_ci,
                             'No improvement since epoch ',
                             best_epoch,
-                            '; best_val_mse, best_val_r2:',
+                            '; best_val_ci, best_val_mse, best_val_r2:',
+                            best_val_ci,
                             best_val_mse,
                             best_val_r2,
                             dataset
@@ -272,7 +277,7 @@ for seed in SEEDS:
             final_mse = test_metrics['mse']
             final_ci = test_metrics['ci']
             final_r2 = test_metrics['r2']
-            print('final test metrics at best val epoch ', best_epoch, ': mse=', final_mse, ' ci=', final_ci, ' rm2=', final_r2)
+            print('final test metrics at best val CI epoch ', best_epoch, ': mse=', final_mse, ' ci=', final_ci, ' rm2=', final_r2)
     mse_list.append(final_mse)
     ci_list.append(final_ci)
     r2_list.append(final_r2)
