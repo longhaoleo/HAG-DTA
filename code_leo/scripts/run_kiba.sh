@@ -1,6 +1,8 @@
 #!/bin/bash
 # run_kiba.sh — KIBA + GIN | 5 folds × 5 seeds = 25 runs
 set -e
+
+cd "$(dirname "$0")/.."
 MODEL_ID=0
 OUTPUT="${HAG_DTA_OUTPUT_ROOT:-/root/autodl-tmp/HAG-DTA-runs}"
 mkdir -p "$OUTPUT/logs"

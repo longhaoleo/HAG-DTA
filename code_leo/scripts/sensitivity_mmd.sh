@@ -9,6 +9,8 @@
 
 set -e
 
+cd "$(dirname "$0")/.."
+
 DID=0    # Davis
 MID=0    # GIN
 FOLD=0
