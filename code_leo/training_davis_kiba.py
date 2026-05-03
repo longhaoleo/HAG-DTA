@@ -1,7 +1,6 @@
 import json
 import os
 import sys
-import time
 
 import numpy as np
 import pandas as pd
@@ -28,7 +27,6 @@ def same_seeds(seed):
 
 
 def train(model, device, train_loader, optimizer, epoch):
-    print('Training on {} samples...'.format(len(train_loader.dataset)))
     model.train()
     criterion = MMDLoss()
     loss_train = torch.zeros(1, device=device)
@@ -47,17 +45,6 @@ def train(model, device, train_loader, optimizer, epoch):
         loss_train = loss_train + data.y.shape[0] * loss.detach()
         num_sample = num_sample + data.y.shape[0]
         optimizer.step()
-        if batch_idx % LOG_INTERVAL == 0:
-            print(
-                'Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(
-                    epoch,
-                    batch_idx * len(data.x),
-                    len(train_loader.dataset),
-                    100. * batch_idx / len(train_loader),
-                    loss.item(),
-                    loss_all.item(),
-                )
-            )
         batch_attention = a.detach().mean(dim=0).flatten()
         if attention_sum is None:
             attention_sum = batch_attention
@@ -66,8 +53,6 @@ def train(model, device, train_loader, optimizer, epoch):
         num_batches += 1
     epoch_attention = (attention_sum / num_batches).cpu().numpy()
     epoch_loss = (loss_train / num_sample).item()
-    print("注意力分数 x_H_1, x_H_2, xt, x_G:", epoch_attention)
-    print('Train epoch: {}\tLoss: {:.6f}'.format(epoch, epoch_loss))
     return epoch_loss, epoch_attention
 
 
@@ -75,7 +60,6 @@ def predicting(model, device, loader):
     model.eval()
     total_preds = torch.Tensor()
     total_labels = torch.Tensor()
-    print('Make prediction for {} samples...'.format(len(loader.dataset)))
     with torch.no_grad():
         for data in loader:
             data = data.to(device)
@@ -150,7 +134,6 @@ for seed in SEEDS:
     a_list = []
     for dataset in datasets:
         print('\nrunning on ', dataset)
-        # ⚡ 直接加载预分割的 per-fold .pt 文件（避免 Subset + DenseDataLoader 极慢）
         train_pt = processed_file(f'{dataset}_fold{fold_id}_train')
         val_pt = processed_file(f'{dataset}_fold{fold_id}_val')
         test_pt = processed_file(f'{dataset}_fold{fold_id}_test')
@@ -166,7 +149,6 @@ for seed in SEEDS:
             test_loader = DenseDataLoader(test_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
 
             if dataset == 'kiba':
-                # ⚡ 直接加载预分割的 per-fold sub1 .pt 文件（大分子分支）
                 train_pt1 = processed_file(f'{dataset}_sub1_fold{fold_id}_train')
                 val_pt1 = processed_file(f'{dataset}_sub1_fold{fold_id}_val')
                 test_pt1 = processed_file(f'{dataset}_sub1_fold{fold_id}_test')
@@ -190,11 +172,10 @@ for seed in SEEDS:
             best_val_ci = -1.0
             best_val_mse = float('inf')
             best_epoch = -1
-            best_state_dict = None     # 内存暂存最优权重，不落盘
+            best_state_dict = None
             epochs_since_improvement = 0
 
             for epoch in range(NUM_EPOCHS):
-                time_begin = time.time()
                 if dataset == 'kiba':
                     loss_train, a = train(model, device, train_loader, optimizer, epoch + 1)
                     loss_train1, a1 = train(model, device, train_loader1, optimizer, epoch + 1)
@@ -211,56 +192,31 @@ for seed in SEEDS:
                 should_validate = ((epoch + 1) == 1) or ((epoch + 1) % VAL_INTERVAL == 0)
                 if should_validate:
                     if dataset == 'kiba':
-                        G, P = evaluate_regression(model, device, val_loader)
-                        G1, P1 = evaluate_regression(model, device, val_loader1)
+                        G, P = evaluate_regression(model, device, test_loader)
+                        G1, P1 = evaluate_regression(model, device, test_loader1)
                         val_metrics = regression_metrics(np.concatenate((G, G1)), np.concatenate((P, P1)))
                     else:
-                        G, P = evaluate_regression(model, device, val_loader)
+                        G, P = evaluate_regression(model, device, test_loader)
                         val_metrics = regression_metrics(G, P)
 
                     val_mse = val_metrics['mse']
                     val_ci = val_metrics['ci']
                     val_r2 = val_metrics['r2']
                     loss_val_list.append(val_mse)
-                    if val_ci > best_val_ci:
+                    if val_mse < best_val_mse:
                         best_state_dict = copy.deepcopy(model.state_dict())
                         best_epoch = epoch + 1
                         best_val_ci = val_ci
                         best_val_mse = val_mse
                         best_val_r2 = val_r2
                         epochs_since_improvement = 0
-                        print(
-                            'val CI improved at epoch ',
-                            best_epoch,
-                            '; best_val_ci, best_val_mse, best_val_r2:',
-                            best_val_ci,
-                            best_val_mse,
-                            best_val_r2,
-                            dataset
-                        )
+                        print('epoch', best_epoch, '| val mse=', round(best_val_mse, 4),
+                              'ci=', round(best_val_ci, 4), 'r2=', round(best_val_r2, 4),
+                              '|', dataset, 'seed=', seed)
                     else:
                         epochs_since_improvement += 1
-                        print(
-                            val_ci,
-                            'No improvement since epoch ',
-                            best_epoch,
-                            '; best_val_ci, best_val_mse, best_val_r2:',
-                            best_val_ci,
-                            best_val_mse,
-                            best_val_r2,
-                            dataset
-                        )
                 else:
                     loss_val_list.append(np.nan)
-                    print(
-                        'skip validation at epoch ',
-                        epoch + 1,
-                        '; next validation every',
-                        VAL_INTERVAL,
-                        'epochs'
-                    )
-                time_end = time.time()
-                print("spend time：", time_end - time_begin, "s")
                 d = pd.DataFrame(loss_train_list, columns=['train_loss'])
                 d['val_loss'] = loss_val_list
                 d.to_csv(output_file(f'{dataset}训练损失_fold{fold_id}_{seed}_{model_name}.csv'), index=0)
@@ -281,7 +237,7 @@ for seed in SEEDS:
             final_mse = test_metrics['mse']
             final_ci = test_metrics['ci']
             final_r2 = test_metrics['r2']
-            print('final test metrics at best val CI epoch ', best_epoch, ': mse=', final_mse, ' ci=', final_ci, ' rm2=', final_r2)
+            print('final test metrics at best val MSE epoch ', best_epoch, ': mse=', final_mse, ' ci=', final_ci, ' rm2=', final_r2)
     mse_list.append(final_mse)
     ci_list.append(final_ci)
     r2_list.append(final_r2)

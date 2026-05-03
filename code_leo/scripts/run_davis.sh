@@ -17,4 +17,4 @@ log "========== Davis + GIN | 5-fold × 5 seeds =========="
 for fold in 0 1 2 3 4; do run_one "$fold"; done
 log "========== DAVIS COMPLETE =========="
 log "Aggregating results ..."
-python aggregate_results.py 2>&1 | tee -a "$OUTPUT/logs/davis.log"
+python scripts/aggregate_results.py 2>&1 | tee -a "$OUTPUT/logs/davis.log"
