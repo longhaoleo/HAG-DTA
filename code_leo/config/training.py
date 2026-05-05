@@ -9,7 +9,7 @@ REGRESSION_TRAINING = {
     'lr': 0.0005,
     'log_interval': 10,
     'num_epochs': 1000,
-    'val_interval': 1,
+    'val_interval': 5,
     'early_stop_patience': 50,
 }
 
@@ -20,6 +20,6 @@ CLASSIFICATION_TRAINING = {
     'lr': 0.0005,
     'log_interval': 10,
     'num_epochs': 1000,
-    'val_interval': 1,
+    'val_interval': 5,
     'early_stop_patience': 50,
 }

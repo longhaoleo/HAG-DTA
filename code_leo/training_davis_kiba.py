@@ -215,6 +215,9 @@ for seed in SEEDS:
                               '|', dataset, 'seed=', seed)
                     else:
                         epochs_since_improvement += 1
+                        print('epoch', epoch + 1, '| val mse=', round(val_mse, 4),
+                              'ci=', round(val_ci, 4), 'r2=', round(val_r2, 4),
+                              '|', dataset, 'seed=', seed, '(no improvement)')
                 else:
                     loss_val_list.append(np.nan)
                 d = pd.DataFrame(loss_train_list, columns=['train_loss'])
