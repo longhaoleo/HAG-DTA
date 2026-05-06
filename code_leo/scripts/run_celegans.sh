@@ -11,8 +11,11 @@ run_one() {
     local fold=$1
     local log_name="celegans_f${fold}.log"
     log "START fold=$fold"
+    set +e
     python -u training_Human_Celegans.py 1 "$MODEL_ID" "$fold" > "$OUTPUT/logs/$log_name" 2>&1
-    local rc=$?; [ $rc -eq 0 ] && log "DONE  fold=$fold" || log "FAIL  fold=$fold (exit $rc)"
+    local rc=$?
+    set -e
+    [ $rc -eq 0 ] && log "DONE  fold=$fold" || log "FAIL  fold=$fold (exit $rc)"
     return $rc
 }
 log "========== C.elegans + GIN | 5-fold × 5 seeds =========="
