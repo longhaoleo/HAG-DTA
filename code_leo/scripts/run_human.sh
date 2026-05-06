@@ -11,7 +11,7 @@ run_one() {
     local fold=$1
     local log_name="human_f${fold}.log"
     log "START fold=$fold"
-    python training_Human_Celegans.py 0 "$MODEL_ID" "$fold" > "$OUTPUT/logs/$log_name" 2>&1
+    python -u training_Human_Celegans.py 0 "$MODEL_ID" "$fold" > "$OUTPUT/logs/$log_name" 2>&1
     local rc=$?; [ $rc -eq 0 ] && log "DONE  fold=$fold" || log "FAIL  fold=$fold (exit $rc)"
     return $rc
 }
