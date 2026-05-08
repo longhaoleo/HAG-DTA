@@ -130,7 +130,7 @@ class GNN_add_GIN_pool(torch.nn.Module):
 # GINConv model
 class Diff_DTA_GIN(torch.nn.Module):
     def __init__(self, n_output=1, num_features_xd=78, num_features_xt=25, embed_dim=128, output_dim=128,
-                 dropout=0.2,num_nodes_1=6,num_nodes_2 = 3):
+                 dropout=0.2,num_nodes_1=4,num_nodes_2 = 2):
         super(Diff_DTA_GIN, self).__init__()
         self.gnn1_pool = GNN_GIN_local(num_features_xd, 64, num_nodes_1, layer=2)
         self.gnn1_embed = GNN_GIN_local(num_features_xd, 64, 64, layer=2)
@@ -296,7 +296,7 @@ class GNN_add_GCN_global(torch.nn.Module):
         return x
 
 class Diff_DTA_GCN(torch.nn.Module):
-    def __init__(self, n_output=1, num_features_xd=78, num_features_xt=25,num_nodes_1 = 6,num_nodes_2 = 3,
+    def __init__(self, n_output=1, num_features_xd=78, num_features_xt=25,num_nodes_1 = 4,num_nodes_2 = 2,
                  embed_dim=128, output_dim=128, dropout=0.2):
         super(Diff_DTA_GCN, self).__init__()
         self.gnn1_pool = GNN_GCN_local(num_features_xd, num_nodes_1)
@@ -456,7 +456,7 @@ class GNN_add_GAT_global(torch.nn.Module):
         return x
 
 class Diff_DTA_GAT(torch.nn.Module):
-    def __init__(self, n_output=1, num_features_xd=78, num_features_xt=25,num_nodes_1 = 6,num_nodes_2 = 3,
+    def __init__(self, n_output=1, num_features_xd=78, num_features_xt=25,num_nodes_1 = 4,num_nodes_2 = 2,
                  embed_dim=128, output_dim=128, dropout=0.2):
         super(Diff_DTA_GAT, self).__init__()
         self.gnn1_pool = GNN_GAT_local(num_features_xd, num_nodes_1)
@@ -613,7 +613,7 @@ class GNN_add_SAGE_global(torch.nn.Module):
 
 # GINConv model
 class Diff_DTA_SAGE(torch.nn.Module):
-    def __init__(self, n_output=1, num_features_xd=78, num_features_xt=25, num_nodes_1=6, num_nodes_2=3,
+    def __init__(self, n_output=1, num_features_xd=78, num_features_xt=25, num_nodes_1=4, num_nodes_2=2,
                  embed_dim=128, output_dim=128, dropout=0.2):
         super(Diff_DTA_SAGE, self).__init__()
         self.gnn1_pool = GNN_SAGE_local(num_features_xd, num_nodes_1)

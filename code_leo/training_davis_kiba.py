@@ -163,8 +163,14 @@ for seed in SEEDS:
                 test_loader1 = DenseDataLoader(test_data1, batch_size=TEST_BATCH_SIZE, shuffle=False)
 
             device = torch.device(cuda_name if torch.cuda.is_available() else "cpu")
-            n1 = int(os.environ.get('HAG_DTA_N1', 6))
-            n2 = int(os.environ.get('HAG_DTA_N2', 3))
+            # 按论文 per-dataset 最优设置
+            if dataset == 'davis':
+                n1_default, n2_default = 4, 2
+            else:  # kiba
+                n1_default, n2_default = 6, 2
+            n1 = int(os.environ.get('HAG_DTA_N1', n1_default))
+            n2 = int(os.environ.get('HAG_DTA_N2', n2_default))
+            print(f'Hierarchical pooling: n1={n1}, n2={n2}')
             model = model_select(num_nodes_1=n1, num_nodes_2=n2)
             model = model.to(device)
             loss_fn = nn.MSELoss()

@@ -221,10 +221,10 @@ x_2, adj, l2, e2 = dense_diff_pool(x_2, adj, s)
    - `l_loss`
    - `e_loss`
 
-对当前默认设置来说：
-
-- 第一层把原图压成 `num_nodes_1 = 6`
-- 第二层把 6 个簇再压成 `num_nodes_2 = 3`
+对当前默认设置（按论文 per-dataset 最优，可通过环境变量 HAG_DTA_N1/HAG_DTA_N2 覆盖）来说：
+- Davis: n1=4, n2=2
+- KIBA: n1=6, n2=2
+- Human / C.elegans: n1=7, n2=3
 
 所以你可以把两层局部分支理解成：
 
