@@ -1,0 +1,2714 @@
+Diff_DTA_GIN
+fold_id: 0
+Learning rate:  0.0005
+Epochs:  1000
+Validation interval:  5
+Early stop patience:  50
+
+running on  Human
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/Human_fold0_train.pt, loading ...
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/Human_fold0_val.pt, loading ...
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/Human_fold0_test.pt, loading ...
+Training on 3804 samples...
+Train epoch: 1 [0/3804 (0%)]	Loss: 0.709696 Loss_all: 0.755290
+Train epoch: 1 [2560/3804 (67%)]	Loss: 0.491850 Loss_all: 0.547554
+Train epoch: 1	Loss: 0.565375
+val AUROC improved at epoch  1 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.890110490250184 0.8865822714290488 0.7049180327868853 0.8958333333333334 Human
+spend time： 4.0456743240356445 s
+Training on 3804 samples...
+Train epoch: 2 [0/3804 (0%)]	Loss: 0.423845 Loss_all: 0.481158
+Train epoch: 2 [2560/3804 (67%)]	Loss: 0.402403 Loss_all: 0.448511
+Train epoch: 2	Loss: 0.373917
+skip validation at epoch  2 ; next validation every 5 epochs
+spend time： 1.8733913898468018 s
+Training on 3804 samples...
+Train epoch: 3 [0/3804 (0%)]	Loss: 0.313508 Loss_all: 0.364731
+Train epoch: 3 [2560/3804 (67%)]	Loss: 0.291355 Loss_all: 0.337769
+Train epoch: 3	Loss: 0.290704
+skip validation at epoch  3 ; next validation every 5 epochs
+spend time： 1.87430739402771 s
+Training on 3804 samples...
+Train epoch: 4 [0/3804 (0%)]	Loss: 0.279302 Loss_all: 0.323385
+Train epoch: 4 [2560/3804 (67%)]	Loss: 0.269226 Loss_all: 0.314865
+Train epoch: 4	Loss: 0.246241
+skip validation at epoch  4 ; next validation every 5 epochs
+spend time： 1.8326377868652344 s
+Training on 3804 samples...
+Train epoch: 5 [0/3804 (0%)]	Loss: 0.213449 Loss_all: 0.255734
+Train epoch: 5 [2560/3804 (67%)]	Loss: 0.223661 Loss_all: 0.266622
+Train epoch: 5	Loss: 0.205775
+val AUROC improved at epoch  5 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9686896385209713 0.966677553652519 0.9175627240143369 0.8888888888888888 Human
+spend time： 2.3630452156066895 s
+Training on 3804 samples...
+Train epoch: 6 [0/3804 (0%)]	Loss: 0.134926 Loss_all: 0.181622
+Train epoch: 6 [2560/3804 (67%)]	Loss: 0.231795 Loss_all: 0.276126
+Train epoch: 6	Loss: 0.194729
+skip validation at epoch  6 ; next validation every 5 epochs
+spend time： 1.7717258930206299 s
+Training on 3804 samples...
+Train epoch: 7 [0/3804 (0%)]	Loss: 0.176205 Loss_all: 0.220440
+Train epoch: 7 [2560/3804 (67%)]	Loss: 0.229353 Loss_all: 0.274311
+Train epoch: 7	Loss: 0.167286
+skip validation at epoch  7 ; next validation every 5 epochs
+spend time： 1.8213739395141602 s
+Training on 3804 samples...
+Train epoch: 8 [0/3804 (0%)]	Loss: 0.177266 Loss_all: 0.222272
+Train epoch: 8 [2560/3804 (67%)]	Loss: 0.156928 Loss_all: 0.200212
+Train epoch: 8	Loss: 0.189937
+skip validation at epoch  8 ; next validation every 5 epochs
+spend time： 1.7916512489318848 s
+Training on 3804 samples...
+Train epoch: 9 [0/3804 (0%)]	Loss: 0.180132 Loss_all: 0.224824
+Train epoch: 9 [2560/3804 (67%)]	Loss: 0.141471 Loss_all: 0.188253
+Train epoch: 9	Loss: 0.151030
+skip validation at epoch  9 ; next validation every 5 epochs
+spend time： 1.7745766639709473 s
+Training on 3804 samples...
+Train epoch: 10 [0/3804 (0%)]	Loss: 0.146704 Loss_all: 0.187803
+Train epoch: 10 [2560/3804 (67%)]	Loss: 0.149454 Loss_all: 0.197268
+Train epoch: 10	Loss: 0.128811
+val AUROC improved at epoch  10 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.983216634473878 0.9838555812870414 0.9072847682119205 0.9513888888888888 Human
+spend time： 2.4638073444366455 s
+Training on 3804 samples...
+Train epoch: 11 [0/3804 (0%)]	Loss: 0.084991 Loss_all: 0.128691
+Train epoch: 11 [2560/3804 (67%)]	Loss: 0.160003 Loss_all: 0.204376
+Train epoch: 11	Loss: 0.122356
+skip validation at epoch  11 ; next validation every 5 epochs
+spend time： 1.8340814113616943 s
+Training on 3804 samples...
+Train epoch: 12 [0/3804 (0%)]	Loss: 0.103606 Loss_all: 0.144152
+Train epoch: 12 [2560/3804 (67%)]	Loss: 0.165354 Loss_all: 0.208980
+Train epoch: 12	Loss: 0.121453
+skip validation at epoch  12 ; next validation every 5 epochs
+spend time： 1.9247920513153076 s
+Training on 3804 samples...
+Train epoch: 13 [0/3804 (0%)]	Loss: 0.142226 Loss_all: 0.183813
+Train epoch: 13 [2560/3804 (67%)]	Loss: 0.105181 Loss_all: 0.147582
+Train epoch: 13	Loss: 0.125946
+skip validation at epoch  13 ; next validation every 5 epochs
+spend time： 1.8365049362182617 s
+Training on 3804 samples...
+Train epoch: 14 [0/3804 (0%)]	Loss: 0.104631 Loss_all: 0.146708
+Train epoch: 14 [2560/3804 (67%)]	Loss: 0.130781 Loss_all: 0.172212
+Train epoch: 14	Loss: 0.108812
+skip validation at epoch  14 ; next validation every 5 epochs
+spend time： 1.9059045314788818 s
+Training on 3804 samples...
+Train epoch: 15 [0/3804 (0%)]	Loss: 0.110685 Loss_all: 0.151876
+Train epoch: 15 [2560/3804 (67%)]	Loss: 0.084258 Loss_all: 0.127612
+Train epoch: 15	Loss: 0.114893
+val AUROC improved at epoch  15 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9851568248712288 0.9852098525608904 0.912106135986733 0.9548611111111112 Human
+spend time： 2.4763340950012207 s
+Training on 3804 samples...
+Train epoch: 16 [0/3804 (0%)]	Loss: 0.089577 Loss_all: 0.130760
+Train epoch: 16 [2560/3804 (67%)]	Loss: 0.085787 Loss_all: 0.127624
+Train epoch: 16	Loss: 0.090287
+skip validation at epoch  16 ; next validation every 5 epochs
+spend time： 1.8010337352752686 s
+Training on 3804 samples...
+Train epoch: 17 [0/3804 (0%)]	Loss: 0.073266 Loss_all: 0.116405
+Train epoch: 17 [2560/3804 (67%)]	Loss: 0.093343 Loss_all: 0.134344
+Train epoch: 17	Loss: 0.096156
+skip validation at epoch  17 ; next validation every 5 epochs
+spend time： 1.7734007835388184 s
+Training on 3804 samples...
+Train epoch: 18 [0/3804 (0%)]	Loss: 0.070007 Loss_all: 0.109647
+Train epoch: 18 [2560/3804 (67%)]	Loss: 0.068065 Loss_all: 0.108528
+Train epoch: 18	Loss: 0.078803
+skip validation at epoch  18 ; next validation every 5 epochs
+spend time： 1.770035743713379 s
+Training on 3804 samples...
+Train epoch: 19 [0/3804 (0%)]	Loss: 0.041282 Loss_all: 0.081386
+Train epoch: 19 [2560/3804 (67%)]	Loss: 0.070331 Loss_all: 0.110270
+Train epoch: 19	Loss: 0.080678
+skip validation at epoch  19 ; next validation every 5 epochs
+spend time： 1.8695521354675293 s
+Training on 3804 samples...
+Train epoch: 20 [0/3804 (0%)]	Loss: 0.032126 Loss_all: 0.074402
+Train epoch: 20 [2560/3804 (67%)]	Loss: 0.096905 Loss_all: 0.137482
+Train epoch: 20	Loss: 0.068675
+0.9801732298790575 No improvement since epoch  15 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9851568248712288 0.9852098525608904 0.912106135986733 0.9548611111111112 Human
+spend time： 2.1993167400360107 s
+Training on 3804 samples...
+Train epoch: 21 [0/3804 (0%)]	Loss: 0.094841 Loss_all: 0.137559
+Train epoch: 21 [2560/3804 (67%)]	Loss: 0.071511 Loss_all: 0.115369
+Train epoch: 21	Loss: 0.077582
+skip validation at epoch  21 ; next validation every 5 epochs
+spend time： 1.9194095134735107 s
+Training on 3804 samples...
+Train epoch: 22 [0/3804 (0%)]	Loss: 0.076420 Loss_all: 0.118617
+Train epoch: 22 [2560/3804 (67%)]	Loss: 0.070039 Loss_all: 0.112168
+Train epoch: 22	Loss: 0.079909
+skip validation at epoch  22 ; next validation every 5 epochs
+spend time： 1.9301140308380127 s
+Training on 3804 samples...
+Train epoch: 23 [0/3804 (0%)]	Loss: 0.108651 Loss_all: 0.147811
+Train epoch: 23 [2560/3804 (67%)]	Loss: 0.052684 Loss_all: 0.092597
+Train epoch: 23	Loss: 0.074641
+skip validation at epoch  23 ; next validation every 5 epochs
+spend time： 1.8156604766845703 s
+Training on 3804 samples...
+Train epoch: 24 [0/3804 (0%)]	Loss: 0.051452 Loss_all: 0.091153
+Train epoch: 24 [2560/3804 (67%)]	Loss: 0.098989 Loss_all: 0.138553
+Train epoch: 24	Loss: 0.086094
+skip validation at epoch  24 ; next validation every 5 epochs
+spend time： 1.7680275440216064 s
+Training on 3804 samples...
+Train epoch: 25 [0/3804 (0%)]	Loss: 0.052192 Loss_all: 0.092195
+Train epoch: 25 [2560/3804 (67%)]	Loss: 0.198340 Loss_all: 0.239018
+Train epoch: 25	Loss: 0.094220
+0.9806332888019889 No improvement since epoch  15 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9851568248712288 0.9852098525608904 0.912106135986733 0.9548611111111112 Human
+spend time： 2.09379506111145 s
+Training on 3804 samples...
+Train epoch: 26 [0/3804 (0%)]	Loss: 0.097027 Loss_all: 0.136467
+Train epoch: 26 [2560/3804 (67%)]	Loss: 0.091434 Loss_all: 0.129940
+Train epoch: 26	Loss: 0.078504
+skip validation at epoch  26 ; next validation every 5 epochs
+spend time： 1.8709704875946045 s
+Training on 3804 samples...
+Train epoch: 27 [0/3804 (0%)]	Loss: 0.049550 Loss_all: 0.086707
+Train epoch: 27 [2560/3804 (67%)]	Loss: 0.075084 Loss_all: 0.112046
+Train epoch: 27	Loss: 0.059175
+skip validation at epoch  27 ; next validation every 5 epochs
+spend time： 1.772573709487915 s
+Training on 3804 samples...
+Train epoch: 28 [0/3804 (0%)]	Loss: 0.051714 Loss_all: 0.088627
+Train epoch: 28 [2560/3804 (67%)]	Loss: 0.054805 Loss_all: 0.091425
+Train epoch: 28	Loss: 0.055543
+skip validation at epoch  28 ; next validation every 5 epochs
+spend time： 1.8616206645965576 s
+Training on 3804 samples...
+Train epoch: 29 [0/3804 (0%)]	Loss: 0.046424 Loss_all: 0.085399
+Train epoch: 29 [2560/3804 (67%)]	Loss: 0.100871 Loss_all: 0.139102
+Train epoch: 29	Loss: 0.051421
+skip validation at epoch  29 ; next validation every 5 epochs
+spend time： 1.8010389804840088 s
+Training on 3804 samples...
+Train epoch: 30 [0/3804 (0%)]	Loss: 0.080328 Loss_all: 0.119770
+Train epoch: 30 [2560/3804 (67%)]	Loss: 0.044723 Loss_all: 0.086735
+Train epoch: 30	Loss: 0.053057
+0.9832432384609259 No improvement since epoch  15 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9851568248712288 0.9852098525608904 0.912106135986733 0.9548611111111112 Human
+spend time： 2.032839298248291 s
+Training on 3804 samples...
+Train epoch: 31 [0/3804 (0%)]	Loss: 0.020336 Loss_all: 0.058271
+Train epoch: 31 [2560/3804 (67%)]	Loss: 0.079486 Loss_all: 0.118103
+Train epoch: 31	Loss: 0.046735
+skip validation at epoch  31 ; next validation every 5 epochs
+spend time： 1.7359004020690918 s
+Training on 3804 samples...
+Train epoch: 32 [0/3804 (0%)]	Loss: 0.026071 Loss_all: 0.062361
+Train epoch: 32 [2560/3804 (67%)]	Loss: 0.048306 Loss_all: 0.084603
+Train epoch: 32	Loss: 0.041416
+skip validation at epoch  32 ; next validation every 5 epochs
+spend time： 1.6910574436187744 s
+Training on 3804 samples...
+Train epoch: 33 [0/3804 (0%)]	Loss: 0.030519 Loss_all: 0.066426
+Train epoch: 33 [2560/3804 (67%)]	Loss: 0.051236 Loss_all: 0.088539
+Train epoch: 33	Loss: 0.049899
+skip validation at epoch  33 ; next validation every 5 epochs
+spend time： 1.7775042057037354 s
+Training on 3804 samples...
+Train epoch: 34 [0/3804 (0%)]	Loss: 0.039726 Loss_all: 0.076732
+Train epoch: 34 [2560/3804 (67%)]	Loss: 0.084339 Loss_all: 0.123032
+Train epoch: 34	Loss: 0.052414
+skip validation at epoch  34 ; next validation every 5 epochs
+spend time： 1.9255163669586182 s
+Training on 3804 samples...
+Train epoch: 35 [0/3804 (0%)]	Loss: 0.060903 Loss_all: 0.099502
+Train epoch: 35 [2560/3804 (67%)]	Loss: 0.080771 Loss_all: 0.117784
+Train epoch: 35	Loss: 0.044900
+val AUROC improved at epoch  35 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.98861467531273 0.9886756300009409 0.9458987783595113 0.9409722222222222 Human
+spend time： 2.4146175384521484 s
+Training on 3804 samples...
+Train epoch: 36 [0/3804 (0%)]	Loss: 0.030884 Loss_all: 0.067627
+Train epoch: 36 [2560/3804 (67%)]	Loss: 0.013201 Loss_all: 0.049665
+Train epoch: 36	Loss: 0.044161
+skip validation at epoch  36 ; next validation every 5 epochs
+spend time： 1.959423303604126 s
+Training on 3804 samples...
+Train epoch: 37 [0/3804 (0%)]	Loss: 0.043623 Loss_all: 0.080024
+Train epoch: 37 [2560/3804 (67%)]	Loss: 0.019893 Loss_all: 0.055250
+Train epoch: 37	Loss: 0.042282
+skip validation at epoch  37 ; next validation every 5 epochs
+spend time： 1.7999627590179443 s
+Training on 3804 samples...
+Train epoch: 38 [0/3804 (0%)]	Loss: 0.036531 Loss_all: 0.071850
+Train epoch: 38 [2560/3804 (67%)]	Loss: 0.047891 Loss_all: 0.085922
+Train epoch: 38	Loss: 0.040342
+skip validation at epoch  38 ; next validation every 5 epochs
+spend time： 1.8147330284118652 s
+Training on 3804 samples...
+Train epoch: 39 [0/3804 (0%)]	Loss: 0.016805 Loss_all: 0.052565
+Train epoch: 39 [2560/3804 (67%)]	Loss: 0.085779 Loss_all: 0.121508
+Train epoch: 39	Loss: 0.037542
+skip validation at epoch  39 ; next validation every 5 epochs
+spend time： 1.8627147674560547 s
+Training on 3804 samples...
+Train epoch: 40 [0/3804 (0%)]	Loss: 0.026233 Loss_all: 0.062335
+Train epoch: 40 [2560/3804 (67%)]	Loss: 0.038100 Loss_all: 0.073313
+Train epoch: 40	Loss: 0.035415
+0.98349980978333 No improvement since epoch  35 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.98861467531273 0.9886756300009409 0.9458987783595113 0.9409722222222222 Human
+spend time： 2.1063544750213623 s
+Training on 3804 samples...
+Train epoch: 41 [0/3804 (0%)]	Loss: 0.033457 Loss_all: 0.069659
+Train epoch: 41 [2560/3804 (67%)]	Loss: 0.011172 Loss_all: 0.048362
+Train epoch: 41	Loss: 0.027634
+skip validation at epoch  41 ; next validation every 5 epochs
+spend time： 1.843001365661621 s
+Training on 3804 samples...
+Train epoch: 42 [0/3804 (0%)]	Loss: 0.006156 Loss_all: 0.042681
+Train epoch: 42 [2560/3804 (67%)]	Loss: 0.030298 Loss_all: 0.067163
+Train epoch: 42	Loss: 0.033364
+skip validation at epoch  42 ; next validation every 5 epochs
+spend time： 1.818342924118042 s
+Training on 3804 samples...
+Train epoch: 43 [0/3804 (0%)]	Loss: 0.012524 Loss_all: 0.048863
+Train epoch: 43 [2560/3804 (67%)]	Loss: 0.021366 Loss_all: 0.056814
+Train epoch: 43	Loss: 0.025673
+skip validation at epoch  43 ; next validation every 5 epochs
+spend time： 1.8094959259033203 s
+Training on 3804 samples...
+Train epoch: 44 [0/3804 (0%)]	Loss: 0.011150 Loss_all: 0.046268
+Train epoch: 44 [2560/3804 (67%)]	Loss: 0.025473 Loss_all: 0.062903
+Train epoch: 44	Loss: 0.024441
+skip validation at epoch  44 ; next validation every 5 epochs
+spend time： 1.8787457942962646 s
+Training on 3804 samples...
+Train epoch: 45 [0/3804 (0%)]	Loss: 0.016640 Loss_all: 0.050988
+Train epoch: 45 [2560/3804 (67%)]	Loss: 0.015568 Loss_all: 0.050730
+Train epoch: 45	Loss: 0.021706
+val AUROC improved at epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.3850581645965576 s
+Training on 3804 samples...
+Train epoch: 46 [0/3804 (0%)]	Loss: 0.022647 Loss_all: 0.058890
+Train epoch: 46 [2560/3804 (67%)]	Loss: 0.033836 Loss_all: 0.069359
+Train epoch: 46	Loss: 0.021439
+skip validation at epoch  46 ; next validation every 5 epochs
+spend time： 1.7815196514129639 s
+Training on 3804 samples...
+Train epoch: 47 [0/3804 (0%)]	Loss: 0.015981 Loss_all: 0.052274
+Train epoch: 47 [2560/3804 (67%)]	Loss: 0.041783 Loss_all: 0.077475
+Train epoch: 47	Loss: 0.027404
+skip validation at epoch  47 ; next validation every 5 epochs
+spend time： 1.8081047534942627 s
+Training on 3804 samples...
+Train epoch: 48 [0/3804 (0%)]	Loss: 0.015069 Loss_all: 0.049280
+Train epoch: 48 [2560/3804 (67%)]	Loss: 0.026566 Loss_all: 0.061222
+Train epoch: 48	Loss: 0.023525
+skip validation at epoch  48 ; next validation every 5 epochs
+spend time： 1.7868516445159912 s
+Training on 3804 samples...
+Train epoch: 49 [0/3804 (0%)]	Loss: 0.011582 Loss_all: 0.044811
+Train epoch: 49 [2560/3804 (67%)]	Loss: 0.021857 Loss_all: 0.056319
+Train epoch: 49	Loss: 0.022904
+skip validation at epoch  49 ; next validation every 5 epochs
+spend time： 1.7984235286712646 s
+Training on 3804 samples...
+Train epoch: 50 [0/3804 (0%)]	Loss: 0.016372 Loss_all: 0.049003
+Train epoch: 50 [2560/3804 (67%)]	Loss: 0.074467 Loss_all: 0.109202
+Train epoch: 50	Loss: 0.031570
+0.9823231206150634 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.042668104171753 s
+Training on 3804 samples...
+Train epoch: 51 [0/3804 (0%)]	Loss: 0.027472 Loss_all: 0.061239
+Train epoch: 51 [2560/3804 (67%)]	Loss: 0.015155 Loss_all: 0.049161
+Train epoch: 51	Loss: 0.020542
+skip validation at epoch  51 ; next validation every 5 epochs
+spend time： 1.9165868759155273 s
+Training on 3804 samples...
+Train epoch: 52 [0/3804 (0%)]	Loss: 0.051838 Loss_all: 0.086922
+Train epoch: 52 [2560/3804 (67%)]	Loss: 0.006231 Loss_all: 0.042610
+Train epoch: 52	Loss: 0.029286
+skip validation at epoch  52 ; next validation every 5 epochs
+spend time： 1.8927409648895264 s
+Training on 3804 samples...
+Train epoch: 53 [0/3804 (0%)]	Loss: 0.035623 Loss_all: 0.068985
+Train epoch: 53 [2560/3804 (67%)]	Loss: 0.018919 Loss_all: 0.050365
+Train epoch: 53	Loss: 0.023282
+skip validation at epoch  53 ; next validation every 5 epochs
+spend time： 1.8044140338897705 s
+Training on 3804 samples...
+Train epoch: 54 [0/3804 (0%)]	Loss: 0.023425 Loss_all: 0.055579
+Train epoch: 54 [2560/3804 (67%)]	Loss: 0.081481 Loss_all: 0.113598
+Train epoch: 54	Loss: 0.025703
+skip validation at epoch  54 ; next validation every 5 epochs
+spend time： 1.7123968601226807 s
+Training on 3804 samples...
+Train epoch: 55 [0/3804 (0%)]	Loss: 0.015904 Loss_all: 0.048113
+Train epoch: 55 [2560/3804 (67%)]	Loss: 0.021824 Loss_all: 0.053320
+Train epoch: 55	Loss: 0.018668
+0.9799918604959789 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 1.9770264625549316 s
+Training on 3804 samples...
+Train epoch: 56 [0/3804 (0%)]	Loss: 0.020397 Loss_all: 0.051382
+Train epoch: 56 [2560/3804 (67%)]	Loss: 0.043371 Loss_all: 0.075992
+Train epoch: 56	Loss: 0.020245
+skip validation at epoch  56 ; next validation every 5 epochs
+spend time： 1.9482011795043945 s
+Training on 3804 samples...
+Train epoch: 57 [0/3804 (0%)]	Loss: 0.043404 Loss_all: 0.075418
+Train epoch: 57 [2560/3804 (67%)]	Loss: 0.044829 Loss_all: 0.078819
+Train epoch: 57	Loss: 0.020918
+skip validation at epoch  57 ; next validation every 5 epochs
+spend time： 1.995823860168457 s
+Training on 3804 samples...
+Train epoch: 58 [0/3804 (0%)]	Loss: 0.010065 Loss_all: 0.040015
+Train epoch: 58 [2560/3804 (67%)]	Loss: 0.016822 Loss_all: 0.047322
+Train epoch: 58	Loss: 0.016283
+skip validation at epoch  58 ; next validation every 5 epochs
+spend time： 1.6883561611175537 s
+Training on 3804 samples...
+Train epoch: 59 [0/3804 (0%)]	Loss: 0.027366 Loss_all: 0.061169
+Train epoch: 59 [2560/3804 (67%)]	Loss: 0.009343 Loss_all: 0.041506
+Train epoch: 59	Loss: 0.023757
+skip validation at epoch  59 ; next validation every 5 epochs
+spend time： 1.685096263885498 s
+Training on 3804 samples...
+Train epoch: 60 [0/3804 (0%)]	Loss: 0.010715 Loss_all: 0.043638
+Train epoch: 60 [2560/3804 (67%)]	Loss: 0.011445 Loss_all: 0.043983
+Train epoch: 60	Loss: 0.012172
+0.9823209087933186 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.0033798217773438 s
+Training on 3804 samples...
+Train epoch: 61 [0/3804 (0%)]	Loss: 0.026324 Loss_all: 0.055731
+Train epoch: 61 [2560/3804 (67%)]	Loss: 0.010588 Loss_all: 0.040830
+Train epoch: 61	Loss: 0.022374
+skip validation at epoch  61 ; next validation every 5 epochs
+spend time： 1.79720139503479 s
+Training on 3804 samples...
+Train epoch: 62 [0/3804 (0%)]	Loss: 0.009030 Loss_all: 0.040656
+Train epoch: 62 [2560/3804 (67%)]	Loss: 0.012718 Loss_all: 0.044670
+Train epoch: 62	Loss: 0.024855
+skip validation at epoch  62 ; next validation every 5 epochs
+spend time： 2.0884995460510254 s
+Training on 3804 samples...
+Train epoch: 63 [0/3804 (0%)]	Loss: 0.005938 Loss_all: 0.038848
+Train epoch: 63 [2560/3804 (67%)]	Loss: 0.027774 Loss_all: 0.060632
+Train epoch: 63	Loss: 0.028627
+skip validation at epoch  63 ; next validation every 5 epochs
+spend time： 1.7543721199035645 s
+Training on 3804 samples...
+Train epoch: 64 [0/3804 (0%)]	Loss: 0.013188 Loss_all: 0.045888
+Train epoch: 64 [2560/3804 (67%)]	Loss: 0.007614 Loss_all: 0.038739
+Train epoch: 64	Loss: 0.021884
+skip validation at epoch  64 ; next validation every 5 epochs
+spend time： 1.6937308311462402 s
+Training on 3804 samples...
+Train epoch: 65 [0/3804 (0%)]	Loss: 0.011678 Loss_all: 0.045087
+Train epoch: 65 [2560/3804 (67%)]	Loss: 0.019351 Loss_all: 0.050089
+Train epoch: 65	Loss: 0.016275
+0.9844155039857028 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.03305983543396 s
+Training on 3804 samples...
+Train epoch: 66 [0/3804 (0%)]	Loss: 0.061523 Loss_all: 0.092123
+Train epoch: 66 [2560/3804 (67%)]	Loss: 0.010234 Loss_all: 0.042128
+Train epoch: 66	Loss: 0.020459
+skip validation at epoch  66 ; next validation every 5 epochs
+spend time： 2.236388683319092 s
+Training on 3804 samples...
+Train epoch: 67 [0/3804 (0%)]	Loss: 0.005126 Loss_all: 0.035547
+Train epoch: 67 [2560/3804 (67%)]	Loss: 0.037709 Loss_all: 0.066560
+Train epoch: 67	Loss: 0.025545
+skip validation at epoch  67 ; next validation every 5 epochs
+spend time： 2.5708415508270264 s
+Training on 3804 samples...
+Train epoch: 68 [0/3804 (0%)]	Loss: 0.003990 Loss_all: 0.035293
+Train epoch: 68 [2560/3804 (67%)]	Loss: 0.011572 Loss_all: 0.039363
+Train epoch: 68	Loss: 0.019743
+skip validation at epoch  68 ; next validation every 5 epochs
+spend time： 2.513279914855957 s
+Training on 3804 samples...
+Train epoch: 69 [0/3804 (0%)]	Loss: 0.001953 Loss_all: 0.032152
+Train epoch: 69 [2560/3804 (67%)]	Loss: 0.031894 Loss_all: 0.061531
+Train epoch: 69	Loss: 0.015754
+skip validation at epoch  69 ; next validation every 5 epochs
+spend time： 2.5574893951416016 s
+Training on 3804 samples...
+Train epoch: 70 [0/3804 (0%)]	Loss: 0.007943 Loss_all: 0.038343
+Train epoch: 70 [2560/3804 (67%)]	Loss: 0.016489 Loss_all: 0.044027
+Train epoch: 70	Loss: 0.015972
+0.9844685877075794 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.885772943496704 s
+Training on 3804 samples...
+Train epoch: 71 [0/3804 (0%)]	Loss: 0.013562 Loss_all: 0.042830
+Train epoch: 71 [2560/3804 (67%)]	Loss: 0.006948 Loss_all: 0.034706
+Train epoch: 71	Loss: 0.009860
+skip validation at epoch  71 ; next validation every 5 epochs
+spend time： 2.5156142711639404 s
+Training on 3804 samples...
+Train epoch: 72 [0/3804 (0%)]	Loss: 0.008866 Loss_all: 0.036907
+Train epoch: 72 [2560/3804 (67%)]	Loss: 0.017989 Loss_all: 0.048326
+Train epoch: 72	Loss: 0.016374
+skip validation at epoch  72 ; next validation every 5 epochs
+spend time： 2.5977659225463867 s
+Training on 3804 samples...
+Train epoch: 73 [0/3804 (0%)]	Loss: 0.007610 Loss_all: 0.036570
+Train epoch: 73 [2560/3804 (67%)]	Loss: 0.024157 Loss_all: 0.053126
+Train epoch: 73	Loss: 0.011329
+skip validation at epoch  73 ; next validation every 5 epochs
+spend time： 2.4664669036865234 s
+Training on 3804 samples...
+Train epoch: 74 [0/3804 (0%)]	Loss: 0.015674 Loss_all: 0.044330
+Train epoch: 74 [2560/3804 (67%)]	Loss: 0.016809 Loss_all: 0.044853
+Train epoch: 74	Loss: 0.014416
+skip validation at epoch  74 ; next validation every 5 epochs
+spend time： 2.4066543579101562 s
+Training on 3804 samples...
+Train epoch: 75 [0/3804 (0%)]	Loss: 0.007673 Loss_all: 0.034521
+Train epoch: 75 [2560/3804 (67%)]	Loss: 0.012554 Loss_all: 0.039403
+Train epoch: 75	Loss: 0.015142
+0.9818896035530705 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.81280517578125 s
+Training on 3804 samples...
+Train epoch: 76 [0/3804 (0%)]	Loss: 0.001456 Loss_all: 0.029983
+Train epoch: 76 [2560/3804 (67%)]	Loss: 0.023667 Loss_all: 0.050412
+Train epoch: 76	Loss: 0.010527
+skip validation at epoch  76 ; next validation every 5 epochs
+spend time： 2.442272424697876 s
+Training on 3804 samples...
+Train epoch: 77 [0/3804 (0%)]	Loss: 0.018060 Loss_all: 0.045288
+Train epoch: 77 [2560/3804 (67%)]	Loss: 0.018203 Loss_all: 0.044973
+Train epoch: 77	Loss: 0.013203
+skip validation at epoch  77 ; next validation every 5 epochs
+spend time： 2.5360851287841797 s
+Training on 3804 samples...
+Train epoch: 78 [0/3804 (0%)]	Loss: 0.025692 Loss_all: 0.051087
+Train epoch: 78 [2560/3804 (67%)]	Loss: 0.040328 Loss_all: 0.067754
+Train epoch: 78	Loss: 0.025539
+skip validation at epoch  78 ; next validation every 5 epochs
+spend time： 2.3913211822509766 s
+Training on 3804 samples...
+Train epoch: 79 [0/3804 (0%)]	Loss: 0.025530 Loss_all: 0.052016
+Train epoch: 79 [2560/3804 (67%)]	Loss: 0.053898 Loss_all: 0.081622
+Train epoch: 79	Loss: 0.028153
+skip validation at epoch  79 ; next validation every 5 epochs
+spend time： 2.376473903656006 s
+Training on 3804 samples...
+Train epoch: 80 [0/3804 (0%)]	Loss: 0.014780 Loss_all: 0.040828
+Train epoch: 80 [2560/3804 (67%)]	Loss: 0.017517 Loss_all: 0.045191
+Train epoch: 80	Loss: 0.018858
+0.9845305187164355 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.7160441875457764 s
+Training on 3804 samples...
+Train epoch: 81 [0/3804 (0%)]	Loss: 0.008173 Loss_all: 0.034357
+Train epoch: 81 [2560/3804 (67%)]	Loss: 0.007755 Loss_all: 0.035013
+Train epoch: 81	Loss: 0.014345
+skip validation at epoch  81 ; next validation every 5 epochs
+spend time： 2.5362539291381836 s
+Training on 3804 samples...
+Train epoch: 82 [0/3804 (0%)]	Loss: 0.001615 Loss_all: 0.030463
+Train epoch: 82 [2560/3804 (67%)]	Loss: 0.008652 Loss_all: 0.035004
+Train epoch: 82	Loss: 0.007030
+skip validation at epoch  82 ; next validation every 5 epochs
+spend time： 2.551194190979004 s
+Training on 3804 samples...
+Train epoch: 83 [0/3804 (0%)]	Loss: 0.005025 Loss_all: 0.031858
+Train epoch: 83 [2560/3804 (67%)]	Loss: 0.018129 Loss_all: 0.046705
+Train epoch: 83	Loss: 0.009973
+skip validation at epoch  83 ; next validation every 5 epochs
+spend time： 2.4553513526916504 s
+Training on 3804 samples...
+Train epoch: 84 [0/3804 (0%)]	Loss: 0.005640 Loss_all: 0.034448
+Train epoch: 84 [2560/3804 (67%)]	Loss: 0.005093 Loss_all: 0.031875
+Train epoch: 84	Loss: 0.010965
+skip validation at epoch  84 ; next validation every 5 epochs
+spend time： 2.5327181816101074 s
+Training on 3804 samples...
+Train epoch: 85 [0/3804 (0%)]	Loss: 0.004274 Loss_all: 0.031628
+Train epoch: 85 [2560/3804 (67%)]	Loss: 0.007817 Loss_all: 0.036644
+Train epoch: 85	Loss: 0.018231
+0.9834069132700458 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.6903347969055176 s
+Training on 3804 samples...
+Train epoch: 86 [0/3804 (0%)]	Loss: 0.004388 Loss_all: 0.031530
+Train epoch: 86 [2560/3804 (67%)]	Loss: 0.017803 Loss_all: 0.043280
+Train epoch: 86	Loss: 0.029884
+skip validation at epoch  86 ; next validation every 5 epochs
+spend time： 2.3822529315948486 s
+Training on 3804 samples...
+Train epoch: 87 [0/3804 (0%)]	Loss: 0.017773 Loss_all: 0.045076
+Train epoch: 87 [2560/3804 (67%)]	Loss: 0.033287 Loss_all: 0.059181
+Train epoch: 87	Loss: 0.027931
+skip validation at epoch  87 ; next validation every 5 epochs
+spend time： 2.519407272338867 s
+Training on 3804 samples...
+Train epoch: 88 [0/3804 (0%)]	Loss: 0.026766 Loss_all: 0.051097
+Train epoch: 88 [2560/3804 (67%)]	Loss: 0.005855 Loss_all: 0.032676
+Train epoch: 88	Loss: 0.024557
+skip validation at epoch  88 ; next validation every 5 epochs
+spend time： 2.6912660598754883 s
+Training on 3804 samples...
+Train epoch: 89 [0/3804 (0%)]	Loss: 0.009172 Loss_all: 0.034528
+Train epoch: 89 [2560/3804 (67%)]	Loss: 0.022443 Loss_all: 0.046852
+Train epoch: 89	Loss: 0.025316
+skip validation at epoch  89 ; next validation every 5 epochs
+spend time： 2.43316650390625 s
+Training on 3804 samples...
+Train epoch: 90 [0/3804 (0%)]	Loss: 0.040624 Loss_all: 0.067695
+Train epoch: 90 [2560/3804 (67%)]	Loss: 0.027122 Loss_all: 0.051239
+Train epoch: 90	Loss: 0.021964
+0.9826947066682001 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.765070915222168 s
+Training on 3804 samples...
+Train epoch: 91 [0/3804 (0%)]	Loss: 0.009541 Loss_all: 0.038464
+Train epoch: 91 [2560/3804 (67%)]	Loss: 0.026836 Loss_all: 0.055271
+Train epoch: 91	Loss: 0.023901
+skip validation at epoch  91 ; next validation every 5 epochs
+spend time： 2.500113010406494 s
+Training on 3804 samples...
+Train epoch: 92 [0/3804 (0%)]	Loss: 0.027936 Loss_all: 0.056509
+Train epoch: 92 [2560/3804 (67%)]	Loss: 0.005293 Loss_all: 0.031531
+Train epoch: 92	Loss: 0.015624
+skip validation at epoch  92 ; next validation every 5 epochs
+spend time： 2.475856065750122 s
+Training on 3804 samples...
+Train epoch: 93 [0/3804 (0%)]	Loss: 0.014783 Loss_all: 0.039279
+Train epoch: 93 [2560/3804 (67%)]	Loss: 0.023655 Loss_all: 0.049674
+Train epoch: 93	Loss: 0.016991
+skip validation at epoch  93 ; next validation every 5 epochs
+spend time： 2.387050151824951 s
+Training on 3804 samples...
+Train epoch: 94 [0/3804 (0%)]	Loss: 0.004657 Loss_all: 0.031263
+Train epoch: 94 [2560/3804 (67%)]	Loss: 0.021375 Loss_all: 0.048269
+Train epoch: 94	Loss: 0.017849
+skip validation at epoch  94 ; next validation every 5 epochs
+spend time： 2.393082857131958 s
+Training on 3804 samples...
+Train epoch: 95 [0/3804 (0%)]	Loss: 0.003250 Loss_all: 0.028300
+Train epoch: 95 [2560/3804 (67%)]	Loss: 0.015977 Loss_all: 0.041628
+Train epoch: 95	Loss: 0.015341
+0.9855479567190721 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.8580310344696045 s
+Training on 3804 samples...
+Train epoch: 96 [0/3804 (0%)]	Loss: 0.024843 Loss_all: 0.052228
+Train epoch: 96 [2560/3804 (67%)]	Loss: 0.008890 Loss_all: 0.032824
+Train epoch: 96	Loss: 0.013568
+skip validation at epoch  96 ; next validation every 5 epochs
+spend time： 2.5119574069976807 s
+Training on 3804 samples...
+Train epoch: 97 [0/3804 (0%)]	Loss: 0.002830 Loss_all: 0.029638
+Train epoch: 97 [2560/3804 (67%)]	Loss: 0.007836 Loss_all: 0.031173
+Train epoch: 97	Loss: 0.009386
+skip validation at epoch  97 ; next validation every 5 epochs
+spend time： 2.414726495742798 s
+Training on 3804 samples...
+Train epoch: 98 [0/3804 (0%)]	Loss: 0.010791 Loss_all: 0.036655
+Train epoch: 98 [2560/3804 (67%)]	Loss: 0.014354 Loss_all: 0.037230
+Train epoch: 98	Loss: 0.009191
+skip validation at epoch  98 ; next validation every 5 epochs
+spend time： 2.3618040084838867 s
+Training on 3804 samples...
+Train epoch: 99 [0/3804 (0%)]	Loss: 0.003726 Loss_all: 0.029220
+Train epoch: 99 [2560/3804 (67%)]	Loss: 0.005924 Loss_all: 0.029035
+Train epoch: 99	Loss: 0.008640
+skip validation at epoch  99 ; next validation every 5 epochs
+spend time： 2.375701904296875 s
+Training on 3804 samples...
+Train epoch: 100 [0/3804 (0%)]	Loss: 0.003001 Loss_all: 0.026309
+Train epoch: 100 [2560/3804 (67%)]	Loss: 0.002912 Loss_all: 0.027695
+Train epoch: 100	Loss: 0.006953
+0.980135628909395 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.677983283996582 s
+Training on 3804 samples...
+Train epoch: 101 [0/3804 (0%)]	Loss: 0.002535 Loss_all: 0.027057
+Train epoch: 101 [2560/3804 (67%)]	Loss: 0.003152 Loss_all: 0.026188
+Train epoch: 101	Loss: 0.007394
+skip validation at epoch  101 ; next validation every 5 epochs
+spend time： 2.3459527492523193 s
+Training on 3804 samples...
+Train epoch: 102 [0/3804 (0%)]	Loss: 0.007558 Loss_all: 0.031024
+Train epoch: 102 [2560/3804 (67%)]	Loss: 0.026956 Loss_all: 0.050067
+Train epoch: 102	Loss: 0.009480
+skip validation at epoch  102 ; next validation every 5 epochs
+spend time： 2.3643124103546143 s
+Training on 3804 samples...
+Train epoch: 103 [0/3804 (0%)]	Loss: 0.005544 Loss_all: 0.029250
+Train epoch: 103 [2560/3804 (67%)]	Loss: 0.027218 Loss_all: 0.051084
+Train epoch: 103	Loss: 0.006584
+skip validation at epoch  103 ; next validation every 5 epochs
+spend time： 2.3679370880126953 s
+Training on 3804 samples...
+Train epoch: 104 [0/3804 (0%)]	Loss: 0.008181 Loss_all: 0.033145
+Train epoch: 104 [2560/3804 (67%)]	Loss: 0.013846 Loss_all: 0.035669
+Train epoch: 104	Loss: 0.011018
+skip validation at epoch  104 ; next validation every 5 epochs
+spend time： 2.3304288387298584 s
+Training on 3804 samples...
+Train epoch: 105 [0/3804 (0%)]	Loss: 0.007466 Loss_all: 0.029315
+Train epoch: 105 [2560/3804 (67%)]	Loss: 0.019998 Loss_all: 0.042074
+Train epoch: 105	Loss: 0.010061
+0.9836723318794292 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.6993610858917236 s
+Training on 3804 samples...
+Train epoch: 106 [0/3804 (0%)]	Loss: 0.005891 Loss_all: 0.029723
+Train epoch: 106 [2560/3804 (67%)]	Loss: 0.016011 Loss_all: 0.038020
+Train epoch: 106	Loss: 0.011153
+skip validation at epoch  106 ; next validation every 5 epochs
+spend time： 2.412135601043701 s
+Training on 3804 samples...
+Train epoch: 107 [0/3804 (0%)]	Loss: 0.003141 Loss_all: 0.027112
+Train epoch: 107 [2560/3804 (67%)]	Loss: 0.023845 Loss_all: 0.046671
+Train epoch: 107	Loss: 0.009930
+skip validation at epoch  107 ; next validation every 5 epochs
+spend time： 2.5338876247406006 s
+Training on 3804 samples...
+Train epoch: 108 [0/3804 (0%)]	Loss: 0.019862 Loss_all: 0.041555
+Train epoch: 108 [2560/3804 (67%)]	Loss: 0.002790 Loss_all: 0.024308
+Train epoch: 108	Loss: 0.011247
+skip validation at epoch  108 ; next validation every 5 epochs
+spend time： 2.519803524017334 s
+Training on 3804 samples...
+Train epoch: 109 [0/3804 (0%)]	Loss: 0.001007 Loss_all: 0.022066
+Train epoch: 109 [2560/3804 (67%)]	Loss: 0.001253 Loss_all: 0.025337
+Train epoch: 109	Loss: 0.005394
+skip validation at epoch  109 ; next validation every 5 epochs
+spend time： 2.499480724334717 s
+Training on 3804 samples...
+Train epoch: 110 [0/3804 (0%)]	Loss: 0.001012 Loss_all: 0.024521
+Train epoch: 110 [2560/3804 (67%)]	Loss: 0.004292 Loss_all: 0.026426
+Train epoch: 110	Loss: 0.008525
+0.9830132089994603 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.7936291694641113 s
+Training on 3804 samples...
+Train epoch: 111 [0/3804 (0%)]	Loss: 0.001164 Loss_all: 0.023932
+Train epoch: 111 [2560/3804 (67%)]	Loss: 0.017785 Loss_all: 0.040794
+Train epoch: 111	Loss: 0.006535
+skip validation at epoch  111 ; next validation every 5 epochs
+spend time： 2.515838623046875 s
+Training on 3804 samples...
+Train epoch: 112 [0/3804 (0%)]	Loss: 0.002353 Loss_all: 0.024865
+Train epoch: 112 [2560/3804 (67%)]	Loss: 0.020085 Loss_all: 0.043185
+Train epoch: 112	Loss: 0.008697
+skip validation at epoch  112 ; next validation every 5 epochs
+spend time： 2.462541341781616 s
+Training on 3804 samples...
+Train epoch: 113 [0/3804 (0%)]	Loss: 0.000764 Loss_all: 0.023873
+Train epoch: 113 [2560/3804 (67%)]	Loss: 0.025394 Loss_all: 0.047856
+Train epoch: 113	Loss: 0.009964
+skip validation at epoch  113 ; next validation every 5 epochs
+spend time： 2.4141147136688232 s
+Training on 3804 samples...
+Train epoch: 114 [0/3804 (0%)]	Loss: 0.014317 Loss_all: 0.036537
+Train epoch: 114 [2560/3804 (67%)]	Loss: 0.012300 Loss_all: 0.036075
+Train epoch: 114	Loss: 0.012683
+skip validation at epoch  114 ; next validation every 5 epochs
+spend time： 2.435912609100342 s
+Training on 3804 samples...
+Train epoch: 115 [0/3804 (0%)]	Loss: 0.008116 Loss_all: 0.031605
+Train epoch: 115 [2560/3804 (67%)]	Loss: 0.018168 Loss_all: 0.039160
+Train epoch: 115	Loss: 0.012818
+0.9850547204699679 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.838689088821411 s
+Training on 3804 samples...
+Train epoch: 116 [0/3804 (0%)]	Loss: 0.002107 Loss_all: 0.024973
+Train epoch: 116 [2560/3804 (67%)]	Loss: 0.009679 Loss_all: 0.032811
+Train epoch: 116	Loss: 0.015552
+skip validation at epoch  116 ; next validation every 5 epochs
+spend time： 2.5089011192321777 s
+Training on 3804 samples...
+Train epoch: 117 [0/3804 (0%)]	Loss: 0.012709 Loss_all: 0.034649
+Train epoch: 117 [2560/3804 (67%)]	Loss: 0.002895 Loss_all: 0.023971
+Train epoch: 117	Loss: 0.029579
+skip validation at epoch  117 ; next validation every 5 epochs
+spend time： 2.5089473724365234 s
+Training on 3804 samples...
+Train epoch: 118 [0/3804 (0%)]	Loss: 0.007986 Loss_all: 0.029180
+Train epoch: 118 [2560/3804 (67%)]	Loss: 0.015945 Loss_all: 0.037297
+Train epoch: 118	Loss: 0.015926
+skip validation at epoch  118 ; next validation every 5 epochs
+spend time： 3.14892578125 s
+Training on 3804 samples...
+Train epoch: 119 [0/3804 (0%)]	Loss: 0.002880 Loss_all: 0.026072
+Train epoch: 119 [2560/3804 (67%)]	Loss: 0.021842 Loss_all: 0.044494
+Train epoch: 119	Loss: 0.010808
+skip validation at epoch  119 ; next validation every 5 epochs
+spend time： 3.4983062744140625 s
+Training on 3804 samples...
+Train epoch: 120 [0/3804 (0%)]	Loss: 0.006424 Loss_all: 0.026993
+Train epoch: 120 [2560/3804 (67%)]	Loss: 0.005997 Loss_all: 0.026218
+Train epoch: 120	Loss: 0.008617
+0.9838094648276106 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 3.978724718093872 s
+Training on 3804 samples...
+Train epoch: 121 [0/3804 (0%)]	Loss: 0.006063 Loss_all: 0.026332
+Train epoch: 121 [2560/3804 (67%)]	Loss: 0.005005 Loss_all: 0.026481
+Train epoch: 121	Loss: 0.009714
+skip validation at epoch  121 ; next validation every 5 epochs
+spend time： 3.419618844985962 s
+Training on 3804 samples...
+Train epoch: 122 [0/3804 (0%)]	Loss: 0.017284 Loss_all: 0.037670
+Train epoch: 122 [2560/3804 (67%)]	Loss: 0.011980 Loss_all: 0.032592
+Train epoch: 122	Loss: 0.013233
+skip validation at epoch  122 ; next validation every 5 epochs
+spend time： 3.4876418113708496 s
+Training on 3804 samples...
+Train epoch: 123 [0/3804 (0%)]	Loss: 0.000703 Loss_all: 0.022441
+Train epoch: 123 [2560/3804 (67%)]	Loss: 0.032467 Loss_all: 0.055482
+Train epoch: 123	Loss: 0.011629
+skip validation at epoch  123 ; next validation every 5 epochs
+spend time： 3.4872705936431885 s
+Training on 3804 samples...
+Train epoch: 124 [0/3804 (0%)]	Loss: 0.025952 Loss_all: 0.047661
+Train epoch: 124 [2560/3804 (67%)]	Loss: 0.007563 Loss_all: 0.030379
+Train epoch: 124	Loss: 0.008326
+skip validation at epoch  124 ; next validation every 5 epochs
+spend time： 3.433403253555298 s
+Training on 3804 samples...
+Train epoch: 125 [0/3804 (0%)]	Loss: 0.007105 Loss_all: 0.027197
+Train epoch: 125 [2560/3804 (67%)]	Loss: 0.026092 Loss_all: 0.047268
+Train epoch: 125	Loss: 0.009005
+0.9822523423192278 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 3.840482711791992 s
+Training on 3804 samples...
+Train epoch: 126 [0/3804 (0%)]	Loss: 0.014669 Loss_all: 0.036091
+Train epoch: 126 [2560/3804 (67%)]	Loss: 0.000526 Loss_all: 0.023370
+Train epoch: 126	Loss: 0.012010
+skip validation at epoch  126 ; next validation every 5 epochs
+spend time： 3.423929452896118 s
+Training on 3804 samples...
+Train epoch: 127 [0/3804 (0%)]	Loss: 0.006365 Loss_all: 0.029451
+Train epoch: 127 [2560/3804 (67%)]	Loss: 0.007007 Loss_all: 0.028504
+Train epoch: 127	Loss: 0.005365
+skip validation at epoch  127 ; next validation every 5 epochs
+spend time： 3.4140169620513916 s
+Training on 3804 samples...
+Train epoch: 128 [0/3804 (0%)]	Loss: 0.020402 Loss_all: 0.041707
+Train epoch: 128 [2560/3804 (67%)]	Loss: 0.004176 Loss_all: 0.026034
+Train epoch: 128	Loss: 0.012552
+skip validation at epoch  128 ; next validation every 5 epochs
+spend time： 3.506744146347046 s
+Training on 3804 samples...
+Train epoch: 129 [0/3804 (0%)]	Loss: 0.002592 Loss_all: 0.023516
+Train epoch: 129 [2560/3804 (67%)]	Loss: 0.003669 Loss_all: 0.024306
+Train epoch: 129	Loss: 0.007758
+skip validation at epoch  129 ; next validation every 5 epochs
+spend time： 3.277676582336426 s
+Training on 3804 samples...
+Train epoch: 130 [0/3804 (0%)]	Loss: 0.001300 Loss_all: 0.021449
+Train epoch: 130 [2560/3804 (67%)]	Loss: 0.002056 Loss_all: 0.022338
+Train epoch: 130	Loss: 0.005789
+0.9847561245344115 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 3.509394407272339 s
+Training on 3804 samples...
+Train epoch: 131 [0/3804 (0%)]	Loss: 0.001692 Loss_all: 0.020866
+Train epoch: 131 [2560/3804 (67%)]	Loss: 0.012283 Loss_all: 0.033632
+Train epoch: 131	Loss: 0.008130
+skip validation at epoch  131 ; next validation every 5 epochs
+spend time： 2.515810251235962 s
+Training on 3804 samples...
+Train epoch: 132 [0/3804 (0%)]	Loss: 0.000514 Loss_all: 0.020118
+Train epoch: 132 [2560/3804 (67%)]	Loss: 0.005799 Loss_all: 0.026914
+Train epoch: 132	Loss: 0.009517
+skip validation at epoch  132 ; next validation every 5 epochs
+spend time： 2.404547929763794 s
+Training on 3804 samples...
+Train epoch: 133 [0/3804 (0%)]	Loss: 0.001471 Loss_all: 0.023396
+Train epoch: 133 [2560/3804 (67%)]	Loss: 0.008018 Loss_all: 0.027028
+Train epoch: 133	Loss: 0.010900
+skip validation at epoch  133 ; next validation every 5 epochs
+spend time： 2.417606830596924 s
+Training on 3804 samples...
+Train epoch: 134 [0/3804 (0%)]	Loss: 0.003573 Loss_all: 0.023515
+Train epoch: 134 [2560/3804 (67%)]	Loss: 0.006431 Loss_all: 0.027897
+Train epoch: 134	Loss: 0.014181
+skip validation at epoch  134 ; next validation every 5 epochs
+spend time： 2.3996827602386475 s
+Training on 3804 samples...
+Train epoch: 135 [0/3804 (0%)]	Loss: 0.013286 Loss_all: 0.032794
+Train epoch: 135 [2560/3804 (67%)]	Loss: 0.024364 Loss_all: 0.045234
+Train epoch: 135	Loss: 0.017279
+0.9838006175406313 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.7063989639282227 s
+Training on 3804 samples...
+Train epoch: 136 [0/3804 (0%)]	Loss: 0.001753 Loss_all: 0.023475
+Train epoch: 136 [2560/3804 (67%)]	Loss: 0.002572 Loss_all: 0.025057
+Train epoch: 136	Loss: 0.008419
+skip validation at epoch  136 ; next validation every 5 epochs
+spend time： 2.512011766433716 s
+Training on 3804 samples...
+Train epoch: 137 [0/3804 (0%)]	Loss: 0.005243 Loss_all: 0.025431
+Train epoch: 137 [2560/3804 (67%)]	Loss: 0.009840 Loss_all: 0.032921
+Train epoch: 137	Loss: 0.008830
+skip validation at epoch  137 ; next validation every 5 epochs
+spend time： 2.4333086013793945 s
+Training on 3804 samples...
+Train epoch: 138 [0/3804 (0%)]	Loss: 0.001706 Loss_all: 0.023714
+Train epoch: 138 [2560/3804 (67%)]	Loss: 0.037697 Loss_all: 0.058270
+Train epoch: 138	Loss: 0.012037
+skip validation at epoch  138 ; next validation every 5 epochs
+spend time： 2.419316053390503 s
+Training on 3804 samples...
+Train epoch: 139 [0/3804 (0%)]	Loss: 0.000564 Loss_all: 0.020485
+Train epoch: 139 [2560/3804 (67%)]	Loss: 0.000609 Loss_all: 0.020751
+Train epoch: 139	Loss: 0.008406
+skip validation at epoch  139 ; next validation every 5 epochs
+spend time： 2.3767385482788086 s
+Training on 3804 samples...
+Train epoch: 140 [0/3804 (0%)]	Loss: 0.001504 Loss_all: 0.022139
+Train epoch: 140 [2560/3804 (67%)]	Loss: 0.006944 Loss_all: 0.025718
+Train epoch: 140	Loss: 0.005333
+0.9857912571110069 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.808107376098633 s
+Training on 3804 samples...
+Train epoch: 141 [0/3804 (0%)]	Loss: 0.001139 Loss_all: 0.020388
+Train epoch: 141 [2560/3804 (67%)]	Loss: 0.001110 Loss_all: 0.020784
+Train epoch: 141	Loss: 0.006820
+skip validation at epoch  141 ; next validation every 5 epochs
+spend time： 2.4873015880584717 s
+Training on 3804 samples...
+Train epoch: 142 [0/3804 (0%)]	Loss: 0.001895 Loss_all: 0.020954
+Train epoch: 142 [2560/3804 (67%)]	Loss: 0.003100 Loss_all: 0.022485
+Train epoch: 142	Loss: 0.010621
+skip validation at epoch  142 ; next validation every 5 epochs
+spend time： 2.4049525260925293 s
+Training on 3804 samples...
+Train epoch: 143 [0/3804 (0%)]	Loss: 0.003235 Loss_all: 0.022033
+Train epoch: 143 [2560/3804 (67%)]	Loss: 0.002020 Loss_all: 0.022032
+Train epoch: 143	Loss: 0.009118
+skip validation at epoch  143 ; next validation every 5 epochs
+spend time： 2.1794865131378174 s
+Training on 3804 samples...
+Train epoch: 144 [0/3804 (0%)]	Loss: 0.017703 Loss_all: 0.036736
+Train epoch: 144 [2560/3804 (67%)]	Loss: 0.003321 Loss_all: 0.022364
+Train epoch: 144	Loss: 0.005662
+skip validation at epoch  144 ; next validation every 5 epochs
+spend time： 2.3448307514190674 s
+Training on 3804 samples...
+Train epoch: 145 [0/3804 (0%)]	Loss: 0.008149 Loss_all: 0.027489
+Train epoch: 145 [2560/3804 (67%)]	Loss: 0.007192 Loss_all: 0.025586
+Train epoch: 145	Loss: 0.009016
+0.9851100160135893 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.7352521419525146 s
+Training on 3804 samples...
+Train epoch: 146 [0/3804 (0%)]	Loss: 0.002342 Loss_all: 0.021328
+Train epoch: 146 [2560/3804 (67%)]	Loss: 0.001461 Loss_all: 0.020961
+Train epoch: 146	Loss: 0.007864
+skip validation at epoch  146 ; next validation every 5 epochs
+spend time： 2.5113565921783447 s
+Training on 3804 samples...
+Train epoch: 147 [0/3804 (0%)]	Loss: 0.003509 Loss_all: 0.022100
+Train epoch: 147 [2560/3804 (67%)]	Loss: 0.038394 Loss_all: 0.058065
+Train epoch: 147	Loss: 0.011194
+skip validation at epoch  147 ; next validation every 5 epochs
+spend time： 2.4431395530700684 s
+Training on 3804 samples...
+Train epoch: 148 [0/3804 (0%)]	Loss: 0.011393 Loss_all: 0.029763
+Train epoch: 148 [2560/3804 (67%)]	Loss: 0.005553 Loss_all: 0.023929
+Train epoch: 148	Loss: 0.007530
+skip validation at epoch  148 ; next validation every 5 epochs
+spend time： 2.4907991886138916 s
+Training on 3804 samples...
+Train epoch: 149 [0/3804 (0%)]	Loss: 0.003171 Loss_all: 0.023317
+Train epoch: 149 [2560/3804 (67%)]	Loss: 0.015530 Loss_all: 0.034860
+Train epoch: 149	Loss: 0.012842
+skip validation at epoch  149 ; next validation every 5 epochs
+spend time： 2.519237995147705 s
+Training on 3804 samples...
+Train epoch: 150 [0/3804 (0%)]	Loss: 0.001755 Loss_all: 0.019371
+Train epoch: 150 [2560/3804 (67%)]	Loss: 0.004342 Loss_all: 0.023200
+Train epoch: 150	Loss: 0.007707
+0.982393898910899 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.7238399982452393 s
+Training on 3804 samples...
+Train epoch: 151 [0/3804 (0%)]	Loss: 0.006915 Loss_all: 0.024381
+Train epoch: 151 [2560/3804 (67%)]	Loss: 0.024045 Loss_all: 0.045153
+Train epoch: 151	Loss: 0.011339
+skip validation at epoch  151 ; next validation every 5 epochs
+spend time： 2.4123833179473877 s
+Training on 3804 samples...
+Train epoch: 152 [0/3804 (0%)]	Loss: 0.006947 Loss_all: 0.027896
+Train epoch: 152 [2560/3804 (67%)]	Loss: 0.002665 Loss_all: 0.021134
+Train epoch: 152	Loss: 0.014571
+skip validation at epoch  152 ; next validation every 5 epochs
+spend time： 2.3950283527374268 s
+Training on 3804 samples...
+Train epoch: 153 [0/3804 (0%)]	Loss: 0.023059 Loss_all: 0.042604
+Train epoch: 153 [2560/3804 (67%)]	Loss: 0.017688 Loss_all: 0.035922
+Train epoch: 153	Loss: 0.013068
+skip validation at epoch  153 ; next validation every 5 epochs
+spend time： 2.4067494869232178 s
+Training on 3804 samples...
+Train epoch: 154 [0/3804 (0%)]	Loss: 0.003216 Loss_all: 0.021796
+Train epoch: 154 [2560/3804 (67%)]	Loss: 0.004010 Loss_all: 0.023352
+Train epoch: 154	Loss: 0.011286
+skip validation at epoch  154 ; next validation every 5 epochs
+spend time： 2.5594961643218994 s
+Training on 3804 samples...
+Train epoch: 155 [0/3804 (0%)]	Loss: 0.002561 Loss_all: 0.021507
+Train epoch: 155 [2560/3804 (67%)]	Loss: 0.017008 Loss_all: 0.035199
+Train epoch: 155	Loss: 0.008474
+0.9839244795583434 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.6968512535095215 s
+Training on 3804 samples...
+Train epoch: 156 [0/3804 (0%)]	Loss: 0.007919 Loss_all: 0.026087
+Train epoch: 156 [2560/3804 (67%)]	Loss: 0.003260 Loss_all: 0.022341
+Train epoch: 156	Loss: 0.008362
+skip validation at epoch  156 ; next validation every 5 epochs
+spend time： 2.4980180263519287 s
+Training on 3804 samples...
+Train epoch: 157 [0/3804 (0%)]	Loss: 0.007460 Loss_all: 0.028039
+Train epoch: 157 [2560/3804 (67%)]	Loss: 0.010442 Loss_all: 0.028531
+Train epoch: 157	Loss: 0.005234
+skip validation at epoch  157 ; next validation every 5 epochs
+spend time： 2.2942886352539062 s
+Training on 3804 samples...
+Train epoch: 158 [0/3804 (0%)]	Loss: 0.000405 Loss_all: 0.018321
+Train epoch: 158 [2560/3804 (67%)]	Loss: 0.000856 Loss_all: 0.018707
+Train epoch: 158	Loss: 0.014350
+skip validation at epoch  158 ; next validation every 5 epochs
+spend time： 2.367227554321289 s
+Training on 3804 samples...
+Train epoch: 159 [0/3804 (0%)]	Loss: 0.003939 Loss_all: 0.022971
+Train epoch: 159 [2560/3804 (67%)]	Loss: 0.004138 Loss_all: 0.022156
+Train epoch: 159	Loss: 0.005576
+skip validation at epoch  159 ; next validation every 5 epochs
+spend time： 2.48943829536438 s
+Training on 3804 samples...
+Train epoch: 160 [0/3804 (0%)]	Loss: 0.024241 Loss_all: 0.042591
+Train epoch: 160 [2560/3804 (67%)]	Loss: 0.003993 Loss_all: 0.022912
+Train epoch: 160	Loss: 0.010575
+0.9853356218315653 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.7091128826141357 s
+Training on 3804 samples...
+Train epoch: 161 [0/3804 (0%)]	Loss: 0.004297 Loss_all: 0.023262
+Train epoch: 161 [2560/3804 (67%)]	Loss: 0.025656 Loss_all: 0.045411
+Train epoch: 161	Loss: 0.012643
+skip validation at epoch  161 ; next validation every 5 epochs
+spend time： 2.3379061222076416 s
+Training on 3804 samples...
+Train epoch: 162 [0/3804 (0%)]	Loss: 0.001185 Loss_all: 0.020651
+Train epoch: 162 [2560/3804 (67%)]	Loss: 0.003260 Loss_all: 0.021889
+Train epoch: 162	Loss: 0.009217
+skip validation at epoch  162 ; next validation every 5 epochs
+spend time： 2.3660948276519775 s
+Training on 3804 samples...
+Train epoch: 163 [0/3804 (0%)]	Loss: 0.026454 Loss_all: 0.044712
+Train epoch: 163 [2560/3804 (67%)]	Loss: 0.000913 Loss_all: 0.018615
+Train epoch: 163	Loss: 0.014296
+skip validation at epoch  163 ; next validation every 5 epochs
+spend time： 2.4081461429595947 s
+Training on 3804 samples...
+Train epoch: 164 [0/3804 (0%)]	Loss: 0.023954 Loss_all: 0.042579
+Train epoch: 164 [2560/3804 (67%)]	Loss: 0.000589 Loss_all: 0.019870
+Train epoch: 164	Loss: 0.010660
+skip validation at epoch  164 ; next validation every 5 epochs
+spend time： 2.3885881900787354 s
+Training on 3804 samples...
+Train epoch: 165 [0/3804 (0%)]	Loss: 0.009018 Loss_all: 0.026038
+Train epoch: 165 [2560/3804 (67%)]	Loss: 0.002585 Loss_all: 0.019981
+Train epoch: 165	Loss: 0.011191
+0.9827477903900769 No improvement since epoch  45 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9878874632082414 0.9876494484867732 0.9527145359019265 0.9444444444444444 Human
+spend time： 2.6638152599334717 s
+Training on 3804 samples...
+Train epoch: 166 [0/3804 (0%)]	Loss: 0.001806 Loss_all: 0.020137
+Train epoch: 166 [2560/3804 (67%)]	Loss: 0.047704 Loss_all: 0.065149
+Train epoch: 166	Loss: 0.024292
+skip validation at epoch  166 ; next validation every 5 epochs
+spend time： 2.4008824825286865 s
+Training on 3804 samples...
+Train epoch: 167 [0/3804 (0%)]	Loss: 0.007872 Loss_all: 0.025295
+Train epoch: 167 [2560/3804 (67%)]	Loss: 0.014128 Loss_all: 0.031629
+Train epoch: 167	Loss: 0.008348
+skip validation at epoch  167 ; next validation every 5 epochs
+spend time： 2.4443883895874023 s
+Training on 3804 samples...
+Train epoch: 168 [0/3804 (0%)]	Loss: 0.002791 Loss_all: 0.019836
+Train epoch: 168 [2560/3804 (67%)]	Loss: 0.016035 Loss_all: 0.033244
+Train epoch: 168	Loss: 0.007299
+skip validation at epoch  168 ; next validation every 5 epochs
+spend time： 2.381683349609375 s
+Training on 3804 samples...
+Train epoch: 169 [0/3804 (0%)]	Loss: 0.006448 Loss_all: 0.023838
+Train epoch: 169 [2560/3804 (67%)]	Loss: 0.004094 Loss_all: 0.020857
+Train epoch: 169	Loss: 0.005599
+skip validation at epoch  169 ; next validation every 5 epochs
+spend time： 2.342790365219116 s
+Training on 3804 samples...
+Train epoch: 170 [0/3804 (0%)]	Loss: 0.000787 Loss_all: 0.017050
+Train epoch: 170 [2560/3804 (67%)]	Loss: 0.010626 Loss_all: 0.027277
+Train epoch: 170	Loss: 0.004526
+val AUROC improved at epoch  170 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9865235812178073 0.9867702818686275 0.9525483304042179 0.9409722222222222 Human
+spend time： 3.321195125579834 s
+Training on 3804 samples...
+Train epoch: 171 [0/3804 (0%)]	Loss: 0.002322 Loss_all: 0.019116
+Train epoch: 171 [2560/3804 (67%)]	Loss: 0.034752 Loss_all: 0.050905
+Train epoch: 171	Loss: 0.006762
+skip validation at epoch  171 ; next validation every 5 epochs
+spend time： 2.3477935791015625 s
+Training on 3804 samples...
+Train epoch: 172 [0/3804 (0%)]	Loss: 0.001173 Loss_all: 0.017899
+Train epoch: 172 [2560/3804 (67%)]	Loss: 0.002590 Loss_all: 0.022225
+Train epoch: 172	Loss: 0.005049
+skip validation at epoch  172 ; next validation every 5 epochs
+spend time： 2.3574070930480957 s
+Training on 3804 samples...
+Train epoch: 173 [0/3804 (0%)]	Loss: 0.007546 Loss_all: 0.026023
+Train epoch: 173 [2560/3804 (67%)]	Loss: 0.009873 Loss_all: 0.026235
+Train epoch: 173	Loss: 0.005947
+skip validation at epoch  173 ; next validation every 5 epochs
+spend time： 2.3856256008148193 s
+Training on 3804 samples...
+Train epoch: 174 [0/3804 (0%)]	Loss: 0.003662 Loss_all: 0.021007
+Train epoch: 174 [2560/3804 (67%)]	Loss: 0.001412 Loss_all: 0.019327
+Train epoch: 174	Loss: 0.004676
+skip validation at epoch  174 ; next validation every 5 epochs
+spend time： 2.39306902885437 s
+Training on 3804 samples...
+Train epoch: 175 [0/3804 (0%)]	Loss: 0.001506 Loss_all: 0.018160
+Train epoch: 175 [2560/3804 (67%)]	Loss: 0.008384 Loss_all: 0.025779
+Train epoch: 175	Loss: 0.003964
+0.9847671836431358 No improvement since epoch  170 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9865235812178073 0.9867702818686275 0.9525483304042179 0.9409722222222222 Human
+spend time： 2.7697067260742188 s
+Training on 3804 samples...
+Train epoch: 176 [0/3804 (0%)]	Loss: 0.015611 Loss_all: 0.031321
+Train epoch: 176 [2560/3804 (67%)]	Loss: 0.006135 Loss_all: 0.023396
+Train epoch: 176	Loss: 0.003138
+skip validation at epoch  176 ; next validation every 5 epochs
+spend time： 2.4175662994384766 s
+Training on 3804 samples...
+Train epoch: 177 [0/3804 (0%)]	Loss: 0.007345 Loss_all: 0.023695
+Train epoch: 177 [2560/3804 (67%)]	Loss: 0.001843 Loss_all: 0.018192
+Train epoch: 177	Loss: 0.003372
+skip validation at epoch  177 ; next validation every 5 epochs
+spend time： 2.9808452129364014 s
+Training on 3804 samples...
+Train epoch: 178 [0/3804 (0%)]	Loss: 0.000737 Loss_all: 0.016229
+Train epoch: 178 [2560/3804 (67%)]	Loss: 0.016036 Loss_all: 0.034049
+Train epoch: 178	Loss: 0.005266
+skip validation at epoch  178 ; next validation every 5 epochs
+spend time： 3.438655138015747 s
+Training on 3804 samples...
+Train epoch: 179 [0/3804 (0%)]	Loss: 0.000833 Loss_all: 0.017328
+Train epoch: 179 [2560/3804 (67%)]	Loss: 0.008441 Loss_all: 0.025831
+Train epoch: 179	Loss: 0.003594
+skip validation at epoch  179 ; next validation every 5 epochs
+spend time： 3.4386868476867676 s
+Training on 3804 samples...
+Train epoch: 180 [0/3804 (0%)]	Loss: 0.000977 Loss_all: 0.018266
+Train epoch: 180 [2560/3804 (67%)]	Loss: 0.000405 Loss_all: 0.017552
+Train epoch: 180	Loss: 0.004250
+0.9850635677569474 No improvement since epoch  170 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9865235812178073 0.9867702818686275 0.9525483304042179 0.9409722222222222 Human
+spend time： 3.862128257751465 s
+Training on 3804 samples...
+Train epoch: 181 [0/3804 (0%)]	Loss: 0.000623 Loss_all: 0.017604
+Train epoch: 181 [2560/3804 (67%)]	Loss: 0.001403 Loss_all: 0.017487
+Train epoch: 181	Loss: 0.002847
+skip validation at epoch  181 ; next validation every 5 epochs
+spend time： 3.516340732574463 s
+Training on 3804 samples...
+Train epoch: 182 [0/3804 (0%)]	Loss: 0.001907 Loss_all: 0.019187
+Train epoch: 182 [2560/3804 (67%)]	Loss: 0.019593 Loss_all: 0.036177
+Train epoch: 182	Loss: 0.008791
+skip validation at epoch  182 ; next validation every 5 epochs
+spend time： 3.44111704826355 s
+Training on 3804 samples...
+Train epoch: 183 [0/3804 (0%)]	Loss: 0.002424 Loss_all: 0.020023
+Train epoch: 183 [2560/3804 (67%)]	Loss: 0.001319 Loss_all: 0.016896
+Train epoch: 183	Loss: 0.005015
+skip validation at epoch  183 ; next validation every 5 epochs
+spend time： 3.397717237472534 s
+Training on 3804 samples...
+Train epoch: 184 [0/3804 (0%)]	Loss: 0.015013 Loss_all: 0.031572
+Train epoch: 184 [2560/3804 (67%)]	Loss: 0.030605 Loss_all: 0.048376
+Train epoch: 184	Loss: 0.007812
+skip validation at epoch  184 ; next validation every 5 epochs
+spend time： 3.169809341430664 s
+Training on 3804 samples...
+Train epoch: 185 [0/3804 (0%)]	Loss: 0.003541 Loss_all: 0.020686
+Train epoch: 185 [2560/3804 (67%)]	Loss: 0.007255 Loss_all: 0.023172
+Train epoch: 185	Loss: 0.005649
+0.9852648435357296 No improvement since epoch  170 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9865235812178073 0.9867702818686275 0.9525483304042179 0.9409722222222222 Human
+spend time： 3.4968528747558594 s
+Training on 3804 samples...
+Train epoch: 186 [0/3804 (0%)]	Loss: 0.001654 Loss_all: 0.019136
+Train epoch: 186 [2560/3804 (67%)]	Loss: 0.022938 Loss_all: 0.039797
+Train epoch: 186	Loss: 0.005719
+skip validation at epoch  186 ; next validation every 5 epochs
+spend time： 2.450611114501953 s
+Training on 3804 samples...
+Train epoch: 187 [0/3804 (0%)]	Loss: 0.001835 Loss_all: 0.018173
+Train epoch: 187 [2560/3804 (67%)]	Loss: 0.000792 Loss_all: 0.018441
+Train epoch: 187	Loss: 0.006520
+skip validation at epoch  187 ; next validation every 5 epochs
+spend time： 2.51013445854187 s
+Training on 3804 samples...
+Train epoch: 188 [0/3804 (0%)]	Loss: 0.000600 Loss_all: 0.018160
+Train epoch: 188 [2560/3804 (67%)]	Loss: 0.002518 Loss_all: 0.019686
+Train epoch: 188	Loss: 0.004501
+skip validation at epoch  188 ; next validation every 5 epochs
+spend time： 2.4482052326202393 s
+Training on 3804 samples...
+Train epoch: 189 [0/3804 (0%)]	Loss: 0.000301 Loss_all: 0.018202
+Train epoch: 189 [2560/3804 (67%)]	Loss: 0.008058 Loss_all: 0.025172
+Train epoch: 189	Loss: 0.003790
+skip validation at epoch  189 ; next validation every 5 epochs
+spend time： 2.423164129257202 s
+Training on 3804 samples...
+Train epoch: 190 [0/3804 (0%)]	Loss: 0.004297 Loss_all: 0.020451
+Train epoch: 190 [2560/3804 (67%)]	Loss: 0.000418 Loss_all: 0.016300
+Train epoch: 190	Loss: 0.009013
+0.9832034256695183 No improvement since epoch  170 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9865235812178073 0.9867702818686275 0.9525483304042179 0.9409722222222222 Human
+spend time： 2.6812524795532227 s
+Training on 3804 samples...
+Train epoch: 191 [0/3804 (0%)]	Loss: 0.003169 Loss_all: 0.019970
+Train epoch: 191 [2560/3804 (67%)]	Loss: 0.010019 Loss_all: 0.026816
+Train epoch: 191	Loss: 0.007688
+skip validation at epoch  191 ; next validation every 5 epochs
+spend time： 2.455012559890747 s
+Training on 3804 samples...
+Train epoch: 192 [0/3804 (0%)]	Loss: 0.012781 Loss_all: 0.029377
+Train epoch: 192 [2560/3804 (67%)]	Loss: 0.006140 Loss_all: 0.020839
+Train epoch: 192	Loss: 0.009672
+skip validation at epoch  192 ; next validation every 5 epochs
+spend time： 2.49143123626709 s
+Training on 3804 samples...
+Train epoch: 193 [0/3804 (0%)]	Loss: 0.001798 Loss_all: 0.018334
+Train epoch: 193 [2560/3804 (67%)]	Loss: 0.000906 Loss_all: 0.016197
+Train epoch: 193	Loss: 0.016420
+skip validation at epoch  193 ; next validation every 5 epochs
+spend time： 2.4372363090515137 s
+Training on 3804 samples...
+Train epoch: 194 [0/3804 (0%)]	Loss: 0.050514 Loss_all: 0.066201
+Train epoch: 194 [2560/3804 (67%)]	Loss: 0.022155 Loss_all: 0.039108
+Train epoch: 194	Loss: 0.045118
+skip validation at epoch  194 ; next validation every 5 epochs
+spend time： 2.404740571975708 s
+Training on 3804 samples...
+Train epoch: 195 [0/3804 (0%)]	Loss: 0.006535 Loss_all: 0.024271
+Train epoch: 195 [2560/3804 (67%)]	Loss: 0.019001 Loss_all: 0.035931
+Train epoch: 195	Loss: 0.023228
+0.9799785895655097 No improvement since epoch  170 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9865235812178073 0.9867702818686275 0.9525483304042179 0.9409722222222222 Human
+spend time： 2.6807384490966797 s
+Training on 3804 samples...
+Train epoch: 196 [0/3804 (0%)]	Loss: 0.009987 Loss_all: 0.027229
+Train epoch: 196 [2560/3804 (67%)]	Loss: 0.003492 Loss_all: 0.020465
+Train epoch: 196	Loss: 0.019073
+skip validation at epoch  196 ; next validation every 5 epochs
+spend time： 2.3653769493103027 s
+Training on 3804 samples...
+Train epoch: 197 [0/3804 (0%)]	Loss: 0.003757 Loss_all: 0.020531
+Train epoch: 197 [2560/3804 (67%)]	Loss: 0.010640 Loss_all: 0.028721
+Train epoch: 197	Loss: 0.012816
+skip validation at epoch  197 ; next validation every 5 epochs
+spend time： 2.4028828144073486 s
+Training on 3804 samples...
+Train epoch: 198 [0/3804 (0%)]	Loss: 0.009669 Loss_all: 0.027517
+Train epoch: 198 [2560/3804 (67%)]	Loss: 0.009367 Loss_all: 0.029829
+Train epoch: 198	Loss: 0.015277
+skip validation at epoch  198 ; next validation every 5 epochs
+spend time： 2.4171183109283447 s
+Training on 3804 samples...
+Train epoch: 199 [0/3804 (0%)]	Loss: 0.008347 Loss_all: 0.029144
+Train epoch: 199 [2560/3804 (67%)]	Loss: 0.003320 Loss_all: 0.022953
+Train epoch: 199	Loss: 0.014008
+skip validation at epoch  199 ; next validation every 5 epochs
+spend time： 2.45941424369812 s
+Training on 3804 samples...
+Train epoch: 200 [0/3804 (0%)]	Loss: 0.005730 Loss_all: 0.021289
+Train epoch: 200 [2560/3804 (67%)]	Loss: 0.001363 Loss_all: 0.018889
+Train epoch: 200	Loss: 0.005623
+val AUROC improved at epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 3.1342883110046387 s
+Training on 3804 samples...
+Train epoch: 201 [0/3804 (0%)]	Loss: 0.001634 Loss_all: 0.020205
+Train epoch: 201 [2560/3804 (67%)]	Loss: 0.009355 Loss_all: 0.024846
+Train epoch: 201	Loss: 0.005283
+skip validation at epoch  201 ; next validation every 5 epochs
+spend time： 2.6262898445129395 s
+Training on 3804 samples...
+Train epoch: 202 [0/3804 (0%)]	Loss: 0.000742 Loss_all: 0.016408
+Train epoch: 202 [2560/3804 (67%)]	Loss: 0.001039 Loss_all: 0.017673
+Train epoch: 202	Loss: 0.003449
+skip validation at epoch  202 ; next validation every 5 epochs
+spend time： 2.360703229904175 s
+Training on 3804 samples...
+Train epoch: 203 [0/3804 (0%)]	Loss: 0.022046 Loss_all: 0.038977
+Train epoch: 203 [2560/3804 (67%)]	Loss: 0.004184 Loss_all: 0.020632
+Train epoch: 203	Loss: 0.004761
+skip validation at epoch  203 ; next validation every 5 epochs
+spend time： 2.4113950729370117 s
+Training on 3804 samples...
+Train epoch: 204 [0/3804 (0%)]	Loss: 0.000499 Loss_all: 0.016912
+Train epoch: 204 [2560/3804 (67%)]	Loss: 0.000878 Loss_all: 0.018363
+Train epoch: 204	Loss: 0.003417
+skip validation at epoch  204 ; next validation every 5 epochs
+spend time： 2.4478297233581543 s
+Training on 3804 samples...
+Train epoch: 205 [0/3804 (0%)]	Loss: 0.016655 Loss_all: 0.033178
+Train epoch: 205 [2560/3804 (67%)]	Loss: 0.000232 Loss_all: 0.016331
+Train epoch: 205	Loss: 0.003839
+0.9822788841801662 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.7061123847961426 s
+Training on 3804 samples...
+Train epoch: 206 [0/3804 (0%)]	Loss: 0.001149 Loss_all: 0.016494
+Train epoch: 206 [2560/3804 (67%)]	Loss: 0.001617 Loss_all: 0.016048
+Train epoch: 206	Loss: 0.004326
+skip validation at epoch  206 ; next validation every 5 epochs
+spend time： 2.441521406173706 s
+Training on 3804 samples...
+Train epoch: 207 [0/3804 (0%)]	Loss: 0.003589 Loss_all: 0.018517
+Train epoch: 207 [2560/3804 (67%)]	Loss: 0.003823 Loss_all: 0.021204
+Train epoch: 207	Loss: 0.005072
+skip validation at epoch  207 ; next validation every 5 epochs
+spend time： 2.4234778881073 s
+Training on 3804 samples...
+Train epoch: 208 [0/3804 (0%)]	Loss: 0.002171 Loss_all: 0.017496
+Train epoch: 208 [2560/3804 (67%)]	Loss: 0.000386 Loss_all: 0.016038
+Train epoch: 208	Loss: 0.002223
+skip validation at epoch  208 ; next validation every 5 epochs
+spend time： 2.4203193187713623 s
+Training on 3804 samples...
+Train epoch: 209 [0/3804 (0%)]	Loss: 0.002573 Loss_all: 0.016320
+Train epoch: 209 [2560/3804 (67%)]	Loss: 0.000863 Loss_all: 0.016848
+Train epoch: 209	Loss: 0.004467
+skip validation at epoch  209 ; next validation every 5 epochs
+spend time： 2.4113597869873047 s
+Training on 3804 samples...
+Train epoch: 210 [0/3804 (0%)]	Loss: 0.001009 Loss_all: 0.016716
+Train epoch: 210 [2560/3804 (67%)]	Loss: 0.000419 Loss_all: 0.017171
+Train epoch: 210	Loss: 0.002003
+0.9844354103814066 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.7295169830322266 s
+Training on 3804 samples...
+Train epoch: 211 [0/3804 (0%)]	Loss: 0.005124 Loss_all: 0.020093
+Train epoch: 211 [2560/3804 (67%)]	Loss: 0.000753 Loss_all: 0.015462
+Train epoch: 211	Loss: 0.003491
+skip validation at epoch  211 ; next validation every 5 epochs
+spend time： 2.4391109943389893 s
+Training on 3804 samples...
+Train epoch: 212 [0/3804 (0%)]	Loss: 0.010776 Loss_all: 0.026212
+Train epoch: 212 [2560/3804 (67%)]	Loss: 0.016264 Loss_all: 0.033001
+Train epoch: 212	Loss: 0.004538
+skip validation at epoch  212 ; next validation every 5 epochs
+spend time： 2.476900815963745 s
+Training on 3804 samples...
+Train epoch: 213 [0/3804 (0%)]	Loss: 0.012447 Loss_all: 0.028482
+Train epoch: 213 [2560/3804 (67%)]	Loss: 0.001914 Loss_all: 0.017433
+Train epoch: 213	Loss: 0.004968
+skip validation at epoch  213 ; next validation every 5 epochs
+spend time： 2.4102587699890137 s
+Training on 3804 samples...
+Train epoch: 214 [0/3804 (0%)]	Loss: 0.001833 Loss_all: 0.017489
+Train epoch: 214 [2560/3804 (67%)]	Loss: 0.002478 Loss_all: 0.018092
+Train epoch: 214	Loss: 0.007398
+skip validation at epoch  214 ; next validation every 5 epochs
+spend time： 2.430387258529663 s
+Training on 3804 samples...
+Train epoch: 215 [0/3804 (0%)]	Loss: 0.001029 Loss_all: 0.015291
+Train epoch: 215 [2560/3804 (67%)]	Loss: 0.001812 Loss_all: 0.018233
+Train epoch: 215	Loss: 0.006058
+0.9831348591954278 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.756303071975708 s
+Training on 3804 samples...
+Train epoch: 216 [0/3804 (0%)]	Loss: 0.000221 Loss_all: 0.015486
+Train epoch: 216 [2560/3804 (67%)]	Loss: 0.016285 Loss_all: 0.030470
+Train epoch: 216	Loss: 0.007277
+skip validation at epoch  216 ; next validation every 5 epochs
+spend time： 2.4654579162597656 s
+Training on 3804 samples...
+Train epoch: 217 [0/3804 (0%)]	Loss: 0.000545 Loss_all: 0.015358
+Train epoch: 217 [2560/3804 (67%)]	Loss: 0.000931 Loss_all: 0.016413
+Train epoch: 217	Loss: 0.006500
+skip validation at epoch  217 ; next validation every 5 epochs
+spend time： 2.156491994857788 s
+Training on 3804 samples...
+Train epoch: 218 [0/3804 (0%)]	Loss: 0.000896 Loss_all: 0.015788
+Train epoch: 218 [2560/3804 (67%)]	Loss: 0.027182 Loss_all: 0.043334
+Train epoch: 218	Loss: 0.013988
+skip validation at epoch  218 ; next validation every 5 epochs
+spend time： 2.461292266845703 s
+Training on 3804 samples...
+Train epoch: 219 [0/3804 (0%)]	Loss: 0.019688 Loss_all: 0.035703
+Train epoch: 219 [2560/3804 (67%)]	Loss: 0.002130 Loss_all: 0.019525
+Train epoch: 219	Loss: 0.014573
+skip validation at epoch  219 ; next validation every 5 epochs
+spend time： 2.3831706047058105 s
+Training on 3804 samples...
+Train epoch: 220 [0/3804 (0%)]	Loss: 0.002619 Loss_all: 0.020190
+Train epoch: 220 [2560/3804 (67%)]	Loss: 0.008374 Loss_all: 0.023958
+Train epoch: 220	Loss: 0.010798
+0.9861672668076334 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.6417558193206787 s
+Training on 3804 samples...
+Train epoch: 221 [0/3804 (0%)]	Loss: 0.002448 Loss_all: 0.018505
+Train epoch: 221 [2560/3804 (67%)]	Loss: 0.000551 Loss_all: 0.016766
+Train epoch: 221	Loss: 0.013066
+skip validation at epoch  221 ; next validation every 5 epochs
+spend time： 2.382037401199341 s
+Training on 3804 samples...
+Train epoch: 222 [0/3804 (0%)]	Loss: 0.004109 Loss_all: 0.019437
+Train epoch: 222 [2560/3804 (67%)]	Loss: 0.005522 Loss_all: 0.021206
+Train epoch: 222	Loss: 0.012943
+skip validation at epoch  222 ; next validation every 5 epochs
+spend time： 2.428659439086914 s
+Training on 3804 samples...
+Train epoch: 223 [0/3804 (0%)]	Loss: 0.002569 Loss_all: 0.017378
+Train epoch: 223 [2560/3804 (67%)]	Loss: 0.008749 Loss_all: 0.025144
+Train epoch: 223	Loss: 0.008431
+skip validation at epoch  223 ; next validation every 5 epochs
+spend time： 2.3745272159576416 s
+Training on 3804 samples...
+Train epoch: 224 [0/3804 (0%)]	Loss: 0.014260 Loss_all: 0.031117
+Train epoch: 224 [2560/3804 (67%)]	Loss: 0.005740 Loss_all: 0.021810
+Train epoch: 224	Loss: 0.008106
+skip validation at epoch  224 ; next validation every 5 epochs
+spend time： 2.4204678535461426 s
+Training on 3804 samples...
+Train epoch: 225 [0/3804 (0%)]	Loss: 0.007155 Loss_all: 0.022616
+Train epoch: 225 [2560/3804 (67%)]	Loss: 0.002039 Loss_all: 0.016045
+Train epoch: 225	Loss: 0.007109
+0.9835750117226552 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.7426791191101074 s
+Training on 3804 samples...
+Train epoch: 226 [0/3804 (0%)]	Loss: 0.007003 Loss_all: 0.023032
+Train epoch: 226 [2560/3804 (67%)]	Loss: 0.001912 Loss_all: 0.017025
+Train epoch: 226	Loss: 0.007610
+skip validation at epoch  226 ; next validation every 5 epochs
+spend time： 2.4733283519744873 s
+Training on 3804 samples...
+Train epoch: 227 [0/3804 (0%)]	Loss: 0.002398 Loss_all: 0.017866
+Train epoch: 227 [2560/3804 (67%)]	Loss: 0.002322 Loss_all: 0.017359
+Train epoch: 227	Loss: 0.005424
+skip validation at epoch  227 ; next validation every 5 epochs
+spend time： 2.423362970352173 s
+Training on 3804 samples...
+Train epoch: 228 [0/3804 (0%)]	Loss: 0.007623 Loss_all: 0.023596
+Train epoch: 228 [2560/3804 (67%)]	Loss: 0.003792 Loss_all: 0.020200
+Train epoch: 228	Loss: 0.005393
+skip validation at epoch  228 ; next validation every 5 epochs
+spend time： 2.398747444152832 s
+Training on 3804 samples...
+Train epoch: 229 [0/3804 (0%)]	Loss: 0.000639 Loss_all: 0.016183
+Train epoch: 229 [2560/3804 (67%)]	Loss: 0.001448 Loss_all: 0.015785
+Train epoch: 229	Loss: 0.002598
+skip validation at epoch  229 ; next validation every 5 epochs
+spend time： 2.4190871715545654 s
+Training on 3804 samples...
+Train epoch: 230 [0/3804 (0%)]	Loss: 0.016420 Loss_all: 0.031708
+Train epoch: 230 [2560/3804 (67%)]	Loss: 0.000338 Loss_all: 0.017421
+Train epoch: 230	Loss: 0.003260
+0.9809871802811667 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.7788262367248535 s
+Training on 3804 samples...
+Train epoch: 231 [0/3804 (0%)]	Loss: 0.001974 Loss_all: 0.016796
+Train epoch: 231 [2560/3804 (67%)]	Loss: 0.000992 Loss_all: 0.016129
+Train epoch: 231	Loss: 0.008830
+skip validation at epoch  231 ; next validation every 5 epochs
+spend time： 2.4907116889953613 s
+Training on 3804 samples...
+Train epoch: 232 [0/3804 (0%)]	Loss: 0.003888 Loss_all: 0.020057
+Train epoch: 232 [2560/3804 (67%)]	Loss: 0.001255 Loss_all: 0.017154
+Train epoch: 232	Loss: 0.004918
+skip validation at epoch  232 ; next validation every 5 epochs
+spend time： 2.444967031478882 s
+Training on 3804 samples...
+Train epoch: 233 [0/3804 (0%)]	Loss: 0.000339 Loss_all: 0.014126
+Train epoch: 233 [2560/3804 (67%)]	Loss: 0.003201 Loss_all: 0.018195
+Train epoch: 233	Loss: 0.004408
+skip validation at epoch  233 ; next validation every 5 epochs
+spend time： 2.597606658935547 s
+Training on 3804 samples...
+Train epoch: 234 [0/3804 (0%)]	Loss: 0.004192 Loss_all: 0.017686
+Train epoch: 234 [2560/3804 (67%)]	Loss: 0.006142 Loss_all: 0.020792
+Train epoch: 234	Loss: 0.003630
+skip validation at epoch  234 ; next validation every 5 epochs
+spend time： 2.43451189994812 s
+Training on 3804 samples...
+Train epoch: 235 [0/3804 (0%)]	Loss: 0.008135 Loss_all: 0.021095
+Train epoch: 235 [2560/3804 (67%)]	Loss: 0.001326 Loss_all: 0.015120
+Train epoch: 235	Loss: 0.002794
+0.982360721584726 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.768477439880371 s
+Training on 3804 samples...
+Train epoch: 236 [0/3804 (0%)]	Loss: 0.000242 Loss_all: 0.014285
+Train epoch: 236 [2560/3804 (67%)]	Loss: 0.002133 Loss_all: 0.015488
+Train epoch: 236	Loss: 0.008784
+skip validation at epoch  236 ; next validation every 5 epochs
+spend time： 2.3912343978881836 s
+Training on 3804 samples...
+Train epoch: 237 [0/3804 (0%)]	Loss: 0.001824 Loss_all: 0.016614
+Train epoch: 237 [2560/3804 (67%)]	Loss: 0.011357 Loss_all: 0.025754
+Train epoch: 237	Loss: 0.007119
+skip validation at epoch  237 ; next validation every 5 epochs
+spend time： 2.4329614639282227 s
+Training on 3804 samples...
+Train epoch: 238 [0/3804 (0%)]	Loss: 0.002908 Loss_all: 0.017096
+Train epoch: 238 [2560/3804 (67%)]	Loss: 0.010473 Loss_all: 0.024718
+Train epoch: 238	Loss: 0.009778
+skip validation at epoch  238 ; next validation every 5 epochs
+spend time： 2.428060531616211 s
+Training on 3804 samples...
+Train epoch: 239 [0/3804 (0%)]	Loss: 0.001381 Loss_all: 0.014916
+Train epoch: 239 [2560/3804 (67%)]	Loss: 0.012822 Loss_all: 0.025743
+Train epoch: 239	Loss: 0.012028
+skip validation at epoch  239 ; next validation every 5 epochs
+spend time： 2.418607473373413 s
+Training on 3804 samples...
+Train epoch: 240 [0/3804 (0%)]	Loss: 0.002729 Loss_all: 0.023367
+Train epoch: 240 [2560/3804 (67%)]	Loss: 0.000973 Loss_all: 0.022533
+Train epoch: 240	Loss: 0.002741
+0.9813078944341719 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.7102808952331543 s
+Training on 3804 samples...
+Train epoch: 241 [0/3804 (0%)]	Loss: 0.004658 Loss_all: 0.026488
+Train epoch: 241 [2560/3804 (67%)]	Loss: 0.002665 Loss_all: 0.021617
+Train epoch: 241	Loss: 0.008018
+skip validation at epoch  241 ; next validation every 5 epochs
+spend time： 2.3256688117980957 s
+Training on 3804 samples...
+Train epoch: 242 [0/3804 (0%)]	Loss: 0.008882 Loss_all: 0.026998
+Train epoch: 242 [2560/3804 (67%)]	Loss: 0.007033 Loss_all: 0.022552
+Train epoch: 242	Loss: 0.007822
+skip validation at epoch  242 ; next validation every 5 epochs
+spend time： 2.2036948204040527 s
+Training on 3804 samples...
+Train epoch: 243 [0/3804 (0%)]	Loss: 0.002692 Loss_all: 0.018861
+Train epoch: 243 [2560/3804 (67%)]	Loss: 0.000282 Loss_all: 0.014888
+Train epoch: 243	Loss: 0.003355
+skip validation at epoch  243 ; next validation every 5 epochs
+spend time： 1.8633997440338135 s
+Training on 3804 samples...
+Train epoch: 244 [0/3804 (0%)]	Loss: 0.006945 Loss_all: 0.021921
+Train epoch: 244 [2560/3804 (67%)]	Loss: 0.001011 Loss_all: 0.015190
+Train epoch: 244	Loss: 0.001836
+skip validation at epoch  244 ; next validation every 5 epochs
+spend time： 1.624854564666748 s
+Training on 3804 samples...
+Train epoch: 245 [0/3804 (0%)]	Loss: 0.001503 Loss_all: 0.015535
+Train epoch: 245 [2560/3804 (67%)]	Loss: 0.000588 Loss_all: 0.015279
+Train epoch: 245	Loss: 0.002267
+0.9836391545532562 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.9102647304534912 s
+Training on 3804 samples...
+Train epoch: 246 [0/3804 (0%)]	Loss: 0.002820 Loss_all: 0.017814
+Train epoch: 246 [2560/3804 (67%)]	Loss: 0.000541 Loss_all: 0.014426
+Train epoch: 246	Loss: 0.001776
+skip validation at epoch  246 ; next validation every 5 epochs
+spend time： 1.7253570556640625 s
+Training on 3804 samples...
+Train epoch: 247 [0/3804 (0%)]	Loss: 0.005359 Loss_all: 0.018659
+Train epoch: 247 [2560/3804 (67%)]	Loss: 0.000736 Loss_all: 0.013949
+Train epoch: 247	Loss: 0.004180
+skip validation at epoch  247 ; next validation every 5 epochs
+spend time： 1.7758545875549316 s
+Training on 3804 samples...
+Train epoch: 248 [0/3804 (0%)]	Loss: 0.000364 Loss_all: 0.014058
+Train epoch: 248 [2560/3804 (67%)]	Loss: 0.000678 Loss_all: 0.012960
+Train epoch: 248	Loss: 0.005865
+skip validation at epoch  248 ; next validation every 5 epochs
+spend time： 1.6696577072143555 s
+Training on 3804 samples...
+Train epoch: 249 [0/3804 (0%)]	Loss: 0.000279 Loss_all: 0.013757
+Train epoch: 249 [2560/3804 (67%)]	Loss: 0.015793 Loss_all: 0.028781
+Train epoch: 249	Loss: 0.004196
+skip validation at epoch  249 ; next validation every 5 epochs
+spend time： 1.6474668979644775 s
+Training on 3804 samples...
+Train epoch: 250 [0/3804 (0%)]	Loss: 0.004208 Loss_all: 0.017134
+Train epoch: 250 [2560/3804 (67%)]	Loss: 0.006185 Loss_all: 0.019355
+Train epoch: 250	Loss: 0.002759
+0.9852007007051287 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.9520468711853027 s
+Training on 3804 samples...
+Train epoch: 251 [0/3804 (0%)]	Loss: 0.000164 Loss_all: 0.013164
+Train epoch: 251 [2560/3804 (67%)]	Loss: 0.001008 Loss_all: 0.015669
+Train epoch: 251	Loss: 0.001562
+skip validation at epoch  251 ; next validation every 5 epochs
+spend time： 1.6129910945892334 s
+Training on 3804 samples...
+Train epoch: 252 [0/3804 (0%)]	Loss: 0.000422 Loss_all: 0.015765
+Train epoch: 252 [2560/3804 (67%)]	Loss: 0.000364 Loss_all: 0.013428
+Train epoch: 252	Loss: 0.001980
+skip validation at epoch  252 ; next validation every 5 epochs
+spend time： 1.5629966259002686 s
+Training on 3804 samples...
+Train epoch: 253 [0/3804 (0%)]	Loss: 0.006390 Loss_all: 0.019238
+Train epoch: 253 [2560/3804 (67%)]	Loss: 0.001085 Loss_all: 0.015150
+Train epoch: 253	Loss: 0.004504
+skip validation at epoch  253 ; next validation every 5 epochs
+spend time： 1.6385409832000732 s
+Training on 3804 samples...
+Train epoch: 254 [0/3804 (0%)]	Loss: 0.001908 Loss_all: 0.015328
+Train epoch: 254 [2560/3804 (67%)]	Loss: 0.004833 Loss_all: 0.017555
+Train epoch: 254	Loss: 0.002810
+skip validation at epoch  254 ; next validation every 5 epochs
+spend time： 1.6327717304229736 s
+Training on 3804 samples...
+Train epoch: 255 [0/3804 (0%)]	Loss: 0.000744 Loss_all: 0.012495
+Train epoch: 255 [2560/3804 (67%)]	Loss: 0.014884 Loss_all: 0.035241
+Train epoch: 255	Loss: 0.003061
+0.9864658627431898 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.9222784042358398 s
+Training on 3804 samples...
+Train epoch: 256 [0/3804 (0%)]	Loss: 0.000278 Loss_all: 0.019200
+Train epoch: 256 [2560/3804 (67%)]	Loss: 0.000213 Loss_all: 0.019722
+Train epoch: 256	Loss: 0.002757
+skip validation at epoch  256 ; next validation every 5 epochs
+spend time： 1.7005164623260498 s
+Training on 3804 samples...
+Train epoch: 257 [0/3804 (0%)]	Loss: 0.001874 Loss_all: 0.023161
+Train epoch: 257 [2560/3804 (67%)]	Loss: 0.022946 Loss_all: 0.044181
+Train epoch: 257	Loss: 0.006628
+skip validation at epoch  257 ; next validation every 5 epochs
+spend time： 1.6836225986480713 s
+Training on 3804 samples...
+Train epoch: 258 [0/3804 (0%)]	Loss: 0.011889 Loss_all: 0.032477
+Train epoch: 258 [2560/3804 (67%)]	Loss: 0.009106 Loss_all: 0.029744
+Train epoch: 258	Loss: 0.006643
+skip validation at epoch  258 ; next validation every 5 epochs
+spend time： 1.705404281616211 s
+Training on 3804 samples...
+Train epoch: 259 [0/3804 (0%)]	Loss: 0.028376 Loss_all: 0.049638
+Train epoch: 259 [2560/3804 (67%)]	Loss: 0.000333 Loss_all: 0.019885
+Train epoch: 259	Loss: 0.006552
+skip validation at epoch  259 ; next validation every 5 epochs
+spend time： 1.7823188304901123 s
+Training on 3804 samples...
+Train epoch: 260 [0/3804 (0%)]	Loss: 0.016096 Loss_all: 0.037270
+Train epoch: 260 [2560/3804 (67%)]	Loss: 0.001527 Loss_all: 0.020877
+Train epoch: 260	Loss: 0.010509
+0.9848490210476957 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.8712422847747803 s
+Training on 3804 samples...
+Train epoch: 261 [0/3804 (0%)]	Loss: 0.001738 Loss_all: 0.021377
+Train epoch: 261 [2560/3804 (67%)]	Loss: 0.001749 Loss_all: 0.019163
+Train epoch: 261	Loss: 0.008081
+skip validation at epoch  261 ; next validation every 5 epochs
+spend time： 1.6081817150115967 s
+Training on 3804 samples...
+Train epoch: 262 [0/3804 (0%)]	Loss: 0.001948 Loss_all: 0.018955
+Train epoch: 262 [2560/3804 (67%)]	Loss: 0.019199 Loss_all: 0.034455
+Train epoch: 262	Loss: 0.007798
+skip validation at epoch  262 ; next validation every 5 epochs
+spend time： 1.6405322551727295 s
+Training on 3804 samples...
+Train epoch: 263 [0/3804 (0%)]	Loss: 0.005948 Loss_all: 0.019826
+Train epoch: 263 [2560/3804 (67%)]	Loss: 0.025820 Loss_all: 0.040180
+Train epoch: 263	Loss: 0.014789
+skip validation at epoch  263 ; next validation every 5 epochs
+spend time： 1.6880640983581543 s
+Training on 3804 samples...
+Train epoch: 264 [0/3804 (0%)]	Loss: 0.009207 Loss_all: 0.025233
+Train epoch: 264 [2560/3804 (67%)]	Loss: 0.000733 Loss_all: 0.015196
+Train epoch: 264	Loss: 0.021325
+skip validation at epoch  264 ; next validation every 5 epochs
+spend time： 1.6835083961486816 s
+Training on 3804 samples...
+Train epoch: 265 [0/3804 (0%)]	Loss: 0.033404 Loss_all: 0.051189
+Train epoch: 265 [2560/3804 (67%)]	Loss: 0.034976 Loss_all: 0.049961
+Train epoch: 265	Loss: 0.018251
+0.9778773589078907 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.9089512825012207 s
+Training on 3804 samples...
+Train epoch: 266 [0/3804 (0%)]	Loss: 0.006159 Loss_all: 0.021231
+Train epoch: 266 [2560/3804 (67%)]	Loss: 0.035416 Loss_all: 0.052038
+Train epoch: 266	Loss: 0.014415
+skip validation at epoch  266 ; next validation every 5 epochs
+spend time： 1.6696574687957764 s
+Training on 3804 samples...
+Train epoch: 267 [0/3804 (0%)]	Loss: 0.002294 Loss_all: 0.017709
+Train epoch: 267 [2560/3804 (67%)]	Loss: 0.018315 Loss_all: 0.034228
+Train epoch: 267	Loss: 0.011670
+skip validation at epoch  267 ; next validation every 5 epochs
+spend time： 1.646871566772461 s
+Training on 3804 samples...
+Train epoch: 268 [0/3804 (0%)]	Loss: 0.006291 Loss_all: 0.021205
+Train epoch: 268 [2560/3804 (67%)]	Loss: 0.026418 Loss_all: 0.041395
+Train epoch: 268	Loss: 0.008789
+skip validation at epoch  268 ; next validation every 5 epochs
+spend time： 1.6851768493652344 s
+Training on 3804 samples...
+Train epoch: 269 [0/3804 (0%)]	Loss: 0.013820 Loss_all: 0.029210
+Train epoch: 269 [2560/3804 (67%)]	Loss: 0.024772 Loss_all: 0.040691
+Train epoch: 269	Loss: 0.013382
+skip validation at epoch  269 ; next validation every 5 epochs
+spend time： 1.6830341815948486 s
+Training on 3804 samples...
+Train epoch: 270 [0/3804 (0%)]	Loss: 0.004515 Loss_all: 0.021501
+Train epoch: 270 [2560/3804 (67%)]	Loss: 0.000774 Loss_all: 0.017016
+Train epoch: 270	Loss: 0.007686
+0.9831967902042839 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.045315742492676 s
+Training on 3804 samples...
+Train epoch: 271 [0/3804 (0%)]	Loss: 0.003151 Loss_all: 0.018319
+Train epoch: 271 [2560/3804 (67%)]	Loss: 0.003105 Loss_all: 0.017302
+Train epoch: 271	Loss: 0.007539
+skip validation at epoch  271 ; next validation every 5 epochs
+spend time： 1.7340564727783203 s
+Training on 3804 samples...
+Train epoch: 272 [0/3804 (0%)]	Loss: 0.002033 Loss_all: 0.015405
+Train epoch: 272 [2560/3804 (67%)]	Loss: 0.000506 Loss_all: 0.015150
+Train epoch: 272	Loss: 0.005119
+skip validation at epoch  272 ; next validation every 5 epochs
+spend time： 1.6844851970672607 s
+Training on 3804 samples...
+Train epoch: 273 [0/3804 (0%)]	Loss: 0.001568 Loss_all: 0.014968
+Train epoch: 273 [2560/3804 (67%)]	Loss: 0.005762 Loss_all: 0.019632
+Train epoch: 273	Loss: 0.004693
+skip validation at epoch  273 ; next validation every 5 epochs
+spend time： 1.6438000202178955 s
+Training on 3804 samples...
+Train epoch: 274 [0/3804 (0%)]	Loss: 0.001757 Loss_all: 0.014026
+Train epoch: 274 [2560/3804 (67%)]	Loss: 0.003063 Loss_all: 0.015480
+Train epoch: 274	Loss: 0.005698
+skip validation at epoch  274 ; next validation every 5 epochs
+spend time： 1.5462391376495361 s
+Training on 3804 samples...
+Train epoch: 275 [0/3804 (0%)]	Loss: 0.000950 Loss_all: 0.014991
+Train epoch: 275 [2560/3804 (67%)]	Loss: 0.030369 Loss_all: 0.043768
+Train epoch: 275	Loss: 0.004867
+0.9845681196860983 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.8041718006134033 s
+Training on 3804 samples...
+Train epoch: 276 [0/3804 (0%)]	Loss: 0.018794 Loss_all: 0.032526
+Train epoch: 276 [2560/3804 (67%)]	Loss: 0.004359 Loss_all: 0.023642
+Train epoch: 276	Loss: 0.004872
+skip validation at epoch  276 ; next validation every 5 epochs
+spend time： 1.6174201965332031 s
+Training on 3804 samples...
+Train epoch: 277 [0/3804 (0%)]	Loss: 0.003792 Loss_all: 0.022438
+Train epoch: 277 [2560/3804 (67%)]	Loss: 0.001318 Loss_all: 0.022010
+Train epoch: 277	Loss: 0.002806
+skip validation at epoch  277 ; next validation every 5 epochs
+spend time： 1.6384601593017578 s
+Training on 3804 samples...
+Train epoch: 278 [0/3804 (0%)]	Loss: 0.000842 Loss_all: 0.019491
+Train epoch: 278 [2560/3804 (67%)]	Loss: 0.001508 Loss_all: 0.020646
+Train epoch: 278	Loss: 0.001208
+skip validation at epoch  278 ; next validation every 5 epochs
+spend time： 1.6331632137298584 s
+Training on 3804 samples...
+Train epoch: 279 [0/3804 (0%)]	Loss: 0.001034 Loss_all: 0.018404
+Train epoch: 279 [2560/3804 (67%)]	Loss: 0.000423 Loss_all: 0.014192
+Train epoch: 279	Loss: 0.002402
+skip validation at epoch  279 ; next validation every 5 epochs
+spend time： 1.5496184825897217 s
+Training on 3804 samples...
+Train epoch: 280 [0/3804 (0%)]	Loss: 0.001115 Loss_all: 0.016033
+Train epoch: 280 [2560/3804 (67%)]	Loss: 0.000284 Loss_all: 0.015188
+Train epoch: 280	Loss: 0.000950
+0.9862402569252138 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.8632192611694336 s
+Training on 3804 samples...
+Train epoch: 281 [0/3804 (0%)]	Loss: 0.000130 Loss_all: 0.014194
+Train epoch: 281 [2560/3804 (67%)]	Loss: 0.003202 Loss_all: 0.017057
+Train epoch: 281	Loss: 0.001289
+skip validation at epoch  281 ; next validation every 5 epochs
+spend time： 1.7811369895935059 s
+Training on 3804 samples...
+Train epoch: 282 [0/3804 (0%)]	Loss: 0.000172 Loss_all: 0.013782
+Train epoch: 282 [2560/3804 (67%)]	Loss: 0.000095 Loss_all: 0.013938
+Train epoch: 282	Loss: 0.001419
+skip validation at epoch  282 ; next validation every 5 epochs
+spend time： 1.623401403427124 s
+Training on 3804 samples...
+Train epoch: 283 [0/3804 (0%)]	Loss: 0.001312 Loss_all: 0.014892
+Train epoch: 283 [2560/3804 (67%)]	Loss: 0.000471 Loss_all: 0.014220
+Train epoch: 283	Loss: 0.003324
+skip validation at epoch  283 ; next validation every 5 epochs
+spend time： 1.6522319316864014 s
+Training on 3804 samples...
+Train epoch: 284 [0/3804 (0%)]	Loss: 0.005109 Loss_all: 0.018705
+Train epoch: 284 [2560/3804 (67%)]	Loss: 0.001000 Loss_all: 0.013149
+Train epoch: 284	Loss: 0.001437
+skip validation at epoch  284 ; next validation every 5 epochs
+spend time： 1.6538310050964355 s
+Training on 3804 samples...
+Train epoch: 285 [0/3804 (0%)]	Loss: 0.001715 Loss_all: 0.014477
+Train epoch: 285 [2560/3804 (67%)]	Loss: 0.000242 Loss_all: 0.012534
+Train epoch: 285	Loss: 0.000790
+0.9854064001274008 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.839810848236084 s
+Training on 3804 samples...
+Train epoch: 286 [0/3804 (0%)]	Loss: 0.003630 Loss_all: 0.017191
+Train epoch: 286 [2560/3804 (67%)]	Loss: 0.004789 Loss_all: 0.017755
+Train epoch: 286	Loss: 0.002578
+skip validation at epoch  286 ; next validation every 5 epochs
+spend time： 1.6206800937652588 s
+Training on 3804 samples...
+Train epoch: 287 [0/3804 (0%)]	Loss: 0.000423 Loss_all: 0.013027
+Train epoch: 287 [2560/3804 (67%)]	Loss: 0.000156 Loss_all: 0.012330
+Train epoch: 287	Loss: 0.002967
+skip validation at epoch  287 ; next validation every 5 epochs
+spend time： 1.6354539394378662 s
+Training on 3804 samples...
+Train epoch: 288 [0/3804 (0%)]	Loss: 0.000202 Loss_all: 0.012502
+Train epoch: 288 [2560/3804 (67%)]	Loss: 0.024050 Loss_all: 0.037880
+Train epoch: 288	Loss: 0.005045
+skip validation at epoch  288 ; next validation every 5 epochs
+spend time： 1.665306806564331 s
+Training on 3804 samples...
+Train epoch: 289 [0/3804 (0%)]	Loss: 0.000121 Loss_all: 0.013207
+Train epoch: 289 [2560/3804 (67%)]	Loss: 0.002368 Loss_all: 0.014777
+Train epoch: 289	Loss: 0.001737
+skip validation at epoch  289 ; next validation every 5 epochs
+spend time： 1.6309657096862793 s
+Training on 3804 samples...
+Train epoch: 290 [0/3804 (0%)]	Loss: 0.001274 Loss_all: 0.013622
+Train epoch: 290 [2560/3804 (67%)]	Loss: 0.000089 Loss_all: 0.012832
+Train epoch: 290	Loss: 0.002541
+0.9856497005193358 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.8579809665679932 s
+Training on 3804 samples...
+Train epoch: 291 [0/3804 (0%)]	Loss: 0.002155 Loss_all: 0.013311
+Train epoch: 291 [2560/3804 (67%)]	Loss: 0.000871 Loss_all: 0.013818
+Train epoch: 291	Loss: 0.004946
+skip validation at epoch  291 ; next validation every 5 epochs
+spend time： 1.6127023696899414 s
+Training on 3804 samples...
+Train epoch: 292 [0/3804 (0%)]	Loss: 0.014764 Loss_all: 0.028784
+Train epoch: 292 [2560/3804 (67%)]	Loss: 0.001163 Loss_all: 0.014439
+Train epoch: 292	Loss: 0.006126
+skip validation at epoch  292 ; next validation every 5 epochs
+spend time： 1.5482842922210693 s
+Training on 3804 samples...
+Train epoch: 293 [0/3804 (0%)]	Loss: 0.000318 Loss_all: 0.011849
+Train epoch: 293 [2560/3804 (67%)]	Loss: 0.006658 Loss_all: 0.018998
+Train epoch: 293	Loss: 0.004753
+skip validation at epoch  293 ; next validation every 5 epochs
+spend time： 1.5361299514770508 s
+Training on 3804 samples...
+Train epoch: 294 [0/3804 (0%)]	Loss: 0.000962 Loss_all: 0.012985
+Train epoch: 294 [2560/3804 (67%)]	Loss: 0.003283 Loss_all: 0.015018
+Train epoch: 294	Loss: 0.011791
+skip validation at epoch  294 ; next validation every 5 epochs
+spend time： 1.5523228645324707 s
+Training on 3804 samples...
+Train epoch: 295 [0/3804 (0%)]	Loss: 0.016170 Loss_all: 0.029833
+Train epoch: 295 [2560/3804 (67%)]	Loss: 0.017004 Loss_all: 0.028765
+Train epoch: 295	Loss: 0.016690
+0.9830154208212052 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.7495570182800293 s
+Training on 3804 samples...
+Train epoch: 296 [0/3804 (0%)]	Loss: 0.007610 Loss_all: 0.020369
+Train epoch: 296 [2560/3804 (67%)]	Loss: 0.044319 Loss_all: 0.056677
+Train epoch: 296	Loss: 0.016521
+skip validation at epoch  296 ; next validation every 5 epochs
+spend time： 1.5635387897491455 s
+Training on 3804 samples...
+Train epoch: 297 [0/3804 (0%)]	Loss: 0.029602 Loss_all: 0.042951
+Train epoch: 297 [2560/3804 (67%)]	Loss: 0.007868 Loss_all: 0.020888
+Train epoch: 297	Loss: 0.020774
+skip validation at epoch  297 ; next validation every 5 epochs
+spend time： 1.6251306533813477 s
+Training on 3804 samples...
+Train epoch: 298 [0/3804 (0%)]	Loss: 0.000993 Loss_all: 0.013900
+Train epoch: 298 [2560/3804 (67%)]	Loss: 0.001943 Loss_all: 0.014184
+Train epoch: 298	Loss: 0.010934
+skip validation at epoch  298 ; next validation every 5 epochs
+spend time： 1.6909453868865967 s
+Training on 3804 samples...
+Train epoch: 299 [0/3804 (0%)]	Loss: 0.015814 Loss_all: 0.028064
+Train epoch: 299 [2560/3804 (67%)]	Loss: 0.006048 Loss_all: 0.018623
+Train epoch: 299	Loss: 0.020133
+skip validation at epoch  299 ; next validation every 5 epochs
+spend time： 1.7222559452056885 s
+Training on 3804 samples...
+Train epoch: 300 [0/3804 (0%)]	Loss: 0.001229 Loss_all: 0.014022
+Train epoch: 300 [2560/3804 (67%)]	Loss: 0.007538 Loss_all: 0.020566
+Train epoch: 300	Loss: 0.022407
+0.9808124463633227 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.9488918781280518 s
+Training on 3804 samples...
+Train epoch: 301 [0/3804 (0%)]	Loss: 0.030612 Loss_all: 0.043747
+Train epoch: 301 [2560/3804 (67%)]	Loss: 0.011819 Loss_all: 0.023988
+Train epoch: 301	Loss: 0.027164
+skip validation at epoch  301 ; next validation every 5 epochs
+spend time： 1.8328495025634766 s
+Training on 3804 samples...
+Train epoch: 302 [0/3804 (0%)]	Loss: 0.002589 Loss_all: 0.016505
+Train epoch: 302 [2560/3804 (67%)]	Loss: 0.002162 Loss_all: 0.014634
+Train epoch: 302	Loss: 0.009371
+skip validation at epoch  302 ; next validation every 5 epochs
+spend time： 1.7025904655456543 s
+Training on 3804 samples...
+Train epoch: 303 [0/3804 (0%)]	Loss: 0.004501 Loss_all: 0.016364
+Train epoch: 303 [2560/3804 (67%)]	Loss: 0.005869 Loss_all: 0.020448
+Train epoch: 303	Loss: 0.007846
+skip validation at epoch  303 ; next validation every 5 epochs
+spend time： 1.577294111251831 s
+Training on 3804 samples...
+Train epoch: 304 [0/3804 (0%)]	Loss: 0.003909 Loss_all: 0.015446
+Train epoch: 304 [2560/3804 (67%)]	Loss: 0.004555 Loss_all: 0.016271
+Train epoch: 304	Loss: 0.004633
+skip validation at epoch  304 ; next validation every 5 epochs
+spend time： 1.6366932392120361 s
+Training on 3804 samples...
+Train epoch: 305 [0/3804 (0%)]	Loss: 0.002454 Loss_all: 0.013778
+Train epoch: 305 [2560/3804 (67%)]	Loss: 0.001914 Loss_all: 0.014801
+Train epoch: 305	Loss: 0.002432
+0.984475223172814 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.889909267425537 s
+Training on 3804 samples...
+Train epoch: 306 [0/3804 (0%)]	Loss: 0.002388 Loss_all: 0.014203
+Train epoch: 306 [2560/3804 (67%)]	Loss: 0.000375 Loss_all: 0.012650
+Train epoch: 306	Loss: 0.003351
+skip validation at epoch  306 ; next validation every 5 epochs
+spend time： 1.561345100402832 s
+Training on 3804 samples...
+Train epoch: 307 [0/3804 (0%)]	Loss: 0.005129 Loss_all: 0.016187
+Train epoch: 307 [2560/3804 (67%)]	Loss: 0.001345 Loss_all: 0.014369
+Train epoch: 307	Loss: 0.004821
+skip validation at epoch  307 ; next validation every 5 epochs
+spend time： 1.5875492095947266 s
+Training on 3804 samples...
+Train epoch: 308 [0/3804 (0%)]	Loss: 0.001005 Loss_all: 0.013828
+Train epoch: 308 [2560/3804 (67%)]	Loss: 0.001091 Loss_all: 0.013495
+Train epoch: 308	Loss: 0.001773
+skip validation at epoch  308 ; next validation every 5 epochs
+spend time： 1.6270296573638916 s
+Training on 3804 samples...
+Train epoch: 309 [0/3804 (0%)]	Loss: 0.000784 Loss_all: 0.013585
+Train epoch: 309 [2560/3804 (67%)]	Loss: 0.000964 Loss_all: 0.012931
+Train epoch: 309	Loss: 0.002408
+skip validation at epoch  309 ; next validation every 5 epochs
+spend time： 1.6590476036071777 s
+Training on 3804 samples...
+Train epoch: 310 [0/3804 (0%)]	Loss: 0.003396 Loss_all: 0.014471
+Train epoch: 310 [2560/3804 (67%)]	Loss: 0.000419 Loss_all: 0.011500
+Train epoch: 310	Loss: 0.001455
+0.9861650549858886 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.9590685367584229 s
+Training on 3804 samples...
+Train epoch: 311 [0/3804 (0%)]	Loss: 0.000215 Loss_all: 0.012048
+Train epoch: 311 [2560/3804 (67%)]	Loss: 0.000527 Loss_all: 0.012402
+Train epoch: 311	Loss: 0.001754
+skip validation at epoch  311 ; next validation every 5 epochs
+spend time： 1.7598307132720947 s
+Training on 3804 samples...
+Train epoch: 312 [0/3804 (0%)]	Loss: 0.002521 Loss_all: 0.015158
+Train epoch: 312 [2560/3804 (67%)]	Loss: 0.000423 Loss_all: 0.011884
+Train epoch: 312	Loss: 0.001929
+skip validation at epoch  312 ; next validation every 5 epochs
+spend time： 1.6609008312225342 s
+Training on 3804 samples...
+Train epoch: 313 [0/3804 (0%)]	Loss: 0.000169 Loss_all: 0.013269
+Train epoch: 313 [2560/3804 (67%)]	Loss: 0.000076 Loss_all: 0.011877
+Train epoch: 313	Loss: 0.001403
+skip validation at epoch  313 ; next validation every 5 epochs
+spend time： 1.625802993774414 s
+Training on 3804 samples...
+Train epoch: 314 [0/3804 (0%)]	Loss: 0.000280 Loss_all: 0.011678
+Train epoch: 314 [2560/3804 (67%)]	Loss: 0.000183 Loss_all: 0.012954
+Train epoch: 314	Loss: 0.000620
+skip validation at epoch  314 ; next validation every 5 epochs
+spend time： 1.5904881954193115 s
+Training on 3804 samples...
+Train epoch: 315 [0/3804 (0%)]	Loss: 0.000369 Loss_all: 0.012239
+Train epoch: 315 [2560/3804 (67%)]	Loss: 0.015921 Loss_all: 0.027145
+Train epoch: 315	Loss: 0.003001
+0.9864503799909757 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.8391876220703125 s
+Training on 3804 samples...
+Train epoch: 316 [0/3804 (0%)]	Loss: 0.000102 Loss_all: 0.013040
+Train epoch: 316 [2560/3804 (67%)]	Loss: 0.000582 Loss_all: 0.012349
+Train epoch: 316	Loss: 0.002389
+skip validation at epoch  316 ; next validation every 5 epochs
+spend time： 1.619415044784546 s
+Training on 3804 samples...
+Train epoch: 317 [0/3804 (0%)]	Loss: 0.011780 Loss_all: 0.023331
+Train epoch: 317 [2560/3804 (67%)]	Loss: 0.000336 Loss_all: 0.012529
+Train epoch: 317	Loss: 0.003077
+skip validation at epoch  317 ; next validation every 5 epochs
+spend time： 1.7137444019317627 s
+Training on 3804 samples...
+Train epoch: 318 [0/3804 (0%)]	Loss: 0.004304 Loss_all: 0.015088
+Train epoch: 318 [2560/3804 (67%)]	Loss: 0.000510 Loss_all: 0.011648
+Train epoch: 318	Loss: 0.005283
+skip validation at epoch  318 ; next validation every 5 epochs
+spend time： 1.6472289562225342 s
+Training on 3804 samples...
+Train epoch: 319 [0/3804 (0%)]	Loss: 0.001389 Loss_all: 0.012147
+Train epoch: 319 [2560/3804 (67%)]	Loss: 0.000946 Loss_all: 0.013637
+Train epoch: 319	Loss: 0.002389
+skip validation at epoch  319 ; next validation every 5 epochs
+spend time： 1.6505968570709229 s
+Training on 3804 samples...
+Train epoch: 320 [0/3804 (0%)]	Loss: 0.000233 Loss_all: 0.011908
+Train epoch: 320 [2560/3804 (67%)]	Loss: 0.007991 Loss_all: 0.019518
+Train epoch: 320	Loss: 0.003937
+0.9860787939378389 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.9299137592315674 s
+Training on 3804 samples...
+Train epoch: 321 [0/3804 (0%)]	Loss: 0.000183 Loss_all: 0.012629
+Train epoch: 321 [2560/3804 (67%)]	Loss: 0.000891 Loss_all: 0.012321
+Train epoch: 321	Loss: 0.005177
+skip validation at epoch  321 ; next validation every 5 epochs
+spend time： 1.680342197418213 s
+Training on 3804 samples...
+Train epoch: 322 [0/3804 (0%)]	Loss: 0.000986 Loss_all: 0.013237
+Train epoch: 322 [2560/3804 (67%)]	Loss: 0.028377 Loss_all: 0.041824
+Train epoch: 322	Loss: 0.004972
+skip validation at epoch  322 ; next validation every 5 epochs
+spend time： 1.7027945518493652 s
+Training on 3804 samples...
+Train epoch: 323 [0/3804 (0%)]	Loss: 0.016399 Loss_all: 0.028021
+Train epoch: 323 [2560/3804 (67%)]	Loss: 0.018571 Loss_all: 0.031139
+Train epoch: 323	Loss: 0.003382
+skip validation at epoch  323 ; next validation every 5 epochs
+spend time： 1.7757594585418701 s
+Training on 3804 samples...
+Train epoch: 324 [0/3804 (0%)]	Loss: 0.007762 Loss_all: 0.019083
+Train epoch: 324 [2560/3804 (67%)]	Loss: 0.004874 Loss_all: 0.015576
+Train epoch: 324	Loss: 0.002159
+skip validation at epoch  324 ; next validation every 5 epochs
+spend time： 1.8131070137023926 s
+Training on 3804 samples...
+Train epoch: 325 [0/3804 (0%)]	Loss: 0.014931 Loss_all: 0.026467
+Train epoch: 325 [2560/3804 (67%)]	Loss: 0.034878 Loss_all: 0.046816
+Train epoch: 325	Loss: 0.007720
+0.9845747551513326 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.95717453956604 s
+Training on 3804 samples...
+Train epoch: 326 [0/3804 (0%)]	Loss: 0.002756 Loss_all: 0.014794
+Train epoch: 326 [2560/3804 (67%)]	Loss: 0.008802 Loss_all: 0.020297
+Train epoch: 326	Loss: 0.007042
+skip validation at epoch  326 ; next validation every 5 epochs
+spend time： 1.718022346496582 s
+Training on 3804 samples...
+Train epoch: 327 [0/3804 (0%)]	Loss: 0.000475 Loss_all: 0.012621
+Train epoch: 327 [2560/3804 (67%)]	Loss: 0.007217 Loss_all: 0.018444
+Train epoch: 327	Loss: 0.007843
+skip validation at epoch  327 ; next validation every 5 epochs
+spend time： 1.7093331813812256 s
+Training on 3804 samples...
+Train epoch: 328 [0/3804 (0%)]	Loss: 0.004895 Loss_all: 0.015987
+Train epoch: 328 [2560/3804 (67%)]	Loss: 0.003060 Loss_all: 0.013779
+Train epoch: 328	Loss: 0.008100
+skip validation at epoch  328 ; next validation every 5 epochs
+spend time： 1.6889753341674805 s
+Training on 3804 samples...
+Train epoch: 329 [0/3804 (0%)]	Loss: 0.006472 Loss_all: 0.017641
+Train epoch: 329 [2560/3804 (67%)]	Loss: 0.013766 Loss_all: 0.024185
+Train epoch: 329	Loss: 0.004232
+skip validation at epoch  329 ; next validation every 5 epochs
+spend time： 1.6096198558807373 s
+Training on 3804 samples...
+Train epoch: 330 [0/3804 (0%)]	Loss: 0.005407 Loss_all: 0.016414
+Train epoch: 330 [2560/3804 (67%)]	Loss: 0.000552 Loss_all: 0.012331
+Train epoch: 330	Loss: 0.005539
+0.9819648054923958 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.9315783977508545 s
+Training on 3804 samples...
+Train epoch: 331 [0/3804 (0%)]	Loss: 0.001149 Loss_all: 0.013563
+Train epoch: 331 [2560/3804 (67%)]	Loss: 0.001346 Loss_all: 0.015876
+Train epoch: 331	Loss: 0.003734
+skip validation at epoch  331 ; next validation every 5 epochs
+spend time： 1.618929147720337 s
+Training on 3804 samples...
+Train epoch: 332 [0/3804 (0%)]	Loss: 0.011422 Loss_all: 0.025923
+Train epoch: 332 [2560/3804 (67%)]	Loss: 0.007476 Loss_all: 0.021687
+Train epoch: 332	Loss: 0.016305
+skip validation at epoch  332 ; next validation every 5 epochs
+spend time： 1.646712303161621 s
+Training on 3804 samples...
+Train epoch: 333 [0/3804 (0%)]	Loss: 0.023098 Loss_all: 0.037051
+Train epoch: 333 [2560/3804 (67%)]	Loss: 0.032046 Loss_all: 0.047164
+Train epoch: 333	Loss: 0.024821
+skip validation at epoch  333 ; next validation every 5 epochs
+spend time： 1.8179941177368164 s
+Training on 3804 samples...
+Train epoch: 334 [0/3804 (0%)]	Loss: 0.008417 Loss_all: 0.021032
+Train epoch: 334 [2560/3804 (67%)]	Loss: 0.004753 Loss_all: 0.020299
+Train epoch: 334	Loss: 0.011263
+skip validation at epoch  334 ; next validation every 5 epochs
+spend time： 1.6816163063049316 s
+Training on 3804 samples...
+Train epoch: 335 [0/3804 (0%)]	Loss: 0.008642 Loss_all: 0.023134
+Train epoch: 335 [2560/3804 (67%)]	Loss: 0.001725 Loss_all: 0.015232
+Train epoch: 335	Loss: 0.010553
+0.9787753585363048 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.8322405815124512 s
+Training on 3804 samples...
+Train epoch: 336 [0/3804 (0%)]	Loss: 0.003452 Loss_all: 0.016035
+Train epoch: 336 [2560/3804 (67%)]	Loss: 0.009633 Loss_all: 0.022132
+Train epoch: 336	Loss: 0.007143
+skip validation at epoch  336 ; next validation every 5 epochs
+spend time： 1.5858523845672607 s
+Training on 3804 samples...
+Train epoch: 337 [0/3804 (0%)]	Loss: 0.004857 Loss_all: 0.016970
+Train epoch: 337 [2560/3804 (67%)]	Loss: 0.015424 Loss_all: 0.028556
+Train epoch: 337	Loss: 0.007409
+skip validation at epoch  337 ; next validation every 5 epochs
+spend time： 1.6211793422698975 s
+Training on 3804 samples...
+Train epoch: 338 [0/3804 (0%)]	Loss: 0.023016 Loss_all: 0.034450
+Train epoch: 338 [2560/3804 (67%)]	Loss: 0.006136 Loss_all: 0.018007
+Train epoch: 338	Loss: 0.006398
+skip validation at epoch  338 ; next validation every 5 epochs
+spend time： 1.5979559421539307 s
+Training on 3804 samples...
+Train epoch: 339 [0/3804 (0%)]	Loss: 0.010525 Loss_all: 0.023936
+Train epoch: 339 [2560/3804 (67%)]	Loss: 0.004469 Loss_all: 0.016298
+Train epoch: 339	Loss: 0.004565
+skip validation at epoch  339 ; next validation every 5 epochs
+spend time： 1.5891692638397217 s
+Training on 3804 samples...
+Train epoch: 340 [0/3804 (0%)]	Loss: 0.003625 Loss_all: 0.015381
+Train epoch: 340 [2560/3804 (67%)]	Loss: 0.011120 Loss_all: 0.023001
+Train epoch: 340	Loss: 0.008567
+0.9804961558538074 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.858280897140503 s
+Training on 3804 samples...
+Train epoch: 341 [0/3804 (0%)]	Loss: 0.000568 Loss_all: 0.013010
+Train epoch: 341 [2560/3804 (67%)]	Loss: 0.000955 Loss_all: 0.012379
+Train epoch: 341	Loss: 0.006686
+skip validation at epoch  341 ; next validation every 5 epochs
+spend time： 1.6340954303741455 s
+Training on 3804 samples...
+Train epoch: 342 [0/3804 (0%)]	Loss: 0.000775 Loss_all: 0.013448
+Train epoch: 342 [2560/3804 (67%)]	Loss: 0.003624 Loss_all: 0.016439
+Train epoch: 342	Loss: 0.006487
+skip validation at epoch  342 ; next validation every 5 epochs
+spend time： 1.6277968883514404 s
+Training on 3804 samples...
+Train epoch: 343 [0/3804 (0%)]	Loss: 0.000723 Loss_all: 0.012210
+Train epoch: 343 [2560/3804 (67%)]	Loss: 0.007931 Loss_all: 0.020770
+Train epoch: 343	Loss: 0.011893
+skip validation at epoch  343 ; next validation every 5 epochs
+spend time： 1.660837173461914 s
+Training on 3804 samples...
+Train epoch: 344 [0/3804 (0%)]	Loss: 0.007519 Loss_all: 0.018615
+Train epoch: 344 [2560/3804 (67%)]	Loss: 0.036896 Loss_all: 0.049583
+Train epoch: 344	Loss: 0.011727
+skip validation at epoch  344 ; next validation every 5 epochs
+spend time： 1.6202428340911865 s
+Training on 3804 samples...
+Train epoch: 345 [0/3804 (0%)]	Loss: 0.005443 Loss_all: 0.017974
+Train epoch: 345 [2560/3804 (67%)]	Loss: 0.003539 Loss_all: 0.015509
+Train epoch: 345	Loss: 0.008655
+0.9750926753311097 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.8750414848327637 s
+Training on 3804 samples...
+Train epoch: 346 [0/3804 (0%)]	Loss: 0.008761 Loss_all: 0.020458
+Train epoch: 346 [2560/3804 (67%)]	Loss: 0.014716 Loss_all: 0.025504
+Train epoch: 346	Loss: 0.004484
+skip validation at epoch  346 ; next validation every 5 epochs
+spend time： 1.643770456314087 s
+Training on 3804 samples...
+Train epoch: 347 [0/3804 (0%)]	Loss: 0.000765 Loss_all: 0.011078
+Train epoch: 347 [2560/3804 (67%)]	Loss: 0.000221 Loss_all: 0.012068
+Train epoch: 347	Loss: 0.002476
+skip validation at epoch  347 ; next validation every 5 epochs
+spend time： 1.6477293968200684 s
+Training on 3804 samples...
+Train epoch: 348 [0/3804 (0%)]	Loss: 0.004360 Loss_all: 0.015706
+Train epoch: 348 [2560/3804 (67%)]	Loss: 0.000584 Loss_all: 0.011303
+Train epoch: 348	Loss: 0.004990
+skip validation at epoch  348 ; next validation every 5 epochs
+spend time： 1.6642484664916992 s
+Training on 3804 samples...
+Train epoch: 349 [0/3804 (0%)]	Loss: 0.000286 Loss_all: 0.011065
+Train epoch: 349 [2560/3804 (67%)]	Loss: 0.000674 Loss_all: 0.011611
+Train epoch: 349	Loss: 0.003455
+skip validation at epoch  349 ; next validation every 5 epochs
+spend time： 1.6985821723937988 s
+Training on 3804 samples...
+Train epoch: 350 [0/3804 (0%)]	Loss: 0.002128 Loss_all: 0.012595
+Train epoch: 350 [2560/3804 (67%)]	Loss: 0.000550 Loss_all: 0.010782
+Train epoch: 350	Loss: 0.000948
+0.9811021950118997 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.0297024250030518 s
+Training on 3804 samples...
+Train epoch: 351 [0/3804 (0%)]	Loss: 0.009420 Loss_all: 0.020315
+Train epoch: 351 [2560/3804 (67%)]	Loss: 0.004544 Loss_all: 0.015447
+Train epoch: 351	Loss: 0.003376
+skip validation at epoch  351 ; next validation every 5 epochs
+spend time： 1.5966169834136963 s
+Training on 3804 samples...
+Train epoch: 352 [0/3804 (0%)]	Loss: 0.000706 Loss_all: 0.011106
+Train epoch: 352 [2560/3804 (67%)]	Loss: 0.018606 Loss_all: 0.028661
+Train epoch: 352	Loss: 0.004758
+skip validation at epoch  352 ; next validation every 5 epochs
+spend time： 1.5439558029174805 s
+Training on 3804 samples...
+Train epoch: 353 [0/3804 (0%)]	Loss: 0.003056 Loss_all: 0.015438
+Train epoch: 353 [2560/3804 (67%)]	Loss: 0.014941 Loss_all: 0.026038
+Train epoch: 353	Loss: 0.004035
+skip validation at epoch  353 ; next validation every 5 epochs
+spend time： 1.5638105869293213 s
+Training on 3804 samples...
+Train epoch: 354 [0/3804 (0%)]	Loss: 0.012192 Loss_all: 0.022868
+Train epoch: 354 [2560/3804 (67%)]	Loss: 0.001282 Loss_all: 0.014700
+Train epoch: 354	Loss: 0.002459
+skip validation at epoch  354 ; next validation every 5 epochs
+spend time： 1.5510153770446777 s
+Training on 3804 samples...
+Train epoch: 355 [0/3804 (0%)]	Loss: 0.000968 Loss_all: 0.011971
+Train epoch: 355 [2560/3804 (67%)]	Loss: 0.000288 Loss_all: 0.011292
+Train epoch: 355	Loss: 0.003811
+0.983451149704943 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.740851879119873 s
+Training on 3804 samples...
+Train epoch: 356 [0/3804 (0%)]	Loss: 0.000498 Loss_all: 0.011562
+Train epoch: 356 [2560/3804 (67%)]	Loss: 0.000249 Loss_all: 0.011497
+Train epoch: 356	Loss: 0.005035
+skip validation at epoch  356 ; next validation every 5 epochs
+spend time： 1.620699405670166 s
+Training on 3804 samples...
+Train epoch: 357 [0/3804 (0%)]	Loss: 0.000347 Loss_all: 0.010046
+Train epoch: 357 [2560/3804 (67%)]	Loss: 0.000608 Loss_all: 0.012287
+Train epoch: 357	Loss: 0.007307
+skip validation at epoch  357 ; next validation every 5 epochs
+spend time： 1.6313090324401855 s
+Training on 3804 samples...
+Train epoch: 358 [0/3804 (0%)]	Loss: 0.000532 Loss_all: 0.011283
+Train epoch: 358 [2560/3804 (67%)]	Loss: 0.000285 Loss_all: 0.010209
+Train epoch: 358	Loss: 0.005627
+skip validation at epoch  358 ; next validation every 5 epochs
+spend time： 1.631112813949585 s
+Training on 3804 samples...
+Train epoch: 359 [0/3804 (0%)]	Loss: 0.000316 Loss_all: 0.010986
+Train epoch: 359 [2560/3804 (67%)]	Loss: 0.000900 Loss_all: 0.012211
+Train epoch: 359	Loss: 0.002634
+skip validation at epoch  359 ; next validation every 5 epochs
+spend time： 1.6314690113067627 s
+Training on 3804 samples...
+Train epoch: 360 [0/3804 (0%)]	Loss: 0.000625 Loss_all: 0.011516
+Train epoch: 360 [2560/3804 (67%)]	Loss: 0.001620 Loss_all: 0.011664
+Train epoch: 360	Loss: 0.002546
+0.9837431101752648 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.8450891971588135 s
+Training on 3804 samples...
+Train epoch: 361 [0/3804 (0%)]	Loss: 0.000835 Loss_all: 0.011882
+Train epoch: 361 [2560/3804 (67%)]	Loss: 0.000470 Loss_all: 0.010948
+Train epoch: 361	Loss: 0.003144
+skip validation at epoch  361 ; next validation every 5 epochs
+spend time： 1.7155489921569824 s
+Training on 3804 samples...
+Train epoch: 362 [0/3804 (0%)]	Loss: 0.003721 Loss_all: 0.013345
+Train epoch: 362 [2560/3804 (67%)]	Loss: 0.000145 Loss_all: 0.010953
+Train epoch: 362	Loss: 0.003586
+skip validation at epoch  362 ; next validation every 5 epochs
+spend time： 1.716707468032837 s
+Training on 3804 samples...
+Train epoch: 363 [0/3804 (0%)]	Loss: 0.000497 Loss_all: 0.011385
+Train epoch: 363 [2560/3804 (67%)]	Loss: 0.005689 Loss_all: 0.016748
+Train epoch: 363	Loss: 0.001247
+skip validation at epoch  363 ; next validation every 5 epochs
+spend time： 1.675469160079956 s
+Training on 3804 samples...
+Train epoch: 364 [0/3804 (0%)]	Loss: 0.000353 Loss_all: 0.011309
+Train epoch: 364 [2560/3804 (67%)]	Loss: 0.000291 Loss_all: 0.012086
+Train epoch: 364	Loss: 0.002367
+skip validation at epoch  364 ; next validation every 5 epochs
+spend time： 1.680284023284912 s
+Training on 3804 samples...
+Train epoch: 365 [0/3804 (0%)]	Loss: 0.000637 Loss_all: 0.010789
+Train epoch: 365 [2560/3804 (67%)]	Loss: 0.001011 Loss_all: 0.012289
+Train epoch: 365	Loss: 0.003369
+0.9822921551106353 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.8885202407836914 s
+Training on 3804 samples...
+Train epoch: 366 [0/3804 (0%)]	Loss: 0.000906 Loss_all: 0.011918
+Train epoch: 366 [2560/3804 (67%)]	Loss: 0.006858 Loss_all: 0.020315
+Train epoch: 366	Loss: 0.002840
+skip validation at epoch  366 ; next validation every 5 epochs
+spend time： 1.6656908988952637 s
+Training on 3804 samples...
+Train epoch: 367 [0/3804 (0%)]	Loss: 0.000811 Loss_all: 0.013615
+Train epoch: 367 [2560/3804 (67%)]	Loss: 0.000320 Loss_all: 0.015730
+Train epoch: 367	Loss: 0.003629
+skip validation at epoch  367 ; next validation every 5 epochs
+spend time： 1.6818950176239014 s
+Training on 3804 samples...
+Train epoch: 368 [0/3804 (0%)]	Loss: 0.003978 Loss_all: 0.016847
+Train epoch: 368 [2560/3804 (67%)]	Loss: 0.006462 Loss_all: 0.019632
+Train epoch: 368	Loss: 0.002111
+skip validation at epoch  368 ; next validation every 5 epochs
+spend time： 1.6302354335784912 s
+Training on 3804 samples...
+Train epoch: 369 [0/3804 (0%)]	Loss: 0.000556 Loss_all: 0.012819
+Train epoch: 369 [2560/3804 (67%)]	Loss: 0.000268 Loss_all: 0.012270
+Train epoch: 369	Loss: 0.002381
+skip validation at epoch  369 ; next validation every 5 epochs
+spend time： 1.6390256881713867 s
+Training on 3804 samples...
+Train epoch: 370 [0/3804 (0%)]	Loss: 0.003704 Loss_all: 0.016147
+Train epoch: 370 [2560/3804 (67%)]	Loss: 0.000872 Loss_all: 0.011615
+Train epoch: 370	Loss: 0.002979
+0.9821240566580258 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.8693726062774658 s
+Training on 3804 samples...
+Train epoch: 371 [0/3804 (0%)]	Loss: 0.001050 Loss_all: 0.011648
+Train epoch: 371 [2560/3804 (67%)]	Loss: 0.001899 Loss_all: 0.013278
+Train epoch: 371	Loss: 0.006103
+skip validation at epoch  371 ; next validation every 5 epochs
+spend time： 1.667186975479126 s
+Training on 3804 samples...
+Train epoch: 372 [0/3804 (0%)]	Loss: 0.000238 Loss_all: 0.011246
+Train epoch: 372 [2560/3804 (67%)]	Loss: 0.002658 Loss_all: 0.012240
+Train epoch: 372	Loss: 0.006659
+skip validation at epoch  372 ; next validation every 5 epochs
+spend time： 1.6334035396575928 s
+Training on 3804 samples...
+Train epoch: 373 [0/3804 (0%)]	Loss: 0.000175 Loss_all: 0.010015
+Train epoch: 373 [2560/3804 (67%)]	Loss: 0.001498 Loss_all: 0.012166
+Train epoch: 373	Loss: 0.006316
+skip validation at epoch  373 ; next validation every 5 epochs
+spend time： 1.665635347366333 s
+Training on 3804 samples...
+Train epoch: 374 [0/3804 (0%)]	Loss: 0.009348 Loss_all: 0.019628
+Train epoch: 374 [2560/3804 (67%)]	Loss: 0.004110 Loss_all: 0.014087
+Train epoch: 374	Loss: 0.003495
+skip validation at epoch  374 ; next validation every 5 epochs
+spend time： 1.6738002300262451 s
+Training on 3804 samples...
+Train epoch: 375 [0/3804 (0%)]	Loss: 0.000780 Loss_all: 0.012152
+Train epoch: 375 [2560/3804 (67%)]	Loss: 0.000862 Loss_all: 0.012677
+Train epoch: 375	Loss: 0.005840
+0.9855258385016235 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.913945198059082 s
+Training on 3804 samples...
+Train epoch: 376 [0/3804 (0%)]	Loss: 0.009946 Loss_all: 0.021669
+Train epoch: 376 [2560/3804 (67%)]	Loss: 0.024333 Loss_all: 0.036726
+Train epoch: 376	Loss: 0.007220
+skip validation at epoch  376 ; next validation every 5 epochs
+spend time： 1.6711366176605225 s
+Training on 3804 samples...
+Train epoch: 377 [0/3804 (0%)]	Loss: 0.013821 Loss_all: 0.024991
+Train epoch: 377 [2560/3804 (67%)]	Loss: 0.004188 Loss_all: 0.014876
+Train epoch: 377	Loss: 0.015630
+skip validation at epoch  377 ; next validation every 5 epochs
+spend time： 1.701098918914795 s
+Training on 3804 samples...
+Train epoch: 378 [0/3804 (0%)]	Loss: 0.007859 Loss_all: 0.019026
+Train epoch: 378 [2560/3804 (67%)]	Loss: 0.002976 Loss_all: 0.013975
+Train epoch: 378	Loss: 0.015423
+skip validation at epoch  378 ; next validation every 5 epochs
+spend time： 1.6852753162384033 s
+Training on 3804 samples...
+Train epoch: 379 [0/3804 (0%)]	Loss: 0.071078 Loss_all: 0.081796
+Train epoch: 379 [2560/3804 (67%)]	Loss: 0.057015 Loss_all: 0.069222
+Train epoch: 379	Loss: 0.020705
+skip validation at epoch  379 ; next validation every 5 epochs
+spend time： 1.68690824508667 s
+Training on 3804 samples...
+Train epoch: 380 [0/3804 (0%)]	Loss: 0.007630 Loss_all: 0.019054
+Train epoch: 380 [2560/3804 (67%)]	Loss: 0.001180 Loss_all: 0.013292
+Train epoch: 380	Loss: 0.010763
+0.9777623441771581 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.923884630203247 s
+Training on 3804 samples...
+Train epoch: 381 [0/3804 (0%)]	Loss: 0.004035 Loss_all: 0.018000
+Train epoch: 381 [2560/3804 (67%)]	Loss: 0.008166 Loss_all: 0.020059
+Train epoch: 381	Loss: 0.013889
+skip validation at epoch  381 ; next validation every 5 epochs
+spend time： 1.8595540523529053 s
+Training on 3804 samples...
+Train epoch: 382 [0/3804 (0%)]	Loss: 0.017592 Loss_all: 0.029048
+Train epoch: 382 [2560/3804 (67%)]	Loss: 0.006713 Loss_all: 0.019012
+Train epoch: 382	Loss: 0.008279
+skip validation at epoch  382 ; next validation every 5 epochs
+spend time： 1.6825990676879883 s
+Training on 3804 samples...
+Train epoch: 383 [0/3804 (0%)]	Loss: 0.003451 Loss_all: 0.014611
+Train epoch: 383 [2560/3804 (67%)]	Loss: 0.041574 Loss_all: 0.053978
+Train epoch: 383	Loss: 0.008243
+skip validation at epoch  383 ; next validation every 5 epochs
+spend time： 1.6906723976135254 s
+Training on 3804 samples...
+Train epoch: 384 [0/3804 (0%)]	Loss: 0.003389 Loss_all: 0.014825
+Train epoch: 384 [2560/3804 (67%)]	Loss: 0.017517 Loss_all: 0.028741
+Train epoch: 384	Loss: 0.006881
+skip validation at epoch  384 ; next validation every 5 epochs
+spend time： 1.6552891731262207 s
+Training on 3804 samples...
+Train epoch: 385 [0/3804 (0%)]	Loss: 0.001040 Loss_all: 0.012250
+Train epoch: 385 [2560/3804 (67%)]	Loss: 0.002824 Loss_all: 0.014357
+Train epoch: 385	Loss: 0.005098
+0.9830353272169089 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 1.8882052898406982 s
+Training on 3804 samples...
+Train epoch: 386 [0/3804 (0%)]	Loss: 0.000499 Loss_all: 0.011602
+Train epoch: 386 [2560/3804 (67%)]	Loss: 0.016355 Loss_all: 0.027643
+Train epoch: 386	Loss: 0.007439
+skip validation at epoch  386 ; next validation every 5 epochs
+spend time： 1.7799842357635498 s
+Training on 3804 samples...
+Train epoch: 387 [0/3804 (0%)]	Loss: 0.000833 Loss_all: 0.011382
+Train epoch: 387 [2560/3804 (67%)]	Loss: 0.000716 Loss_all: 0.011752
+Train epoch: 387	Loss: 0.006913
+skip validation at epoch  387 ; next validation every 5 epochs
+spend time： 2.4326095581054688 s
+Training on 3804 samples...
+Train epoch: 388 [0/3804 (0%)]	Loss: 0.002333 Loss_all: 0.013310
+Train epoch: 388 [2560/3804 (67%)]	Loss: 0.000913 Loss_all: 0.012940
+Train epoch: 388	Loss: 0.007610
+skip validation at epoch  388 ; next validation every 5 epochs
+spend time： 2.4229676723480225 s
+Training on 3804 samples...
+Train epoch: 389 [0/3804 (0%)]	Loss: 0.000484 Loss_all: 0.013092
+Train epoch: 389 [2560/3804 (67%)]	Loss: 0.004032 Loss_all: 0.015889
+Train epoch: 389	Loss: 0.003603
+skip validation at epoch  389 ; next validation every 5 epochs
+spend time： 2.4649600982666016 s
+Training on 3804 samples...
+Train epoch: 390 [0/3804 (0%)]	Loss: 0.000764 Loss_all: 0.011801
+Train epoch: 390 [2560/3804 (67%)]	Loss: 0.003448 Loss_all: 0.015597
+Train epoch: 390	Loss: 0.002302
+0.9846322625166992 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.7909717559814453 s
+Training on 3804 samples...
+Train epoch: 391 [0/3804 (0%)]	Loss: 0.001528 Loss_all: 0.011953
+Train epoch: 391 [2560/3804 (67%)]	Loss: 0.000550 Loss_all: 0.011463
+Train epoch: 391	Loss: 0.003597
+skip validation at epoch  391 ; next validation every 5 epochs
+spend time： 2.457746744155884 s
+Training on 3804 samples...
+Train epoch: 392 [0/3804 (0%)]	Loss: 0.000559 Loss_all: 0.011074
+Train epoch: 392 [2560/3804 (67%)]	Loss: 0.001362 Loss_all: 0.011430
+Train epoch: 392	Loss: 0.004169
+skip validation at epoch  392 ; next validation every 5 epochs
+spend time： 2.4903368949890137 s
+Training on 3804 samples...
+Train epoch: 393 [0/3804 (0%)]	Loss: 0.001638 Loss_all: 0.011910
+Train epoch: 393 [2560/3804 (67%)]	Loss: 0.002023 Loss_all: 0.014063
+Train epoch: 393	Loss: 0.002671
+skip validation at epoch  393 ; next validation every 5 epochs
+spend time： 2.397245407104492 s
+Training on 3804 samples...
+Train epoch: 394 [0/3804 (0%)]	Loss: 0.012613 Loss_all: 0.024171
+Train epoch: 394 [2560/3804 (67%)]	Loss: 0.008471 Loss_all: 0.018988
+Train epoch: 394	Loss: 0.003361
+skip validation at epoch  394 ; next validation every 5 epochs
+spend time： 2.4057276248931885 s
+Training on 3804 samples...
+Train epoch: 395 [0/3804 (0%)]	Loss: 0.000850 Loss_all: 0.011079
+Train epoch: 395 [2560/3804 (67%)]	Loss: 0.002093 Loss_all: 0.012733
+Train epoch: 395	Loss: 0.000982
+0.9828318396163817 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.6777408123016357 s
+Training on 3804 samples...
+Train epoch: 396 [0/3804 (0%)]	Loss: 0.000202 Loss_all: 0.010711
+Train epoch: 396 [2560/3804 (67%)]	Loss: 0.003135 Loss_all: 0.014043
+Train epoch: 396	Loss: 0.001635
+skip validation at epoch  396 ; next validation every 5 epochs
+spend time： 2.3858673572540283 s
+Training on 3804 samples...
+Train epoch: 397 [0/3804 (0%)]	Loss: 0.004485 Loss_all: 0.014681
+Train epoch: 397 [2560/3804 (67%)]	Loss: 0.000389 Loss_all: 0.012469
+Train epoch: 397	Loss: 0.004135
+skip validation at epoch  397 ; next validation every 5 epochs
+spend time： 2.3670547008514404 s
+Training on 3804 samples...
+Train epoch: 398 [0/3804 (0%)]	Loss: 0.014012 Loss_all: 0.024786
+Train epoch: 398 [2560/3804 (67%)]	Loss: 0.000702 Loss_all: 0.011415
+Train epoch: 398	Loss: 0.004187
+skip validation at epoch  398 ; next validation every 5 epochs
+spend time： 2.3635094165802 s
+Training on 3804 samples...
+Train epoch: 399 [0/3804 (0%)]	Loss: 0.008279 Loss_all: 0.018808
+Train epoch: 399 [2560/3804 (67%)]	Loss: 0.003731 Loss_all: 0.014179
+Train epoch: 399	Loss: 0.005253
+skip validation at epoch  399 ; next validation every 5 epochs
+spend time： 2.283925771713257 s
+Training on 3804 samples...
+Train epoch: 400 [0/3804 (0%)]	Loss: 0.002104 Loss_all: 0.013571
+Train epoch: 400 [2560/3804 (67%)]	Loss: 0.012153 Loss_all: 0.024182
+Train epoch: 400	Loss: 0.009657
+0.9840483415760557 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.754256010055542 s
+Training on 3804 samples...
+Train epoch: 401 [0/3804 (0%)]	Loss: 0.017033 Loss_all: 0.028562
+Train epoch: 401 [2560/3804 (67%)]	Loss: 0.001537 Loss_all: 0.014584
+Train epoch: 401	Loss: 0.005191
+skip validation at epoch  401 ; next validation every 5 epochs
+spend time： 2.527547836303711 s
+Training on 3804 samples...
+Train epoch: 402 [0/3804 (0%)]	Loss: 0.000350 Loss_all: 0.014301
+Train epoch: 402 [2560/3804 (67%)]	Loss: 0.004667 Loss_all: 0.016299
+Train epoch: 402	Loss: 0.004718
+skip validation at epoch  402 ; next validation every 5 epochs
+spend time： 2.356489896774292 s
+Training on 3804 samples...
+Train epoch: 403 [0/3804 (0%)]	Loss: 0.006382 Loss_all: 0.018527
+Train epoch: 403 [2560/3804 (67%)]	Loss: 0.000808 Loss_all: 0.013002
+Train epoch: 403	Loss: 0.004602
+skip validation at epoch  403 ; next validation every 5 epochs
+spend time： 2.328967809677124 s
+Training on 3804 samples...
+Train epoch: 404 [0/3804 (0%)]	Loss: 0.001670 Loss_all: 0.012485
+Train epoch: 404 [2560/3804 (67%)]	Loss: 0.000268 Loss_all: 0.010216
+Train epoch: 404	Loss: 0.001902
+skip validation at epoch  404 ; next validation every 5 epochs
+spend time： 2.3731603622436523 s
+Training on 3804 samples...
+Train epoch: 405 [0/3804 (0%)]	Loss: 0.017055 Loss_all: 0.027843
+Train epoch: 405 [2560/3804 (67%)]	Loss: 0.013502 Loss_all: 0.024053
+Train epoch: 405	Loss: 0.005897
+0.9844884941032833 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.747811794281006 s
+Training on 3804 samples...
+Train epoch: 406 [0/3804 (0%)]	Loss: 0.000639 Loss_all: 0.011545
+Train epoch: 406 [2560/3804 (67%)]	Loss: 0.009591 Loss_all: 0.020303
+Train epoch: 406	Loss: 0.003334
+skip validation at epoch  406 ; next validation every 5 epochs
+spend time： 2.3937501907348633 s
+Training on 3804 samples...
+Train epoch: 407 [0/3804 (0%)]	Loss: 0.006690 Loss_all: 0.017145
+Train epoch: 407 [2560/3804 (67%)]	Loss: 0.013320 Loss_all: 0.023332
+Train epoch: 407	Loss: 0.002477
+skip validation at epoch  407 ; next validation every 5 epochs
+spend time： 2.3763906955718994 s
+Training on 3804 samples...
+Train epoch: 408 [0/3804 (0%)]	Loss: 0.001025 Loss_all: 0.011021
+Train epoch: 408 [2560/3804 (67%)]	Loss: 0.002634 Loss_all: 0.012183
+Train epoch: 408	Loss: 0.000850
+skip validation at epoch  408 ; next validation every 5 epochs
+spend time： 2.432863712310791 s
+Training on 3804 samples...
+Train epoch: 409 [0/3804 (0%)]	Loss: 0.000300 Loss_all: 0.010497
+Train epoch: 409 [2560/3804 (67%)]	Loss: 0.002682 Loss_all: 0.012630
+Train epoch: 409	Loss: 0.002800
+skip validation at epoch  409 ; next validation every 5 epochs
+spend time： 2.4657106399536133 s
+Training on 3804 samples...
+Train epoch: 410 [0/3804 (0%)]	Loss: 0.009477 Loss_all: 0.020194
+Train epoch: 410 [2560/3804 (67%)]	Loss: 0.002117 Loss_all: 0.011990
+Train epoch: 410	Loss: 0.002527
+0.981801130683276 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.791015625 s
+Training on 3804 samples...
+Train epoch: 411 [0/3804 (0%)]	Loss: 0.000700 Loss_all: 0.011307
+Train epoch: 411 [2560/3804 (67%)]	Loss: 0.000073 Loss_all: 0.009513
+Train epoch: 411	Loss: 0.001815
+skip validation at epoch  411 ; next validation every 5 epochs
+spend time： 2.2532010078430176 s
+Training on 3804 samples...
+Train epoch: 412 [0/3804 (0%)]	Loss: 0.001660 Loss_all: 0.012673
+Train epoch: 412 [2560/3804 (67%)]	Loss: 0.000252 Loss_all: 0.009885
+Train epoch: 412	Loss: 0.002701
+skip validation at epoch  412 ; next validation every 5 epochs
+spend time： 2.3960986137390137 s
+Training on 3804 samples...
+Train epoch: 413 [0/3804 (0%)]	Loss: 0.001653 Loss_all: 0.011651
+Train epoch: 413 [2560/3804 (67%)]	Loss: 0.000140 Loss_all: 0.009135
+Train epoch: 413	Loss: 0.004902
+skip validation at epoch  413 ; next validation every 5 epochs
+spend time： 2.5270864963531494 s
+Training on 3804 samples...
+Train epoch: 414 [0/3804 (0%)]	Loss: 0.001164 Loss_all: 0.011741
+Train epoch: 414 [2560/3804 (67%)]	Loss: 0.001119 Loss_all: 0.012437
+Train epoch: 414	Loss: 0.004548
+skip validation at epoch  414 ; next validation every 5 epochs
+spend time： 2.4737067222595215 s
+Training on 3804 samples...
+Train epoch: 415 [0/3804 (0%)]	Loss: 0.000954 Loss_all: 0.010848
+Train epoch: 415 [2560/3804 (67%)]	Loss: 0.013636 Loss_all: 0.023143
+Train epoch: 415	Loss: 0.005237
+0.9824912190676729 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.777728319168091 s
+Training on 3804 samples...
+Train epoch: 416 [0/3804 (0%)]	Loss: 0.001885 Loss_all: 0.011201
+Train epoch: 416 [2560/3804 (67%)]	Loss: 0.000172 Loss_all: 0.009909
+Train epoch: 416	Loss: 0.005387
+skip validation at epoch  416 ; next validation every 5 epochs
+spend time： 2.4225950241088867 s
+Training on 3804 samples...
+Train epoch: 417 [0/3804 (0%)]	Loss: 0.001852 Loss_all: 0.011265
+Train epoch: 417 [2560/3804 (67%)]	Loss: 0.000276 Loss_all: 0.010108
+Train epoch: 417	Loss: 0.003032
+skip validation at epoch  417 ; next validation every 5 epochs
+spend time： 2.4421253204345703 s
+Training on 3804 samples...
+Train epoch: 418 [0/3804 (0%)]	Loss: 0.000682 Loss_all: 0.010661
+Train epoch: 418 [2560/3804 (67%)]	Loss: 0.000756 Loss_all: 0.010301
+Train epoch: 418	Loss: 0.002423
+skip validation at epoch  418 ; next validation every 5 epochs
+spend time： 2.432382583618164 s
+Training on 3804 samples...
+Train epoch: 419 [0/3804 (0%)]	Loss: 0.000614 Loss_all: 0.010359
+Train epoch: 419 [2560/3804 (67%)]	Loss: 0.031237 Loss_all: 0.041381
+Train epoch: 419	Loss: 0.007965
+skip validation at epoch  419 ; next validation every 5 epochs
+spend time： 2.41395902633667 s
+Training on 3804 samples...
+Train epoch: 420 [0/3804 (0%)]	Loss: 0.000399 Loss_all: 0.010983
+Train epoch: 420 [2560/3804 (67%)]	Loss: 0.032162 Loss_all: 0.041397
+Train epoch: 420	Loss: 0.004837
+0.9825995983331711 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.712665319442749 s
+Training on 3804 samples...
+Train epoch: 421 [0/3804 (0%)]	Loss: 0.000118 Loss_all: 0.010834
+Train epoch: 421 [2560/3804 (67%)]	Loss: 0.000366 Loss_all: 0.010171
+Train epoch: 421	Loss: 0.004128
+skip validation at epoch  421 ; next validation every 5 epochs
+spend time： 2.4121646881103516 s
+Training on 3804 samples...
+Train epoch: 422 [0/3804 (0%)]	Loss: 0.001939 Loss_all: 0.011134
+Train epoch: 422 [2560/3804 (67%)]	Loss: 0.002880 Loss_all: 0.012883
+Train epoch: 422	Loss: 0.005113
+skip validation at epoch  422 ; next validation every 5 epochs
+spend time： 2.433809518814087 s
+Training on 3804 samples...
+Train epoch: 423 [0/3804 (0%)]	Loss: 0.017943 Loss_all: 0.027699
+Train epoch: 423 [2560/3804 (67%)]	Loss: 0.001067 Loss_all: 0.011648
+Train epoch: 423	Loss: 0.004884
+skip validation at epoch  423 ; next validation every 5 epochs
+spend time： 2.415189504623413 s
+Training on 3804 samples...
+Train epoch: 424 [0/3804 (0%)]	Loss: 0.000160 Loss_all: 0.009693
+Train epoch: 424 [2560/3804 (67%)]	Loss: 0.003858 Loss_all: 0.014774
+Train epoch: 424	Loss: 0.007284
+skip validation at epoch  424 ; next validation every 5 epochs
+spend time： 2.4033091068267822 s
+Training on 3804 samples...
+Train epoch: 425 [0/3804 (0%)]	Loss: 0.004200 Loss_all: 0.013980
+Train epoch: 425 [2560/3804 (67%)]	Loss: 0.015535 Loss_all: 0.026740
+Train epoch: 425	Loss: 0.007993
+0.9797618310345134 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.6732161045074463 s
+Training on 3804 samples...
+Train epoch: 426 [0/3804 (0%)]	Loss: 0.033079 Loss_all: 0.044320
+Train epoch: 426 [2560/3804 (67%)]	Loss: 0.019481 Loss_all: 0.031070
+Train epoch: 426	Loss: 0.008219
+skip validation at epoch  426 ; next validation every 5 epochs
+spend time： 2.394176959991455 s
+Training on 3804 samples...
+Train epoch: 427 [0/3804 (0%)]	Loss: 0.003901 Loss_all: 0.014581
+Train epoch: 427 [2560/3804 (67%)]	Loss: 0.000632 Loss_all: 0.011412
+Train epoch: 427	Loss: 0.005644
+skip validation at epoch  427 ; next validation every 5 epochs
+spend time： 2.4169867038726807 s
+Training on 3804 samples...
+Train epoch: 428 [0/3804 (0%)]	Loss: 0.000224 Loss_all: 0.010728
+Train epoch: 428 [2560/3804 (67%)]	Loss: 0.005048 Loss_all: 0.016477
+Train epoch: 428	Loss: 0.007523
+skip validation at epoch  428 ; next validation every 5 epochs
+spend time： 2.4194858074188232 s
+Training on 3804 samples...
+Train epoch: 429 [0/3804 (0%)]	Loss: 0.002606 Loss_all: 0.013087
+Train epoch: 429 [2560/3804 (67%)]	Loss: 0.000238 Loss_all: 0.010251
+Train epoch: 429	Loss: 0.005030
+skip validation at epoch  429 ; next validation every 5 epochs
+spend time： 2.4302735328674316 s
+Training on 3804 samples...
+Train epoch: 430 [0/3804 (0%)]	Loss: 0.029867 Loss_all: 0.040304
+Train epoch: 430 [2560/3804 (67%)]	Loss: 0.001416 Loss_all: 0.011798
+Train epoch: 430	Loss: 0.006074
+0.9837784993231826 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.7736728191375732 s
+Training on 3804 samples...
+Train epoch: 431 [0/3804 (0%)]	Loss: 0.006713 Loss_all: 0.015774
+Train epoch: 431 [2560/3804 (67%)]	Loss: 0.030234 Loss_all: 0.041171
+Train epoch: 431	Loss: 0.008388
+skip validation at epoch  431 ; next validation every 5 epochs
+spend time： 2.46929931640625 s
+Training on 3804 samples...
+Train epoch: 432 [0/3804 (0%)]	Loss: 0.001587 Loss_all: 0.010768
+Train epoch: 432 [2560/3804 (67%)]	Loss: 0.002394 Loss_all: 0.011538
+Train epoch: 432	Loss: 0.004873
+skip validation at epoch  432 ; next validation every 5 epochs
+spend time： 2.401522636413574 s
+Training on 3804 samples...
+Train epoch: 433 [0/3804 (0%)]	Loss: 0.002417 Loss_all: 0.012533
+Train epoch: 433 [2560/3804 (67%)]	Loss: 0.001932 Loss_all: 0.011909
+Train epoch: 433	Loss: 0.003205
+skip validation at epoch  433 ; next validation every 5 epochs
+spend time： 2.566551923751831 s
+Training on 3804 samples...
+Train epoch: 434 [0/3804 (0%)]	Loss: 0.001906 Loss_all: 0.012166
+Train epoch: 434 [2560/3804 (67%)]	Loss: 0.000758 Loss_all: 0.010198
+Train epoch: 434	Loss: 0.004546
+skip validation at epoch  434 ; next validation every 5 epochs
+spend time： 2.390634298324585 s
+Training on 3804 samples...
+Train epoch: 435 [0/3804 (0%)]	Loss: 0.000772 Loss_all: 0.010146
+Train epoch: 435 [2560/3804 (67%)]	Loss: 0.002505 Loss_all: 0.011991
+Train epoch: 435	Loss: 0.006142
+0.9827234603508834 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.696263313293457 s
+Training on 3804 samples...
+Train epoch: 436 [0/3804 (0%)]	Loss: 0.000404 Loss_all: 0.008917
+Train epoch: 436 [2560/3804 (67%)]	Loss: 0.000385 Loss_all: 0.010027
+Train epoch: 436	Loss: 0.005587
+skip validation at epoch  436 ; next validation every 5 epochs
+spend time： 2.422670364379883 s
+Training on 3804 samples...
+Train epoch: 437 [0/3804 (0%)]	Loss: 0.013363 Loss_all: 0.025040
+Train epoch: 437 [2560/3804 (67%)]	Loss: 0.014411 Loss_all: 0.024733
+Train epoch: 437	Loss: 0.009724
+skip validation at epoch  437 ; next validation every 5 epochs
+spend time： 2.418774366378784 s
+Training on 3804 samples...
+Train epoch: 438 [0/3804 (0%)]	Loss: 0.001586 Loss_all: 0.011066
+Train epoch: 438 [2560/3804 (67%)]	Loss: 0.001408 Loss_all: 0.010993
+Train epoch: 438	Loss: 0.008456
+skip validation at epoch  438 ; next validation every 5 epochs
+spend time： 2.362560272216797 s
+Training on 3804 samples...
+Train epoch: 439 [0/3804 (0%)]	Loss: 0.002087 Loss_all: 0.011295
+Train epoch: 439 [2560/3804 (67%)]	Loss: 0.002805 Loss_all: 0.012893
+Train epoch: 439	Loss: 0.004976
+skip validation at epoch  439 ; next validation every 5 epochs
+spend time： 2.444903612136841 s
+Training on 3804 samples...
+Train epoch: 440 [0/3804 (0%)]	Loss: 0.008743 Loss_all: 0.017916
+Train epoch: 440 [2560/3804 (67%)]	Loss: 0.000509 Loss_all: 0.009597
+Train epoch: 440	Loss: 0.004780
+0.9810026630333809 No improvement since epoch  /root/HAG-DTA/py38_env/lib/python3.8/site-packages/torch_geometric/deprecation.py:26: UserWarning: 'data.DenseDataLoader' is deprecated, use 'loader.DenseDataLoader' instead
+  warnings.warn(out)
+200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 2.7425148487091064 s
+Training on 3804 samples...
+Train epoch: 441 [0/3804 (0%)]	Loss: 0.005538 Loss_all: 0.015457
+Train epoch: 441 [2560/3804 (67%)]	Loss: 0.000861 Loss_all: 0.010433
+Train epoch: 441	Loss: 0.004765
+skip validation at epoch  441 ; next validation every 5 epochs
+spend time： 2.4376485347747803 s
+Training on 3804 samples...
+Train epoch: 442 [0/3804 (0%)]	Loss: 0.005011 Loss_all: 0.014283
+Train epoch: 442 [2560/3804 (67%)]	Loss: 0.000371 Loss_all: 0.010491
+Train epoch: 442	Loss: 0.002482
+skip validation at epoch  442 ; next validation every 5 epochs
+spend time： 2.4143335819244385 s
+Training on 3804 samples...
+Train epoch: 443 [0/3804 (0%)]	Loss: 0.002961 Loss_all: 0.013137
+Train epoch: 443 [2560/3804 (67%)]	Loss: 0.001981 Loss_all: 0.011796
+Train epoch: 443	Loss: 0.002810
+skip validation at epoch  443 ; next validation every 5 epochs
+spend time： 2.4676125049591064 s
+Training on 3804 samples...
+Train epoch: 444 [0/3804 (0%)]	Loss: 0.002471 Loss_all: 0.011989
+Train epoch: 444 [2560/3804 (67%)]	Loss: 0.000342 Loss_all: 0.010792
+Train epoch: 444	Loss: 0.006642
+skip validation at epoch  444 ; next validation every 5 epochs
+spend time： 2.427739381790161 s
+Training on 3804 samples...
+Train epoch: 445 [0/3804 (0%)]	Loss: 0.010048 Loss_all: 0.019516
+Train epoch: 445 [2560/3804 (67%)]	Loss: 0.015267 Loss_all: 0.025151
+Train epoch: 445	Loss: 0.004630
+0.9807195498500386 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 3.3398597240448 s
+Training on 3804 samples...
+Train epoch: 446 [0/3804 (0%)]	Loss: 0.012675 Loss_all: 0.022442
+Train epoch: 446 [2560/3804 (67%)]	Loss: 0.004743 Loss_all: 0.014967
+Train epoch: 446	Loss: 0.005178
+skip validation at epoch  446 ; next validation every 5 epochs
+spend time： 3.4925522804260254 s
+Training on 3804 samples...
+Train epoch: 447 [0/3804 (0%)]	Loss: 0.005767 Loss_all: 0.017827
+Train epoch: 447 [2560/3804 (67%)]	Loss: 0.007299 Loss_all: 0.016717
+Train epoch: 447	Loss: 0.004018
+skip validation at epoch  447 ; next validation every 5 epochs
+spend time： 3.4361178874969482 s
+Training on 3804 samples...
+Train epoch: 448 [0/3804 (0%)]	Loss: 0.001009 Loss_all: 0.011145
+Train epoch: 448 [2560/3804 (67%)]	Loss: 0.014720 Loss_all: 0.024624
+Train epoch: 448	Loss: 0.006387
+skip validation at epoch  448 ; next validation every 5 epochs
+spend time： 3.407332420349121 s
+Training on 3804 samples...
+Train epoch: 449 [0/3804 (0%)]	Loss: 0.000627 Loss_all: 0.011989
+Train epoch: 449 [2560/3804 (67%)]	Loss: 0.000392 Loss_all: 0.011039
+Train epoch: 449	Loss: 0.005723
+skip validation at epoch  449 ; next validation every 5 epochs
+spend time： 3.4033260345458984 s
+Training on 3804 samples...
+Train epoch: 450 [0/3804 (0%)]	Loss: 0.000591 Loss_all: 0.010973
+Train epoch: 450 [2560/3804 (67%)]	Loss: 0.015128 Loss_all: 0.025166
+Train epoch: 450	Loss: 0.004654
+0.9811486432685416 No improvement since epoch  200 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9883128679175863 0.9882462293285108 0.9502572898799314 0.9618055555555556 Human
+spend time： 3.9525043964385986 s
+early stopping at epoch  450  due to no validation improvement.

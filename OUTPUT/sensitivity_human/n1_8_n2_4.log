@@ -1,0 +1,470 @@
+Diff_DTA_GIN
+fold_id: 0
+Learning rate:  0.0005
+Epochs:  1000
+Validation interval:  1
+Early stop patience:  50
+
+running on  Human
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/Human_fold0_train.pt, loading ...
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/Human_fold0_val.pt, loading ...
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/Human_fold0_test.pt, loading ...
+Training on 3804 samples...
+Train epoch: 1 [0/3804 (0%)]	Loss: 0.704694 Loss_all: 0.779011
+Train epoch: 1 [2560/3804 (67%)]	Loss: 0.561989 Loss_all: 0.634624
+Train epoch: 1	Loss: 0.582330
+val AUROC improved at epoch  1 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.8716341289551142 0.8558500847850902 0.6098360655737705 0.96875 Human
+spend time： 4.903261423110962 s
+Training on 3804 samples...
+Train epoch: 2 [0/3804 (0%)]	Loss: 0.467579 Loss_all: 0.538043
+Train epoch: 2 [2560/3804 (67%)]	Loss: 0.426850 Loss_all: 0.500693
+Train epoch: 2	Loss: 0.410040
+val AUROC improved at epoch  2 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9291816133186166 0.93409138928496 0.7232620320855615 0.9392361111111112 Human
+spend time： 2.5508787631988525 s
+Training on 3804 samples...
+Train epoch: 3 [0/3804 (0%)]	Loss: 0.345225 Loss_all: 0.416303
+Train epoch: 3 [2560/3804 (67%)]	Loss: 0.309145 Loss_all: 0.382235
+Train epoch: 3	Loss: 0.313635
+val AUROC improved at epoch  3 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9568013015084621 0.959533281346209 0.9636363636363636 0.7361111111111112 Human
+spend time： 2.1586484909057617 s
+Training on 3804 samples...
+Train epoch: 4 [0/3804 (0%)]	Loss: 0.259967 Loss_all: 0.330637
+Train epoch: 4 [2560/3804 (67%)]	Loss: 0.254368 Loss_all: 0.326850
+Train epoch: 4	Loss: 0.254523
+val AUROC improved at epoch  4 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9654301186534215 0.9695568648589836 0.9772727272727273 0.7465277777777778 Human
+spend time： 2.2868399620056152 s
+Training on 3804 samples...
+Train epoch: 5 [0/3804 (0%)]	Loss: 0.182689 Loss_all: 0.251383
+Train epoch: 5 [2560/3804 (67%)]	Loss: 0.159782 Loss_all: 0.228538
+Train epoch: 5	Loss: 0.205449
+val AUROC improved at epoch  5 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9772954608167772 0.9790706970382737 0.8792270531400966 0.9479166666666666 Human
+spend time： 3.2857038974761963 s
+Training on 3804 samples...
+Train epoch: 6 [0/3804 (0%)]	Loss: 0.160063 Loss_all: 0.228559
+Train epoch: 6 [2560/3804 (67%)]	Loss: 0.172923 Loss_all: 0.242462
+Train epoch: 6	Loss: 0.179895
+val AUROC improved at epoch  6 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9772293506254599 0.9722635000035095 0.8712241653418124 0.9513888888888888 Human
+spend time： 3.277987241744995 s
+Training on 3804 samples...
+Train epoch: 7 [0/3804 (0%)]	Loss: 0.153628 Loss_all: 0.220470
+Train epoch: 7 [2560/3804 (67%)]	Loss: 0.136972 Loss_all: 0.210821
+Train epoch: 7	Loss: 0.152091
+0.9766829751656654 No improvement since epoch  6 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9772293506254599 0.9722635000035095 0.8712241653418124 0.9513888888888888 Human
+spend time： 2.078864574432373 s
+Training on 3804 samples...
+Train epoch: 8 [0/3804 (0%)]	Loss: 0.097373 Loss_all: 0.161964
+Train epoch: 8 [2560/3804 (67%)]	Loss: 0.169802 Loss_all: 0.235242
+Train epoch: 8	Loss: 0.135241
+val AUROC improved at epoch  8 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9755507266372333 0.968291893218188 0.9095477386934674 0.9427083333333334 Human
+spend time： 2.6566543579101562 s
+Training on 3804 samples...
+Train epoch: 9 [0/3804 (0%)]	Loss: 0.133729 Loss_all: 0.200102
+Train epoch: 9 [2560/3804 (67%)]	Loss: 0.178290 Loss_all: 0.241842
+Train epoch: 9	Loss: 0.138417
+val AUROC improved at epoch  9 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9813770465415748 0.9744798262958045 0.9290657439446367 0.9322916666666666 Human
+spend time： 3.381155252456665 s
+Training on 3804 samples...
+Train epoch: 10 [0/3804 (0%)]	Loss: 0.151224 Loss_all: 0.217924
+Train epoch: 10 [2560/3804 (67%)]	Loss: 0.156441 Loss_all: 0.221302
+Train epoch: 10	Loss: 0.127279
+val AUROC improved at epoch  10 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9854730040470934 0.985901753957003 0.9558011049723757 0.9010416666666666 Human
+spend time： 3.376239538192749 s
+Training on 3804 samples...
+Train epoch: 11 [0/3804 (0%)]	Loss: 0.066879 Loss_all: 0.133946
+Train epoch: 11 [2560/3804 (67%)]	Loss: 0.083966 Loss_all: 0.149311
+Train epoch: 11	Loss: 0.104828
+val AUROC improved at epoch  11 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9841163079470198 0.983439785070281 0.9055374592833876 0.9652777777777778 Human
+spend time： 2.5687694549560547 s
+Training on 3804 samples...
+Train epoch: 12 [0/3804 (0%)]	Loss: 0.101598 Loss_all: 0.166664
+Train epoch: 12 [2560/3804 (67%)]	Loss: 0.101106 Loss_all: 0.166266
+Train epoch: 12	Loss: 0.100123
+0.9794654469207018 No improvement since epoch  11 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9841163079470198 0.983439785070281 0.9055374592833876 0.9652777777777778 Human
+spend time： 2.6335549354553223 s
+Training on 3804 samples...
+Train epoch: 13 [0/3804 (0%)]	Loss: 0.054034 Loss_all: 0.120256
+Train epoch: 13 [2560/3804 (67%)]	Loss: 0.105593 Loss_all: 0.173115
+Train epoch: 13	Loss: 0.095691
+0.980792539967619 No improvement since epoch  11 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9841163079470198 0.983439785070281 0.9055374592833876 0.9652777777777778 Human
+spend time： 2.812835693359375 s
+Training on 3804 samples...
+Train epoch: 14 [0/3804 (0%)]	Loss: 0.088638 Loss_all: 0.153170
+Train epoch: 14 [2560/3804 (67%)]	Loss: 0.090771 Loss_all: 0.155538
+Train epoch: 14	Loss: 0.100205
+0.9816816923090533 No improvement since epoch  11 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9841163079470198 0.983439785070281 0.9055374592833876 0.9652777777777778 Human
+spend time： 2.9631917476654053 s
+Training on 3804 samples...
+Train epoch: 15 [0/3804 (0%)]	Loss: 0.062116 Loss_all: 0.126775
+Train epoch: 15 [2560/3804 (67%)]	Loss: 0.102802 Loss_all: 0.168576
+Train epoch: 15	Loss: 0.090481
+val AUROC improved at epoch  15 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9862806981236203 0.980190964147306 0.950354609929078 0.9305555555555556 Human
+spend time： 2.62424373626709 s
+Training on 3804 samples...
+Train epoch: 16 [0/3804 (0%)]	Loss: 0.081384 Loss_all: 0.144846
+Train epoch: 16 [2560/3804 (67%)]	Loss: 0.055912 Loss_all: 0.118475
+Train epoch: 16	Loss: 0.077459
+0.9831326473736828 No improvement since epoch  15 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9862806981236203 0.980190964147306 0.950354609929078 0.9305555555555556 Human
+spend time： 2.3206863403320312 s
+Training on 3804 samples...
+Train epoch: 17 [0/3804 (0%)]	Loss: 0.066809 Loss_all: 0.129529
+Train epoch: 17 [2560/3804 (67%)]	Loss: 0.107454 Loss_all: 0.170810
+Train epoch: 17	Loss: 0.081356
+val AUROC improved at epoch  17 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9850533480500367 0.9818046640684447 0.8945686900958466 0.9722222222222222 Human
+spend time： 3.165290117263794 s
+Training on 3804 samples...
+Train epoch: 18 [0/3804 (0%)]	Loss: 0.037930 Loss_all: 0.099782
+Train epoch: 18 [2560/3804 (67%)]	Loss: 0.043155 Loss_all: 0.104714
+Train epoch: 18	Loss: 0.056953
+0.9850790505091614 No improvement since epoch  17 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9850533480500367 0.9818046640684447 0.8945686900958466 0.9722222222222222 Human
+spend time： 2.8677806854248047 s
+Training on 3804 samples...
+Train epoch: 19 [0/3804 (0%)]	Loss: 0.072850 Loss_all: 0.136457
+Train epoch: 19 [2560/3804 (67%)]	Loss: 0.093503 Loss_all: 0.154850
+Train epoch: 19	Loss: 0.054884
+0.9822567659627175 No improvement since epoch  17 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9850533480500367 0.9818046640684447 0.8945686900958466 0.9722222222222222 Human
+spend time： 2.4514272212982178 s
+Training on 3804 samples...
+Train epoch: 20 [0/3804 (0%)]	Loss: 0.022330 Loss_all: 0.084287
+Train epoch: 20 [2560/3804 (67%)]	Loss: 0.046690 Loss_all: 0.113493
+Train epoch: 20	Loss: 0.055097
+0.9843181838289288 No improvement since epoch  17 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9850533480500367 0.9818046640684447 0.8945686900958466 0.9722222222222222 Human
+spend time： 2.3673925399780273 s
+Training on 3804 samples...
+Train epoch: 21 [0/3804 (0%)]	Loss: 0.033420 Loss_all: 0.095235
+Train epoch: 21 [2560/3804 (67%)]	Loss: 0.051203 Loss_all: 0.111782
+Train epoch: 21	Loss: 0.055940
+0.9826504702333029 No improvement since epoch  17 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9850533480500367 0.9818046640684447 0.8945686900958466 0.9722222222222222 Human
+spend time： 2.8979790210723877 s
+Training on 3804 samples...
+Train epoch: 22 [0/3804 (0%)]	Loss: 0.028288 Loss_all: 0.092116
+Train epoch: 22 [2560/3804 (67%)]	Loss: 0.015679 Loss_all: 0.077072
+Train epoch: 22	Loss: 0.048188
+0.9854727547797467 No improvement since epoch  17 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9850533480500367 0.9818046640684447 0.8945686900958466 0.9722222222222222 Human
+spend time： 2.9212446212768555 s
+Training on 3804 samples...
+Train epoch: 23 [0/3804 (0%)]	Loss: 0.066729 Loss_all: 0.126333
+Train epoch: 23 [2560/3804 (67%)]	Loss: 0.072654 Loss_all: 0.134891
+Train epoch: 23	Loss: 0.053154
+0.9846101442992505 No improvement since epoch  17 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9850533480500367 0.9818046640684447 0.8945686900958466 0.9722222222222222 Human
+spend time： 2.514984369277954 s
+Training on 3804 samples...
+Train epoch: 24 [0/3804 (0%)]	Loss: 0.069484 Loss_all: 0.129816
+Train epoch: 24 [2560/3804 (67%)]	Loss: 0.025542 Loss_all: 0.085368
+Train epoch: 24	Loss: 0.054262
+0.9839156322713639 No improvement since epoch  17 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9850533480500367 0.9818046640684447 0.8945686900958466 0.9722222222222222 Human
+spend time： 2.0831716060638428 s
+Training on 3804 samples...
+Train epoch: 25 [0/3804 (0%)]	Loss: 0.021830 Loss_all: 0.083904
+Train epoch: 25 [2560/3804 (67%)]	Loss: 0.036718 Loss_all: 0.096879
+Train epoch: 25	Loss: 0.053327
+val AUROC improved at epoch  25 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9842830206033848 0.9786249025639866 0.9462738301559792 0.9479166666666666 Human
+spend time： 3.1027488708496094 s
+Training on 3804 samples...
+Train epoch: 26 [0/3804 (0%)]	Loss: 0.032716 Loss_all: 0.092095
+Train epoch: 26 [2560/3804 (67%)]	Loss: 0.035134 Loss_all: 0.093921
+Train epoch: 26	Loss: 0.045385
+val AUROC improved at epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 3.5247528553009033 s
+Training on 3804 samples...
+Train epoch: 27 [0/3804 (0%)]	Loss: 0.033803 Loss_all: 0.092949
+Train epoch: 27 [2560/3804 (67%)]	Loss: 0.036290 Loss_all: 0.094864
+Train epoch: 27	Loss: 0.051971
+0.9834909624963505 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.7066662311553955 s
+Training on 3804 samples...
+Train epoch: 28 [0/3804 (0%)]	Loss: 0.048665 Loss_all: 0.108940
+Train epoch: 28 [2560/3804 (67%)]	Loss: 0.044410 Loss_all: 0.102447
+Train epoch: 28	Loss: 0.037953
+0.9853621636925036 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.047811985015869 s
+Training on 3804 samples...
+Train epoch: 29 [0/3804 (0%)]	Loss: 0.036320 Loss_all: 0.096107
+Train epoch: 29 [2560/3804 (67%)]	Loss: 0.080434 Loss_all: 0.137901
+Train epoch: 29	Loss: 0.046652
+0.985437365631829 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.919624090194702 s
+Training on 3804 samples...
+Train epoch: 30 [0/3804 (0%)]	Loss: 0.048090 Loss_all: 0.107718
+Train epoch: 30 [2560/3804 (67%)]	Loss: 0.044818 Loss_all: 0.103231
+Train epoch: 30	Loss: 0.041612
+0.9795804616514346 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.9150331020355225 s
+Training on 3804 samples...
+Train epoch: 31 [0/3804 (0%)]	Loss: 0.020022 Loss_all: 0.079761
+Train epoch: 31 [2560/3804 (67%)]	Loss: 0.026820 Loss_all: 0.084325
+Train epoch: 31	Loss: 0.040442
+0.9834776915658814 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.7985763549804688 s
+Training on 3804 samples...
+Train epoch: 32 [0/3804 (0%)]	Loss: 0.008378 Loss_all: 0.065228
+Train epoch: 32 [2560/3804 (67%)]	Loss: 0.029990 Loss_all: 0.086391
+Train epoch: 32	Loss: 0.039212
+0.9842916419679905 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 1.99188232421875 s
+Training on 3804 samples...
+Train epoch: 33 [0/3804 (0%)]	Loss: 0.020927 Loss_all: 0.078786
+Train epoch: 33 [2560/3804 (67%)]	Loss: 0.050068 Loss_all: 0.107785
+Train epoch: 33	Loss: 0.037741
+0.9845216714294561 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.252713441848755 s
+Training on 3804 samples...
+Train epoch: 34 [0/3804 (0%)]	Loss: 0.035440 Loss_all: 0.093096
+Train epoch: 34 [2560/3804 (67%)]	Loss: 0.036130 Loss_all: 0.092356
+Train epoch: 34	Loss: 0.038829
+0.9848534446911855 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.9762978553771973 s
+Training on 3804 samples...
+Train epoch: 35 [0/3804 (0%)]	Loss: 0.026097 Loss_all: 0.082933
+Train epoch: 35 [2560/3804 (67%)]	Loss: 0.019757 Loss_all: 0.076363
+Train epoch: 35	Loss: 0.031270
+0.9829070415557069 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.915728807449341 s
+Training on 3804 samples...
+Train epoch: 36 [0/3804 (0%)]	Loss: 0.028944 Loss_all: 0.085671
+Train epoch: 36 [2560/3804 (67%)]	Loss: 0.019564 Loss_all: 0.075348
+Train epoch: 36	Loss: 0.023650
+0.9839731396367305 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.6083860397338867 s
+Training on 3804 samples...
+Train epoch: 37 [0/3804 (0%)]	Loss: 0.008064 Loss_all: 0.065533
+Train epoch: 37 [2560/3804 (67%)]	Loss: 0.034813 Loss_all: 0.089922
+Train epoch: 37	Loss: 0.026659
+0.9834113369135355 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.209341526031494 s
+Training on 3804 samples...
+Train epoch: 38 [0/3804 (0%)]	Loss: 0.017097 Loss_all: 0.074738
+Train epoch: 38 [2560/3804 (67%)]	Loss: 0.034154 Loss_all: 0.089033
+Train epoch: 38	Loss: 0.032867
+0.9833427704394447 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.99114990234375 s
+Training on 3804 samples...
+Train epoch: 39 [0/3804 (0%)]	Loss: 0.006911 Loss_all: 0.062366
+Train epoch: 39 [2560/3804 (67%)]	Loss: 0.069910 Loss_all: 0.126065
+Train epoch: 39	Loss: 0.030306
+0.9861960204903165 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 3.0339486598968506 s
+Training on 3804 samples...
+Train epoch: 40 [0/3804 (0%)]	Loss: 0.030997 Loss_all: 0.086800
+Train epoch: 40 [2560/3804 (67%)]	Loss: 0.013217 Loss_all: 0.068140
+Train epoch: 40	Loss: 0.036141
+0.9849021047695723 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.56026029586792 s
+Training on 3804 samples...
+Train epoch: 41 [0/3804 (0%)]	Loss: 0.024595 Loss_all: 0.083248
+Train epoch: 41 [2560/3804 (67%)]	Loss: 0.118580 Loss_all: 0.174683
+Train epoch: 41	Loss: 0.042089
+0.9828760760512788 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.0195579528808594 s
+Training on 3804 samples...
+Train epoch: 42 [0/3804 (0%)]	Loss: 0.040551 Loss_all: 0.095844
+Train epoch: 42 [2560/3804 (67%)]	Loss: 0.028061 Loss_all: 0.081453
+Train epoch: 42	Loss: 0.032713
+0.9838006175406311 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.5027332305908203 s
+Training on 3804 samples...
+Train epoch: 43 [0/3804 (0%)]	Loss: 0.033316 Loss_all: 0.087079
+Train epoch: 43 [2560/3804 (67%)]	Loss: 0.032899 Loss_all: 0.086994
+Train epoch: 43	Loss: 0.034526
+0.9837961938971413 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.9510157108306885 s
+Training on 3804 samples...
+Train epoch: 44 [0/3804 (0%)]	Loss: 0.030290 Loss_all: 0.083569
+Train epoch: 44 [2560/3804 (67%)]	Loss: 0.020368 Loss_all: 0.074274
+Train epoch: 44	Loss: 0.030375
+0.9829468543471145 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.919353723526001 s
+Training on 3804 samples...
+Train epoch: 45 [0/3804 (0%)]	Loss: 0.023084 Loss_all: 0.075802
+Train epoch: 45 [2560/3804 (67%)]	Loss: 0.051565 Loss_all: 0.107230
+Train epoch: 45	Loss: 0.025877
+0.9850436613612435 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.337355852127075 s
+Training on 3804 samples...
+Train epoch: 46 [0/3804 (0%)]	Loss: 0.049133 Loss_all: 0.102983
+Train epoch: 46 [2560/3804 (67%)]	Loss: 0.042386 Loss_all: 0.096882
+Train epoch: 46	Loss: 0.032770
+0.9858443408328836 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.6848714351654053 s
+Training on 3804 samples...
+Train epoch: 47 [0/3804 (0%)]	Loss: 0.012151 Loss_all: 0.068256
+Train epoch: 47 [2560/3804 (67%)]	Loss: 0.030212 Loss_all: 0.084287
+Train epoch: 47	Loss: 0.018778
+0.9860124392854931 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.934603214263916 s
+Training on 3804 samples...
+Train epoch: 48 [0/3804 (0%)]	Loss: 0.016507 Loss_all: 0.069975
+Train epoch: 48 [2560/3804 (67%)]	Loss: 0.047592 Loss_all: 0.101268
+Train epoch: 48	Loss: 0.024372
+0.9867025276698901 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.7735867500305176 s
+Training on 3804 samples...
+Train epoch: 49 [0/3804 (0%)]	Loss: 0.034498 Loss_all: 0.086010
+Train epoch: 49 [2560/3804 (67%)]	Loss: 0.032873 Loss_all: 0.084824
+Train epoch: 49	Loss: 0.026183
+0.9858753063373116 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.236902952194214 s
+Training on 3804 samples...
+Train epoch: 50 [0/3804 (0%)]	Loss: 0.021122 Loss_all: 0.072891
+Train epoch: 50 [2560/3804 (67%)]	Loss: 0.025833 Loss_all: 0.077683
+Train epoch: 50	Loss: 0.032721
+0.9840085287846482 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.087641954421997 s
+Training on 3804 samples...
+Train epoch: 51 [0/3804 (0%)]	Loss: 0.026051 Loss_all: 0.078274
+Train epoch: 51 [2560/3804 (67%)]	Loss: 0.035838 Loss_all: 0.090714
+Train epoch: 51	Loss: 0.056126
+0.9802351608879137 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.4806227684020996 s
+Training on 3804 samples...
+Train epoch: 52 [0/3804 (0%)]	Loss: 0.028044 Loss_all: 0.081443
+Train epoch: 52 [2560/3804 (67%)]	Loss: 0.039165 Loss_all: 0.092604
+Train epoch: 52	Loss: 0.055926
+0.984123543515381 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 3.014613151550293 s
+Training on 3804 samples...
+Train epoch: 53 [0/3804 (0%)]	Loss: 0.017224 Loss_all: 0.070169
+Train epoch: 53 [2560/3804 (67%)]	Loss: 0.041807 Loss_all: 0.094909
+Train epoch: 53	Loss: 0.049318
+0.9849507648479594 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.8569183349609375 s
+Training on 3804 samples...
+Train epoch: 54 [0/3804 (0%)]	Loss: 0.067454 Loss_all: 0.120185
+Train epoch: 54 [2560/3804 (67%)]	Loss: 0.042543 Loss_all: 0.094387
+Train epoch: 54	Loss: 0.046993
+0.9822036822408409 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.3050053119659424 s
+Training on 3804 samples...
+Train epoch: 55 [0/3804 (0%)]	Loss: 0.021264 Loss_all: 0.073780
+Train epoch: 55 [2560/3804 (67%)]	Loss: 0.015254 Loss_all: 0.067076
+Train epoch: 55	Loss: 0.031470
+0.9821638694494333 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.555617094039917 s
+Training on 3804 samples...
+Train epoch: 56 [0/3804 (0%)]	Loss: 0.021678 Loss_all: 0.072313
+Train epoch: 56 [2560/3804 (67%)]	Loss: 0.013169 Loss_all: 0.065960
+Train epoch: 56	Loss: 0.020137
+0.9843358784028878 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.8677427768707275 s
+Training on 3804 samples...
+Train epoch: 57 [0/3804 (0%)]	Loss: 0.024928 Loss_all: 0.076800
+Train epoch: 57 [2560/3804 (67%)]	Loss: 0.016703 Loss_all: 0.069397
+Train epoch: 57	Loss: 0.028297
+0.984844597404206 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.8412294387817383 s
+Training on 3804 samples...
+Train epoch: 58 [0/3804 (0%)]	Loss: 0.007986 Loss_all: 0.058032
+Train epoch: 58 [2560/3804 (67%)]	Loss: 0.010435 Loss_all: 0.060781
+Train epoch: 58	Loss: 0.019332
+0.9839399623105574 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.1171560287475586 s
+Training on 3804 samples...
+Train epoch: 59 [0/3804 (0%)]	Loss: 0.011614 Loss_all: 0.061580
+Train epoch: 59 [2560/3804 (67%)]	Loss: 0.020423 Loss_all: 0.069223
+Train epoch: 59	Loss: 0.017001
+0.9836192481575525 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.0997512340545654 s
+Training on 3804 samples...
+Train epoch: 60 [0/3804 (0%)]	Loss: 0.016882 Loss_all: 0.065259
+/root/HAG-DTA/py38_env/lib/python3.8/site-packages/torch_geometric/deprecation.py:26: UserWarning: 'data.DenseDataLoader' is deprecated, use 'loader.DenseDataLoader' instead
+  warnings.warn(out)
+Train epoch: 60 [2560/3804 (67%)]	Loss: 0.032421 Loss_all: 0.081025
+Train epoch: 60	Loss: 0.030204
+0.9831326473736829 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.4027013778686523 s
+Training on 3804 samples...
+Train epoch: 61 [0/3804 (0%)]	Loss: 0.021188 Loss_all: 0.071245
+Train epoch: 61 [2560/3804 (67%)]	Loss: 0.046620 Loss_all: 0.097911
+Train epoch: 61	Loss: 0.023230
+0.9847340063169628 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.987426996231079 s
+Training on 3804 samples...
+Train epoch: 62 [0/3804 (0%)]	Loss: 0.012268 Loss_all: 0.060551
+Train epoch: 62 [2560/3804 (67%)]	Loss: 0.016675 Loss_all: 0.066171
+Train epoch: 62	Loss: 0.018267
+0.9820665492926594 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.84757661819458 s
+Training on 3804 samples...
+Train epoch: 63 [0/3804 (0%)]	Loss: 0.009862 Loss_all: 0.059600
+Train epoch: 63 [2560/3804 (67%)]	Loss: 0.007977 Loss_all: 0.055547
+Train epoch: 63	Loss: 0.019777
+0.9843756911942951 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.392632246017456 s
+Training on 3804 samples...
+Train epoch: 64 [0/3804 (0%)]	Loss: 0.007435 Loss_all: 0.055810
+Train epoch: 64 [2560/3804 (67%)]	Loss: 0.062376 Loss_all: 0.110114
+Train epoch: 64	Loss: 0.019290
+0.9829468543471145 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.514768600463867 s
+Training on 3804 samples...
+Train epoch: 65 [0/3804 (0%)]	Loss: 0.044705 Loss_all: 0.093238
+Train epoch: 65 [2560/3804 (67%)]	Loss: 0.015815 Loss_all: 0.062805
+Train epoch: 65	Loss: 0.027031
+0.9824779481372038 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.924132823944092 s
+Training on 3804 samples...
+Train epoch: 66 [0/3804 (0%)]	Loss: 0.027961 Loss_all: 0.075696
+Train epoch: 66 [2560/3804 (67%)]	Loss: 0.049414 Loss_all: 0.099679
+Train epoch: 66	Loss: 0.027130
+0.983371524122128 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.8047797679901123 s
+Training on 3804 samples...
+Train epoch: 67 [0/3804 (0%)]	Loss: 0.012780 Loss_all: 0.061188
+Train epoch: 67 [2560/3804 (67%)]	Loss: 0.031490 Loss_all: 0.080110
+Train epoch: 67	Loss: 0.027310
+0.9825796919374675 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.167349338531494 s
+Training on 3804 samples...
+Train epoch: 68 [0/3804 (0%)]	Loss: 0.018878 Loss_all: 0.070482
+Train epoch: 68 [2560/3804 (67%)]	Loss: 0.008174 Loss_all: 0.054737
+Train epoch: 68	Loss: 0.024941
+0.9830707163648268 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 1.9964163303375244 s
+Training on 3804 samples...
+Train epoch: 69 [0/3804 (0%)]	Loss: 0.033229 Loss_all: 0.082031
+Train epoch: 69 [2560/3804 (67%)]	Loss: 0.007492 Loss_all: 0.055437
+Train epoch: 69	Loss: 0.024558
+0.9828008741119536 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.1876416206359863 s
+Training on 3804 samples...
+Train epoch: 70 [0/3804 (0%)]	Loss: 0.052684 Loss_all: 0.099045
+Train epoch: 70 [2560/3804 (67%)]	Loss: 0.011322 Loss_all: 0.057995
+Train epoch: 70	Loss: 0.029626
+0.9805138504277663 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.8808658123016357 s
+Training on 3804 samples...
+Train epoch: 71 [0/3804 (0%)]	Loss: 0.044949 Loss_all: 0.091308
+Train epoch: 71 [2560/3804 (67%)]	Loss: 0.026429 Loss_all: 0.074240
+Train epoch: 71	Loss: 0.027574
+0.982296578754125 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.6812100410461426 s
+Training on 3804 samples...
+Train epoch: 72 [0/3804 (0%)]	Loss: 0.015430 Loss_all: 0.061138
+Train epoch: 72 [2560/3804 (67%)]	Loss: 0.008263 Loss_all: 0.055856
+Train epoch: 72	Loss: 0.020025
+0.9825089136416318 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.8079710006713867 s
+Training on 3804 samples...
+Train epoch: 73 [0/3804 (0%)]	Loss: 0.004972 Loss_all: 0.050971
+Train epoch: 73 [2560/3804 (67%)]	Loss: 0.045830 Loss_all: 0.091589
+Train epoch: 73	Loss: 0.030257
+0.9851586760919765 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.4632365703582764 s
+Training on 3804 samples...
+Train epoch: 74 [0/3804 (0%)]	Loss: 0.023779 Loss_all: 0.070218
+Train epoch: 74 [2560/3804 (67%)]	Loss: 0.010634 Loss_all: 0.056069
+Train epoch: 74	Loss: 0.019622
+0.9846234152297197 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.7305474281311035 s
+Training on 3804 samples...
+Train epoch: 75 [0/3804 (0%)]	Loss: 0.026898 Loss_all: 0.071313
+Train epoch: 75 [2560/3804 (67%)]	Loss: 0.021758 Loss_all: 0.066675
+Train epoch: 75	Loss: 0.022862
+0.9859283900591883 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.9297025203704834 s
+Training on 3804 samples...
+Train epoch: 76 [0/3804 (0%)]	Loss: 0.015054 Loss_all: 0.062717
+Train epoch: 76 [2560/3804 (67%)]	Loss: 0.014734 Loss_all: 0.059367
+Train epoch: 76	Loss: 0.014168
+0.9847030408125348 No improvement since epoch  26 ; best_AUROC, best_AUPRC, best_precision, best_recall: 0.9861283572479764 0.9842778689161787 0.9237147595356551 0.9670138888888888 Human
+spend time： 2.294583797454834 s
+early stopping at epoch  76  due to no validation improvement.

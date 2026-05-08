@@ -18,7 +18,7 @@ FOLD=0
 OUTPUT="${HAG_DTA_OUTPUT_ROOT:-/root/autodl-tmp/HAG-DTA-runs}"
 mkdir -p "$OUTPUT/sensitivity_mmd"
 
-BETAS=(0 0.01 0.05 0.1 0.5)
+BETAS=(0 0.01 0.05 0.1 0.5 1.0)
 
 echo "============================================"
 echo " MMD Loss Coefficient Ablation — Davis + GIN"
@@ -31,7 +31,7 @@ for beta in "${BETAS[@]}"; do
 
     echo "--- β = $beta ---"
 
-    HAG_DTA_N1=6 HAG_DTA_N2=3 HAG_DTA_MMD_BETA=$beta \
+    HAG_DTA_N1=4 HAG_DTA_N2=2 HAG_DTA_MMD_BETA=$beta \
     python3 -c "
 import config.training as ct
 ct.SEEDS = [100]
