@@ -1,0 +1,216 @@
+Diff_DTA_GIN
+fold_id: 0
+cuda_name: cuda:0
+Learning rate:  0.0005
+Epochs:  1000
+Validation interval:  5
+Early stop patience:  50
+
+running on  davis
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/davis_fold0_train.pt, loading ...
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/davis_fold0_val.pt, loading ...
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/davis_fold0_test.pt, loading ...
+epoch 1 | val mse= 4.7567 ci= 0.6758 r2= -0.0452 | davis seed= 100
+epoch 5 | val mse= 0.5106 ci= 0.7891 r2= 0.34 | davis seed= 100
+epoch 10 | val mse= 0.5072 ci= 0.8057 r2= 0.3153 | davis seed= 100
+epoch 15 | val mse= 0.416 ci= 0.8233 r2= 0.4321 | davis seed= 100
+epoch 20 | val mse= 0.3987 ci= 0.8066 r2= 0.4602 | davis seed= 100
+epoch 25 | val mse= 0.3713 ci= 0.8236 r2= 0.5063 | davis seed= 100
+epoch 30 | val mse= 0.3297 ci= 0.8571 r2= 0.5295 | davis seed= 100
+epoch 35 | val mse= 0.2973 ci= 0.8582 r2= 0.6072 | davis seed= 100
+epoch 40 | val mse= 0.2887 ci= 0.861 r2= 0.6164 | davis seed= 100
+epoch 45 | val mse= 0.2787 ci= 0.8555 r2= 0.6329 | davis seed= 100
+epoch 50 | val mse= 0.2638 ci= 0.8731 r2= 0.6423 | davis seed= 100
+epoch 55 | val mse= 0.2703 ci= 0.8526 r2= 0.6092 | davis seed= 100 (no improvement)
+epoch 60 | val mse= 0.3385 ci= 0.8578 r2= 0.4643 | davis seed= 100 (no improvement)
+epoch 65 | val mse= 0.2581 ci= 0.8641 r2= 0.6593 | davis seed= 100
+epoch 70 | val mse= 0.2681 ci= 0.8738 r2= 0.587 | davis seed= 100 (no improvement)
+epoch 75 | val mse= 0.2467 ci= 0.8768 r2= 0.6568 | davis seed= 100
+epoch 80 | val mse= 0.243 ci= 0.8735 r2= 0.6509 | davis seed= 100
+epoch 85 | val mse= 0.2356 ci= 0.8846 r2= 0.6684 | davis seed= 100
+epoch 90 | val mse= 0.24 ci= 0.8832 r2= 0.6298 | davis seed= 100 (no improvement)
+epoch 95 | val mse= 0.2647 ci= 0.8671 r2= 0.6272 | davis seed= 100 (no improvement)
+epoch 100 | val mse= 0.2407 ci= 0.8818 r2= 0.6412 | davis seed= 100 (no improvement)
+epoch 105 | val mse= 0.2377 ci= 0.8763 r2= 0.6502 | davis seed= 100 (no improvement)
+epoch 110 | val mse= 0.2368 ci= 0.885 r2= 0.6434 | davis seed= 100 (no improvement)
+epoch 115 | val mse= 0.2329 ci= 0.8864 r2= 0.6615 | davis seed= 100
+epoch 120 | val mse= 0.2487 ci= 0.8685 r2= 0.6409 | davis seed= 100 (no improvement)
+epoch 125 | val mse= 0.2394 ci= 0.8655 r2= 0.6546 | davis seed= 100 (no improvement)
+epoch 130 | val mse= 0.2364 ci= 0.881 r2= 0.6401 | davis seed= 100 (no improvement)
+epoch 135 | val mse= 0.2335 ci= 0.884 r2= 0.6274 | davis seed= 100 (no improvement)
+epoch 140 | val mse= 0.2275 ci= 0.8899 r2= 0.6503 | davis seed= 100
+epoch 145 | val mse= 0.2318 ci= 0.8871 r2= 0.6278 | davis seed= 100 (no improvement)
+epoch 150 | val mse= 0.2293 ci= 0.8842 r2= 0.6583 | davis seed= 100 (no improvement)
+epoch 155 | val mse= 0.2306 ci= 0.8871 r2= 0.6482 | davis seed= 100 (no improvement)
+epoch 160 | val mse= 0.2219 ci= 0.8804 r2= 0.6727 | davis seed= 100
+epoch 165 | val mse= 0.227 ci= 0.8903 r2= 0.6421 | davis seed= 100 (no improvement)
+epoch 170 | val mse= 0.231 ci= 0.8825 r2= 0.6567 | davis seed= 100 (no improvement)
+epoch 175 | val mse= 0.2262 ci= 0.8862 r2= 0.6634 | davis seed= 100 (no improvement)
+epoch 180 | val mse= 0.2318 ci= 0.8844 r2= 0.6465 | davis seed= 100 (no improvement)
+epoch 185 | val mse= 0.229 ci= 0.8812 r2= 0.6672 | davis seed= 100 (no improvement)
+epoch 190 | val mse= 0.2234 ci= 0.8826 r2= 0.675 | davis seed= 100 (no improvement)
+epoch 195 | val mse= 0.2291 ci= 0.8873 r2= 0.6513 | davis seed= 100 (no improvement)
+epoch 200 | val mse= 0.2236 ci= 0.8779 r2= 0.6846 | davis seed= 100 (no improvement)
+epoch 205 | val mse= 0.2239 ci= 0.887 r2= 0.6571 | davis seed= 100 (no improvement)
+epoch 210 | val mse= 0.2333 ci= 0.8838 r2= 0.6536 | davis seed= 100 (no improvement)
+epoch 215 | val mse= 0.2378 ci= 0.8669 r2= 0.6585 | davis seed= 100 (no improvement)
+epoch 220 | val mse= 0.2204 ci= 0.8844 r2= 0.6739 | davis seed= 100
+epoch 225 | val mse= 0.2204 ci= 0.8876 r2= 0.6586 | davis seed= 100
+epoch 230 | val mse= 0.2311 ci= 0.891 r2= 0.6235 | davis seed= 100 (no improvement)
+epoch 235 | val mse= 0.2262 ci= 0.8865 r2= 0.6699 | davis seed= 100 (no improvement)
+epoch 240 | val mse= 0.2247 ci= 0.885 r2= 0.6488 | davis seed= 100 (no improvement)
+epoch 245 | val mse= 0.2206 ci= 0.887 r2= 0.6573 | davis seed= 100 (no improvement)
+epoch 250 | val mse= 0.2208 ci= 0.8876 r2= 0.6652 | davis seed= 100 (no improvement)
+epoch 255 | val mse= 0.221 ci= 0.891 r2= 0.6516 | davis seed= 100 (no improvement)
+epoch 260 | val mse= 0.2188 ci= 0.8874 r2= 0.6711 | davis seed= 100
+epoch 265 | val mse= 0.2327 ci= 0.886 r2= 0.6197 | davis seed= 100 (no improvement)
+epoch 270 | val mse= 0.228 ci= 0.8809 r2= 0.6606 | davis seed= 100 (no improvement)
+epoch 275 | val mse= 0.2326 ci= 0.888 r2= 0.6218 | davis seed= 100 (no improvement)
+epoch 280 | val mse= 0.2244 ci= 0.8896 r2= 0.6524 | davis seed= 100 (no improvement)
+epoch 285 | val mse= 0.2172 ci= 0.8876 r2= 0.6799 | davis seed= 100
+epoch 290 | val mse= 0.219 ci= 0.8896 r2= 0.6652 | davis seed= 100 (no improvement)
+epoch 295 | val mse= 0.2233 ci= 0.8942 r2= 0.6463 | davis seed= 100 (no improvement)
+epoch 300 | val mse= 0.2194 ci= 0.892 r2= 0.6763 | davis seed= 100 (no improvement)
+epoch 305 | val mse= 0.2259 ci= 0.8887 r2= 0.6397 | davis seed= 100 (no improvement)
+epoch 310 | val mse= 0.2299 ci= 0.873 r2= 0.6692 | davis seed= 100 (no improvement)
+epoch 315 | val mse= 0.2188 ci= 0.8856 r2= 0.682 | davis seed= 100 (no improvement)
+epoch 320 | val mse= 0.2204 ci= 0.8931 r2= 0.6474 | davis seed= 100 (no improvement)
+epoch 325 | val mse= 0.221 ci= 0.888 r2= 0.666 | davis seed= 100 (no improvement)
+epoch 330 | val mse= 0.2168 ci= 0.8919 r2= 0.6648 | davis seed= 100
+epoch 335 | val mse= 0.2241 ci= 0.8936 r2= 0.6493 | davis seed= 100 (no improvement)
+epoch 340 | val mse= 0.2188 ci= 0.8936 r2= 0.6603 | davis seed= 100 (no improvement)
+epoch 345 | val mse= 0.2186 ci= 0.893 r2= 0.6642 | davis seed= 100 (no improvement)
+epoch 350 | val mse= 0.2219 ci= 0.8867 r2= 0.6883 | davis seed= 100 (no improvement)
+epoch 355 | val mse= 0.2175 ci= 0.8915 r2= 0.6648 | davis seed= 100 (no improvement)
+epoch 360 | val mse= 0.219 ci= 0.8898 r2= 0.6509 | davis seed= 100 (no improvement)
+epoch 365 | val mse= 0.2181 ci= 0.8928 r2= 0.6625 | davis seed= 100 (no improvement)
+epoch 370 | val mse= 0.2168 ci= 0.896 r2= 0.6702 | davis seed= 100 (no improvement)
+epoch 375 | val mse= 0.2179 ci= 0.8906 r2= 0.6527 | davis seed= 100 (no improvement)
+epoch 380 | val mse= 0.2165 ci= 0.895 r2= 0.6729 | davis seed= 100
+epoch 385 | val mse= 0.2159 ci= 0.8979 r2= 0.673 | davis seed= 100
+epoch 390 | val mse= 0.2173 ci= 0.8886 r2= 0.6885 | davis seed= 100 (no improvement)
+epoch 395 | val mse= 0.2159 ci= 0.8919 r2= 0.6783 | davis seed= 100
+epoch 400 | val mse= 0.2204 ci= 0.8867 r2= 0.6904 | davis seed= 100 (no improvement)
+epoch 405 | val mse= 0.2196 ci= 0.8899 r2= 0.6656 | davis seed= 100 (no improvement)
+epoch 410 | val mse= 0.2182 ci= 0.8958 r2= 0.6656 | davis seed= 100 (no improvement)
+epoch 415 | val mse= 0.2154 ci= 0.8905 r2= 0.6654 | davis seed= 100
+epoch 420 | val mse= 0.2138 ci= 0.8935 r2= 0.6769 | davis seed= 100
+epoch 425 | val mse= 0.2172 ci= 0.8943 r2= 0.6618 | davis seed= 100 (no improvement)
+epoch 430 | val mse= 0.2201 ci= 0.891 r2= 0.6693 | davis seed= 100 (no improvement)
+epoch 435 | val mse= 0.2164 ci= 0.8925 r2= 0.6637 | davis seed= 100 (no improvement)
+epoch 440 | val mse= 0.2166 ci= 0.8935 r2= 0.6764 | davis seed= 100 (no improvement)
+epoch 445 | val mse= 0.2183 ci= 0.8929 r2= 0.6642 | davis seed= 100 (no improvement)
+epoch 450 | val mse= 0.2191 ci= 0.8891 r2= 0.6848 | davis seed= 100 (no improvement)
+epoch 455 | val mse= 0.2127 ci= 0.8931 r2= 0.6845 | davis seed= 100
+epoch 460 | val mse= 0.2164 ci= 0.8922 r2= 0.6734 | davis seed= 100 (no improvement)
+epoch 465 | val mse= 0.2183 ci= 0.8912 r2= 0.6708 | davis seed= 100 (no improvement)
+epoch 470 | val mse= 0.2196 ci= 0.8893 r2= 0.6722 | davis seed= 100 (no improvement)
+epoch 475 | val mse= 0.2181 ci= 0.8952 r2= 0.6719 | davis seed= 100 (no improvement)
+epoch 480 | val mse= 0.2122 ci= 0.8927 r2= 0.688 | davis seed= 100
+epoch 485 | val mse= 0.2211 ci= 0.8932 r2= 0.6404 | davis seed= 100 (no improvement)
+epoch 490 | val mse= 0.2199 ci= 0.8959 r2= 0.6711 | davis seed= 100 (no improvement)
+epoch 495 | val mse= 0.2169 ci= 0.8908 r2= 0.6734 | davis seed= 100 (no improvement)
+epoch 500 | val mse= 0.2165 ci= 0.8931 r2= 0.6906 | davis seed= 100 (no improvement)
+epoch 505 | val mse= 0.2195 ci= 0.8908 r2= 0.665 | davis seed= 100 (no improvement)
+epoch 510 | val mse= 0.2141 ci= 0.8958 r2= 0.6692 | davis seed= 100 (no improvement)
+epoch 515 | val mse= 0.2137 ci= 0.8942 r2= 0.6824 | davis seed= 100 (no improvement)
+epoch 520 | val mse= 0.2173 ci= 0.8886 r2= 0.6743 | davis seed= 100 (no improvement)
+epoch 525 | val mse= 0.2177 ci= 0.8832 r2= 0.6721 | davis seed= 100 (no improvement)
+epoch 530 | val mse= 0.2161 ci= 0.8979 r2= 0.6854 | davis seed= 100 (no improvement)
+epoch 535 | val mse= 0.2131 ci= 0.8957 r2= 0.6988 | davis seed= 100 (no improvement)
+epoch 540 | val mse= 0.215 ci= 0.89 r2= 0.686 | davis seed= 100 (no improvement)
+epoch 545 | val mse= 0.2169 ci= 0.8903 r2= 0.6813 | davis seed= 100 (no improvement)
+epoch 550 | val mse= 0.2128 ci= 0.8938 r2= 0.6871 | davis seed= 100 (no improvement)
+epoch 555 | val mse= 0.2147 ci= 0.8894 r2= 0.676 | davis seed= 100 (no improvement)
+epoch 560 | val mse= 0.2165 ci= 0.8908 r2= 0.6789 | davis seed= 100 (no improvement)
+epoch 565 | val mse= 0.216 ci= 0.8947 r2= 0.6675 | davis seed= 100 (no improvement)
+epoch 570 | val mse= 0.2147 ci= 0.8905 r2= 0.678 | davis seed= 100 (no improvement)
+epoch 575 | val mse= 0.2154 ci= 0.8985 r2= 0.6733 | davis seed= 100 (no improvement)
+epoch 580 | val mse= 0.2167 ci= 0.8925 r2= 0.6769 | davis seed= 100 (no improvement)
+epoch 585 | val mse= 0.2129 ci= 0.8975 r2= 0.6774 | davis seed= 100 (no improvement)
+epoch 590 | val mse= 0.2159 ci= 0.8975 r2= 0.6705 | davis seed= 100 (no improvement)
+epoch 595 | val mse= 0.2121 ci= 0.8943 r2= 0.682 | davis seed= 100
+epoch 600 | val mse= 0.2192 ci= 0.8939 r2= 0.6808 | davis seed= 100 (no improvement)
+epoch 605 | val mse= 0.2154 ci= 0.8891 r2= 0.6959 | davis seed= 100 (no improvement)
+epoch 610 | val mse= 0.2149 ci= 0.8937 r2= 0.6709 | davis seed= 100 (no improvement)
+epoch 615 | val mse= 0.2174 ci= 0.8953 r2= 0.6661 | davis seed= 100 (no improvement)
+epoch 620 | val mse= 0.2136 ci= 0.8963 r2= 0.6645 | davis seed= 100 (no improvement)
+epoch 625 | val mse= 0.2143 ci= 0.8929 r2= 0.7077 | davis seed= 100 (no improvement)
+epoch 630 | val mse= 0.2159 ci= 0.8974 r2= 0.6718 | davis seed= 100 (no improvement)
+epoch 635 | val mse= 0.2139 ci= 0.8947 r2= 0.6835 | davis seed= 100 (no improvement)
+epoch 640 | val mse= 0.215 ci= 0.8973 r2= 0.6962 | davis seed= 100 (no improvement)
+epoch 645 | val mse= 0.2164 ci= 0.8961 r2= 0.6961 | davis seed= 100 (no improvement)
+epoch 650 | val mse= 0.2136 ci= 0.8942 r2= 0.6926 | davis seed= 100 (no improvement)
+epoch 655 | val mse= 0.215 ci= 0.8988 r2= 0.671 | davis seed= 100 (no improvement)
+epoch 660 | val mse= 0.2126 ci= 0.8994 r2= 0.6698 | davis seed= 100 (no improvement)
+epoch 665 | val mse= 0.2136 ci= 0.8948 r2= 0.6923 | davis seed= 100 (no improvement)
+epoch 670 | val mse= 0.2174 ci= 0.8912 r2= 0.6845 | davis seed= 100 (no improvement)
+epoch 675 | val mse= 0.2136 ci= 0.894 r2= 0.684 | davis seed= 100 (no improvement)
+epoch 680 | val mse= 0.2162 ci= 0.896 r2= 0.6661 | davis seed= 100 (no improvement)
+epoch 685 | val mse= 0.2129 ci= 0.8927 r2= 0.6833 | davis seed= 100 (no improvement)
+epoch 690 | val mse= 0.2134 ci= 0.8905 r2= 0.6829 | davis seed= 100 (no improvement)
+epoch 695 | val mse= 0.2145 ci= 0.8992 r2= 0.6669 | davis seed= 100 (no improvement)
+epoch 700 | val mse= 0.2171 ci= 0.894 r2= 0.6816 | davis seed= 100 (no improvement)
+epoch 705 | val mse= 0.2157 ci= 0.8977 r2= 0.6801 | davis seed= 100 (no improvement)
+epoch 710 | val mse= 0.2143 ci= 0.8985 r2= 0.6787 | davis seed= 100 (no improvement)
+epoch 715 | val mse= 0.2172 ci= 0.8979 r2= 0.6828 | davis seed= 100 (no improvement)
+epoch 720 | val mse= 0.2143 ci= 0.89 r2= 0.6904 | davis seed= 100 (no improvement)
+epoch 725 | val mse= 0.2154 ci= 0.8962 r2= 0.6742 | davis seed= 100 (no improvement)
+epoch 730 | val mse= 0.2135 ci= 0.8963 r2= 0.6788 | davis seed= 100 (no improvement)
+epoch 735 | val mse= 0.2138 ci= 0.8982 r2= 0.6743 | davis seed= 100 (no improvement)
+epoch 740 | val mse= 0.215 ci= 0.8968 r2= 0.6919 | davis seed= 100 (no improvement)
+epoch 745 | val mse= 0.2167 ci= 0.8952 r2= 0.7032 | davis seed= 100 (no improvement)
+epoch 750 | val mse= 0.2132 ci= 0.8943 r2= 0.6927 | davis seed= 100 (no improvement)
+epoch 755 | val mse= 0.2129 ci= 0.9001 r2= 0.6903 | davis seed= 100 (no improvement)
+epoch 760 | val mse= 0.2129 ci= 0.8999 r2= 0.6886 | davis seed= 100 (no improvement)
+epoch 765 | val mse= 0.2115 ci= 0.8965 r2= 0.6783 | davis seed= 100
+epoch 770 | val mse= 0.2152 ci= 0.8938 r2= 0.6839 | davis seed= 100 (no improvement)
+epoch 775 | val mse= 0.2129 ci= 0.894 r2= 0.6919 | davis seed= 100 (no improvement)
+epoch 780 | val mse= 0.2104 ci= 0.8995 r2= 0.6746 | davis seed= 100
+epoch 785 | val mse= 0.2093 ci= 0.8964 r2= 0.6995 | davis seed= 100
+epoch 790 | val mse= 0.2129 ci= 0.8942 r2= 0.7054 | davis seed= 100 (no improvement)
+epoch 795 | val mse= 0.213 ci= 0.8927 r2= 0.697 | davis seed= 100 (no improvement)
+epoch 800 | val mse= 0.2097 ci= 0.8996 r2= 0.6803 | davis seed= 100 (no improvement)
+epoch 805 | val mse= 0.2122 ci= 0.8963 r2= 0.6759 | davis seed= 100 (no improvement)
+epoch 810 | val mse= 0.2165 ci= 0.8941 r2= 0.6746 | davis seed= 100 (no improvement)
+epoch 815 | val mse= 0.2127 ci= 0.8981 r2= 0.687 | davis seed= 100 (no improvement)
+epoch 820 | val mse= 0.2109 ci= 0.8991 r2= 0.6862 | davis seed= 100 (no improvement)
+epoch 825 | val mse= 0.2147 ci= 0.8964 r2= 0.6947 | davis seed= 100 (no improvement)
+epoch 830 | val mse= 0.2133 ci= 0.8975 r2= 0.6871 | davis seed= 100 (no improvement)
+epoch 835 | val mse= 0.2128 ci= 0.8949 r2= 0.6837 | davis seed= 100 (no improvement)
+epoch 840 | val mse= 0.2102 ci= 0.9003 r2= 0.6828 | davis seed= 100 (no improvement)
+epoch 845 | val mse= 0.2101 ci= 0.898 r2= 0.6906 | davis seed= 100 (no improvement)
+epoch 850 | val mse= 0.2111 ci= 0.8968 r2= 0.6819 | davis seed= 100 (no improvement)
+epoch 855 | val mse= 0.2121 ci= 0.8943 r2= 0.6903 | davis seed= 100 (no improvement)
+epoch 860 | val mse= 0.2114 ci= 0.8981 r2= 0.6797 | davis seed= 100 (no improvement)
+epoch 865 | val mse= 0.2086 ci= 0.8952 r2= 0.6961 | davis seed= 100
+epoch 870 | val mse= 0.2096 ci= 0.8999 r2= 0.6861 | davis seed= 100 (no improvement)
+epoch 875 | val mse= 0.2081 ci= 0.8938 r2= 0.6962 | davis seed= 100
+epoch 880 | val mse= 0.2184 ci= 0.8978 r2= 0.6959 | davis seed= 100 (no improvement)
+epoch 885 | val mse= 0.2123 ci= 0.8973 r2= 0.6933 | davis seed= 100 (no improvement)
+epoch 890 | val mse= 0.2106 ci= 0.8994 r2= 0.6768 | davis seed= 100 (no improvement)
+epoch 895 | val mse= 0.212 ci= 0.8977 r2= 0.6786 | davis seed= 100 (no improvement)
+epoch 900 | val mse= 0.2148 ci= 0.8955 r2= 0.6752 | davis seed= 100 (no improvement)
+epoch 905 | val mse= 0.2102 ci= 0.898 r2= 0.6842 | davis seed= 100 (no improvement)
+epoch 910 | val mse= 0.2118 ci= 0.894 r2= 0.6922 | davis seed= 100 (no improvement)
+epoch 915 | val mse= 0.2132 ci= 0.8933 r2= 0.6999 | davis seed= 100 (no improvement)
+epoch 920 | val mse= 0.213 ci= 0.8935 r2= 0.6898 | davis seed= 100 (no improvement)
+epoch 925 | val mse= 0.212 ci= 0.8945 r2= 0.6902 | davis seed= 100 (no improvement)
+epoch 930 | val mse= 0.2117 ci= 0.8969 r2= 0.6812 | davis seed= 100 (no improvement)
+epoch 935 | val mse= 0.2157 ci= 0.8978 r2= 0.6767 | davis seed= 100 (no improvement)
+epoch 940 | val mse= 0.2146 ci= 0.8944 r2= 0.6909 | davis seed= 100 (no improvement)
+epoch 945 | val mse= 0.2115 ci= 0.8928 r2= 0.6858 | davis seed= 100 (no improvement)
+epoch 950 | val mse= 0.2084 ci= 0.8994 r2= 0.6928 | davis seed= 100 (no improvement)
+epoch 955 | val mse= 0.2119 ci= 0.8968 r2= 0.6886 | davis seed= 100 (no improvement)
+epoch 960 | val mse= 0.2141 ci= 0.8951 r2= 0.6834 | davis seed= 100 (no improvement)
+epoch 965 | val mse= 0.2105 ci= 0.8964 r2= 0.6884 | davis seed= 100 (no improvement)
+epoch 970 | val mse= 0.2112 ci= 0.8986 r2= 0.679 | davis seed= 100 (no improvement)
+epoch 975 | val mse= 0.2149 ci= 0.895 r2= 0.6911 | davis seed=/root/HAG-DTA/py38_env/lib/python3.8/site-packages/torch_geometric/deprecation.py:26: UserWarning: 'data.DenseDataLoader' is deprecated, use 'loader.DenseDataLoader' instead
+  warnings.warn(out)
+ 100 (no improvement)
+epoch 980 | val mse= 0.212 ci= 0.9003 r2= 0.6979 | davis seed= 100 (no improvement)
+epoch 985 | val mse= 0.2112 ci= 0.8968 r2= 0.7049 | davis seed= 100 (no improvement)
+epoch 990 | val mse= 0.2099 ci= 0.8967 r2= 0.6901 | davis seed= 100 (no improvement)
+epoch 995 | val mse= 0.2145 ci= 0.8968 r2= 0.6909 | davis seed= 100 (no improvement)
+epoch 1000 | val mse= 0.2124 ci= 0.897 r2= 0.6891 | davis seed= 100 (no improvement)
+final test metrics at best val MSE epoch  875 : mse= 0.20811236  ci= 0.8938207588668763  rm2= 0.6961655834716052

@@ -31,7 +31,7 @@ for beta in "${BETAS[@]}"; do
 
     echo "--- β = $beta ---"
 
-    HAG_DTA_N1=6 HAG_DTA_N2=3 HAG_DTA_MMD_BETA=$beta \
+    HAG_DTA_N1=4 HAG_DTA_N2=2 HAG_DTA_MMD_BETA=$beta \
     python3 -c "
 import config.training as ct
 ct.SEEDS = [100]

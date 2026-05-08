@@ -1,0 +1,1957 @@
+Diff_DTA_GIN
+fold_id: 0
+cuda_name: cuda:0
+Learning rate:  0.0005
+Epochs:  1000
+Validation interval:  1
+Early stop patience:  50
+
+running on  davis
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/davis_fold0_train.pt, loading ...
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/davis_fold0_val.pt, loading ...
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/davis_fold0_test.pt, loading ...
+Training on 19235 samples...
+Train epoch: 1 [0/19235 (0%)]	Loss: 31.979954 Loss_all: 32.126598
+Train epoch: 1 [5120/19235 (26%)]	Loss: 20.943340 Loss_all: 21.077726
+Train epoch: 1 [10240/19235 (53%)]	Loss: 14.129427 Loss_all: 14.269227
+Train epoch: 1 [15360/19235 (79%)]	Loss: 10.574001 Loss_all: 10.710312
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.33002838 0.35651308 0.0258485  0.28761008]
+Train epoch: 1	Loss: 16.803385
+Make prediction for 4809 samples...
+val CI improved at epoch  1 ; best_val_ci, best_val_mse, best_val_r2: 0.5639320398553771 5.160498 0.002566074138696838 davis
+spend time： 25.691909790039062 s
+Training on 19235 samples...
+Train epoch: 2 [0/19235 (0%)]	Loss: 7.885864 Loss_all: 8.020459
+Train epoch: 2 [5120/19235 (26%)]	Loss: 5.813092 Loss_all: 5.951996
+Train epoch: 2 [10240/19235 (53%)]	Loss: 4.640806 Loss_all: 4.774986
+Train epoch: 2 [15360/19235 (79%)]	Loss: 2.788657 Loss_all: 2.919259
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.42035913 0.26626396 0.00978218 0.30359468]
+Train epoch: 2	Loss: 4.837725
+Make prediction for 4809 samples...
+val CI improved at epoch  2 ; best_val_ci, best_val_mse, best_val_r2: 0.6642434862741162 3.0008268 0.11408969831758552 davis
+spend time： 21.46042776107788 s
+Training on 19235 samples...
+Train epoch: 3 [0/19235 (0%)]	Loss: 2.591635 Loss_all: 2.718755
+Train epoch: 3 [5120/19235 (26%)]	Loss: 1.638405 Loss_all: 1.764294
+Train epoch: 3 [10240/19235 (53%)]	Loss: 1.498940 Loss_all: 1.613471
+Train epoch: 3 [15360/19235 (79%)]	Loss: 1.109045 Loss_all: 1.220928
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.44097212 0.2647437  0.02174032 0.27254376]
+Train epoch: 3	Loss: 1.477537
+Make prediction for 4809 samples...
+val CI improved at epoch  3 ; best_val_ci, best_val_mse, best_val_r2: 0.7020297586273303 1.1289189 0.13422657953063602 davis
+spend time： 20.0309419631958 s
+Training on 19235 samples...
+Train epoch: 4 [0/19235 (0%)]	Loss: 0.974071 Loss_all: 1.079421
+Train epoch: 4 [5120/19235 (26%)]	Loss: 0.987925 Loss_all: 1.092650
+Train epoch: 4 [10240/19235 (53%)]	Loss: 0.970874 Loss_all: 1.070469
+Train epoch: 4 [15360/19235 (79%)]	Loss: 0.994842 Loss_all: 1.090102
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.34700882 0.26139715 0.13305405 0.25853992]
+Train epoch: 4	Loss: 0.935513
+Make prediction for 4809 samples...
+val CI improved at epoch  4 ; best_val_ci, best_val_mse, best_val_r2: 0.7283849709642158 0.7552645 0.1955271092048859 davis
+spend time： 19.437807321548462 s
+Training on 19235 samples...
+Train epoch: 5 [0/19235 (0%)]	Loss: 0.821834 Loss_all: 0.913511
+Train epoch: 5 [5120/19235 (26%)]	Loss: 0.826623 Loss_all: 0.915243
+Train epoch: 5 [10240/19235 (53%)]	Loss: 0.631986 Loss_all: 0.717559
+Train epoch: 5 [15360/19235 (79%)]	Loss: 0.997731 Loss_all: 1.085088
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.28389862 0.20678486 0.26327756 0.24603894]
+Train epoch: 5	Loss: 0.788660
+Make prediction for 4809 samples...
+0.7203113853907015 No improvement since epoch  4 ; best_val_ci, best_val_mse, best_val_r2: 0.7283849709642158 0.7552645 0.1955271092048859 davis
+spend time： 19.69507384300232 s
+Training on 19235 samples...
+Train epoch: 6 [0/19235 (0%)]	Loss: 0.945385 Loss_all: 1.027789
+Train epoch: 6 [5120/19235 (26%)]	Loss: 0.629249 Loss_all: 0.711843
+Train epoch: 6 [10240/19235 (53%)]	Loss: 0.906935 Loss_all: 0.986043
+Train epoch: 6 [15360/19235 (79%)]	Loss: 0.741159 Loss_all: 0.821765
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.31797895 0.18623117 0.22081962 0.27497023]
+Train epoch: 6	Loss: 0.743523
+Make prediction for 4809 samples...
+val CI improved at epoch  6 ; best_val_ci, best_val_mse, best_val_r2: 0.7818073894104149 0.65592897 0.3197874475143161 davis
+spend time： 18.90185546875 s
+Training on 19235 samples...
+Train epoch: 7 [0/19235 (0%)]	Loss: 0.684836 Loss_all: 0.762815
+Train epoch: 7 [5120/19235 (26%)]	Loss: 0.767622 Loss_all: 0.845574
+Train epoch: 7 [10240/19235 (53%)]	Loss: 0.635723 Loss_all: 0.712068
+Train epoch: 7 [15360/19235 (79%)]	Loss: 0.759952 Loss_all: 0.835018
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.29592475 0.2044731  0.20683652 0.2927656 ]
+Train epoch: 7	Loss: 0.733463
+Make prediction for 4809 samples...
+0.7818012018454878 No improvement since epoch  6 ; best_val_ci, best_val_mse, best_val_r2: 0.7818073894104149 0.65592897 0.3197874475143161 davis
+spend time： 19.314722537994385 s
+Training on 19235 samples...
+Train epoch: 8 [0/19235 (0%)]	Loss: 0.652587 Loss_all: 0.727285
+Train epoch: 8 [5120/19235 (26%)]	Loss: 0.641526 Loss_all: 0.715848
+Train epoch: 8 [10240/19235 (53%)]	Loss: 0.704924 Loss_all: 0.778103
+Train epoch: 8 [15360/19235 (79%)]	Loss: 0.591893 Loss_all: 0.664540
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.28864837 0.2085162  0.20632379 0.2965116 ]
+Train epoch: 8	Loss: 0.693051
+Make prediction for 4809 samples...
+val CI improved at epoch  8 ; best_val_ci, best_val_mse, best_val_r2: 0.7909577808035629 0.58808273 0.3392984143778479 davis
+spend time： 19.627488136291504 s
+Training on 19235 samples...
+Train epoch: 9 [0/19235 (0%)]	Loss: 0.710992 Loss_all: 0.783463
+Train epoch: 9 [5120/19235 (26%)]	Loss: 0.646805 Loss_all: 0.719138
+Train epoch: 9 [10240/19235 (53%)]	Loss: 0.587287 Loss_all: 0.660170
+Train epoch: 9 [15360/19235 (79%)]	Loss: 0.692164 Loss_all: 0.764492
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.26300442 0.22894613 0.20352668 0.3045228 ]
+Train epoch: 9	Loss: 0.685434
+Make prediction for 4809 samples...
+val CI improved at epoch  9 ; best_val_ci, best_val_mse, best_val_r2: 0.7989617774619389 0.53388107 0.33860425108224745 davis
+spend time： 20.14304280281067 s
+Training on 19235 samples...
+Train epoch: 10 [0/19235 (0%)]	Loss: 0.659805 Loss_all: 0.731217
+Train epoch: 10 [5120/19235 (26%)]	Loss: 0.675576 Loss_all: 0.747638
+Train epoch: 10 [10240/19235 (53%)]	Loss: 0.808130 Loss_all: 0.879615
+Train epoch: 10 [15360/19235 (79%)]	Loss: 0.688350 Loss_all: 0.759436
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.25684303 0.22259961 0.20537286 0.31518447]
+Train epoch: 10	Loss: 0.679474
+Make prediction for 4809 samples...
+val CI improved at epoch  10 ; best_val_ci, best_val_mse, best_val_r2: 0.7992464902097466 0.5211134 0.3629347523371729 davis
+spend time： 20.257131576538086 s
+Training on 19235 samples...
+Train epoch: 11 [0/19235 (0%)]	Loss: 0.789733 Loss_all: 0.860500
+Train epoch: 11 [5120/19235 (26%)]	Loss: 0.625339 Loss_all: 0.695510
+Train epoch: 11 [10240/19235 (53%)]	Loss: 0.721389 Loss_all: 0.790510
+Train epoch: 11 [15360/19235 (79%)]	Loss: 0.767702 Loss_all: 0.836985
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.24195275 0.23900434 0.20077957 0.31826332]
+Train epoch: 11	Loss: 0.644228
+Make prediction for 4809 samples...
+val CI improved at epoch  11 ; best_val_ci, best_val_mse, best_val_r2: 0.8114874431422116 0.52530706 0.3792255980255878 davis
+spend time： 19.647430181503296 s
+Training on 19235 samples...
+Train epoch: 12 [0/19235 (0%)]	Loss: 0.527985 Loss_all: 0.597068
+Train epoch: 12 [5120/19235 (26%)]	Loss: 0.637635 Loss_all: 0.705465
+Train epoch: 12 [10240/19235 (53%)]	Loss: 0.513211 Loss_all: 0.580027
+Train epoch: 12 [15360/19235 (79%)]	Loss: 0.674904 Loss_all: 0.743868
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.24349605 0.24247691 0.19694126 0.31708583]
+Train epoch: 12	Loss: 0.650053
+Make prediction for 4809 samples...
+val CI improved at epoch  12 ; best_val_ci, best_val_mse, best_val_r2: 0.8130129745608016 0.5059199 0.37888911803670783 davis
+spend time： 20.003779649734497 s
+Training on 19235 samples...
+Train epoch: 13 [0/19235 (0%)]	Loss: 0.571442 Loss_all: 0.639012
+Train epoch: 13 [5120/19235 (26%)]	Loss: 0.535247 Loss_all: 0.602486
+Train epoch: 13 [10240/19235 (53%)]	Loss: 0.745191 Loss_all: 0.813691
+Train epoch: 13 [15360/19235 (79%)]	Loss: 0.657774 Loss_all: 0.724612
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.23161411 0.23712297 0.20243748 0.3288254 ]
+Train epoch: 13	Loss: 0.615248
+Make prediction for 4809 samples...
+0.8105941452413049 No improvement since epoch  12 ; best_val_ci, best_val_mse, best_val_r2: 0.8130129745608016 0.5059199 0.37888911803670783 davis
+spend time： 20.730627059936523 s
+Training on 19235 samples...
+Train epoch: 14 [0/19235 (0%)]	Loss: 0.582150 Loss_all: 0.648070
+Train epoch: 14 [5120/19235 (26%)]	Loss: 0.567965 Loss_all: 0.633356
+Train epoch: 14 [10240/19235 (53%)]	Loss: 0.653803 Loss_all: 0.718870
+Train epoch: 14 [15360/19235 (79%)]	Loss: 0.604797 Loss_all: 0.670473
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.2171082  0.25594652 0.20869417 0.31825116]
+Train epoch: 14	Loss: 0.598988
+Make prediction for 4809 samples...
+0.7915279691496488 No improvement since epoch  12 ; best_val_ci, best_val_mse, best_val_r2: 0.8130129745608016 0.5059199 0.37888911803670783 davis
+spend time： 21.00491452217102 s
+Training on 19235 samples...
+Train epoch: 15 [0/19235 (0%)]	Loss: 0.623059 Loss_all: 0.687938
+Train epoch: 15 [5120/19235 (26%)]	Loss: 0.533447 Loss_all: 0.597547
+Train epoch: 15 [10240/19235 (53%)]	Loss: 0.561362 Loss_all: 0.626318
+Train epoch: 15 [15360/19235 (79%)]	Loss: 0.588944 Loss_all: 0.653189
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.21137442 0.25099167 0.20702094 0.330613  ]
+Train epoch: 15	Loss: 0.603731
+Make prediction for 4809 samples...
+0.8093531570481959 No improvement since epoch  12 ; best_val_ci, best_val_mse, best_val_r2: 0.8130129745608016 0.5059199 0.37888911803670783 davis
+spend time： 21.137057304382324 s
+Training on 19235 samples...
+Train epoch: 16 [0/19235 (0%)]	Loss: 0.560993 Loss_all: 0.625348
+Train epoch: 16 [5120/19235 (26%)]	Loss: 0.638084 Loss_all: 0.700594
+Train epoch: 16 [10240/19235 (53%)]	Loss: 0.516797 Loss_all: 0.578468
+Train epoch: 16 [15360/19235 (79%)]	Loss: 0.472790 Loss_all: 0.534887
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.19533746 0.26612675 0.20779184 0.3307439 ]
+Train epoch: 16	Loss: 0.584970
+Make prediction for 4809 samples...
+val CI improved at epoch  16 ; best_val_ci, best_val_mse, best_val_r2: 0.8211431805914566 0.4793467 0.39907991697371037 davis
+spend time： 21.04455804824829 s
+Training on 19235 samples...
+Train epoch: 17 [0/19235 (0%)]	Loss: 0.593654 Loss_all: 0.655057
+Train epoch: 17 [5120/19235 (26%)]	Loss: 0.550989 Loss_all: 0.614090
+Train epoch: 17 [10240/19235 (53%)]	Loss: 0.538150 Loss_all: 0.600254
+Train epoch: 17 [15360/19235 (79%)]	Loss: 0.722298 Loss_all: 0.785025
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.20100059 0.26863915 0.2054942  0.3248662 ]
+Train epoch: 17	Loss: 0.584491
+Make prediction for 4809 samples...
+0.7893952935177374 No improvement since epoch  16 ; best_val_ci, best_val_mse, best_val_r2: 0.8211431805914566 0.4793467 0.39907991697371037 davis
+spend time： 21.682627201080322 s
+Training on 19235 samples...
+Train epoch: 18 [0/19235 (0%)]	Loss: 0.565585 Loss_all: 0.627503
+Train epoch: 18 [5120/19235 (26%)]	Loss: 0.540851 Loss_all: 0.602276
+Train epoch: 18 [10240/19235 (53%)]	Loss: 0.532324 Loss_all: 0.593593
+Train epoch: 18 [15360/19235 (79%)]	Loss: 0.559954 Loss_all: 0.621799
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.21519849 0.26044938 0.19822264 0.32612953]
+Train epoch: 18	Loss: 0.559272
+Make prediction for 4809 samples...
+0.8148973847451605 No improvement since epoch  16 ; best_val_ci, best_val_mse, best_val_r2: 0.8211431805914566 0.4793467 0.39907991697371037 davis
+spend time： 22.584757089614868 s
+Training on 19235 samples...
+Train epoch: 19 [0/19235 (0%)]	Loss: 0.553419 Loss_all: 0.613821
+Train epoch: 19 [5120/19235 (26%)]	Loss: 0.509045 Loss_all: 0.569323
+Train epoch: 19 [10240/19235 (53%)]	Loss: 0.708663 Loss_all: 0.767301
+Train epoch: 19 [15360/19235 (79%)]	Loss: 0.494113 Loss_all: 0.554195
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.2097925  0.26805067 0.20307213 0.31908464]
+Train epoch: 19	Loss: 0.526910
+Make prediction for 4809 samples...
+0.8029731842802624 No improvement since epoch  16 ; best_val_ci, best_val_mse, best_val_r2: 0.8211431805914566 0.4793467 0.39907991697371037 davis
+spend time： 23.172935724258423 s
+Training on 19235 samples...
+Train epoch: 20 [0/19235 (0%)]	Loss: 0.542397 Loss_all: 0.600982
+Train epoch: 20 [5120/19235 (26%)]	Loss: 0.436189 Loss_all: 0.495768
+Train epoch: 20 [10240/19235 (53%)]	Loss: 0.592666 Loss_all: 0.651036
+Train epoch: 20 [15360/19235 (79%)]	Loss: 0.479447 Loss_all: 0.538164
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.219112   0.26018816 0.19776174 0.32293808]
+Train epoch: 20	Loss: 0.524189
+Make prediction for 4809 samples...
+0.8028601976494713 No improvement since epoch  16 ; best_val_ci, best_val_mse, best_val_r2: 0.8211431805914566 0.4793467 0.39907991697371037 davis
+spend time： 23.546778678894043 s
+Training on 19235 samples...
+Train epoch: 21 [0/19235 (0%)]	Loss: 0.557975 Loss_all: 0.615952
+Train epoch: 21 [5120/19235 (26%)]	Loss: 0.558660 Loss_all: 0.616563
+Train epoch: 21 [10240/19235 (53%)]	Loss: 0.628556 Loss_all: 0.686995
+Train epoch: 21 [15360/19235 (79%)]	Loss: 0.545571 Loss_all: 0.603131
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.21819071 0.2673662  0.20265214 0.3117909 ]
+Train epoch: 21	Loss: 0.519020
+Make prediction for 4809 samples...
+0.8207356489179051 No improvement since epoch  16 ; best_val_ci, best_val_mse, best_val_r2: 0.8211431805914566 0.4793467 0.39907991697371037 davis
+spend time： 23.294514179229736 s
+Training on 19235 samples...
+Train epoch: 22 [0/19235 (0%)]	Loss: 0.554465 Loss_all: 0.612757
+Train epoch: 22 [5120/19235 (26%)]	Loss: 0.485703 Loss_all: 0.542465
+Train epoch: 22 [10240/19235 (53%)]	Loss: 0.473853 Loss_all: 0.530575
+Train epoch: 22 [15360/19235 (79%)]	Loss: 0.491695 Loss_all: 0.551251
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.21549524 0.2691737  0.20871441 0.30661672]
+Train epoch: 22	Loss: 0.492280
+Make prediction for 4809 samples...
+val CI improved at epoch  22 ; best_val_ci, best_val_mse, best_val_r2: 0.8235071694382436 0.40405208 0.5055097494670381 davis
+spend time： 23.045567750930786 s
+Training on 19235 samples...
+Train epoch: 23 [0/19235 (0%)]	Loss: 0.468583 Loss_all: 0.530935
+Train epoch: 23 [5120/19235 (26%)]	Loss: 0.561467 Loss_all: 0.622535
+Train epoch: 23 [10240/19235 (53%)]	Loss: 0.507892 Loss_all: 0.569669
+Train epoch: 23 [15360/19235 (79%)]	Loss: 0.411040 Loss_all: 0.471461
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.22463498 0.266942   0.21052682 0.29789618]
+Train epoch: 23	Loss: 0.485628
+Make prediction for 4809 samples...
+val CI improved at epoch  23 ; best_val_ci, best_val_mse, best_val_r2: 0.8314712435886656 0.37535334 0.5415568169909951 davis
+spend time： 22.21204400062561 s
+Training on 19235 samples...
+Train epoch: 24 [0/19235 (0%)]	Loss: 0.495115 Loss_all: 0.553548
+Train epoch: 24 [5120/19235 (26%)]	Loss: 0.420196 Loss_all: 0.479425
+Train epoch: 24 [10240/19235 (53%)]	Loss: 0.416612 Loss_all: 0.475483
+Train epoch: 24 [15360/19235 (79%)]	Loss: 0.470129 Loss_all: 0.528410
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.21052304 0.25863212 0.21706371 0.31378105]
+Train epoch: 24	Loss: 0.479456
+Make prediction for 4809 samples...
+0.8314086050889247 No improvement since epoch  23 ; best_val_ci, best_val_mse, best_val_r2: 0.8314712435886656 0.37535334 0.5415568169909951 davis
+spend time： 21.084764003753662 s
+Training on 19235 samples...
+Train epoch: 25 [0/19235 (0%)]	Loss: 0.425991 Loss_all: 0.483817
+Train epoch: 25 [5120/19235 (26%)]	Loss: 0.514641 Loss_all: 0.572161
+Train epoch: 25 [10240/19235 (53%)]	Loss: 0.420376 Loss_all: 0.477926
+Train epoch: 25 [15360/19235 (79%)]	Loss: 0.399665 Loss_all: 0.456636
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.20543611 0.2745388  0.22466715 0.29535794]
+Train epoch: 25	Loss: 0.473251
+Make prediction for 4809 samples...
+0.8159264700298088 No improvement since epoch  23 ; best_val_ci, best_val_mse, best_val_r2: 0.8314712435886656 0.37535334 0.5415568169909951 davis
+spend time： 19.4283664226532 s
+Training on 19235 samples...
+Train epoch: 26 [0/19235 (0%)]	Loss: 0.471667 Loss_all: 0.527975
+Train epoch: 26 [5120/19235 (26%)]	Loss: 0.366477 Loss_all: 0.422700
+Train epoch: 26 [10240/19235 (53%)]	Loss: 0.429390 Loss_all: 0.485930
+Train epoch: 26 [15360/19235 (79%)]	Loss: 0.447267 Loss_all: 0.503235
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.20456526 0.2798048  0.22420286 0.29142705]
+Train epoch: 26	Loss: 0.455187
+Make prediction for 4809 samples...
+0.8246215244532565 No improvement since epoch  23 ; best_val_ci, best_val_mse, best_val_r2: 0.8314712435886656 0.37535334 0.5415568169909951 davis
+spend time： 18.8276686668396 s
+Training on 19235 samples...
+Train epoch: 27 [0/19235 (0%)]	Loss: 0.480769 Loss_all: 0.536324
+Train epoch: 27 [5120/19235 (26%)]	Loss: 0.480199 Loss_all: 0.535627
+Train epoch: 27 [10240/19235 (53%)]	Loss: 0.411112 Loss_all: 0.467215
+Train epoch: 27 [15360/19235 (79%)]	Loss: 0.439750 Loss_all: 0.495399
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.20519468 0.27601662 0.2256101  0.29317856]
+Train epoch: 27	Loss: 0.460838
+Make prediction for 4809 samples...
+val CI improved at epoch  27 ; best_val_ci, best_val_mse, best_val_r2: 0.8352878692535322 0.37666214 0.5293081138063331 davis
+spend time： 18.70260977745056 s
+Training on 19235 samples...
+Train epoch: 28 [0/19235 (0%)]	Loss: 0.467866 Loss_all: 0.522664
+Train epoch: 28 [5120/19235 (26%)]	Loss: 0.481450 Loss_all: 0.536760
+Train epoch: 28 [10240/19235 (53%)]	Loss: 0.425419 Loss_all: 0.480445
+Train epoch: 28 [15360/19235 (79%)]	Loss: 0.408256 Loss_all: 0.463204
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.21161436 0.25385436 0.22826561 0.3062656 ]
+Train epoch: 28	Loss: 0.458611
+Make prediction for 4809 samples...
+0.8347473473146307 No improvement since epoch  27 ; best_val_ci, best_val_mse, best_val_r2: 0.8352878692535322 0.37666214 0.5293081138063331 davis
+spend time： 19.00057315826416 s
+Training on 19235 samples...
+Train epoch: 29 [0/19235 (0%)]	Loss: 0.414632 Loss_all: 0.468033
+Train epoch: 29 [5120/19235 (26%)]	Loss: 0.371308 Loss_all: 0.424810
+Train epoch: 29 [10240/19235 (53%)]	Loss: 0.506919 Loss_all: 0.560319
+Train epoch: 29 [15360/19235 (79%)]	Loss: 0.460568 Loss_all: 0.514713
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.20726027 0.2592206  0.23945186 0.29406732]
+Train epoch: 29	Loss: 0.447993
+Make prediction for 4809 samples...
+0.8260848411779225 No improvement since epoch  27 ; best_val_ci, best_val_mse, best_val_r2: 0.8352878692535322 0.37666214 0.5293081138063331 davis
+spend time： 19.9168758392334 s
+Training on 19235 samples...
+Train epoch: 30 [0/19235 (0%)]	Loss: 0.439224 Loss_all: 0.492649
+Train epoch: 30 [5120/19235 (26%)]	Loss: 0.414499 Loss_all: 0.466735
+Train epoch: 30 [10240/19235 (53%)]	Loss: 0.367336 Loss_all: 0.419387
+Train epoch: 30 [15360/19235 (79%)]	Loss: 0.477444 Loss_all: 0.530403
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.19842312 0.26105317 0.24835846 0.29216528]
+Train epoch: 30	Loss: 0.443871
+Make prediction for 4809 samples...
+val CI improved at epoch  30 ; best_val_ci, best_val_mse, best_val_r2: 0.8460487227509812 0.34240806 0.5632198915169396 davis
+spend time： 20.59612202644348 s
+Training on 19235 samples...
+Train epoch: 31 [0/19235 (0%)]	Loss: 0.402478 Loss_all: 0.454664
+Train epoch: 31 [5120/19235 (26%)]	Loss: 0.337221 Loss_all: 0.389641
+Train epoch: 31 [10240/19235 (53%)]	Loss: 0.409379 Loss_all: 0.461744
+Train epoch: 31 [15360/19235 (79%)]	Loss: 0.422020 Loss_all: 0.474046
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.19334263 0.25972322 0.25620112 0.2907331 ]
+Train epoch: 31	Loss: 0.429711
+Make prediction for 4809 samples...
+val CI improved at epoch  31 ; best_val_ci, best_val_mse, best_val_r2: 0.8477287737704207 0.34175467 0.5515678521303895 davis
+spend time： 20.80017900466919 s
+Training on 19235 samples...
+Train epoch: 32 [0/19235 (0%)]	Loss: 0.493969 Loss_all: 0.546350
+Train epoch: 32 [5120/19235 (26%)]	Loss: 0.451843 Loss_all: 0.504379
+Train epoch: 32 [10240/19235 (53%)]	Loss: 0.421540 Loss_all: 0.472044
+Train epoch: 32 [15360/19235 (79%)]	Loss: 0.321833 Loss_all: 0.372985
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.19603449 0.25576624 0.25650653 0.2916927 ]
+Train epoch: 32	Loss: 0.439761
+Make prediction for 4809 samples...
+0.8451564419840351 No improvement since epoch  31 ; best_val_ci, best_val_mse, best_val_r2: 0.8477287737704207 0.34175467 0.5515678521303895 davis
+spend time： 22.074110984802246 s
+Training on 19235 samples...
+Train epoch: 33 [0/19235 (0%)]	Loss: 0.407643 Loss_all: 0.458827
+Train epoch: 33 [5120/19235 (26%)]	Loss: 0.431561 Loss_all: 0.482335
+Train epoch: 33 [10240/19235 (53%)]	Loss: 0.328176 Loss_all: 0.378302
+Train epoch: 33 [15360/19235 (79%)]	Loss: 0.360967 Loss_all: 0.411160
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.19624333 0.26430395 0.25797886 0.2814739 ]
+Train epoch: 33	Loss: 0.417050
+Make prediction for 4809 samples...
+0.8463039386139312 No improvement since epoch  31 ; best_val_ci, best_val_mse, best_val_r2: 0.8477287737704207 0.34175467 0.5515678521303895 davis
+spend time： 23.680249214172363 s
+Training on 19235 samples...
+Train epoch: 34 [0/19235 (0%)]	Loss: 0.434147 Loss_all: 0.484130
+Train epoch: 34 [5120/19235 (26%)]	Loss: 0.399433 Loss_all: 0.448779
+Train epoch: 34 [10240/19235 (53%)]	Loss: 0.458453 Loss_all: 0.508304
+Train epoch: 34 [15360/19235 (79%)]	Loss: 0.446975 Loss_all: 0.496632
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.19722958 0.25670215 0.26387164 0.28219664]
+Train epoch: 34	Loss: 0.416531
+Make prediction for 4809 samples...
+0.8440500545183803 No improvement since epoch  31 ; best_val_ci, best_val_mse, best_val_r2: 0.8477287737704207 0.34175467 0.5515678521303895 davis
+spend time： 24.541924476623535 s
+Training on 19235 samples...
+Train epoch: 35 [0/19235 (0%)]	Loss: 0.493853 Loss_all: 0.543610
+Train epoch: 35 [5120/19235 (26%)]	Loss: 0.446109 Loss_all: 0.495005
+Train epoch: 35 [10240/19235 (53%)]	Loss: 0.362505 Loss_all: 0.412598
+Train epoch: 35 [15360/19235 (79%)]	Loss: 0.358696 Loss_all: 0.407377
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.19974206 0.25748023 0.2712334  0.27154425]
+Train epoch: 35	Loss: 0.407164
+Make prediction for 4809 samples...
+val CI improved at epoch  35 ; best_val_ci, best_val_mse, best_val_r2: 0.8509406285345406 0.32305416 0.5944639844923295 davis
+spend time： 25.08668279647827 s
+Training on 19235 samples...
+Train epoch: 36 [0/19235 (0%)]	Loss: 0.327066 Loss_all: 0.376169
+Train epoch: 36 [5120/19235 (26%)]	Loss: 0.297812 Loss_all: 0.346616
+Train epoch: 36 [10240/19235 (53%)]	Loss: 0.386187 Loss_all: 0.434436
+Train epoch: 36 [15360/19235 (79%)]	Loss: 0.392990 Loss_all: 0.443034
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.18987505 0.26291698 0.27343813 0.2737699 ]
+Train epoch: 36	Loss: 0.403953
+Make prediction for 4809 samples...
+0.843781107346962 No improvement since epoch  35 ; best_val_ci, best_val_mse, best_val_r2: 0.8509406285345406 0.32305416 0.5944639844923295 davis
+spend time： 24.502396821975708 s
+Training on 19235 samples...
+Train epoch: 37 [0/19235 (0%)]	Loss: 0.366813 Loss_all: 0.416918
+Train epoch: 37 [5120/19235 (26%)]	Loss: 0.394827 Loss_all: 0.445175
+Train epoch: 37 [10240/19235 (53%)]	Loss: 0.422155 Loss_all: 0.471448
+Train epoch: 37 [15360/19235 (79%)]	Loss: 0.392781 Loss_all: 0.442662
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.18722707 0.25287217 0.27894932 0.2809514 ]
+Train epoch: 37	Loss: 0.410319
+Make prediction for 4809 samples...
+0.84457099662854 No improvement since epoch  35 ; best_val_ci, best_val_mse, best_val_r2: 0.8509406285345406 0.32305416 0.5944639844923295 davis
+spend time： 23.520641803741455 s
+Training on 19235 samples...
+Train epoch: 38 [0/19235 (0%)]	Loss: 0.353774 Loss_all: 0.403355
+Train epoch: 38 [5120/19235 (26%)]	Loss: 0.375706 Loss_all: 0.424222
+Train epoch: 38 [10240/19235 (53%)]	Loss: 0.330609 Loss_all: 0.378710
+Train epoch: 38 [15360/19235 (79%)]	Loss: 0.407959 Loss_all: 0.455943
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17863028 0.2698952  0.27557912 0.2758954 ]
+Train epoch: 38	Loss: 0.388299
+Make prediction for 4809 samples...
+0.8364635913508353 No improvement since epoch  35 ; best_val_ci, best_val_mse, best_val_r2: 0.8509406285345406 0.32305416 0.5944639844923295 davis
+spend time： 22.56292462348938 s
+Training on 19235 samples...
+Train epoch: 39 [0/19235 (0%)]	Loss: 0.466180 Loss_all: 0.513654
+Train epoch: 39 [5120/19235 (26%)]	Loss: 0.363123 Loss_all: 0.410957
+Train epoch: 39 [10240/19235 (53%)]	Loss: 0.398683 Loss_all: 0.445854
+Train epoch: 39 [15360/19235 (79%)]	Loss: 0.404368 Loss_all: 0.451505
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.18082775 0.26089987 0.28111976 0.27715272]
+Train epoch: 39	Loss: 0.396096
+Make prediction for 4809 samples...
+0.846974907983281 No improvement since epoch  35 ; best_val_ci, best_val_mse, best_val_r2: 0.8509406285345406 0.32305416 0.5944639844923295 davis
+spend time： 21.288089513778687 s
+Training on 19235 samples...
+Train epoch: 40 [0/19235 (0%)]	Loss: 0.341591 Loss_all: 0.389703
+Train epoch: 40 [5120/19235 (26%)]	Loss: 0.370384 Loss_all: 0.417475
+Train epoch: 40 [10240/19235 (53%)]	Loss: 0.343812 Loss_all: 0.390802
+Train epoch: 40 [15360/19235 (79%)]	Loss: 0.407206 Loss_all: 0.454670
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.18513612 0.25840658 0.27952823 0.27692905]
+Train epoch: 40	Loss: 0.377517
+Make prediction for 4809 samples...
+val CI improved at epoch  40 ; best_val_ci, best_val_mse, best_val_r2: 0.856636154908146 0.30953756 0.6109813059345014 davis
+spend time： 18.904414892196655 s
+Training on 19235 samples...
+Train epoch: 41 [0/19235 (0%)]	Loss: 0.331637 Loss_all: 0.377558
+Train epoch: 41 [5120/19235 (26%)]	Loss: 0.387654 Loss_all: 0.433844
+Train epoch: 41 [10240/19235 (53%)]	Loss: 0.399331 Loss_all: 0.445178
+Train epoch: 41 [15360/19235 (79%)]	Loss: 0.381993 Loss_all: 0.427293
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.18776853 0.249106   0.2848595  0.27826598]
+Train epoch: 41	Loss: 0.367600
+Make prediction for 4809 samples...
+0.8545522169451806 No improvement since epoch  40 ; best_val_ci, best_val_mse, best_val_r2: 0.856636154908146 0.30953756 0.6109813059345014 davis
+spend time： 19.064680814743042 s
+Training on 19235 samples...
+Train epoch: 42 [0/19235 (0%)]	Loss: 0.390802 Loss_all: 0.436413
+Train epoch: 42 [5120/19235 (26%)]	Loss: 0.409710 Loss_all: 0.455977
+Train epoch: 42 [10240/19235 (53%)]	Loss: 0.377714 Loss_all: 0.423577
+Train epoch: 42 [15360/19235 (79%)]	Loss: 0.326570 Loss_all: 0.371732
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.18678784 0.25274184 0.2874603  0.27301005]
+Train epoch: 42	Loss: 0.369999
+Make prediction for 4809 samples...
+val CI improved at epoch  42 ; best_val_ci, best_val_mse, best_val_r2: 0.8597557047653405 0.31538814 0.6014461651325982 davis
+spend time： 18.76501154899597 s
+Training on 19235 samples...
+Train epoch: 43 [0/19235 (0%)]	Loss: 0.356071 Loss_all: 0.401745
+Train epoch: 43 [5120/19235 (26%)]	Loss: 0.350246 Loss_all: 0.396833
+Train epoch: 43 [10240/19235 (53%)]	Loss: 0.379993 Loss_all: 0.425496
+Train epoch: 43 [15360/19235 (79%)]	Loss: 0.343413 Loss_all: 0.387840
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.18519817 0.2560793  0.29167852 0.2670441 ]
+Train epoch: 43	Loss: 0.358330
+Make prediction for 4809 samples...
+0.8550045872741624 No improvement since epoch  42 ; best_val_ci, best_val_mse, best_val_r2: 0.8597557047653405 0.31538814 0.6014461651325982 davis
+spend time： 19.21344757080078 s
+Training on 19235 samples...
+Train epoch: 44 [0/19235 (0%)]	Loss: 0.327348 Loss_all: 0.371212
+Train epoch: 44 [5120/19235 (26%)]	Loss: 0.343045 Loss_all: 0.387399
+Train epoch: 44 [10240/19235 (53%)]	Loss: 0.377908 Loss_all: 0.421873
+Train epoch: 44 [15360/19235 (79%)]	Loss: 0.318927 Loss_all: 0.362118
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17816238 0.2554749  0.29574928 0.27061346]
+Train epoch: 44	Loss: 0.349696
+Make prediction for 4809 samples...
+0.8542097818451081 No improvement since epoch  42 ; best_val_ci, best_val_mse, best_val_r2: 0.8597557047653405 0.31538814 0.6014461651325982 davis
+spend time： 20.80226230621338 s
+Training on 19235 samples...
+Train epoch: 45 [0/19235 (0%)]	Loss: 0.372462 Loss_all: 0.416042
+Train epoch: 45 [5120/19235 (26%)]	Loss: 0.402128 Loss_all: 0.445638
+Train epoch: 45 [10240/19235 (53%)]	Loss: 0.367279 Loss_all: 0.410589
+Train epoch: 45 [15360/19235 (79%)]	Loss: 0.312630 Loss_all: 0.355282
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17782444 0.2533143  0.2951805  0.27368075]
+Train epoch: 45	Loss: 0.358884
+Make prediction for 4809 samples...
+0.8546903776414969 No improvement since epoch  42 ; best_val_ci, best_val_mse, best_val_r2: 0.8597557047653405 0.31538814 0.6014461651325982 davis
+spend time： 20.68337392807007 s
+Training on 19235 samples...
+Train epoch: 46 [0/19235 (0%)]	Loss: 0.389500 Loss_all: 0.432047
+Train epoch: 46 [5120/19235 (26%)]	Loss: 0.342940 Loss_all: 0.385841
+Train epoch: 46 [10240/19235 (53%)]	Loss: 0.424752 Loss_all: 0.467571
+Train epoch: 46 [15360/19235 (79%)]	Loss: 0.340666 Loss_all: 0.383437
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17773487 0.2525711  0.2964897  0.27320436]
+Train epoch: 46	Loss: 0.349759
+Make prediction for 4809 samples...
+0.8529211578781772 No improvement since epoch  42 ; best_val_ci, best_val_mse, best_val_r2: 0.8597557047653405 0.31538814 0.6014461651325982 davis
+spend time： 21.075066804885864 s
+Training on 19235 samples...
+Train epoch: 47 [0/19235 (0%)]	Loss: 0.334305 Loss_all: 0.375889
+Train epoch: 47 [5120/19235 (26%)]	Loss: 0.356948 Loss_all: 0.399109
+Train epoch: 47 [10240/19235 (53%)]	Loss: 0.291927 Loss_all: 0.334642
+Train epoch: 47 [15360/19235 (79%)]	Loss: 0.250476 Loss_all: 0.291864
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1772412  0.25619483 0.29774913 0.26881486]
+Train epoch: 47	Loss: 0.330667
+Make prediction for 4809 samples...
+val CI improved at epoch  47 ; best_val_ci, best_val_mse, best_val_r2: 0.8656853414722132 0.29110512 0.6488427164166465 davis
+spend time： 22.10445213317871 s
+Training on 19235 samples...
+Train epoch: 48 [0/19235 (0%)]	Loss: 0.358559 Loss_all: 0.400244
+Train epoch: 48 [5120/19235 (26%)]	Loss: 0.379540 Loss_all: 0.421076
+Train epoch: 48 [10240/19235 (53%)]	Loss: 0.362807 Loss_all: 0.404584
+Train epoch: 48 [15360/19235 (79%)]	Loss: 0.319409 Loss_all: 0.360199
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17187928 0.2541307  0.29813632 0.27585372]
+Train epoch: 48	Loss: 0.339496
+Make prediction for 4809 samples...
+0.864866718156248 No improvement since epoch  47 ; best_val_ci, best_val_mse, best_val_r2: 0.8656853414722132 0.29110512 0.6488427164166465 davis
+spend time： 23.319292783737183 s
+Training on 19235 samples...
+Train epoch: 49 [0/19235 (0%)]	Loss: 0.340409 Loss_all: 0.381989
+Train epoch: 49 [5120/19235 (26%)]	Loss: 0.348440 Loss_all: 0.388552
+Train epoch: 49 [10240/19235 (53%)]	Loss: 0.330545 Loss_all: 0.371406
+Train epoch: 49 [15360/19235 (79%)]	Loss: 0.384439 Loss_all: 0.425323
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17586574 0.2527881  0.30096993 0.27037632]
+Train epoch: 49	Loss: 0.339135
+Make prediction for 4809 samples...
+0.8607574121942156 No improvement since epoch  47 ; best_val_ci, best_val_mse, best_val_r2: 0.8656853414722132 0.29110512 0.6488427164166465 davis
+spend time： 24.374860048294067 s
+Training on 19235 samples...
+Train epoch: 50 [0/19235 (0%)]	Loss: 0.300706 Loss_all: 0.341623
+Train epoch: 50 [5120/19235 (26%)]	Loss: 0.290978 Loss_all: 0.331357
+Train epoch: 50 [10240/19235 (53%)]	Loss: 0.355669 Loss_all: 0.396561
+Train epoch: 50 [15360/19235 (79%)]	Loss: 0.309269 Loss_all: 0.349272
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16751842 0.25534767 0.303825   0.2733089 ]
+Train epoch: 50	Loss: 0.328234
+Make prediction for 4809 samples...
+0.8502343137600594 No improvement since epoch  47 ; best_val_ci, best_val_mse, best_val_r2: 0.8656853414722132 0.29110512 0.6488427164166465 davis
+spend time： 24.516764163970947 s
+Training on 19235 samples...
+Train epoch: 51 [0/19235 (0%)]	Loss: 0.308912 Loss_all: 0.349370
+Train epoch: 51 [5120/19235 (26%)]	Loss: 0.361929 Loss_all: 0.401644
+Train epoch: 51 [10240/19235 (53%)]	Loss: 0.407126 Loss_all: 0.446707
+Train epoch: 51 [15360/19235 (79%)]	Loss: 0.328630 Loss_all: 0.368543
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1691403  0.25337455 0.30392978 0.27355537]
+Train epoch: 51	Loss: 0.326722
+Make prediction for 4809 samples...
+0.8638144083128324 No improvement since epoch  47 ; best_val_ci, best_val_mse, best_val_r2: 0.8656853414722132 0.29110512 0.6488427164166465 davis
+spend time： 23.846872568130493 s
+Training on 19235 samples...
+Train epoch: 52 [0/19235 (0%)]	Loss: 0.318709 Loss_all: 0.358711
+Train epoch: 52 [5120/19235 (26%)]	Loss: 0.289685 Loss_all: 0.329294
+Train epoch: 52 [10240/19235 (53%)]	Loss: 0.392178 Loss_all: 0.431413
+Train epoch: 52 [15360/19235 (79%)]	Loss: 0.318484 Loss_all: 0.357525
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17419423 0.25315902 0.3027774  0.26986936]
+Train epoch: 52	Loss: 0.310657
+Make prediction for 4809 samples...
+val CI improved at epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 22.375237941741943 s
+Training on 19235 samples...
+Train epoch: 53 [0/19235 (0%)]	Loss: 0.290041 Loss_all: 0.328719
+Train epoch: 53 [5120/19235 (26%)]	Loss: 0.303389 Loss_all: 0.342540
+Train epoch: 53 [10240/19235 (53%)]	Loss: 0.331865 Loss_all: 0.370978
+Train epoch: 53 [15360/19235 (79%)]	Loss: 0.373933 Loss_all: 0.411879
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17353666 0.2426132  0.30502632 0.27882385]
+Train epoch: 53	Loss: 0.316710
+Make prediction for 4809 samples...
+0.8482458168670647 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 19.979215145111084 s
+Training on 19235 samples...
+Train epoch: 54 [0/19235 (0%)]	Loss: 0.301709 Loss_all: 0.340477
+Train epoch: 54 [5120/19235 (26%)]	Loss: 0.333973 Loss_all: 0.372779
+Train epoch: 54 [10240/19235 (53%)]	Loss: 0.338101 Loss_all: 0.376892
+Train epoch: 54 [15360/19235 (79%)]	Loss: 0.381224 Loss_all: 0.419959
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17413534 0.24800584 0.30008844 0.27777037]
+Train epoch: 54	Loss: 0.317542
+Make prediction for 4809 samples...
+0.8630169752877133 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 18.44962167739868 s
+Training on 19235 samples...
+Train epoch: 55 [0/19235 (0%)]	Loss: 0.330286 Loss_all: 0.368854
+Train epoch: 55 [5120/19235 (26%)]	Loss: 0.308972 Loss_all: 0.347586
+Train epoch: 55 [10240/19235 (53%)]	Loss: 0.307745 Loss_all: 0.345768
+Train epoch: 55 [15360/19235 (79%)]	Loss: 0.351543 Loss_all: 0.389675
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17657068 0.2506444  0.30755576 0.26522917]
+Train epoch: 55	Loss: 0.316864
+Make prediction for 4809 samples...
+0.8556018144313678 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 18.341890335083008 s
+Training on 19235 samples...
+Train epoch: 56 [0/19235 (0%)]	Loss: 0.275903 Loss_all: 0.313848
+Train epoch: 56 [5120/19235 (26%)]	Loss: 0.287393 Loss_all: 0.325581
+Train epoch: 56 [10240/19235 (53%)]	Loss: 0.274133 Loss_all: 0.311569
+Train epoch: 56 [15360/19235 (79%)]	Loss: 0.336117 Loss_all: 0.373209
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17443755 0.2497377  0.30661315 0.2692116 ]
+Train epoch: 56	Loss: 0.306218
+Make prediction for 4809 samples...
+0.8656345695353461 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 18.399781465530396 s
+Training on 19235 samples...
+Train epoch: 57 [0/19235 (0%)]	Loss: 0.311465 Loss_all: 0.348694
+Train epoch: 57 [5120/19235 (26%)]	Loss: 0.355095 Loss_all: 0.392358
+Train epoch: 57 [10240/19235 (53%)]	Loss: 0.264544 Loss_all: 0.301556
+Train epoch: 57 [15360/19235 (79%)]	Loss: 0.294092 Loss_all: 0.330198
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16743197 0.24134521 0.31477118 0.2764517 ]
+Train epoch: 57	Loss: 0.308456
+Make prediction for 4809 samples...
+0.8539406651513631 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 20.66061806678772 s
+Training on 19235 samples...
+Train epoch: 58 [0/19235 (0%)]	Loss: 0.260699 Loss_all: 0.297958
+Train epoch: 58 [5120/19235 (26%)]	Loss: 0.300298 Loss_all: 0.336649
+Train epoch: 58 [10240/19235 (53%)]	Loss: 0.320571 Loss_all: 0.357503
+Train epoch: 58 [15360/19235 (79%)]	Loss: 0.360727 Loss_all: 0.398189
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17885904 0.24854322 0.309582   0.26301578]
+Train epoch: 58	Loss: 0.303188
+Make prediction for 4809 samples...
+0.8619411018408768 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 21.478837490081787 s
+Training on 19235 samples...
+Train epoch: 59 [0/19235 (0%)]	Loss: 0.296927 Loss_all: 0.334423
+Train epoch: 59 [5120/19235 (26%)]	Loss: 0.327975 Loss_all: 0.365056
+Train epoch: 59 [10240/19235 (53%)]	Loss: 0.306906 Loss_all: 0.343741
+Train epoch: 59 [15360/19235 (79%)]	Loss: 0.260658 Loss_all: 0.297895
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16729233 0.25491184 0.31233746 0.26545846]
+Train epoch: 59	Loss: 0.308795
+Make prediction for 4809 samples...
+0.8635820779639962 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 21.20991039276123 s
+Training on 19235 samples...
+Train epoch: 60 [0/19235 (0%)]	Loss: 0.235742 Loss_all: 0.272112
+Train epoch: 60 [5120/19235 (26%)]	Loss: 0.303115 Loss_all: 0.339286
+Train epoch: 60 [10240/19235 (53%)]	Loss: 0.354220 Loss_all: 0.390305
+Train epoch: 60 [15360/19235 (79%)]	Loss: 0.345879 Loss_all: 0.381424
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16139792 0.25424862 0.30976215 0.2745913 ]
+Train epoch: 60	Loss: 0.301790
+Make prediction for 4809 samples...
+0.8659679351909364 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 21.06985092163086 s
+Training on 19235 samples...
+Train epoch: 61 [0/19235 (0%)]	Loss: 0.277205 Loss_all: 0.312387
+Train epoch: 61 [5120/19235 (26%)]	Loss: 0.237093 Loss_all: 0.272219
+Train epoch: 61 [10240/19235 (53%)]	Loss: 0.266923 Loss_all: 0.302459
+Train epoch: 61 [15360/19235 (79%)]	Loss: 0.332899 Loss_all: 0.368187
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17264892 0.24719517 0.31433305 0.26582292]
+Train epoch: 61	Loss: 0.294240
+Make prediction for 4809 samples...
+0.8632541370228625 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 22.41852378845215 s
+Training on 19235 samples...
+Train epoch: 62 [0/19235 (0%)]	Loss: 0.254027 Loss_all: 0.289397
+Train epoch: 62 [5120/19235 (26%)]	Loss: 0.305549 Loss_all: 0.341506
+Train epoch: 62 [10240/19235 (53%)]	Loss: 0.239077 Loss_all: 0.273918
+Train epoch: 62 [15360/19235 (79%)]	Loss: 0.333272 Loss_all: 0.367479
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17058358 0.24943681 0.3157243  0.2642553 ]
+Train epoch: 62	Loss: 0.293611
+Make prediction for 4809 samples...
+0.8620334067478023 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 23.72710394859314 s
+Training on 19235 samples...
+Train epoch: 63 [0/19235 (0%)]	Loss: 0.237929 Loss_all: 0.271913
+Train epoch: 63 [5120/19235 (26%)]	Loss: 0.307563 Loss_all: 0.342166
+Train epoch: 63 [10240/19235 (53%)]	Loss: 0.263759 Loss_all: 0.297847
+Train epoch: 63 [15360/19235 (79%)]	Loss: 0.280756 Loss_all: 0.315997
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16537184 0.25293037 0.3128365  0.2688614 ]
+Train epoch: 63	Loss: 0.285832
+Make prediction for 4809 samples...
+0.8595093040633823 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 24.075175523757935 s
+Training on 19235 samples...
+Train epoch: 64 [0/19235 (0%)]	Loss: 0.269235 Loss_all: 0.303340
+Train epoch: 64 [5120/19235 (26%)]	Loss: 0.246512 Loss_all: 0.280535
+Train epoch: 64 [10240/19235 (53%)]	Loss: 0.288650 Loss_all: 0.323270
+Train epoch: 64 [15360/19235 (79%)]	Loss: 0.269249 Loss_all: 0.303579
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16828074 0.24923481 0.31098157 0.2715029 ]
+Train epoch: 64	Loss: 0.286231
+Make prediction for 4809 samples...
+0.8563335575548642 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 23.69546675682068 s
+Training on 19235 samples...
+Train epoch: 65 [0/19235 (0%)]	Loss: 0.265104 Loss_all: 0.298368
+Train epoch: 65 [5120/19235 (26%)]	Loss: 0.259998 Loss_all: 0.294369
+Train epoch: 65 [10240/19235 (53%)]	Loss: 0.380301 Loss_all: 0.413401
+Train epoch: 65 [15360/19235 (79%)]	Loss: 0.301879 Loss_all: 0.335752
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1632996  0.24869101 0.31552112 0.27248836]
+Train epoch: 65	Loss: 0.291821
+Make prediction for 4809 samples...
+0.8596605179788599 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 22.097270965576172 s
+Training on 19235 samples...
+Train epoch: 66 [0/19235 (0%)]	Loss: 0.268566 Loss_all: 0.303212
+Train epoch: 66 [5120/19235 (26%)]	Loss: 0.223753 Loss_all: 0.258288
+Train epoch: 66 [10240/19235 (53%)]	Loss: 0.237718 Loss_all: 0.271239
+Train epoch: 66 [15360/19235 (79%)]	Loss: 0.265702 Loss_all: 0.298749
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16480151 0.24981417 0.31571403 0.26967034]
+Train epoch: 66	Loss: 0.283554
+Make prediction for 4809 samples...
+0.8661459336340434 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 20.119651556015015 s
+Training on 19235 samples...
+Train epoch: 67 [0/19235 (0%)]	Loss: 0.281191 Loss_all: 0.314587
+Train epoch: 67 [5120/19235 (26%)]	Loss: 0.284461 Loss_all: 0.318677
+Train epoch: 67 [10240/19235 (53%)]	Loss: 0.232460 Loss_all: 0.266852
+Train epoch: 67 [15360/19235 (79%)]	Loss: 0.287089 Loss_all: 0.320949
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.17060785 0.2506681  0.31127986 0.26744416]
+Train epoch: 67	Loss: 0.276861
+Make prediction for 4809 samples...
+0.8574364698128202 No improvement since epoch  52 ; best_val_ci, best_val_mse, best_val_r2: 0.8664023361532808 0.2728635 0.663435745901959 davis
+spend time： 18.335870504379272 s
+Training on 19235 samples...
+Train epoch: 68 [0/19235 (0%)]	Loss: 0.227262 Loss_all: 0.261809
+Train epoch: 68 [5120/19235 (26%)]	Loss: 0.260650 Loss_all: 0.294497
+Train epoch: 68 [10240/19235 (53%)]	Loss: 0.296583 Loss_all: 0.330886
+Train epoch: 68 [15360/19235 (79%)]	Loss: 0.250754 Loss_all: 0.283622
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16362672 0.25107998 0.314253   0.27104026]
+Train epoch: 68	Loss: 0.280153
+Make prediction for 4809 samples...
+val CI improved at epoch  68 ; best_val_ci, best_val_mse, best_val_r2: 0.8681045945975269 0.26677436 0.6499631701379195 davis
+spend time： 18.848849773406982 s
+Training on 19235 samples...
+Train epoch: 69 [0/19235 (0%)]	Loss: 0.252985 Loss_all: 0.285943
+Train epoch: 69 [5120/19235 (26%)]	Loss: 0.271927 Loss_all: 0.304466
+Train epoch: 69 [10240/19235 (53%)]	Loss: 0.275017 Loss_all: 0.307766
+Train epoch: 69 [15360/19235 (79%)]	Loss: 0.284094 Loss_all: 0.315551
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15943685 0.25511995 0.31353775 0.2719055 ]
+Train epoch: 69	Loss: 0.271088
+Make prediction for 4809 samples...
+0.8628672870731767 No improvement since epoch  68 ; best_val_ci, best_val_mse, best_val_r2: 0.8681045945975269 0.26677436 0.6499631701379195 davis
+spend time： 18.828776359558105 s
+Training on 19235 samples...
+Train epoch: 70 [0/19235 (0%)]	Loss: 0.224263 Loss_all: 0.255967
+Train epoch: 70 [5120/19235 (26%)]	Loss: 0.275141 Loss_all: 0.306720
+Train epoch: 70 [10240/19235 (53%)]	Loss: 0.247269 Loss_all: 0.279232
+Train epoch: 70 [15360/19235 (79%)]	Loss: 0.249709 Loss_all: 0.281423
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16683565 0.24480863 0.31469592 0.2736598 ]
+Train epoch: 70	Loss: 0.265098
+Make prediction for 4809 samples...
+0.8584144441159478 No improvement since epoch  68 ; best_val_ci, best_val_mse, best_val_r2: 0.8681045945975269 0.26677436 0.6499631701379195 davis
+spend time： 19.98463773727417 s
+Training on 19235 samples...
+Train epoch: 71 [0/19235 (0%)]	Loss: 0.288483 Loss_all: 0.319599
+Train epoch: 71 [5120/19235 (26%)]	Loss: 0.237961 Loss_all: 0.269096
+Train epoch: 71 [10240/19235 (53%)]	Loss: 0.277582 Loss_all: 0.308935
+Train epoch: 71 [15360/19235 (79%)]	Loss: 0.227116 Loss_all: 0.257683
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16277988 0.24782217 0.3269347  0.26246336]
+Train epoch: 71	Loss: 0.271490
+Make prediction for 4809 samples...
+0.8655909175362032 No improvement since epoch  68 ; best_val_ci, best_val_mse, best_val_r2: 0.8681045945975269 0.26677436 0.6499631701379195 davis
+spend time： 20.422584056854248 s
+Training on 19235 samples...
+Train epoch: 72 [0/19235 (0%)]	Loss: 0.238161 Loss_all: 0.269445
+Train epoch: 72 [5120/19235 (26%)]	Loss: 0.287694 Loss_all: 0.318782
+Train epoch: 72 [10240/19235 (53%)]	Loss: 0.301745 Loss_all: 0.331921
+Train epoch: 72 [15360/19235 (79%)]	Loss: 0.290042 Loss_all: 0.321192
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15653369 0.25218964 0.31986535 0.27141133]
+Train epoch: 72	Loss: 0.268517
+Make prediction for 4809 samples...
+0.8678603976858168 No improvement since epoch  68 ; best_val_ci, best_val_mse, best_val_r2: 0.8681045945975269 0.26677436 0.6499631701379195 davis
+spend time： 20.663203477859497 s
+Training on 19235 samples...
+Train epoch: 73 [0/19235 (0%)]	Loss: 0.257053 Loss_all: 0.288184
+Train epoch: 73 [5120/19235 (26%)]	Loss: 0.215682 Loss_all: 0.245674
+Train epoch: 73 [10240/19235 (53%)]	Loss: 0.251870 Loss_all: 0.282168
+Train epoch: 73 [15360/19235 (79%)]	Loss: 0.192626 Loss_all: 0.223364
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16301692 0.2503187  0.3211245  0.2655399 ]
+Train epoch: 73	Loss: 0.255677
+Make prediction for 4809 samples...
+0.8625991875133923 No improvement since epoch  68 ; best_val_ci, best_val_mse, best_val_r2: 0.8681045945975269 0.26677436 0.6499631701379195 davis
+spend time： 21.1969792842865 s
+Training on 19235 samples...
+Train epoch: 74 [0/19235 (0%)]	Loss: 0.261023 Loss_all: 0.290624
+Train epoch: 74 [5120/19235 (26%)]	Loss: 0.271469 Loss_all: 0.301600
+Train epoch: 74 [10240/19235 (53%)]	Loss: 0.256347 Loss_all: 0.285717
+Train epoch: 74 [15360/19235 (79%)]	Loss: 0.250131 Loss_all: 0.279253
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15452464 0.2537242  0.32026735 0.27148384]
+Train epoch: 74	Loss: 0.255737
+Make prediction for 4809 samples...
+val CI improved at epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 24.589523315429688 s
+Training on 19235 samples...
+Train epoch: 75 [0/19235 (0%)]	Loss: 0.220104 Loss_all: 0.249902
+Train epoch: 75 [5120/19235 (26%)]	Loss: 0.291039 Loss_all: 0.320564
+Train epoch: 75 [10240/19235 (53%)]	Loss: 0.206747 Loss_all: 0.236511
+Train epoch: 75 [15360/19235 (79%)]	Loss: 0.321850 Loss_all: 0.350765
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.16377461 0.24102311 0.3145163  0.280686  ]
+Train epoch: 75	Loss: 0.254973
+Make prediction for 4809 samples...
+0.8664203902810815 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 23.97816300392151 s
+Training on 19235 samples...
+Train epoch: 76 [0/19235 (0%)]	Loss: 0.231162 Loss_all: 0.260740
+Train epoch: 76 [5120/19235 (26%)]	Loss: 0.235584 Loss_all: 0.265250
+Train epoch: 76 [10240/19235 (53%)]	Loss: 0.230660 Loss_all: 0.259214
+Train epoch: 76 [15360/19235 (79%)]	Loss: 0.247355 Loss_all: 0.275788
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15924673 0.24144562 0.32256085 0.2767468 ]
+Train epoch: 76	Loss: 0.250672
+Make prediction for 4809 samples...
+0.8688765145124674 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 24.72992205619812 s
+Training on 19235 samples...
+Train epoch: 77 [0/19235 (0%)]	Loss: 0.257819 Loss_all: 0.286117
+Train epoch: 77 [5120/19235 (26%)]	Loss: 0.247434 Loss_all: 0.276124
+Train epoch: 77 [10240/19235 (53%)]	Loss: 0.222459 Loss_all: 0.250405
+Train epoch: 77 [15360/19235 (79%)]	Loss: 0.276504 Loss_all: 0.304360
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15603529 0.24828272 0.32454526 0.27113676]
+Train epoch: 77	Loss: 0.244742
+Make prediction for 4809 samples...
+0.8621555475842391 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 24.867204427719116 s
+Training on 19235 samples...
+Train epoch: 78 [0/19235 (0%)]	Loss: 0.242325 Loss_all: 0.270725
+Train epoch: 78 [5120/19235 (26%)]	Loss: 0.256215 Loss_all: 0.283877
+Train epoch: 78 [10240/19235 (53%)]	Loss: 0.277918 Loss_all: 0.305974
+Train epoch: 78 [15360/19235 (79%)]	Loss: 0.222746 Loss_all: 0.250950
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15763825 0.2437597  0.31830165 0.2803005 ]
+Train epoch: 78	Loss: 0.250876
+Make prediction for 4809 samples...
+0.8659708170704915 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 24.54032802581787 s
+Training on 19235 samples...
+Train epoch: 79 [0/19235 (0%)]	Loss: 0.354883 Loss_all: 0.383946
+Train epoch: 79 [5120/19235 (26%)]	Loss: 0.249224 Loss_all: 0.277377
+Train epoch: 79 [10240/19235 (53%)]	Loss: 0.240568 Loss_all: 0.268456
+Train epoch: 79 [15360/19235 (79%)]	Loss: 0.276680 Loss_all: 0.304973
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1616125  0.24367353 0.32420668 0.27050722]
+Train epoch: 79	Loss: 0.251750
+Make prediction for 4809 samples...
+0.8615620499182224 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 23.910459280014038 s
+Training on 19235 samples...
+Train epoch: 80 [0/19235 (0%)]	Loss: 0.261169 Loss_all: 0.290025
+Train epoch: 80 [5120/19235 (26%)]	Loss: 0.242192 Loss_all: 0.270644
+Train epoch: 80 [10240/19235 (53%)]	Loss: 0.243587 Loss_all: 0.272348
+Train epoch: 80 [15360/19235 (79%)]	Loss: 0.247682 Loss_all: 0.275834
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15124421 0.25453138 0.31517154 0.2790529 ]
+Train epoch: 80	Loss: 0.252058
+Make prediction for 4809 samples...
+0.8681262934553532 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 23.099327325820923 s
+Training on 19235 samples...
+Train epoch: 81 [0/19235 (0%)]	Loss: 0.242088 Loss_all: 0.270715
+Train epoch: 81 [5120/19235 (26%)]	Loss: 0.249394 Loss_all: 0.278419
+Train epoch: 81 [10240/19235 (53%)]	Loss: 0.256405 Loss_all: 0.284340
+Train epoch: 81 [15360/19235 (79%)]	Loss: 0.268127 Loss_all: 0.296596
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15092869 0.25396305 0.3138444  0.28126383]
+Train epoch: 81	Loss: 0.245473
+Make prediction for 4809 samples...
+0.8705607188289126 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 21.538868188858032 s
+Training on 19235 samples...
+Train epoch: 82 [0/19235 (0%)]	Loss: 0.193668 Loss_all: 0.223968
+Train epoch: 82 [5120/19235 (26%)]	Loss: 0.202749 Loss_all: 0.233316
+Train epoch: 82 [10240/19235 (53%)]	Loss: 0.261551 Loss_all: 0.291141
+Train epoch: 82 [15360/19235 (79%)]	Loss: 0.241552 Loss_all: 0.270945
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1493447  0.25715047 0.3145584  0.27894655]
+Train epoch: 82	Loss: 0.248071
+Make prediction for 4809 samples...
+0.8717939089949903 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 19.329928636550903 s
+Training on 19235 samples...
+Train epoch: 83 [0/19235 (0%)]	Loss: 0.272484 Loss_all: 0.300926
+Train epoch: 83 [5120/19235 (26%)]	Loss: 0.254593 Loss_all: 0.282709
+Train epoch: 83 [10240/19235 (53%)]	Loss: 0.240374 Loss_all: 0.267810
+Train epoch: 83 [15360/19235 (79%)]	Loss: 0.262306 Loss_all: 0.288965
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14920072 0.25060648 0.32299018 0.2772027 ]
+Train epoch: 83	Loss: 0.239868
+Make prediction for 4809 samples...
+0.8708161042141894 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 18.75080633163452 s
+Training on 19235 samples...
+Train epoch: 84 [0/19235 (0%)]	Loss: 0.223622 Loss_all: 0.250733
+Train epoch: 84 [5120/19235 (26%)]	Loss: 0.285055 Loss_all: 0.312398
+Train epoch: 84 [10240/19235 (53%)]	Loss: 0.317783 Loss_all: 0.345088
+Train epoch: 84 [15360/19235 (79%)]	Loss: 0.248272 Loss_all: 0.274943
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1509291  0.25704372 0.32002822 0.271999  ]
+Train epoch: 84	Loss: 0.243229
+Make prediction for 4809 samples...
+0.8646760902997969 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 18.633055686950684 s
+Training on 19235 samples...
+Train epoch: 85 [0/19235 (0%)]	Loss: 0.216023 Loss_all: 0.242981
+Train epoch: 85 [5120/19235 (26%)]	Loss: 0.255340 Loss_all: 0.281727
+Train epoch: 85 [10240/19235 (53%)]	Loss: 0.255667 Loss_all: 0.282125
+Train epoch: 85 [15360/19235 (79%)]	Loss: 0.218617 Loss_all: 0.246264
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14560482 0.26188973 0.32236397 0.27014154]
+Train epoch: 85	Loss: 0.245842
+Make prediction for 4809 samples...
+0.8654647081639241 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 18.793564081192017 s
+Training on 19235 samples...
+Train epoch: 86 [0/19235 (0%)]	Loss: 0.223669 Loss_all: 0.250740
+Train epoch: 86 [5120/19235 (26%)]	Loss: 0.225867 Loss_all: 0.252089
+Train epoch: 86 [10240/19235 (53%)]	Loss: 0.226466 Loss_all: 0.252407
+Train epoch: 86 [15360/19235 (79%)]	Loss: 0.225644 Loss_all: 0.251604
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14668147 0.25874686 0.327319   0.2672527 ]
+Train epoch: 86	Loss: 0.241301
+Make prediction for 4809 samples...
+0.8739143790193744 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 19.76204204559326 s
+Training on 19235 samples...
+Train epoch: 87 [0/19235 (0%)]	Loss: 0.184913 Loss_all: 0.210762
+Train epoch: 87 [5120/19235 (26%)]	Loss: 0.184659 Loss_all: 0.210026
+Train epoch: 87 [10240/19235 (53%)]	Loss: 0.267758 Loss_all: 0.293331
+Train epoch: 87 [15360/19235 (79%)]	Loss: 0.211435 Loss_all: 0.236908
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15049097 0.26402068 0.32207957 0.2634089 ]
+Train epoch: 87	Loss: 0.237419
+Make prediction for 4809 samples...
+0.8712805106283718 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 20.522454500198364 s
+Training on 19235 samples...
+Train epoch: 88 [0/19235 (0%)]	Loss: 0.249266 Loss_all: 0.275075
+Train epoch: 88 [5120/19235 (26%)]	Loss: 0.236829 Loss_all: 0.261742
+Train epoch: 88 [10240/19235 (53%)]	Loss: 0.207315 Loss_all: 0.232987
+Train epoch: 88 [15360/19235 (79%)]	Loss: 0.241226 Loss_all: 0.266006
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15449561 0.2611894  0.32036313 0.2639518 ]
+Train epoch: 88	Loss: 0.236469
+Make prediction for 4809 samples...
+0.8676452738531476 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 20.95952796936035 s
+Training on 19235 samples...
+Train epoch: 89 [0/19235 (0%)]	Loss: 0.250779 Loss_all: 0.275443
+Train epoch: 89 [5120/19235 (26%)]	Loss: 0.339106 Loss_all: 0.364210
+Train epoch: 89 [10240/19235 (53%)]	Loss: 0.225189 Loss_all: 0.250074
+Train epoch: 89 [15360/19235 (79%)]	Loss: 0.263547 Loss_all: 0.288335
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15102363 0.2531031  0.32343388 0.2724393 ]
+Train epoch: 89	Loss: 0.235120
+Make prediction for 4809 samples...
+0.8567622795192618 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 20.970149993896484 s
+Training on 19235 samples...
+Train epoch: 90 [0/19235 (0%)]	Loss: 0.270425 Loss_all: 0.294782
+Train epoch: 90 [5120/19235 (26%)]	Loss: 0.216318 Loss_all: 0.240948
+Train epoch: 90 [10240/19235 (53%)]	Loss: 0.193513 Loss_all: 0.217647
+Train epoch: 90 [15360/19235 (79%)]	Loss: 0.229957 Loss_all: 0.254560
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14653312 0.25870454 0.3207036  0.27405876]
+Train epoch: 90	Loss: 0.233603
+Make prediction for 4809 samples...
+0.8704933337040222 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 22.368694067001343 s
+Training on 19235 samples...
+Train epoch: 91 [0/19235 (0%)]	Loss: 0.230108 Loss_all: 0.253939
+Train epoch: 91 [5120/19235 (26%)]	Loss: 0.208167 Loss_all: 0.232005
+Train epoch: 91 [10240/19235 (53%)]	Loss: 0.241659 Loss_all: 0.265294
+Train epoch: 91 [15360/19235 (79%)]	Loss: 0.256268 Loss_all: 0.280048
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15249667 0.24988812 0.32420665 0.2734086 ]
+Train epoch: 91	Loss: 0.234472
+Make prediction for 4809 samples...
+0.8743294544364671 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 23.875228881835938 s
+Training on 19235 samples...
+Train epoch: 92 [0/19235 (0%)]	Loss: 0.206618 Loss_all: 0.230505
+Train epoch: 92 [5120/19235 (26%)]	Loss: 0.198631 Loss_all: 0.221988
+Train epoch: 92 [10240/19235 (53%)]	Loss: 0.247984 Loss_all: 0.271122
+Train epoch: 92 [15360/19235 (79%)]	Loss: 0.220459 Loss_all: 0.243727
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14696777 0.25519514 0.3244595  0.27337757]
+Train epoch: 92	Loss: 0.231300
+Make prediction for 4809 samples...
+0.8668085964093815 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 26.182989358901978 s
+Training on 19235 samples...
+Train epoch: 93 [0/19235 (0%)]	Loss: 0.172544 Loss_all: 0.196981
+Train epoch: 93 [5120/19235 (26%)]	Loss: 0.192365 Loss_all: 0.215643
+Train epoch: 93 [10240/19235 (53%)]	Loss: 0.221282 Loss_all: 0.244531
+Train epoch: 93 [15360/19235 (79%)]	Loss: 0.205044 Loss_all: 0.228498
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.15018651 0.25073892 0.32551074 0.27356386]
+Train epoch: 93	Loss: 0.226671
+Make prediction for 4809 samples...
+0.8709167157151265 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 25.133435249328613 s
+Training on 19235 samples...
+Train epoch: 94 [0/19235 (0%)]	Loss: 0.228900 Loss_all: 0.252358
+Train epoch: 94 [5120/19235 (26%)]	Loss: 0.215515 Loss_all: 0.238872
+Train epoch: 94 [10240/19235 (53%)]	Loss: 0.292520 Loss_all: 0.315439
+Train epoch: 94 [15360/19235 (79%)]	Loss: 0.228275 Loss_all: 0.250903
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1451145  0.2605111  0.3261493  0.26822513]
+Train epoch: 94	Loss: 0.229000
+Make prediction for 4809 samples...
+0.8723690982497159 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 26.007844924926758 s
+Training on 19235 samples...
+Train epoch: 95 [0/19235 (0%)]	Loss: 0.212051 Loss_all: 0.235137
+Train epoch: 95 [5120/19235 (26%)]	Loss: 0.266818 Loss_all: 0.290341
+Train epoch: 95 [10240/19235 (53%)]	Loss: 0.183124 Loss_all: 0.207008
+Train epoch: 95 [15360/19235 (79%)]	Loss: 0.313992 Loss_all: 0.337887
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1398578  0.2536053  0.32688674 0.2796502 ]
+Train epoch: 95	Loss: 0.228717
+Make prediction for 4809 samples...
+0.8659267412655316 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 24.47076153755188 s
+Training on 19235 samples...
+Train epoch: 96 [0/19235 (0%)]	Loss: 0.240709 Loss_all: 0.264360
+Train epoch: 96 [5120/19235 (26%)]	Loss: 0.203809 Loss_all: 0.227031
+Train epoch: 96 [10240/19235 (53%)]	Loss: 0.240204 Loss_all: 0.263651
+Train epoch: 96 [15360/19235 (79%)]	Loss: 0.239812 Loss_all: 0.262676
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14194621 0.25526822 0.33504426 0.26774138]
+Train epoch: 96	Loss: 0.221696
+Make prediction for 4809 samples...
+0.8711737115625077 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 23.47742986679077 s
+Training on 19235 samples...
+Train epoch: 97 [0/19235 (0%)]	Loss: 0.215610 Loss_all: 0.237882
+Train epoch: 97 [5120/19235 (26%)]	Loss: 0.250557 Loss_all: 0.273273
+Train epoch: 97 [10240/19235 (53%)]	Loss: 0.224011 Loss_all: 0.246697
+Train epoch: 97 [15360/19235 (79%)]	Loss: 0.193166 Loss_all: 0.215923
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14627424 0.24687907 0.3352422  0.2716045 ]
+Train epoch: 97	Loss: 0.226508
+Make prediction for 4809 samples...
+0.8671752732021818 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 23.526700496673584 s
+Training on 19235 samples...
+Train epoch: 98 [0/19235 (0%)]	Loss: 0.214151 Loss_all: 0.236749
+Train epoch: 98 [5120/19235 (26%)]	Loss: 0.232016 Loss_all: 0.253952
+Train epoch: 98 [10240/19235 (53%)]	Loss: 0.204794 Loss_all: 0.226418
+Train epoch: 98 [15360/19235 (79%)]	Loss: 0.231965 Loss_all: 0.253643
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1506712  0.25179026 0.32688904 0.27064952]
+Train epoch: 98	Loss: 0.220872
+Make prediction for 4809 samples...
+0.8658157889026616 No improvement since epoch  74 ; best_val_ci, best_val_mse, best_val_r2: 0.8756404553505315 0.25206846 0.6487551404726257 davis
+spend time： 22.51357340812683 s
+Training on 19235 samples...
+Train epoch: 99 [0/19235 (0%)]	Loss: 0.191409 Loss_all: 0.213221
+Train epoch: 99 [5120/19235 (26%)]	Loss: 0.216490 Loss_all: 0.238482
+Train epoch: 99 [10240/19235 (53%)]	Loss: 0.219722 Loss_all: 0.241675
+Train epoch: 99 [15360/19235 (79%)]	Loss: 0.182715 Loss_all: 0.204802
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14795133 0.24958658 0.33198008 0.27048194]
+Train epoch: 99	Loss: 0.213825
+Make prediction for 4809 samples...
+val CI improved at epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 21.739440441131592 s
+Training on 19235 samples...
+Train epoch: 100 [0/19235 (0%)]	Loss: 0.168165 Loss_all: 0.189926
+Train epoch: 100 [5120/19235 (26%)]	Loss: 0.183120 Loss_all: 0.204551
+Train epoch: 100 [10240/19235 (53%)]	Loss: 0.192332 Loss_all: 0.213638
+Train epoch: 100 [15360/19235 (79%)]	Loss: 0.204800 Loss_all: 0.225951
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14198697 0.24967721 0.3281431  0.28019273]
+Train epoch: 100	Loss: 0.216492
+Make prediction for 4809 samples...
+0.8694613665398188 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 22.299456119537354 s
+Training on 19235 samples...
+Train epoch: 101 [0/19235 (0%)]	Loss: 0.242968 Loss_all: 0.265003
+Train epoch: 101 [5120/19235 (26%)]	Loss: 0.205163 Loss_all: 0.226474
+Train epoch: 101 [10240/19235 (53%)]	Loss: 0.209477 Loss_all: 0.231220
+Train epoch: 101 [15360/19235 (79%)]	Loss: 0.183700 Loss_all: 0.204575
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14875375 0.24569093 0.3253676  0.2801877 ]
+Train epoch: 101	Loss: 0.210664
+Make prediction for 4809 samples...
+0.8743575951427107 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 23.741546392440796 s
+Training on 19235 samples...
+Train epoch: 102 [0/19235 (0%)]	Loss: 0.228054 Loss_all: 0.248765
+Train epoch: 102 [5120/19235 (26%)]	Loss: 0.213217 Loss_all: 0.234074
+Train epoch: 102 [10240/19235 (53%)]	Loss: 0.197712 Loss_all: 0.218957
+Train epoch: 102 [15360/19235 (79%)]	Loss: 0.212184 Loss_all: 0.233388
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14436933 0.2533407  0.3274382  0.27485174]
+Train epoch: 102	Loss: 0.211503
+Make prediction for 4809 samples...
+0.8750608585153099 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 23.98050355911255 s
+Training on 19235 samples...
+Train epoch: 103 [0/19235 (0%)]	Loss: 0.188528 Loss_all: 0.208888
+Train epoch: 103 [5120/19235 (26%)]	Loss: 0.229483 Loss_all: 0.250243
+Train epoch: 103 [10240/19235 (53%)]	Loss: 0.187385 Loss_all: 0.207554
+Train epoch: 103 [15360/19235 (79%)]	Loss: 0.249621 Loss_all: 0.269851
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14507958 0.25272325 0.32632136 0.27587593]
+Train epoch: 103	Loss: 0.209518
+Make prediction for 4809 samples...
+0.8698874609081515 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 23.94114589691162 s
+Training on 19235 samples...
+Train epoch: 104 [0/19235 (0%)]	Loss: 0.228287 Loss_all: 0.248660
+Train epoch: 104 [5120/19235 (26%)]	Loss: 0.238271 Loss_all: 0.258624
+Train epoch: 104 [10240/19235 (53%)]	Loss: 0.228713 Loss_all: 0.249031
+Train epoch: 104 [15360/19235 (79%)]	Loss: 0.236895 Loss_all: 0.257547
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.142814   0.25720417 0.3345244  0.26545742]
+Train epoch: 104	Loss: 0.216976
+Make prediction for 4809 samples...
+0.8585693875226142 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 23.884931325912476 s
+Training on 19235 samples...
+Train epoch: 105 [0/19235 (0%)]	Loss: 0.237066 Loss_all: 0.257083
+Train epoch: 105 [5120/19235 (26%)]	Loss: 0.224788 Loss_all: 0.245423
+Train epoch: 105 [10240/19235 (53%)]	Loss: 0.267984 Loss_all: 0.289273
+Train epoch: 105 [15360/19235 (79%)]	Loss: 0.207900 Loss_all: 0.230254
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14910145 0.25288957 0.33156317 0.26644588]
+Train epoch: 105	Loss: 0.219227
+Make prediction for 4809 samples...
+0.8700019732398836 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 24.270678520202637 s
+Training on 19235 samples...
+Train epoch: 106 [0/19235 (0%)]	Loss: 0.209288 Loss_all: 0.230562
+Train epoch: 106 [5120/19235 (26%)]	Loss: 0.229765 Loss_all: 0.251245
+Train epoch: 106 [10240/19235 (53%)]	Loss: 0.246325 Loss_all: 0.267085
+Train epoch: 106 [15360/19235 (79%)]	Loss: 0.249565 Loss_all: 0.270135
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14973518 0.25105786 0.336332   0.26287502]
+Train epoch: 106	Loss: 0.215761
+Make prediction for 4809 samples...
+0.8709300232177779 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 23.2472186088562 s
+Training on 19235 samples...
+Train epoch: 107 [0/19235 (0%)]	Loss: 0.180264 Loss_all: 0.201063
+Train epoch: 107 [5120/19235 (26%)]	Loss: 0.174994 Loss_all: 0.195304
+Train epoch: 107 [10240/19235 (53%)]	Loss: 0.170189 Loss_all: 0.189989
+Train epoch: 107 [15360/19235 (79%)]	Loss: 0.186778 Loss_all: 0.206549
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14482312 0.25088024 0.33176032 0.2725364 ]
+Train epoch: 107	Loss: 0.208818
+Make prediction for 4809 samples...
+0.8682841187415747 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 21.714776754379272 s
+Training on 19235 samples...
+Train epoch: 108 [0/19235 (0%)]	Loss: 0.183763 Loss_all: 0.203802
+Train epoch: 108 [5120/19235 (26%)]	Loss: 0.217229 Loss_all: 0.237325
+Train epoch: 108 [10240/19235 (53%)]	Loss: 0.255912 Loss_all: 0.275406
+Train epoch: 108 [15360/19235 (79%)]	Loss: 0.211152 Loss_all: 0.230512
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1468709  0.24948898 0.32909516 0.274545  ]
+Train epoch: 108	Loss: 0.209740
+Make prediction for 4809 samples...
+0.8750291578402042 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 21.298819065093994 s
+Training on 19235 samples...
+Train epoch: 109 [0/19235 (0%)]	Loss: 0.182447 Loss_all: 0.201724
+Train epoch: 109 [5120/19235 (26%)]	Loss: 0.188749 Loss_all: 0.208146
+Train epoch: 109 [10240/19235 (53%)]	Loss: 0.207361 Loss_all: 0.227415
+Train epoch: 109 [15360/19235 (79%)]	Loss: 0.183322 Loss_all: 0.203114
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14077133 0.25252315 0.33210772 0.27459788]
+Train epoch: 109	Loss: 0.207297
+Make prediction for 4809 samples...
+0.878750766240917 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 21.35685133934021 s
+Training on 19235 samples...
+Train epoch: 110 [0/19235 (0%)]	Loss: 0.191186 Loss_all: 0.210142
+Train epoch: 110 [5120/19235 (26%)]	Loss: 0.222690 Loss_all: 0.241939
+Train epoch: 110 [10240/19235 (53%)]	Loss: 0.153054 Loss_all: 0.171905
+Train epoch: 110 [15360/19235 (79%)]	Loss: 0.190653 Loss_all: 0.209840
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14498167 0.25322402 0.32836622 0.27342805]
+Train epoch: 110	Loss: 0.207930
+Make prediction for 4809 samples...
+0.8763703337284333 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 19.67417001724243 s
+Training on 19235 samples...
+Train epoch: 111 [0/19235 (0%)]	Loss: 0.217660 Loss_all: 0.237585
+Train epoch: 111 [5120/19235 (26%)]	Loss: 0.197505 Loss_all: 0.216550
+Train epoch: 111 [10240/19235 (53%)]	Loss: 0.176916 Loss_all: 0.196374
+Train epoch: 111 [15360/19235 (79%)]	Loss: 0.225827 Loss_all: 0.244926
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1440419  0.25306186 0.32373753 0.27915877]
+Train epoch: 111	Loss: 0.207955
+Make prediction for 4809 samples...
+0.8720930311405733 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 18.913989067077637 s
+Training on 19235 samples...
+Train epoch: 112 [0/19235 (0%)]	Loss: 0.203715 Loss_all: 0.222607
+Train epoch: 112 [5120/19235 (26%)]	Loss: 0.163869 Loss_all: 0.183021
+Train epoch: 112 [10240/19235 (53%)]	Loss: 0.183651 Loss_all: 0.202571
+Train epoch: 112 [15360/19235 (79%)]	Loss: 0.270519 Loss_all: 0.289760
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1448894  0.25244415 0.32464996 0.27801648]
+Train epoch: 112	Loss: 0.198333
+Make prediction for 4809 samples...
+0.8746904522313207 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 19.72705626487732 s
+Training on 19235 samples...
+Train epoch: 113 [0/19235 (0%)]	Loss: 0.224481 Loss_all: 0.242963
+Train epoch: 113 [5120/19235 (26%)]	Loss: 0.213339 Loss_all: 0.232005
+Train epoch: 113 [10240/19235 (53%)]	Loss: 0.174105 Loss_all: 0.192271
+Train epoch: 113 [15360/19235 (79%)]	Loss: 0.159543 Loss_all: 0.177780
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14312102 0.2564738  0.32800177 0.27240342]
+Train epoch: 113	Loss: 0.205845
+Make prediction for 4809 samples...
+0.8726298235882859 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 20.10210633277893 s
+Training on 19235 samples...
+Train epoch: 114 [0/19235 (0%)]	Loss: 0.184446 Loss_all: 0.202545
+Train epoch: 114 [5120/19235 (26%)]	Loss: 0.187967 Loss_all: 0.206559
+Train epoch: 114 [10240/19235 (53%)]	Loss: 0.205751 Loss_all: 0.225328
+Train epoch: 114 [15360/19235 (79%)]	Loss: 0.278349 Loss_all: 0.297171
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14187822 0.25922605 0.3210522  0.2778436 ]
+Train epoch: 114	Loss: 0.203339
+Make prediction for 4809 samples...
+0.8670142269917517 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 22.487409114837646 s
+Training on 19235 samples...
+Train epoch: 115 [0/19235 (0%)]	Loss: 0.219542 Loss_all: 0.238373
+Train epoch: 115 [5120/19235 (26%)]	Loss: 0.220210 Loss_all: 0.250587
+Train epoch: 115 [10240/19235 (53%)]	Loss: 0.215310 Loss_all: 0.249142
+Train epoch: 115 [15360/19235 (79%)]	Loss: 0.248557 Loss_all: 0.284339
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14954102 0.24907042 0.30231592 0.29907265]
+Train epoch: 115	Loss: 0.232597
+Make prediction for 4809 samples...
+0.8537364755087704 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 24.71884298324585 s
+Training on 19235 samples...
+Train epoch: 116 [0/19235 (0%)]	Loss: 0.193134 Loss_all: 0.227531
+Train epoch: 116 [5120/19235 (26%)]	Loss: 0.190339 Loss_all: 0.224880
+Train epoch: 116 [10240/19235 (53%)]	Loss: 0.174431 Loss_all: 0.206737
+Train epoch: 116 [15360/19235 (79%)]	Loss: 0.245096 Loss_all: 0.276506
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14539444 0.2358588  0.29035893 0.3283879 ]
+Train epoch: 116	Loss: 0.225799
+Make prediction for 4809 samples...
+0.8683779493494411 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 22.609273433685303 s
+Training on 19235 samples...
+Train epoch: 117 [0/19235 (0%)]	Loss: 0.206856 Loss_all: 0.237560
+Train epoch: 117 [5120/19235 (26%)]	Loss: 0.211542 Loss_all: 0.241150
+Train epoch: 117 [10240/19235 (53%)]	Loss: 0.217290 Loss_all: 0.247472
+Train epoch: 117 [15360/19235 (79%)]	Loss: 0.238156 Loss_all: 0.271659
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14518209 0.2340933  0.3047156  0.316009  ]
+Train epoch: 117	Loss: 0.221451
+Make prediction for 4809 samples...
+0.86038183547926 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 20.88711428642273 s
+Training on 19235 samples...
+Train epoch: 118 [0/19235 (0%)]	Loss: 0.212782 Loss_all: 0.247984
+Train epoch: 118 [5120/19235 (26%)]	Loss: 0.264978 Loss_all: 0.299863
+Train epoch: 118 [10240/19235 (53%)]	Loss: 0.221291 Loss_all: 0.255391
+Train epoch: 118 [15360/19235 (79%)]	Loss: 0.284095 Loss_all: 0.317995
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14498292 0.2268537  0.30452332 0.32364008]
+Train epoch: 118	Loss: 0.220361
+Make prediction for 4809 samples...
+0.874799031281616 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 20.527363777160645 s
+Training on 19235 samples...
+Train epoch: 119 [0/19235 (0%)]	Loss: 0.229225 Loss_all: 0.262212
+Train epoch: 119 [5120/19235 (26%)]	Loss: 0.249226 Loss_all: 0.281211
+Train epoch: 119 [10240/19235 (53%)]	Loss: 0.198982 Loss_all: 0.230112
+Train epoch: 119 [15360/19235 (79%)]	Loss: 0.193127 Loss_all: 0.223315
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13574886 0.24455726 0.30899218 0.31070173]
+Train epoch: 119	Loss: 0.211051
+Make prediction for 4809 samples...
+0.8695463819866932 No improvement since epoch  99 ; best_val_ci, best_val_mse, best_val_r2: 0.8793525705009453 0.23607604 0.6835841640708128 davis
+spend time： 20.619566202163696 s
+Training on 19235 samples...
+Train epoch: 120 [0/19235 (0%)]	Loss: 0.236545 Loss_all: 0.265961
+Train epoch: 120 [5120/19235 (26%)]	Loss: 0.244289 Loss_all: 0.273592
+Train epoch: 120 [10240/19235 (53%)]	Loss: 0.211337 Loss_all: 0.240064
+Train epoch: 120 [15360/19235 (79%)]	Loss: 0.196923 Loss_all: 0.224859
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13496536 0.2495832  0.31749225 0.29795927]
+Train epoch: 120	Loss: 0.202170
+Make prediction for 4809 samples...
+val CI improved at epoch  120 ; best_val_ci, best_val_mse, best_val_r2: 0.8808992074492179 0.23708801 0.6717094410626346 davis
+spend time： 20.965829849243164 s
+Training on 19235 samples...
+Train epoch: 121 [0/19235 (0%)]	Loss: 0.197828 Loss_all: 0.225396
+Train epoch: 121 [5120/19235 (26%)]	Loss: 0.195725 Loss_all: 0.222753
+Train epoch: 121 [10240/19235 (53%)]	Loss: 0.205519 Loss_all: 0.232736
+Train epoch: 121 [15360/19235 (79%)]	Loss: 0.194799 Loss_all: 0.222076
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13364162 0.25321454 0.31550702 0.29763684]
+Train epoch: 121	Loss: 0.208116
+Make prediction for 4809 samples...
+0.8771071625217327 No improvement since epoch  120 ; best_val_ci, best_val_mse, best_val_r2: 0.8808992074492179 0.23708801 0.6717094410626346 davis
+spend time： 20.612519025802612 s
+Training on 19235 samples...
+Train epoch: 122 [0/19235 (0%)]	Loss: 0.178470 Loss_all: 0.205988
+Train epoch: 122 [5120/19235 (26%)]	Loss: 0.195280 Loss_all: 0.223071
+Train epoch: 122 [10240/19235 (53%)]	Loss: 0.206353 Loss_all: 0.233629
+Train epoch: 122 [15360/19235 (79%)]	Loss: 0.197638 Loss_all: 0.224867
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13425869 0.25098    0.31099007 0.3037713 ]
+Train epoch: 122	Loss: 0.205016
+Make prediction for 4809 samples...
+0.8752072410444746 No improvement since epoch  120 ; best_val_ci, best_val_mse, best_val_r2: 0.8808992074492179 0.23708801 0.6717094410626346 davis
+spend time： 21.136056900024414 s
+Training on 19235 samples...
+Train epoch: 123 [0/19235 (0%)]	Loss: 0.189975 Loss_all: 0.216651
+Train epoch: 123 [5120/19235 (26%)]	Loss: 0.215023 Loss_all: 0.241449
+Train epoch: 123 [10240/19235 (53%)]	Loss: 0.207379 Loss_all: 0.233374
+Train epoch: 123 [15360/19235 (79%)]	Loss: 0.221128 Loss_all: 0.246483
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13838041 0.24434222 0.3191801  0.29809728]
+Train epoch: 123	Loss: 0.200468
+Make prediction for 4809 samples...
+0.8693509227439291 No improvement since epoch  120 ; best_val_ci, best_val_mse, best_val_r2: 0.8808992074492179 0.23708801 0.6717094410626346 davis
+spend time： 21.4785737991333 s
+Training on 19235 samples...
+Train epoch: 124 [0/19235 (0%)]	Loss: 0.174729 Loss_all: 0.200217
+Train epoch: 124 [5120/19235 (26%)]	Loss: 0.166729 Loss_all: 0.191215
+Train epoch: 124 [10240/19235 (53%)]	Loss: 0.175015 Loss_all: 0.200067
+Train epoch: 124 [15360/19235 (79%)]	Loss: 0.192551 Loss_all: 0.216334
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13578276 0.24900259 0.3216123  0.29360247]
+Train epoch: 124	Loss: 0.200645
+Make prediction for 4809 samples...
+0.8567601604901772 No improvement since epoch  120 ; best_val_ci, best_val_mse, best_val_r2: 0.8808992074492179 0.23708801 0.6717094410626346 davis
+spend time： 21.67684578895569 s
+Training on 19235 samples...
+Train epoch: 125 [0/19235 (0%)]	Loss: 0.192044 Loss_all: 0.215667
+Train epoch: 125 [5120/19235 (26%)]	Loss: 0.167069 Loss_all: 0.189761
+Train epoch: 125 [10240/19235 (53%)]	Loss: 0.220210 Loss_all: 0.242974
+Train epoch: 125 [15360/19235 (79%)]	Loss: 0.261603 Loss_all: 0.283866
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14071497 0.24652971 0.3169741  0.29578122]
+Train epoch: 125	Loss: 0.199153
+Make prediction for 4809 samples...
+0.8711229396256405 No improvement since epoch  120 ; best_val_ci, best_val_mse, best_val_r2: 0.8808992074492179 0.23708801 0.6717094410626346 davis
+spend time： 22.026505708694458 s
+Training on 19235 samples...
+Train epoch: 126 [0/19235 (0%)]	Loss: 0.156103 Loss_all: 0.179008
+Train epoch: 126 [5120/19235 (26%)]	Loss: 0.168659 Loss_all: 0.191180
+Train epoch: 126 [10240/19235 (53%)]	Loss: 0.165307 Loss_all: 0.187533
+Train epoch: 126 [15360/19235 (79%)]	Loss: 0.171544 Loss_all: 0.192838
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13885374 0.24143091 0.32183343 0.29788193]
+Train epoch: 126	Loss: 0.192589
+Make prediction for 4809 samples...
+0.8680081363935955 No improvement since epoch  120 ; best_val_ci, best_val_mse, best_val_r2: 0.8808992074492179 0.23708801 0.6717094410626346 davis
+spend time： 22.01644515991211 s
+Training on 19235 samples...
+Train epoch: 127 [0/19235 (0%)]	Loss: 0.205985 Loss_all: 0.227825
+Train epoch: 127 [5120/19235 (26%)]	Loss: 0.230811 Loss_all: 0.252082
+Train epoch: 127 [10240/19235 (53%)]	Loss: 0.194234 Loss_all: 0.215108
+Train epoch: 127 [15360/19235 (79%)]	Loss: 0.159878 Loss_all: 0.180727
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14030765 0.250933   0.31032172 0.29843765]
+Train epoch: 127	Loss: 0.198269
+Make prediction for 4809 samples...
+0.8789321551305593 No improvement since epoch  120 ; best_val_ci, best_val_mse, best_val_r2: 0.8808992074492179 0.23708801 0.6717094410626346 davis
+spend time： 21.71939754486084 s
+Training on 19235 samples...
+Train epoch: 128 [0/19235 (0%)]	Loss: 0.197050 Loss_all: 0.217594
+Train epoch: 128 [5120/19235 (26%)]	Loss: 0.223303 Loss_all: 0.243939
+Train epoch: 128 [10240/19235 (53%)]	Loss: 0.162314 Loss_all: 0.182597
+Train epoch: 128 [15360/19235 (79%)]	Loss: 0.203740 Loss_all: 0.223791
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13926071 0.24844715 0.31472275 0.2975694 ]
+Train epoch: 128	Loss: 0.193361
+Make prediction for 4809 samples...
+0.8771286918572324 No improvement since epoch  120 ; best_val_ci, best_val_mse, best_val_r2: 0.8808992074492179 0.23708801 0.6717094410626346 davis
+spend time： 21.65723967552185 s
+Training on 19235 samples...
+Train epoch: 129 [0/19235 (0%)]	Loss: 0.200374 Loss_all: 0.220553
+Train epoch: 129 [5120/19235 (26%)]	Loss: 0.257213 Loss_all: 0.277188
+Train epoch: 129 [10240/19235 (53%)]	Loss: 0.179565 Loss_all: 0.199011
+Train epoch: 129 [15360/19235 (79%)]	Loss: 0.214043 Loss_all: 0.233735
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13971648 0.24975997 0.32549617 0.28502744]
+Train epoch: 129	Loss: 0.191446
+Make prediction for 4809 samples...
+val CI improved at epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 21.670491456985474 s
+Training on 19235 samples...
+Train epoch: 130 [0/19235 (0%)]	Loss: 0.147390 Loss_all: 0.166277
+Train epoch: 130 [5120/19235 (26%)]	Loss: 0.178119 Loss_all: 0.197148
+Train epoch: 130 [10240/19235 (53%)]	Loss: 0.206797 Loss_all: 0.226020
+Train epoch: 130 [15360/19235 (79%)]	Loss: 0.183179 Loss_all: 0.202886
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13970439 0.25225487 0.31587857 0.29216218]
+Train epoch: 130	Loss: 0.189631
+Make prediction for 4809 samples...
+0.8740298237239037 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 21.230169534683228 s
+Training on 19235 samples...
+Train epoch: 131 [0/19235 (0%)]	Loss: 0.171238 Loss_all: 0.190780
+Train epoch: 131 [5120/19235 (26%)]	Loss: 0.156553 Loss_all: 0.177072
+Train epoch: 131 [10240/19235 (53%)]	Loss: 0.208553 Loss_all: 0.228684
+Train epoch: 131 [15360/19235 (79%)]	Loss: 0.193263 Loss_all: 0.215360
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13484995 0.25069684 0.3163795  0.2980737 ]
+Train epoch: 131	Loss: 0.197311
+Make prediction for 4809 samples...
+0.8696093595310876 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 20.778987884521484 s
+Training on 19235 samples...
+Train epoch: 132 [0/19235 (0%)]	Loss: 0.183158 Loss_all: 0.205182
+Train epoch: 132 [5120/19235 (26%)]	Loss: 0.191700 Loss_all: 0.215070
+Train epoch: 132 [10240/19235 (53%)]	Loss: 0.180458 Loss_all: 0.203521
+Train epoch: 132 [15360/19235 (79%)]	Loss: 0.217266 Loss_all: 0.240562
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13694215 0.24674246 0.3217337  0.29458174]
+Train epoch: 132	Loss: 0.195516
+Make prediction for 4809 samples...
+0.8733691952164868 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 20.533210039138794 s
+Training on 19235 samples...
+Train epoch: 133 [0/19235 (0%)]	Loss: 0.214712 Loss_all: 0.237899
+Train epoch: 133 [5120/19235 (26%)]	Loss: 0.204601 Loss_all: 0.227884
+Train epoch: 133 [10240/19235 (53%)]	Loss: 0.233881 Loss_all: 0.255630
+Train epoch: 133 [15360/19235 (79%)]	Loss: 0.194037 Loss_all: 0.215424
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14068201 0.2384294  0.3247746  0.29611403]
+Train epoch: 133	Loss: 0.190909
+Make prediction for 4809 samples...
+0.8747124053726372 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 20.896085023880005 s
+Training on 19235 samples...
+Train epoch: 134 [0/19235 (0%)]	Loss: 0.189167 Loss_all: 0.210716
+Train epoch: 134 [5120/19235 (26%)]	Loss: 0.183971 Loss_all: 0.204625
+Train epoch: 134 [10240/19235 (53%)]	Loss: 0.167133 Loss_all: 0.187449
+Train epoch: 134 [15360/19235 (79%)]	Loss: 0.191220 Loss_all: 0.211413
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13494799 0.24724644 0.3256927  0.29211292]
+Train epoch: 134	Loss: 0.187045
+Make prediction for 4809 samples...
+0.875825404209036 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 20.78867816925049 s
+Training on 19235 samples...
+Train epoch: 135 [0/19235 (0%)]	Loss: 0.182076 Loss_all: 0.201719
+Train epoch: 135 [5120/19235 (26%)]	Loss: 0.201838 Loss_all: 0.221483
+Train epoch: 135 [10240/19235 (53%)]	Loss: 0.193624 Loss_all: 0.213188
+Train epoch: 135 [15360/19235 (79%)]	Loss: 0.169880 Loss_all: 0.189583
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13708577 0.24736309 0.32156315 0.29398796]
+Train epoch: 135	Loss: 0.187692
+Make prediction for 4809 samples...
+0.8700775801976224 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 21.50698971748352 s
+Training on 19235 samples...
+Train epoch: 136 [0/19235 (0%)]	Loss: 0.194684 Loss_all: 0.213525
+Train epoch: 136 [5120/19235 (26%)]	Loss: 0.194467 Loss_all: 0.213633
+Train epoch: 136 [10240/19235 (53%)]	Loss: 0.173283 Loss_all: 0.192014
+Train epoch: 136 [15360/19235 (79%)]	Loss: 0.157523 Loss_all: 0.176959
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13465823 0.25908098 0.31784877 0.288412  ]
+Train epoch: 136	Loss: 0.184659
+Make prediction for 4809 samples...
+0.8726580490556929 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 21.42690134048462 s
+Training on 19235 samples...
+Train epoch: 137 [0/19235 (0%)]	Loss: 0.191072 Loss_all: 0.209806
+Train epoch: 137 [5120/19235 (26%)]	Loss: 0.196649 Loss_all: 0.215234
+Train epoch: 137 [10240/19235 (53%)]	Loss: 0.187311 Loss_all: 0.205448
+Train epoch: 137 [15360/19235 (79%)]	Loss: 0.202705 Loss_all: 0.220976
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13630903 0.2493502  0.315174   0.29916674]
+Train epoch: 137	Loss: 0.187036
+Make prediction for 4809 samples...
+0.8798123150511415 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 20.916261434555054 s
+Training on 19235 samples...
+Train epoch: 138 [0/19235 (0%)]	Loss: 0.179308 Loss_all: 0.197707
+Train epoch: 138 [5120/19235 (26%)]	Loss: 0.188755 Loss_all: 0.206743
+Train epoch: 138 [10240/19235 (53%)]	Loss: 0.154156 Loss_all: 0.171883
+Train epoch: 138 [15360/19235 (79%)]	Loss: 0.199978 Loss_all: 0.217761
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13539173 0.2606423  0.31963903 0.28432694]
+Train epoch: 138	Loss: 0.183655
+Make prediction for 4809 samples...
+0.875004407580496 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 20.89374089241028 s
+Training on 19235 samples...
+Train epoch: 139 [0/19235 (0%)]	Loss: 0.165981 Loss_all: 0.183556
+Train epoch: 139 [5120/19235 (26%)]	Loss: 0.182091 Loss_all: 0.199700
+Train epoch: 139 [10240/19235 (53%)]	Loss: 0.159061 Loss_all: 0.176665
+Train epoch: 139 [15360/19235 (79%)]	Loss: 0.153651 Loss_all: 0.171116
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13628176 0.2567781  0.32029608 0.28664416]
+Train epoch: 139	Loss: 0.173790
+Make prediction for 4809 samples...
+0.8698055816243222 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 21.157719612121582 s
+Training on 19235 samples...
+Train epoch: 140 [0/19235 (0%)]	Loss: 0.160152 Loss_all: 0.177603
+Train epoch: 140 [5120/19235 (26%)]	Loss: 0.172758 Loss_all: 0.189735
+Train epoch: 140 [10240/19235 (53%)]	Loss: 0.181223 Loss_all: 0.198308
+Train epoch: 140 [15360/19235 (79%)]	Loss: 0.185001 Loss_all: 0.202077
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1350451  0.25479552 0.32222605 0.28793335]
+Train epoch: 140	Loss: 0.188853
+Make prediction for 4809 samples...
+0.874771907709333 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 21.199750423431396 s
+Training on 19235 samples...
+Train epoch: 141 [0/19235 (0%)]	Loss: 0.214527 Loss_all: 0.232308
+Train epoch: 141 [5120/19235 (26%)]	Loss: 0.200353 Loss_all: 0.217486
+Train epoch: 141 [10240/19235 (53%)]	Loss: 0.150804 Loss_all: 0.168309
+Train epoch: 141 [15360/19235 (79%)]	Loss: 0.175216 Loss_all: 0.191949
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1324189  0.2555271  0.3270817  0.28497228]
+Train epoch: 141	Loss: 0.189419
+Make prediction for 4809 samples...
+0.8463964978043468 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 20.519660711288452 s
+Training on 19235 samples...
+Train epoch: 142 [0/19235 (0%)]	Loss: 0.221782 Loss_all: 0.239259
+Train epoch: 142 [5120/19235 (26%)]	Loss: 0.175378 Loss_all: 0.193468
+Train epoch: 142 [10240/19235 (53%)]	Loss: 0.207309 Loss_all: 0.225682
+Train epoch: 142 [15360/19235 (79%)]	Loss: 0.227137 Loss_all: 0.244510
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13647872 0.25505012 0.32462364 0.28384757]
+Train epoch: 142	Loss: 0.183881
+Make prediction for 4809 samples...
+0.8793102746804166 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 19.29899263381958 s
+Training on 19235 samples...
+Train epoch: 143 [0/19235 (0%)]	Loss: 0.141552 Loss_all: 0.158370
+Train epoch: 143 [5120/19235 (26%)]	Loss: 0.172159 Loss_all: 0.188811
+Train epoch: 143 [10240/19235 (53%)]	Loss: 0.186464 Loss_all: 0.203302
+Train epoch: 143 [15360/19235 (79%)]	Loss: 0.196605 Loss_all: 0.213715
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13612379 0.25075778 0.3201643  0.29295406]
+Train epoch: 143	Loss: 0.184653
+Make prediction for 4809 samples...
+0.8806903559426391 No improvement since epoch  129 ; best_val_ci, best_val_mse, best_val_r2: 0.8814046382664783 0.23557377 0.6848675823560099 davis
+spend time： 18.83308506011963 s
+Training on 19235 samples...
+Train epoch: 144 [0/19235 (0%)]	Loss: 0.145591 Loss_all: 0.162636
+Train epoch: 144 [5120/19235 (26%)]	Loss: 0.202365 Loss_all: 0.219783
+Train epoch: 144 [10240/19235 (53%)]	Loss: 0.192010 Loss_all: 0.209079
+Train epoch: 144 [15360/19235 (79%)]	Loss: 0.170999 Loss_all: 0.187454
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.14092495 0.25020176 0.32289436 0.28597897]
+Train epoch: 144	Loss: 0.182850
+Make prediction for 4809 samples...
+val CI improved at epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 19.17569375038147 s
+Training on 19235 samples...
+Train epoch: 145 [0/19235 (0%)]	Loss: 0.167298 Loss_all: 0.183737
+Train epoch: 145 [5120/19235 (26%)]	Loss: 0.141028 Loss_all: 0.157014
+Train epoch: 145 [10240/19235 (53%)]	Loss: 0.223321 Loss_all: 0.239271
+Train epoch: 145 [15360/19235 (79%)]	Loss: 0.164472 Loss_all: 0.180545
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13505584 0.25185055 0.3259402  0.28715345]
+Train epoch: 145	Loss: 0.179623
+Make prediction for 4809 samples...
+0.8794345345459378 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 19.542880535125732 s
+Training on 19235 samples...
+Train epoch: 146 [0/19235 (0%)]	Loss: 0.156904 Loss_all: 0.172443
+Train epoch: 146 [5120/19235 (26%)]	Loss: 0.163994 Loss_all: 0.179733
+Train epoch: 146 [10240/19235 (53%)]	Loss: 0.194333 Loss_all: 0.210719
+Train epoch: 146 [15360/19235 (79%)]	Loss: 0.195844 Loss_all: 0.211435
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1380709  0.24900274 0.3277891  0.28513727]
+Train epoch: 146	Loss: 0.175847
+Make prediction for 4809 samples...
+0.8796088034978559 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 19.52687668800354 s
+Training on 19235 samples...
+Train epoch: 147 [0/19235 (0%)]	Loss: 0.189526 Loss_all: 0.205071
+Train epoch: 147 [5120/19235 (26%)]	Loss: 0.172905 Loss_all: 0.188124
+Train epoch: 147 [10240/19235 (53%)]	Loss: 0.158393 Loss_all: 0.173429
+Train epoch: 147 [15360/19235 (79%)]	Loss: 0.163191 Loss_all: 0.178995
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13308558 0.24790423 0.33167985 0.2873304 ]
+Train epoch: 147	Loss: 0.177927
+Make prediction for 4809 samples...
+0.8812005333850489 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 20.602058172225952 s
+Training on 19235 samples...
+Train epoch: 148 [0/19235 (0%)]	Loss: 0.184781 Loss_all: 0.199957
+Train epoch: 148 [5120/19235 (26%)]	Loss: 0.149748 Loss_all: 0.166435
+Train epoch: 148 [10240/19235 (53%)]	Loss: 0.155545 Loss_all: 0.172443
+Train epoch: 148 [15360/19235 (79%)]	Loss: 0.196453 Loss_all: 0.212207
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13561118 0.25083503 0.32652497 0.28702885]
+Train epoch: 148	Loss: 0.180370
+Make prediction for 4809 samples...
+0.88143523704646 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.020382404327393 s
+Training on 19235 samples...
+Train epoch: 149 [0/19235 (0%)]	Loss: 0.159955 Loss_all: 0.176152
+Train epoch: 149 [5120/19235 (26%)]	Loss: 0.157090 Loss_all: 0.172559
+Train epoch: 149 [10240/19235 (53%)]	Loss: 0.198229 Loss_all: 0.213488
+Train epoch: 149 [15360/19235 (79%)]	Loss: 0.175617 Loss_all: 0.190541
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13067369 0.24946524 0.325406   0.2944551 ]
+Train epoch: 149	Loss: 0.179254
+Make prediction for 4809 samples...
+0.8765892718134549 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.732342004776 s
+Training on 19235 samples...
+Train epoch: 150 [0/19235 (0%)]	Loss: 0.169423 Loss_all: 0.184469
+Train epoch: 150 [5120/19235 (26%)]	Loss: 0.217597 Loss_all: 0.233268
+Train epoch: 150 [10240/19235 (53%)]	Loss: 0.155667 Loss_all: 0.170699
+Train epoch: 150 [15360/19235 (79%)]	Loss: 0.143595 Loss_all: 0.158559
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13440788 0.24909185 0.33190957 0.28459066]
+Train epoch: 150	Loss: 0.174899
+Make prediction for 4809 samples...
+0.8744843130819702 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 20.999696016311646 s
+Training on 19235 samples...
+Train epoch: 151 [0/19235 (0%)]	Loss: 0.166021 Loss_all: 0.180589
+Train epoch: 151 [5120/19235 (26%)]	Loss: 0.177160 Loss_all: 0.192090
+Train epoch: 151 [10240/19235 (53%)]	Loss: 0.151374 Loss_all: 0.166308
+Train epoch: 151 [15360/19235 (79%)]	Loss: 0.156625 Loss_all: 0.171373
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13399602 0.2550084  0.3243971  0.28659844]
+Train epoch: 151	Loss: 0.173873
+Make prediction for 4809 samples...
+0.87607070301587 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.09201741218567 s
+Training on 19235 samples...
+Train epoch: 152 [0/19235 (0%)]	Loss: 0.220739 Loss_all: 0.235541
+Train epoch: 152 [5120/19235 (26%)]	Loss: 0.199706 Loss_all: 0.215289
+Train epoch: 152 [10240/19235 (53%)]	Loss: 0.214355 Loss_all: 0.229027
+Train epoch: 152 [15360/19235 (79%)]	Loss: 0.185720 Loss_all: 0.199629
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13035774 0.25686312 0.32060227 0.2921769 ]
+Train epoch: 152	Loss: 0.178015
+Make prediction for 4809 samples...
+0.8732458677237627 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.108747005462646 s
+Training on 19235 samples...
+Train epoch: 153 [0/19235 (0%)]	Loss: 0.151596 Loss_all: 0.165842
+Train epoch: 153 [5120/19235 (26%)]	Loss: 0.216284 Loss_all: 0.229959
+Train epoch: 153 [10240/19235 (53%)]	Loss: 0.212862 Loss_all: 0.226902
+Train epoch: 153 [15360/19235 (79%)]	Loss: 0.226789 Loss_all: 0.241309
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13321531 0.25555658 0.3286779  0.2825502 ]
+Train epoch: 153	Loss: 0.177419
+Make prediction for 4809 samples...
+0.8810520318267997 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.423765659332275 s
+Training on 19235 samples...
+Train epoch: 154 [0/19235 (0%)]	Loss: 0.160811 Loss_all: 0.174908
+Train epoch: 154 [5120/19235 (26%)]	Loss: 0.181403 Loss_all: 0.195408
+Train epoch: 154 [10240/19235 (53%)]	Loss: 0.163608 Loss_all: 0.177631
+Train epoch: 154 [15360/19235 (79%)]	Loss: 0.193514 Loss_all: 0.207464
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13049428 0.2575438  0.3270331  0.28492877]
+Train epoch: 154	Loss: 0.173947
+Make prediction for 4809 samples...
+0.879470727562703 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.358102083206177 s
+Training on 19235 samples...
+Train epoch: 155 [0/19235 (0%)]	Loss: 0.155362 Loss_all: 0.169025
+Train epoch: 155 [5120/19235 (26%)]	Loss: 0.169951 Loss_all: 0.184656
+Train epoch: 155 [10240/19235 (53%)]	Loss: 0.176642 Loss_all: 0.191402
+Train epoch: 155 [15360/19235 (79%)]	Loss: 0.167611 Loss_all: 0.181850
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1331972  0.25375074 0.32919416 0.2838579 ]
+Train epoch: 155	Loss: 0.178859
+Make prediction for 4809 samples...
+0.8792767940208798 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.38792896270752 s
+Training on 19235 samples...
+Train epoch: 156 [0/19235 (0%)]	Loss: 0.137792 Loss_all: 0.152116
+Train epoch: 156 [5120/19235 (26%)]	Loss: 0.152356 Loss_all: 0.165891
+Train epoch: 156 [10240/19235 (53%)]	Loss: 0.149454 Loss_all: 0.163001
+Train epoch: 156 [15360/19235 (79%)]	Loss: 0.188151 Loss_all: 0.202066
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13359304 0.2569999  0.3266182  0.282789  ]
+Train epoch: 156	Loss: 0.169599
+Make prediction for 4809 samples...
+0.8760534117385396 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.434509754180908 s
+Training on 19235 samples...
+Train epoch: 157 [0/19235 (0%)]	Loss: 0.138584 Loss_all: 0.151934
+Train epoch: 157 [5120/19235 (26%)]	Loss: 0.173473 Loss_all: 0.187206
+Train epoch: 157 [10240/19235 (53%)]	Loss: 0.183679 Loss_all: 0.197176
+Train epoch: 157 [15360/19235 (79%)]	Loss: 0.205345 Loss_all: 0.218557
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13060373 0.2576367  0.33018902 0.28157067]
+Train epoch: 157	Loss: 0.173248
+Make prediction for 4809 samples...
+0.8798134169462655 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 20.2219557762146 s
+Training on 19235 samples...
+Train epoch: 158 [0/19235 (0%)]	Loss: 0.142738 Loss_all: 0.155694
+Train epoch: 158 [5120/19235 (26%)]	Loss: 0.184156 Loss_all: 0.197147
+Train epoch: 158 [10240/19235 (53%)]	Loss: 0.195539 Loss_all: 0.208823
+Train epoch: 158 [15360/19235 (79%)]	Loss: 0.149204 Loss_all: 0.162740
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12912302 0.2567165  0.33215705 0.2820035 ]
+Train epoch: 158	Loss: 0.173356
+Make prediction for 4809 samples...
+0.8763978811065333 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 19.447643041610718 s
+Training on 19235 samples...
+Train epoch: 159 [0/19235 (0%)]	Loss: 0.169447 Loss_all: 0.182219
+Train epoch: 159 [5120/19235 (26%)]	Loss: 0.162135 Loss_all: 0.175403
+Train epoch: 159 [10240/19235 (53%)]	Loss: 0.164841 Loss_all: 0.178973
+Train epoch: 159 [15360/19235 (79%)]	Loss: 0.176249 Loss_all: 0.190054
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12828402 0.261249   0.32465595 0.28581104]
+Train epoch: 159	Loss: 0.170150
+Make prediction for 4809 samples...
+0.8801068600939018 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 19.375677824020386 s
+Training on 19235 samples...
+Train epoch: 160 [0/19235 (0%)]	Loss: 0.172561 Loss_all: 0.185841
+Train epoch: 160 [5120/19235 (26%)]	Loss: 0.164411 Loss_all: 0.178566
+Train epoch: 160 [10240/19235 (53%)]	Loss: 0.152057 Loss_all: 0.166158
+Train epoch: 160 [15360/19235 (79%)]	Loss: 0.171012 Loss_all: 0.185133
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12682776 0.2580707  0.32757556 0.287526  ]
+Train epoch: 160	Loss: 0.176478
+Make prediction for 4809 samples...
+0.8808787800088422 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 19.14616584777832 s
+Training on 19235 samples...
+Train epoch: 161 [0/19235 (0%)]	Loss: 0.175041 Loss_all: 0.188962
+Train epoch: 161 [5120/19235 (26%)]	Loss: 0.181460 Loss_all: 0.194973
+Train epoch: 161 [10240/19235 (53%)]	Loss: 0.188353 Loss_all: 0.201840
+Train epoch: 161 [15360/19235 (79%)]	Loss: 0.178536 Loss_all: 0.192221
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12532896 0.25551805 0.3161266  0.30302638]
+Train epoch: 161	Loss: 0.172647
+Make prediction for 4809 samples...
+0.8756803778584855 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 18.98641014099121 s
+Training on 19235 samples...
+Train epoch: 162 [0/19235 (0%)]	Loss: 0.167616 Loss_all: 0.180772
+Train epoch: 162 [5120/19235 (26%)]	Loss: 0.166305 Loss_all: 0.179859
+Train epoch: 162 [10240/19235 (53%)]	Loss: 0.168850 Loss_all: 0.181675
+Train epoch: 162 [15360/19235 (79%)]	Loss: 0.192434 Loss_all: 0.205435
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12754396 0.2623683  0.32044977 0.28963804]
+Train epoch: 162	Loss: 0.170449
+Make prediction for 4809 samples...
+0.8811470490909534 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 20.02223825454712 s
+Training on 19235 samples...
+Train epoch: 163 [0/19235 (0%)]	Loss: 0.153908 Loss_all: 0.166502
+Train epoch: 163 [5120/19235 (26%)]	Loss: 0.177879 Loss_all: 0.190351
+Train epoch: 163 [10240/19235 (53%)]	Loss: 0.214075 Loss_all: 0.226473
+Train epoch: 163 [15360/19235 (79%)]	Loss: 0.153465 Loss_all: 0.166872
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13332658 0.25370574 0.32329455 0.2896731 ]
+Train epoch: 163	Loss: 0.170517
+Make prediction for 4809 samples...
+0.8752213961587597 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 20.480104446411133 s
+Training on 19235 samples...
+Train epoch: 164 [0/19235 (0%)]	Loss: 0.183643 Loss_all: 0.197332
+Train epoch: 164 [5120/19235 (26%)]	Loss: 0.171705 Loss_all: 0.186142
+Train epoch: 164 [10240/19235 (53%)]	Loss: 0.167275 Loss_all: 0.181027
+Train epoch: 164 [15360/19235 (79%)]	Loss: 0.176014 Loss_all: 0.189794
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13117282 0.26179403 0.31428713 0.29274604]
+Train epoch: 164	Loss: 0.173129
+Make prediction for 4809 samples...
+0.8735956770450496 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.80847191810608 s
+Training on 19235 samples...
+Train epoch: 165 [0/19235 (0%)]	Loss: 0.168740 Loss_all: 0.182134
+Train epoch: 165 [5120/19235 (26%)]	Loss: 0.184201 Loss_all: 0.197144
+Train epoch: 165 [10240/19235 (53%)]	Loss: 0.163228 Loss_all: 0.177274
+Train epoch: 165 [15360/19235 (79%)]	Loss: 0.185843 Loss_all: 0.199709
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12822928 0.26493734 0.31936988 0.2874636 ]
+Train epoch: 165	Loss: 0.176319
+Make prediction for 4809 samples...
+0.8710468241009214 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.479703426361084 s
+Training on 19235 samples...
+Train epoch: 166 [0/19235 (0%)]	Loss: 0.155548 Loss_all: 0.168466
+Train epoch: 166 [5120/19235 (26%)]	Loss: 0.159972 Loss_all: 0.172887
+Train epoch: 166 [10240/19235 (53%)]	Loss: 0.167597 Loss_all: 0.180031
+Train epoch: 166 [15360/19235 (79%)]	Loss: 0.189634 Loss_all: 0.202967
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13047086 0.26294944 0.31948543 0.2870943 ]
+Train epoch: 166	Loss: 0.172488
+Make prediction for 4809 samples...
+0.8761830963185175 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 22.777443408966064 s
+Training on 19235 samples...
+Train epoch: 167 [0/19235 (0%)]	Loss: 0.175261 Loss_all: 0.188477
+Train epoch: 167 [5120/19235 (26%)]	Loss: 0.172337 Loss_all: 0.186128
+Train epoch: 167 [10240/19235 (53%)]	Loss: 0.143163 Loss_all: 0.156710
+Train epoch: 167 [15360/19235 (79%)]	Loss: 0.174664 Loss_all: 0.188198
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12793    0.26068938 0.31842315 0.29295745]
+Train epoch: 167	Loss: 0.169357
+Make prediction for 4809 samples...
+0.8745076224019008 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 22.89174747467041 s
+Training on 19235 samples...
+Train epoch: 168 [0/19235 (0%)]	Loss: 0.169600 Loss_all: 0.184425
+Train epoch: 168 [5120/19235 (26%)]	Loss: 0.164824 Loss_all: 0.185888
+Train epoch: 168 [10240/19235 (53%)]	Loss: 0.198121 Loss_all: 0.220883
+Train epoch: 168 [15360/19235 (79%)]	Loss: 0.227928 Loss_all: 0.250699
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13973479 0.26269096 0.30371994 0.29385436]
+Train epoch: 168	Loss: 0.176468
+Make prediction for 4809 samples...
+0.874030756096701 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 22.570761680603027 s
+Training on 19235 samples...
+Train epoch: 169 [0/19235 (0%)]	Loss: 0.141290 Loss_all: 0.162668
+Train epoch: 169 [5120/19235 (26%)]	Loss: 0.162528 Loss_all: 0.183470
+Train epoch: 169 [10240/19235 (53%)]	Loss: 0.162422 Loss_all: 0.182964
+Train epoch: 169 [15360/19235 (79%)]	Loss: 0.164175 Loss_all: 0.184229
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1361492  0.26058838 0.30089235 0.30237007]
+Train epoch: 169	Loss: 0.171053
+Make prediction for 4809 samples...
+0.8678923526444127 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 22.18750834465027 s
+Training on 19235 samples...
+Train epoch: 170 [0/19235 (0%)]	Loss: 0.153596 Loss_all: 0.173319
+Train epoch: 170 [5120/19235 (26%)]	Loss: 0.165634 Loss_all: 0.184970
+Train epoch: 170 [10240/19235 (53%)]	Loss: 0.162688 Loss_all: 0.181248
+Train epoch: 170 [15360/19235 (79%)]	Loss: 0.149662 Loss_all: 0.167077
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13470075 0.25535902 0.30619553 0.30374464]
+Train epoch: 170	Loss: 0.168226
+Make prediction for 4809 samples...
+0.8689670394349618 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.66129446029663 s
+Training on 19235 samples...
+Train epoch: 171 [0/19235 (0%)]	Loss: 0.201359 Loss_all: 0.219332
+Train epoch: 171 [5120/19235 (26%)]	Loss: 0.146978 Loss_all: 0.164374
+Train epoch: 171 [10240/19235 (53%)]	Loss: 0.161393 Loss_all: 0.177932
+Train epoch: 171 [15360/19235 (79%)]	Loss: 0.156716 Loss_all: 0.173056
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1369792  0.25699    0.3076187  0.29841217]
+Train epoch: 171	Loss: 0.169011
+Make prediction for 4809 samples...
+0.8725639641643363 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.302973747253418 s
+Training on 19235 samples...
+Train epoch: 172 [0/19235 (0%)]	Loss: 0.184922 Loss_all: 0.202043
+Train epoch: 172 [5120/19235 (26%)]	Loss: 0.129951 Loss_all: 0.146597
+Train epoch: 172 [10240/19235 (53%)]	Loss: 0.149943 Loss_all: 0.166733
+Train epoch: 172 [15360/19235 (79%)]	Loss: 0.193360 Loss_all: 0.210384
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1324767  0.26459026 0.299268   0.303665  ]
+Train epoch: 172	Loss: 0.170165
+Make prediction for 4809 samples...
+0.8726746622437161 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.762369394302368 s
+Training on 19235 samples...
+Train epoch: 173 [0/19235 (0%)]	Loss: 0.198430 Loss_all: 0.215654
+Train epoch: 173 [5120/19235 (26%)]	Loss: 0.174592 Loss_all: 0.191328
+Train epoch: 173 [10240/19235 (53%)]	Loss: 0.169116 Loss_all: 0.185919
+Train epoch: 173 [15360/19235 (79%)]	Loss: 0.165472 Loss_all: 0.181819
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13233253 0.26327458 0.29894128 0.30545163]
+Train epoch: 173	Loss: 0.166084
+Make prediction for 4809 samples...
+0.8798518985144419 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.9119393825531 s
+Training on 19235 samples...
+Train epoch: 174 [0/19235 (0%)]	Loss: 0.159699 Loss_all: 0.175492
+Train epoch: 174 [5120/19235 (26%)]	Loss: 0.161605 Loss_all: 0.176758
+Train epoch: 174 [10240/19235 (53%)]	Loss: 0.152244 Loss_all: 0.167235
+Train epoch: 174 [15360/19235 (79%)]	Loss: 0.145475 Loss_all: 0.160063
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13426317 0.26158655 0.30164564 0.30250466]
+Train epoch: 174	Loss: 0.167448
+Make prediction for 4809 samples...
+0.8734551430361585 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 21.773690223693848 s
+Training on 19235 samples...
+Train epoch: 175 [0/19235 (0%)]	Loss: 0.175481 Loss_all: 0.190044
+Train epoch: 175 [5120/19235 (26%)]	Loss: 0.138631 Loss_all: 0.153092
+Train epoch: 175 [10240/19235 (53%)]	Loss: 0.169035 Loss_all: 0.183305
+Train epoch: 175 [15360/19235 (79%)]	Loss: 0.170545 Loss_all: 0.185476
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13492562 0.2616166  0.30689955 0.2965583 ]
+Train epoch: 175	Loss: 0.161224
+Make prediction for 4809 samples...
+0.8772131987371264 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 20.70217776298523 s
+Training on 19235 samples...
+Train epoch: 176 [0/19235 (0%)]	Loss: 0.149947 Loss_all: 0.164474
+Train epoch: 176 [5120/19235 (26%)]	Loss: 0.185961 Loss_all: 0.200380
+Train epoch: 176 [10240/19235 (53%)]	Loss: 0.129571 Loss_all: 0.144063
+Train epoch: 176 [15360/19235 (79%)]	Loss: 0.135473 Loss_all: 0.149368
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13174742 0.26050654 0.30477348 0.30297256]
+Train epoch: 176	Loss: 0.163110
+Make prediction for 4809 samples...
+0.8817430048307082 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 20.1731379032135 s
+Training on 19235 samples...
+Train epoch: 177 [0/19235 (0%)]	Loss: 0.142430 Loss_all: 0.155725
+Train epoch: 177 [5120/19235 (26%)]	Loss: 0.194766 Loss_all: 0.208261
+Train epoch: 177 [10240/19235 (53%)]	Loss: 0.139030 Loss_all: 0.151925
+Train epoch: 177 [15360/19235 (79%)]	Loss: 0.156555 Loss_all: 0.169891
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13020866 0.26335242 0.3056711  0.30076784]
+Train epoch: 177	Loss: 0.161905
+Make prediction for 4809 samples...
+0.8823057341944164 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 19.067212104797363 s
+Training on 19235 samples...
+Train epoch: 178 [0/19235 (0%)]	Loss: 0.167608 Loss_all: 0.180770
+Train epoch: 178 [5120/19235 (26%)]	Loss: 0.142103 Loss_all: 0.154879
+Train epoch: 178 [10240/19235 (53%)]	Loss: 0.164329 Loss_all: 0.176672
+Train epoch: 178 [15360/19235 (79%)]	Loss: 0.156157 Loss_all: 0.169428
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12875527 0.26138556 0.3053422  0.304517  ]
+Train epoch: 178	Loss: 0.158687
+Make prediction for 4809 samples...
+0.874169510121161 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 19.072906494140625 s
+Training on 19235 samples...
+Train epoch: 179 [0/19235 (0%)]	Loss: 0.162329 Loss_all: 0.174738
+Train epoch: 179 [5120/19235 (26%)]	Loss: 0.168044 Loss_all: 0.181168
+Train epoch: 179 [10240/19235 (53%)]	Loss: 0.175563 Loss_all: 0.187922
+Train epoch: 179 [15360/19235 (79%)]	Loss: 0.176332 Loss_all: 0.188476
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13056774 0.25916982 0.30678248 0.30348003]
+Train epoch: 179	Loss: 0.165519
+Make prediction for 4809 samples...
+0.8823220083377861 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 19.20768404006958 s
+Training on 19235 samples...
+Train epoch: 180 [0/19235 (0%)]	Loss: 0.203181 Loss_all: 0.216056
+Train epoch: 180 [5120/19235 (26%)]	Loss: 0.149202 Loss_all: 0.161332
+Train epoch: 180 [10240/19235 (53%)]	Loss: 0.147425 Loss_all: 0.159523
+Train epoch: 180 [15360/19235 (79%)]	Loss: 0.171641 Loss_all: 0.183560
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13051379 0.2555552  0.31581825 0.2981128 ]
+Train epoch: 180	Loss: 0.164769
+Make prediction for 4809 samples...
+0.8784675791940502 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 20.51745343208313 s
+Training on 19235 samples...
+Train epoch: 181 [0/19235 (0%)]	Loss: 0.147151 Loss_all: 0.159322
+Train epoch: 181 [5120/19235 (26%)]	Loss: 0.141454 Loss_all: 0.153320
+Train epoch: 181 [10240/19235 (53%)]	Loss: 0.153359 Loss_all: 0.165559
+Train epoch: 181 [15360/19235 (79%)]	Loss: 0.152508 Loss_all: 0.163916
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13165185 0.25833288 0.3120321  0.2979831 ]
+Train epoch: 181	Loss: 0.160298
+Make prediction for 4809 samples...
+0.87109437511358 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 20.70885181427002 s
+Training on 19235 samples...
+Train epoch: 182 [0/19235 (0%)]	Loss: 0.146474 Loss_all: 0.157940
+Train epoch: 182 [5120/19235 (26%)]	Loss: 0.168620 Loss_all: 0.180273
+Train epoch: 182 [10240/19235 (53%)]	Loss: 0.182958 Loss_all: 0.194476
+Train epoch: 182 [15360/19235 (79%)]	Loss: 0.167059 Loss_all: 0.178248
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13000776 0.26222953 0.3118176  0.2959451 ]
+Train epoch: 182	Loss: 0.165915
+Make prediction for 4809 samples...
+0.8832995588350968 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 20.790678024291992 s
+Training on 19235 samples...
+Train epoch: 183 [0/19235 (0%)]	Loss: 0.145004 Loss_all: 0.156808
+Train epoch: 183 [5120/19235 (26%)]	Loss: 0.184664 Loss_all: 0.196377
+Train epoch: 183 [10240/19235 (53%)]	Loss: 0.144632 Loss_all: 0.156235
+Train epoch: 183 [15360/19235 (79%)]	Loss: 0.172618 Loss_all: 0.183700
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12982349 0.26579446 0.30925587 0.2951262 ]
+Train epoch: 183	Loss: 0.157825
+Make prediction for 4809 samples...
+0.874679263757754 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 23.73480796813965 s
+Training on 19235 samples...
+Train epoch: 184 [0/19235 (0%)]	Loss: 0.178435 Loss_all: 0.189203
+Train epoch: 184 [5120/19235 (26%)]	Loss: 0.140015 Loss_all: 0.150655
+Train epoch: 184 [10240/19235 (53%)]	Loss: 0.149757 Loss_all: 0.160681
+Train epoch: 184 [15360/19235 (79%)]	Loss: 0.134846 Loss_all: 0.145997
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13042201 0.26304033 0.3138693  0.2926684 ]
+Train epoch: 184	Loss: 0.157629
+Make prediction for 4809 samples...
+0.8751608766881034 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 25.53901171684265 s
+Training on 19235 samples...
+Train epoch: 185 [0/19235 (0%)]	Loss: 0.167839 Loss_all: 0.178730
+Train epoch: 185 [5120/19235 (26%)]	Loss: 0.126924 Loss_all: 0.137933
+Train epoch: 185 [10240/19235 (53%)]	Loss: 0.139944 Loss_all: 0.151351
+Train epoch: 185 [15360/19235 (79%)]	Loss: 0.133763 Loss_all: 0.145297
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12841842 0.26760244 0.31052297 0.29345617]
+Train epoch: 185	Loss: 0.159760
+Make prediction for 4809 samples...
+0.8753362475351454 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 24.64867091178894 s
+Training on 19235 samples...
+Train epoch: 186 [0/19235 (0%)]	Loss: 0.175959 Loss_all: 0.186999
+Train epoch: 186 [5120/19235 (26%)]	Loss: 0.144937 Loss_all: 0.155747
+Train epoch: 186 [10240/19235 (53%)]	Loss: 0.156160 Loss_all: 0.167310
+Train epoch: 186 [15360/19235 (79%)]	Loss: 0.165781 Loss_all: 0.176371
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.13225816 0.26300764 0.3170328  0.28770134]
+Train epoch: 186	Loss: 0.156185
+Make prediction for 4809 samples...
+0.875849222095947 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 25.409987211227417 s
+Training on 19235 samples...
+Train epoch: 187 [0/19235 (0%)]	Loss: 0.143374 Loss_all: 0.154098
+Train epoch: 187 [5120/19235 (26%)]	Loss: 0.173142 Loss_all: 0.183951
+Train epoch: 187 [10240/19235 (53%)]	Loss: 0.153909 Loss_all: 0.164629
+Train epoch: 187 [15360/19235 (79%)]	Loss: 0.160758 Loss_all: 0.171880
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12411868 0.26184955 0.3144362  0.2995956 ]
+Train epoch: 187	Loss: 0.157793
+Make prediction for 4809 samples...
+0.8813684452497131 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 25.01645278930664 s
+Training on 19235 samples...
+Train epoch: 188 [0/19235 (0%)]	Loss: 0.173637 Loss_all: 0.184130
+Train epoch: 188 [5120/19235 (26%)]	Loss: 0.149901 Loss_all: 0.160315
+Train epoch: 188 [10240/19235 (53%)]	Loss: 0.166565 Loss_all: 0.176996
+Train epoch: 188 [15360/19235 (79%)]	Loss: 0.138857 Loss_all: 0.149564
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12625091 0.26826432 0.31699866 0.28848612]
+Train epoch: 188	Loss: 0.158616
+Make prediction for 4809 samples...
+0.8759286433060379 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 23.86673092842102 s
+Training on 19235 samples...
+Train epoch: 189 [0/19235 (0%)]	Loss: 0.142330 Loss_all: 0.152603
+Train epoch: 189 [5120/19235 (26%)]	Loss: 0.153155 Loss_all: 0.163648
+Train epoch: 189 [10240/19235 (53%)]	Loss: 0.153525 Loss_all: 0.163817
+Train epoch: 189 [15360/19235 (79%)]	Loss: 0.123017 Loss_all: 0.132974
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12815137 0.26657578 0.31465864 0.2906142 ]
+Train epoch: 189	Loss: 0.159626
+Make prediction for 4809 samples...
+0.8789235094918941 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 23.125661611557007 s
+Training on 19235 samples...
+Train epoch: 190 [0/19235 (0%)]	Loss: 0.125462 Loss_all: 0.135250
+Train epoch: 190 [5120/19235 (26%)]	Loss: 0.159209 Loss_all: 0.169496
+Train epoch: 190 [10240/19235 (53%)]	Loss: 0.157817 Loss_all: 0.167878
+Train epoch: 190 [15360/19235 (79%)]	Loss: 0.174789 Loss_all: 0.184875
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12486196 0.26732537 0.3136141  0.29419863]
+Train epoch: 190	Loss: 0.156378
+Make prediction for 4809 samples...
+0.8769340802261021 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 20.001866340637207 s
+Training on 19235 samples...
+Train epoch: 191 [0/19235 (0%)]	Loss: 0.124261 Loss_all: 0.134437
+Train epoch: 191 [5120/19235 (26%)]	Loss: 0.147650 Loss_all: 0.157528
+Train epoch: 191 [10240/19235 (53%)]	Loss: 0.140918 Loss_all: 0.150657
+Train epoch: 191 [15360/19235 (79%)]	Loss: 0.176916 Loss_all: 0.186743
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12944202 0.26284903 0.31013966 0.29756925]
+Train epoch: 191	Loss: 0.153289
+Make prediction for 4809 samples...
+0.8768099051217442 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 19.68952488899231 s
+Training on 19235 samples...
+Train epoch: 192 [0/19235 (0%)]	Loss: 0.140237 Loss_all: 0.150190
+Train epoch: 192 [5120/19235 (26%)]	Loss: 0.163097 Loss_all: 0.172509
+Train epoch: 192 [10240/19235 (53%)]	Loss: 0.158406 Loss_all: 0.167903
+Train epoch: 192 [15360/19235 (79%)]	Loss: 0.107919 Loss_all: 0.117761
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12750576 0.2690799  0.3123019  0.29111242]
+Train epoch: 192	Loss: 0.157398
+Make prediction for 4809 samples...
+0.8781096328010785 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 19.533557415008545 s
+Training on 19235 samples...
+Train epoch: 193 [0/19235 (0%)]	Loss: 0.174355 Loss_all: 0.184571
+Train epoch: 193 [5120/19235 (26%)]	Loss: 0.180096 Loss_all: 0.189969
+/root/HAG-DTA/py38_env/lib/python3.8/site-packages/torch_geometric/deprecation.py:26: UserWarning: 'data.DenseDataLoader' is deprecated, use 'loader.DenseDataLoader' instead
+  warnings.warn(out)
+Train epoch: 193 [10240/19235 (53%)]	Loss: 0.155688 Loss_all: 0.165578
+Train epoch: 193 [15360/19235 (79%)]	Loss: 0.174938 Loss_all: 0.184255
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.1224133  0.267846   0.30748507 0.30225563]
+Train epoch: 193	Loss: 0.156254
+Make prediction for 4809 samples...
+0.8758877884252868 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 22.26045560836792 s
+Training on 19235 samples...
+Train epoch: 194 [0/19235 (0%)]	Loss: 0.140370 Loss_all: 0.149734
+Train epoch: 194 [5120/19235 (26%)]	Loss: 0.178702 Loss_all: 0.188257
+Train epoch: 194 [10240/19235 (53%)]	Loss: 0.143422 Loss_all: 0.152674
+Train epoch: 194 [15360/19235 (79%)]	Loss: 0.179115 Loss_all: 0.188775
+注意力分数 x_H_1, x_H_2, xt, x_G: [0.12190081 0.2685029  0.31173906 0.29785722]
+Train epoch: 194	Loss: 0.160979
+Make prediction for 4809 samples...
+0.8747563964164337 No improvement since epoch  144 ; best_val_ci, best_val_mse, best_val_r2: 0.8864216515271928 0.2340583 0.6730513845038194 davis
+spend time： 22.836055040359497 s
+early stopping at epoch  194  due to no validation improvement.
+Make prediction for 6012 samples...
+final test metrics at best val CI epoch  144 : mse= 0.22933012  ci= 0.8901917561062647  rm2= 0.6384888853874888
