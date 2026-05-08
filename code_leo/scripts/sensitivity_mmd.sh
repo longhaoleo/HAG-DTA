@@ -18,7 +18,7 @@ FOLD=0
 OUTPUT="${HAG_DTA_OUTPUT_ROOT:-/root/autodl-tmp/HAG-DTA-runs}"
 mkdir -p "$OUTPUT/sensitivity_mmd"
 
-BETAS=(0 0.01 0.05 0.1 0.5)
+BETAS=(0 0.01 0.05 0.1 0.5 1.0)
 
 echo "============================================"
 echo " MMD Loss Coefficient Ablation — Davis + GIN"
