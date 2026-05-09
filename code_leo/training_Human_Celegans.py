@@ -132,7 +132,6 @@ for seed in SEEDS:
     val_recall_list = []
     for dataset in datasets:
         print('\nrunning on ', dataset)
-        # ⚡ 直接加载预分割的 per-fold .pt 文件（避免 Subset + DenseDataLoader 极慢）
         train_pt = processed_file(f'{dataset}_fold{fold_id}_train')
         val_pt = processed_file(f'{dataset}_fold{fold_id}_val')
         test_pt = processed_file(f'{dataset}_fold{fold_id}_test')

@@ -60,7 +60,7 @@ exec(open('training_davis_kiba.py').read())
 " > "$log" 2>&1
 
     # 提取 mean±std
-    CSV="$OUTPUT/davis_Diff_DTA_GIN_classic_random.csv"
+    CSV="$OUTPUT/davis_Diff_DTA_GIN_random.csv"
     if [ -f "$CSV" ]; then
         result=$(python3 -c "
 import pandas as pd, numpy as np

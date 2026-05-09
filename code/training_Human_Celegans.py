@@ -30,11 +30,7 @@ def train(model, device, train_loader, optimizer, epoch):
         loss_all.backward()
         optimizer.step()
         if batch_idx % LOG_INTERVAL == 0:
-            print('Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(epoch,
-                                                                           batch_idx * len(data.x),
-                                                                           len(train_loader.dataset),
-                                                                           100. * batch_idx / len(train_loader),
-                                                                           loss.item(), loss_all.item()))
+            print('Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(epoch,batch_idx * len(data.x),len(train_loader.dataset),100. * batch_idx / len(train_loader),loss.item(), loss_all.item()))
 
 
 def predicting(model, device, loader):
@@ -110,6 +106,7 @@ for seed in [100,1000,2000]:# 设置随机种子
                 ret = [roc_auc_score(G, P), auc(fpr, tpr), precision_score(G,pred), recall_score(G,pred)]
                 test_roc = ret[0]
                 test_prc = ret[1]
+                
                 if ret[0] > best_roc:
                     torch.save(model.state_dict(), model_file_name)
                     best_epoch = epoch + 1

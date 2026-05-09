@@ -95,9 +95,9 @@ python scripts/statistical_tests_local.py
 
 ### 回归（classic）
 
-- 主结果：`{dataset}_{model}_classic_random.csv`
-- 训练曲线：`{dataset}训练损失_classic_{seed}_{model}.csv`
-- 注意力：`{dataset}注意力分数_classic_{seed}_{model}.csv`
+- 主结果：`{dataset}_{model}_random.csv`
+- 训练曲线：`{dataset}训练损失_{seed}_{model}.csv`
+- 注意力：`{dataset}注意力分数_{seed}_{model}.csv`
 
 ### 分类（single split）
 
@@ -138,6 +138,6 @@ bash scripts/run_kiba.sh 100
 - 分类任务的旧 fold 结果不要再和当前结果混用
 - 重新划分后，必须重新运行 `create_data_Human_Celegans.py`
 - `scripts/statistical_tests.py` 已同时兼容：
-  - 回归 `*_classic_random.csv`
+  - 回归 `*_random.csv`
   - 分类 `*_random.csv`
 - `run_kiba_single.sh` 现在是 classic 单 seed 版本，不再需要 fold 参数

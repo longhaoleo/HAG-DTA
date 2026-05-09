@@ -58,7 +58,7 @@ CELEGANS_BASELINES = {
 
 def load_hag_results(csv_dir, dataset, model='Diff_DTA_GIN'):
     candidates = [
-        csv_dir / f'{dataset}_{model}_classic_random.csv',
+        csv_dir / f'{dataset}_{model}_random.csv',
         csv_dir / f'{dataset}_{model}_random.csv',
     ]
     for path in candidates:
