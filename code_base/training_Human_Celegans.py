@@ -3,7 +3,6 @@ import sys
 
 import numpy as np
 import pandas as pd
-from regex import F
 import torch
 import torch.nn as nn
 from sklearn.metrics import auc, precision_recall_curve, precision_score, recall_score, roc_auc_score
