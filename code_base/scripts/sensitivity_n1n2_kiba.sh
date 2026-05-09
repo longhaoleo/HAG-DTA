@@ -1,32 +1,22 @@
 #!/bin/bash
-# sensitivity_n1n2.sh - n1/n2 sensitivity (Davis + HAG-DTA GIN).
+# sensitivity_n1n2_kiba.sh - n1/n2 sensitivity (KIBA + HAG-DTA GIN, 1 seed).
 #
 # Usage:
-#   bash scripts/sensitivity_n1n2.sh        # quick: 5 combos x 1 seed
-#   bash scripts/sensitivity_n1n2.sh full   # full grid x 1 seed
+#   bash scripts/sensitivity_n1n2_kiba.sh
 #
 # Optional:
-#   SEED=1000 bash scripts/sensitivity_n1n2.sh
+#   SEED=1000 bash scripts/sensitivity_n1n2_kiba.sh
 
 set -e
 
 cd "$(dirname "$0")/.."
 
-DID=0
+DID=1
 MID=0
-MODE=${1:-quick}
 SEED=${SEED:-100}
 OUTPUT="${HAG_DTA_OUTPUT_ROOT:-/root/autodl-tmp/HAG-DTA-runs}"
 
-quick_combos=(
-    "4 2"
-    "5 2"
-    "6 2"
-    "7 3"
-    "8 4"
-)
-
-full_combos=(
+combos=(
     "4 2"
     "4 3"
     "5 2"
@@ -43,34 +33,21 @@ full_combos=(
     "8 4"
 )
 
-case "$MODE" in
-    quick)
-        combos=("${quick_combos[@]}")
-        ;;
-    full)
-        combos=("${full_combos[@]}")
-        ;;
-    *)
-        echo "Usage: bash scripts/sensitivity_n1n2.sh [quick|full]"
-        exit 2
-        ;;
-esac
-
-mkdir -p "$OUTPUT/sensitivity"
+mkdir -p "$OUTPUT/sensitivity_kiba"
 
 echo "============================================"
-echo " n1/n2 Sensitivity - Davis + HAG-DTA GIN"
-echo " mode=$MODE combos=${#combos[@]} seed=$SEED"
+echo " n1/n2 Sensitivity - KIBA + HAG-DTA GIN"
+echo " combos=${#combos[@]} seed=$SEED"
 echo "============================================"
 echo ""
 
 for combo in "${combos[@]}"; do
     n1=$(echo "$combo" | awk '{print $1}')
     n2=$(echo "$combo" | awk '{print $2}')
-    tag="n1_${n1}_n2_${n2}_${MODE}"
-    log="$OUTPUT/sensitivity/${tag}.log"
+    tag="n1_${n1}_n2_${n2}"
+    log="$OUTPUT/sensitivity_kiba/${tag}.log"
 
-    echo "--- n1=$n1 n2=$n2 ---"
+    echo "--- KIBA n1=$n1 n2=$n2 ---"
 
     HAG_DTA_N1=$n1 HAG_DTA_N2=$n2 \
     python3 -c "
@@ -81,7 +58,7 @@ sys.argv = ['training_davis_kiba.py', '$DID', '$MID']
 exec(open('training_davis_kiba.py').read())
 " > "$log" 2>&1
 
-    CSV="$OUTPUT/davis_Diff_DTA_GIN_random.csv"
+    CSV="$OUTPUT/kiba_Diff_DTA_GIN_random.csv"
     if [ -f "$CSV" ]; then
         result=$(python3 -c "
 import pandas as pd
@@ -100,5 +77,5 @@ done
 
 echo "============================================"
 echo " All runs complete."
-echo " Logs: $OUTPUT/sensitivity/"
+echo " Logs: $OUTPUT/sensitivity_kiba/"
 echo "============================================"
