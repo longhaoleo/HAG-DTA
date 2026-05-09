@@ -76,11 +76,6 @@ def evaluate_binary_metrics(y_true, y_score, y_pred):
     ]
 
 
-def dataset_defaults(dataset_name):
-    n1_defaults = {'Human': 7, 'Celegans': 7}
-    n2_defaults = {'Human': 3, 'Celegans': 3}
-    return n1_defaults[dataset_name], n2_defaults[dataset_name]
-
 
 if len(sys.argv) != 3:
     raise SystemExit('Usage: python training_Human_Celegans.py <dataset_id> <model_id>')
@@ -128,7 +123,8 @@ for seed in SEEDS:
     test_loader = DenseDataLoader(test_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
 
     device = torch.device(cuda_name if torch.cuda.is_available() else 'cpu')
-    n1_default, n2_default = dataset_defaults(dataset_name)
+    # set n1, n2 from env vars or defaults (for model variants with different node counts)    
+    n1_default, n2_default = (6,3)
     n1 = int(os.environ.get('HAG_DTA_N1', n1_default))
     n2 = int(os.environ.get('HAG_DTA_N2', n2_default))
     print(f'Hierarchical pooling: n1={n1}, n2={n2}')

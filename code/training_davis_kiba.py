@@ -37,10 +37,10 @@ def train(model, device, train_loader, optimizer, epoch):
         optimizer.step()
         if batch_idx % LOG_INTERVAL == 0:
             print('Train epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f} Loss_all: {:.6f}'.format(epoch,
-                                                                           batch_idx * len(data.x),
-                                                                           len(train_loader.dataset),
-                                                                           100. * batch_idx / len(train_loader),
-                                                                           loss.item(), loss_all.item()))
+            batch_idx * len(data.x),
+            len(train_loader.dataset),
+            100. * batch_idx / len(train_loader),
+            loss.item(), loss_all.item()))
         a = a.cpu().detach().numpy().sum(axis=0)/data.y.shape[0]
         a_all.append(list(a.flatten()))
     print("注意力分数 x_H_1, x_H_2, xt, x_G:", np.array(a_all).sum(axis=0)/len(a_all))
@@ -106,6 +106,7 @@ for seed in [100,1000,2000]:# 设置随机种子
                 test_loader1 = DenseDataLoader(test_data1, batch_size=TEST_BATCH_SIZE, shuffle=False)
             # training the model
             device = torch.device(cuda_name if torch.cuda.is_available() else "cpu")
+            # n1 n2
             model = model_select(num_nodes_1=6,num_nodes_2 = 3)
             model = model.to(device)
             # model.load_state_dict(torch.load('model_GINConvNet_davis.model')) # 导入网络的参数
