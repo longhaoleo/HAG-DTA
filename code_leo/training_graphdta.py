@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-HAG-DTA regression training (Davis / KIBA).
-Uses DeepDTA original train/test split — matching GraphDTA and all baselines.
-Model selection on test_loader (consistent with published baselines).
+GraphDTA baseline training — classic mode only.
+Matches HAG-DTA data pipeline, output format compatible with statistical_tests.py.
 
-Usage: python training_davis_kiba.py <dataset> <model>
+Usage: python training_graphdta.py <dataset> <model> <ignored>
   dataset: 0=davis, 1=kiba
-  model:   0=GIN, 1=GCN, 2=GAT, 3=SAGE
+  model:   0=GCN, 1=GAT, 2=GIN, 3=SAGE (matching GraphDTA default order)
 """
 
 import copy, os, sys
@@ -19,8 +18,7 @@ from torch_geometric.data import DenseDataLoader
 
 from config.paths import CACHE_ROOT, ensure_runtime_dirs, output_file, processed_file
 from config.training import CUDA_NAME, REGRESSION_TRAINING, SEEDS
-from MMDLoss import *
-from model import Diff_DTA_GAT, Diff_DTA_GCN, Diff_DTA_GIN, Diff_DTA_SAGE
+from model_graphdta import GraphDTA_GCN, GraphDTA_GAT, GraphDTA_GIN, GraphDTA_SAGE
 from utils import *
 
 
@@ -35,27 +33,18 @@ def same_seeds(seed):
 
 def train(model, device, train_loader, optimizer):
     model.train()
-    criterion = MMDLoss()
     loss_train = torch.zeros(1, device=device)
     num_sample = 0
-    attention_sum = None
-    num_batches = 0
     for data in train_loader:
         data = data.to(device)
         optimizer.zero_grad()
-        output, l_loss, e_loss, a, x_local, x_global = model(data)
-        loss = loss_fn(output, data.y.view(-1, 1).float().to(device))
-        cl_loss = criterion(x_local, x_global)
-        mmd_beta = float(os.environ.get('HAG_DTA_MMD_BETA', 0.05))
-        loss_all = loss + mmd_beta*l_loss + mmd_beta*e_loss + mmd_beta*cl_loss
-        loss_all.backward()
+        output = model(data)
+        loss = loss_fn(output, data.y.view(-1,1).float().to(device))
+        loss.backward()
         loss_train = loss_train + data.y.shape[0] * loss.detach()
         num_sample = num_sample + data.y.shape[0]
         optimizer.step()
-        b = a.detach().mean(dim=0).flatten()
-        attention_sum = b if attention_sum is None else attention_sum + b
-        num_batches += 1
-    return (loss_train/num_sample).item(), (attention_sum/num_batches).cpu().numpy()
+    return (loss_train/num_sample).item()
 
 
 def evaluate(model, device, loader):
@@ -64,7 +53,7 @@ def evaluate(model, device, loader):
     with torch.no_grad():
         for data in loader:
             data = data.to(device)
-            o, _, _, _, _, _ = model(data)
+            o = model(data)
             P = torch.cat((P, o.cpu()), 0)
             L = torch.cat((L, data.y.view(-1,1).cpu()), 0)
     return L.numpy().flatten(), P.numpy().flatten()
@@ -74,9 +63,9 @@ def reg_metrics(y, p):
     return {'mse': mse(y,p), 'r2': get_rm2(y,p), 'ci': ci(y,p)}
 
 
-# ── Main ────────────────────────────────────────────────────────────
+# ── Main ──
 dataset_name = ['davis','kiba'][int(sys.argv[1])]
-model_cls = [Diff_DTA_GIN, Diff_DTA_GCN, Diff_DTA_GAT, Diff_DTA_SAGE][int(sys.argv[2])]
+model_cls = [GraphDTA_GCN, GraphDTA_GAT, GraphDTA_GIN, GraphDTA_SAGE][int(sys.argv[2])]
 mname = model_cls.__name__
 
 BS = REGRESSION_TRAINING['train_batch_size']
@@ -94,7 +83,7 @@ mse_list, ci_list, r2_list = [], [], []
 
 for seed in SEEDS:
     same_seeds(seed)
-    loss_tr, loss_val, a_list = [], [], []
+    loss_tr, loss_val = [], []
     print(f'\n--- {dataset_name} seed={seed} ---')
 
     train_pt = processed_file(f'{dataset_name}_train')
@@ -111,11 +100,7 @@ for seed in SEEDS:
         test_loader1 = DenseDataLoader(test_data1, batch_size=TB, shuffle=False)
 
     device = torch.device(CUDA_NAME if torch.cuda.is_available() else "cpu")
-    n1_default, n2_default = (4,2) if dataset_name=='davis' else (6,2)
-    n1 = int(os.environ.get('HAG_DTA_N1', n1_default))
-    n2 = int(os.environ.get('HAG_DTA_N2', n2_default))
-    print(f'n1={n1} n2={n2}')
-    model = model_cls(num_nodes_1=n1, num_nodes_2=n2).to(device)
+    model = model_cls().to(device)
     loss_fn = nn.MSELoss()
     opt = torch.optim.Adam(model.parameters(), lr=LR)
 
@@ -126,15 +111,11 @@ for seed in SEEDS:
 
     for epoch in range(EP):
         if dataset_name == 'kiba':
-            l1, a = train(model, device, train_loader, opt)
-            l2, a2 = train(model, device, train_loader1, opt)
-            n_all = len(train_data) + len(train_data1)
-            loss_tr.append((l1*len(train_data) + l2*len(train_data1))/n_all)
-            a_list.append(list((a*len(train_data) + a2*len(train_data1))/n_all))
+            l1 = train(model, device, train_loader, opt)
+            l2 = train(model, device, train_loader1, opt)
+            loss_tr.append((l1*len(train_data) + l2*len(train_data1))/(len(train_data)+len(train_data1)))
         else:
-            l, a = train(model, device, train_loader, opt)
-            loss_tr.append(l)
-            a_list.append(list(a))
+            loss_tr.append(train(model, device, train_loader, opt))
 
         if (epoch+1)==1 or (epoch+1)%VI==0:
             if dataset_name == 'kiba':
@@ -159,9 +140,7 @@ for seed in SEEDS:
             loss_val.append(np.nan)
 
         pd.DataFrame({'train_loss': loss_tr, 'val_loss': loss_val}).to_csv(
-            output_file(f'{dataset_name}训练损失_classic_{seed}_{mname}.csv'), index=0)
-        pd.DataFrame(a_list, columns=['x_H_1','x_H_2','xt','x_G']).to_csv(
-            output_file(f'{dataset_name}注意力分数_classic_{seed}_{mname}.csv'), index=0)
+            output_file(f'{dataset_name}_graphdta_loss_classic_{seed}_{mname}.csv'), index=0)
 
         if no_improve >= PA:
             print(f'early stop at epoch {epoch+1}')
@@ -180,4 +159,4 @@ for seed in SEEDS:
     mse_list.append(tm['mse']); ci_list.append(tm['ci']); r2_list.append(tm['r2'])
 
 pd.DataFrame({'mse': mse_list, 'ci': ci_list, 'r2': r2_list}).to_csv(
-    output_file(f'{dataset_name}_{mname}_classic_random.csv'), index=0)
+    output_file(f'{dataset_name}_{mname}_graphdta_classic_random.csv'), index=0)

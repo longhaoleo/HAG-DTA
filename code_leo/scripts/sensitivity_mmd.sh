@@ -36,7 +36,7 @@ for beta in "${BETAS[@]}"; do
 import config.training as ct
 ct.SEEDS = [100]
 import sys
-sys.argv = ['training_davis_kiba.py', '$DID', '$MID', '$FOLD']
+sys.argv = ['training_davis_kiba.py', '$DID', '$MID']
 exec(open('training_davis_kiba.py').read())
 " > "$log" 2>&1
 

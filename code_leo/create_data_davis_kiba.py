@@ -213,3 +213,52 @@ for dataset in datasets:
         save_fold_pt(dataset, fold_id, fold_indices, all_drugs, all_prots, all_y, smile_graph, T.ToDense(46), MyFilter())
         if dataset == 'kiba':
             save_fold_pt(dataset + '_sub1', fold_id, fold_indices, all_drugs, all_prots, all_y, smile_graph, T.ToDense(268), MyFilter1())
+
+# ═══════════════════════════════════════════════════════════════════════
+# Classic train/test .pt 文件（DeepDTA 原始 split，保存到 CACHE_ROOT/processed/）
+# ═══════════════════════════════════════════════════════════════════════
+print('\nGenerating classic train/test .pt files (DeepDTA original split) ...')
+
+for dataset in ['davis', 'kiba']:
+    fpath = raw_data_dir(dataset) + '/'
+    train_fold = json.load(open(fpath + 'folds/train_fold_setting1.txt'))
+    test_fold = json.load(open(fpath + 'folds/test_fold_setting1.txt'))
+    train_flat = [ee for e in train_fold for ee in e]
+    test_flat = [ee for e in test_fold for ee in e]
+
+    df = full_frames[dataset]
+    all_drugs, all_prots, all_y = encode_dataframe(df)
+
+    train_drugs = all_drugs[train_flat]
+    train_prots = all_prots[train_flat]
+    train_y = all_y[train_flat]
+    test_drugs = all_drugs[test_flat]
+    test_prots = all_prots[test_flat]
+    test_y = all_y[test_flat]
+
+    if not os.path.isfile(processed_file(f'{dataset}_train')):
+        print(f'  {dataset}_train.pt ...')
+        TestbedDataset(root=CACHE_ROOT, dataset=f'{dataset}_train',
+                       xd=train_drugs, xt=train_prots, y=train_y,
+                       smile_graph=smile_graph, pre_transform=T.ToDense(46), pre_filter=MyFilter())
+    if not os.path.isfile(processed_file(f'{dataset}_test')):
+        print(f'  {dataset}_test.pt ...')
+        TestbedDataset(root=CACHE_ROOT, dataset=f'{dataset}_test',
+                       xd=test_drugs, xt=test_prots, y=test_y,
+                       smile_graph=smile_graph, pre_transform=T.ToDense(46), pre_filter=MyFilter())
+
+    if dataset == 'kiba':
+        if not os.path.isfile(processed_file(f'{dataset}_train1')):
+            print(f'  {dataset}_train1.pt ...')
+            TestbedDataset(root=CACHE_ROOT, dataset=f'{dataset}_train1',
+                           xd=train_drugs, xt=train_prots, y=train_y,
+                           smile_graph=smile_graph, pre_transform=T.ToDense(268), pre_filter=MyFilter1())
+        if not os.path.isfile(processed_file(f'{dataset}_test1')):
+            print(f'  {dataset}_test1.pt ...')
+            TestbedDataset(root=CACHE_ROOT, dataset=f'{dataset}_test1',
+                           xd=test_drugs, xt=test_prots, y=test_y,
+                           smile_graph=smile_graph, pre_transform=T.ToDense(268), pre_filter=MyFilter1())
+
+    print(f'  {dataset}: train={len(train_flat)} test={len(test_flat)}')
+
+print('Done.')

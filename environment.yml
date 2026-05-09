@@ -1,0 +1,20 @@
+name: hag-dta
+channels:
+  - pytorch
+  - pyg
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - networkx
+  - matplotlib
+  - rdkit
+  - pip:
+    - torch==2.0.0+cu118
+    - torchvision==0.15.0+cu118
+    - torchaudio==2.0.0+cu118

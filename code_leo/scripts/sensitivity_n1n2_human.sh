@@ -1,11 +1,9 @@
 #!/bin/bash
-# sensitivity_n1n2_human.sh — n1/n2 敏感性分析 (Human + GIN, 1 fold, 1 seed)
-#
-# 测试 n1 ∈ {4,5,6,7,8} × n2 ∈ {2,3,4} (n2 < n1)，共 11 组
+# sensitivity_n1n2_human.sh — n1/n2 网格搜索 (Human + GIN, 5 seeds, 1 fold)
 #
 # Usage:
 #   cd ~/HAG-DTA/code_leo
-#   bash sensitivity_n1n2_human.sh
+#   bash scripts/sensitivity_n1n2_human.sh
 
 set -e
 
@@ -44,8 +42,6 @@ run_one() {
 
     HAG_DTA_N1=$n1 HAG_DTA_N2=$n2 \
     python3 -c "
-import config.training as ct
-ct.SEEDS = [100]
 import sys
 sys.argv = ['training_Human_Celegans.py', '$DID', '$MID', '$FOLD']
 exec(open('training_Human_Celegans.py').read())
@@ -54,10 +50,14 @@ exec(open('training_Human_Celegans.py').read())
     local CSV="$OUTPUT/Human_Diff_DTA_GIN_fold${FOLD}_random.csv"
     if [ -f "$CSV" ]; then
         python3 -c "
-import pandas as pd
+import pandas as pd, numpy as np
 df = pd.read_csv('$CSV')
-r = df.iloc[-1]
-print(f'  AUROC={r[\"AUROC\"]:.4f}  AUPRC={r[\"AUPRC\"]:.4f}  Precision={r[\"Precision\"]:.4f}  Recall={r[\"Recall\"]:.4f}')
+cols = [c for c in df.columns if c != 'fold']
+for c in cols:
+    m = df[c].mean()
+    s = df[c].std(ddof=1)
+    print(f'{c}={m:.4f}±{s:.4f}', end='  ')
+print()
 "
     else
         echo "  FAILED (no CSV)"

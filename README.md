@@ -1,47 +1,93 @@
-# HAG-DTA
+# HAG-DTA 服务器复现指南
 
-drug-target binding affinity prediction with hierarchical multi-scale attention fusion graph neural networks
+Linux + CUDA GPU 环境。
 
-## Step1：配置
+---
 
-对”服务器配置“文件夹中的文件进行配置，运行以下命令：
+## 环境
 
 ```bash
-pip install torch_cluster-1.5.9-cp38-cp38-linux_x86_64.whl
-pip install torch_scatter-2.0.7-cp38-cp38-linux_x86_64.whl
-pip install torch_sparse-0.6.10-cp38-cp38-linux_x86_64.whl
-pip install torch_spline_conv-1.2.1-cp38-cp38-linux_x86_64.whl
+conda env create -f environment.yml
+conda activate hag-dta
+
+# PyG 扩展（需从 PyG 官方源安装）
+pip install torch_geometric==2.6.1 torch_scatter==2.1.2 torch_sparse==0.6.18 \
+    torch_cluster==1.6.3 torch_spline_conv==1.2.2 \
+    -f https://data.pyg.org/whl/torch-2.0.0+cu118.html
 ```
 
-pytorch 2.0.0版本，python3.8版本
+验证：
+```bash
+python -c "import torch; print(torch.cuda.is_available())"  # 必须 True
+```
 
-## Step2：数据处理
+---
 
-运行以下程序：
+## 路径（可选覆盖）
 
-```python
+| 变量 | 默认值 |
+|------|--------|
+| `HAG_DTA_CACHE_ROOT` | `/root/autodl-tmp/HAG-DTA-cache` |
+| `HAG_DTA_OUTPUT_ROOT` | `/root/autodl-tmp/HAG-DTA-runs` |
+
+---
+
+## 数据预处理
+
+```bash
+cd ~/HAG-DTA/code_leo
 python create_data_davis_kiba.py
 python create_data_Human_Celegans.py
 ```
 
-构建数据集
+---
 
-## Step3：进行训练
+## 训练
 
-程序training_davis_kiba.py是训练davis和kiba数据集的
+格式：`python <script> <dataset> <model> <fold>`
 
-程序training_Human_Celegans.py是训练Human和Celegans数据集的
+| 数据集 | script | dataset_id |
+|--------|--------|-----------|
+| Davis | `training_davis_kiba.py` | 0 |
+| KIBA | `training_davis_kiba.py` | 1 |
+| Human | `training_Human_Celegans.py` | 0 |
+| C.elegans | `training_Human_Celegans.py` | 1 |
 
-训练示例：
+model_id: 0=GIN 1=GCN 2=GAT 3=SAGE
 
-```python
-python training_davis_kiba.py 0 1
-python training_davis_kiba.py dataset_id model_id
+单条示例：
+```bash
+python training_davis_kiba.py 0 0 0    # Davis + GIN + fold 0
 ```
 
-其中：
+批量（GIN 全 5 折）：
+```bash
+cd ~/HAG-DTA/code_leo
+bash scripts/run_davis.sh &
+bash scripts/run_kiba.sh &
+bash scripts/run_human.sh &
+bash scripts/run_celegans.sh &
+```
 
-```
-dataset_id: 0=davis, 1=kiba
-model_id: 0=GIN, 1=GCN, 2=GAT, 3=SAGE
-```
+GCN/GAT/SAGE 改脚本内 `MODEL_ID` 后同样执行。
+
+---
+
+## 输出
+
+默认目录 `/root/autodl-tmp/HAG-DTA-runs/`：
+- `{dataset}_Diff_DTA_GIN_fold{N}_random.csv` — 每折 5 种子最终指标
+- `{dataset}训练损失_fold{N}_{seed}_{model}.csv` — 训练曲线
+- `logs/{dataset}.log` — 运行日志
+
+汇总：`python scripts/aggregate_results.py`
+
+---
+
+## 补充实验
+
+| 实验 | 脚本 |
+|------|------|
+| MMD β 消融 | `bash scripts/sensitivity_mmd.sh` |
+| n1/n2 网格 | `bash scripts/sensitivity_n1n2.sh` |
+
