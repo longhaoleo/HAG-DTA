@@ -1,7 +1,7 @@
 import os
 
 
-DATA_ROOT = os.environ.get('HAG_DTA_DATA_ROOT', '../data')
+DATA_ROOT = os.environ.get('HAG_DTA_DATA_ROOT', 'data')
 CACHE_ROOT = os.environ.get('HAG_DTA_CACHE_ROOT', '/root/autodl-tmp/HAG-DTA-cache')
 PROCESSED_DIR = os.environ.get('HAG_DTA_PROCESSED_DIR', os.path.join(CACHE_ROOT, 'processed'))
 FOLD_DIR = os.environ.get('HAG_DTA_FOLD_DIR', os.path.join(CACHE_ROOT, 'fold_indices'))
