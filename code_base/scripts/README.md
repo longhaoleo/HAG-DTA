@@ -63,8 +63,18 @@ bash scripts/run_human_full.sh all
 
 | 脚本 | 数据集 | 模式 | 组合数 | 说明 |
 |------|--------|------|--------|------|
-| `sensitivity_n1n2.sh` | Davis | classic split | 默认 5，`full` 为 14 | 单 seed，默认 `SEED=100` |
+| `sensitivity_n1n2_davis.sh` | Davis | classic split | 14 | 单 seed，默认 `SEED=100` |
+| `sensitivity_n1n2_kiba.sh` | KIBA | classic split | 14 | 单 seed，默认 `SEED=100` |
 | `sensitivity_n1n2_human.sh` | Human | 80/10/10 single split | 14 | 单 seed，默认 `SEED=100` |
+| `sensitivity_n1n2_celegans.sh` | C.elegans | 80/10/10 single split | 14 | 单 seed，默认 `SEED=100` |
+| `sensitivity_n1n2_all.sh` | 全部四个数据集 | 各自 split | 每个数据集 14 | 单 seed，默认 `SEED=100` |
+
+示例：
+
+```bash
+bash scripts/sensitivity_n1n2_all.sh
+SEED=1000 bash scripts/sensitivity_n1n2_all.sh
+```
 
 ### 2. MMD β 消融
 
@@ -149,8 +159,8 @@ cd ~/HAG-DTA/code_base
 python create_data_Human_Celegans.py
 
 # 2) 快速验证
-bash scripts/sensitivity_n1n2.sh
-bash scripts/sensitivity_n1n2_human.sh
+bash scripts/sensitivity_n1n2_davis.sh
+bash scripts/sensitivity_n1n2_all.sh
 bash scripts/sensitivity_mmd.sh
 
 # 3) 分类主实验

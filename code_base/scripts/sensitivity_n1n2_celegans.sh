@@ -1,18 +1,17 @@
 #!/bin/bash
-# sensitivity_n1n2_human.sh - n1/n2 sensitivity (Human + HAG-DTA GIN, 1 seed).
+# sensitivity_n1n2_celegans.sh - n1/n2 sensitivity (C.elegans + HAG-DTA GIN, 1 seed).
 #
 # Usage:
-#   cd ~/HAG-DTA/code_base  # Human 使用 80/10/10, seed=1234
-#   bash scripts/sensitivity_n1n2_human.sh
+#   bash scripts/sensitivity_n1n2_celegans.sh
 #
 # Optional:
-#   SEED=1000 bash scripts/sensitivity_n1n2_human.sh
+#   SEED=1000 bash scripts/sensitivity_n1n2_celegans.sh
 
 set -e
 
 cd "$(dirname "$0")/.."
 
-DID=0     # Human
+DID=1     # C.elegans
 MID=0     # GIN
 SEED=${SEED:-100}
 
@@ -35,14 +34,14 @@ combos=(
     "8 4"
 )
 
-mkdir -p "$OUTPUT/sensitivity_human"
+mkdir -p "$OUTPUT/sensitivity_celegans"
 
 run_one() {
     local n1=$1 n2=$2
     local tag="n1_${n1}_n2_${n2}"
-    local log="$OUTPUT/sensitivity_human/${tag}.log"
+    local log="$OUTPUT/sensitivity_celegans/${tag}.log"
 
-    echo "--- Human n1=$n1 n2=$n2 ---"
+    echo "--- C.elegans n1=$n1 n2=$n2 ---"
 
     HAG_DTA_N1=$n1 HAG_DTA_N2=$n2 \
     python3 -c "
@@ -53,16 +52,15 @@ sys.argv = ['training_Human_Celegans.py', '$DID', '$MID']
 exec(open('training_Human_Celegans.py').read())
 " > "$log" 2>&1
 
-    local CSV="$OUTPUT/Human_Diff_DTA_GIN_random.csv"
+    local CSV="$OUTPUT/Celegans_Diff_DTA_GIN_random.csv"
     if [ -f "$CSV" ]; then
         python3 -c "
 import pandas as pd
-
 df = pd.read_csv('$CSV')
 for c in df.columns:
     m = df[c].mean()
     s = df[c].std(ddof=1)
-    print(f'{c}={m:.4f}±{s:.4f}', end='  ')
+    print(f'{c}={m:.4f}+/-{s:.4f}', end='  ')
 print()
 "
     else
@@ -72,17 +70,17 @@ print()
 }
 
 echo "============================================"
-echo " n1/n2 Sensitivity — Human + GIN"
+echo " n1/n2 Sensitivity - C.elegans + HAG-DTA GIN"
 echo " seed=$SEED combos=${#combos[@]}"
 echo "============================================"
 echo ""
 
 for combo in "${combos[@]}"; do
-    n1=$(echo $combo | awk '{print $1}')
-    n2=$(echo $combo | awk '{print $2}')
+    n1=$(echo "$combo" | awk '{print $1}')
+    n2=$(echo "$combo" | awk '{print $2}')
     run_one "$n1" "$n2"
 done
 
 echo "============================================"
-echo " All done. Logs: $OUTPUT/sensitivity_human/"
+echo " All done. Logs: $OUTPUT/sensitivity_celegans/"
 echo "============================================"
