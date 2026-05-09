@@ -99,6 +99,9 @@ for seed in SEEDS:
 
     train_pt = processed_file(f'{dataset_name}_train')
     test_pt = processed_file(f'{dataset_name}_test')
+    if not (os.path.isfile(train_pt) and os.path.isfile(test_pt)):
+        print(f'ERROR: {train_pt} or {test_pt} not found. Run create_data_davis_kiba.py first.')
+        sys.exit(1)
     train_data = TestbedDataset(root=CACHE_ROOT, dataset=f'{dataset_name}_train')
     test_data = TestbedDataset(root=CACHE_ROOT, dataset=f'{dataset_name}_test')
     train_loader = DenseDataLoader(train_data, batch_size=BS, shuffle=True)
