@@ -1,0 +1,143 @@
+# 实验运行计划（code_base）
+
+## 当前实验协议
+
+- 工作目录：`~/HAG-DTA/code_base`
+- 回归任务（Davis / KIBA）：对齐 baseline，使用 DeepDTA 原始 classic split
+- 分类任务（Human / C.elegans）：对齐 Tsubaki / TransformerCPI 路线，使用单次随机 `80/10/10` 划分
+- 分类任务划分随机种子：`1234`
+- 所有主实验默认 5 个随机种子：`100, 1000, 2000, 3000, 4000`
+- 输出目录默认：`/root/autodl-tmp/HAG-DTA-runs`
+
+## 一、主实验脚本
+
+### 1. 回归：Davis / KIBA
+
+每个 `run_*.sh` 都是“单 seed、5 个模型串行”，便于多机分布式。
+
+| 脚本 | 数据集 | 模式 | 输入 | 实际运行 |
+|------|--------|------|------|----------|
+| `run_davis.sh` | Davis | classic split | `<seed>` | HAG-DTA GIN + GraphDTA GCN/GAT/GIN/SAGE |
+| `run_kiba.sh` | KIBA | classic split | `<seed>` | HAG-DTA GIN + GraphDTA GCN/GAT/GIN/SAGE |
+| `run_davis_full.sh` | Davis | classic split | 无 | 5 seeds × 5 models |
+| `run_kiba_full.sh` | KIBA | classic split | 无 | 5 seeds × 5 models |
+| `run_kiba_single.sh` | KIBA | classic split | `<seed>` | 仅 HAG-DTA GIN，单 seed |
+
+示例：
+
+```bash
+cd ~/HAG-DTA/code_base
+bash scripts/run_davis.sh 100
+bash scripts/run_kiba.sh 100
+```
+
+### 2. 分类：Human / C.elegans
+
+分类任务现在不是 k-fold，而是单次 `80/10/10` 随机划分；每个脚本内部自动跑 5 seeds。
+
+| 脚本 | 数据集 | 模式 | 实际运行 |
+|------|--------|------|----------|
+| `run_human.sh` | Human | single random split (80/10/10, seed=1234) | HAG-DTA GIN, 5 seeds |
+| `run_celegans.sh` | C.elegans | single random split (80/10/10, seed=1234) | HAG-DTA GIN, 5 seeds |
+
+示例：
+
+```bash
+cd ~/HAG-DTA/code_base
+python create_data_Human_Celegans.py
+bash scripts/run_human.sh
+bash scripts/run_celegans.sh
+```
+
+## 二、敏感性分析与基线
+
+### 1. n1 / n2 网格
+
+| 脚本 | 数据集 | 模式 | 组合数 | 说明 |
+|------|--------|------|--------|------|
+| `sensitivity_n1n2.sh` | Davis | classic split | 14 | 5 seeds |
+| `sensitivity_n1n2_human.sh` | Human | 80/10/10 single split | 14 | 5 seeds |
+
+### 2. MMD β 消融
+
+| 脚本 | 数据集 | 模式 | β |
+|------|--------|------|---|
+| `sensitivity_mmd.sh` | Davis | classic split | `0, 0.01, 0.05, 0.1, 0.5, 1.0` |
+
+### 3. TransformerCPI 基线
+
+新增文件：
+
+- `create_data_transformercpi.py`：按当前 Human / C.elegans 的 `80/10/10` 划分构造 TransformerCPI 输入
+- `model_transformercpi.py`：官方 TransformerCPI 结构重写版
+- `training_transformercpi.py`：官方训练逻辑适配版（5 seeds）
+- `scripts/run_human_transformercpi.sh`
+- `scripts/run_celegans_transformercpi.sh`
+- `scripts/statistical_tests_local.py`：本地 HAG-DTA vs TransformerCPI 显著性比较
+
+运行顺序：
+
+```bash
+cd ~/HAG-DTA/code_base
+python create_data_transformercpi.py
+bash scripts/run_human_transformercpi.sh
+bash scripts/run_celegans_transformercpi.sh
+python scripts/statistical_tests_local.py
+```
+
+补充说明：
+
+- `code_base/resources/transformercpi/word2vec_30.model` 已复制到本地
+- 预处理需要 `gensim`、`rdkit`、`torch`
+- 当前实现为了和你现有 HAG-DTA 分类实验公平比较，使用相同的 Human / C.elegans 原始 txt 与同一 `80/10/10` 划分；没有沿用官方脚本里“过滤带 `.` 的 SMILES”那一步（原始数据中这类样本数量为：Human `516` 条，C.elegans `275` 条；若过滤会改变比较样本集）
+
+## 三、输出文件约定
+
+### 回归（classic）
+
+- 主结果：`{dataset}_{model}_classic_random.csv`
+- 训练曲线：`{dataset}训练损失_classic_{seed}_{model}.csv`
+- 注意力：`{dataset}注意力分数_classic_{seed}_{model}.csv`
+
+### 分类（single split）
+
+- 主结果：`{dataset}_{model}_random.csv`
+- 训练曲线：`{dataset}训练损失_{seed}_{model}.csv`
+
+## 四、建议执行顺序
+
+1. 先重建分类数据
+2. 先跑敏感性 / 小规模验证
+3. 再跑分类主实验
+4. 最后跑 KIBA 全量
+
+推荐顺序：
+
+```bash
+cd ~/HAG-DTA/code_base
+
+# 1) 分类数据重建（Human / C.elegans 使用 80/10/10, seed=1234）
+python create_data_Human_Celegans.py
+
+# 2) 快速验证
+bash scripts/sensitivity_n1n2.sh
+bash scripts/sensitivity_n1n2_human.sh
+bash scripts/sensitivity_mmd.sh
+
+# 3) 分类主实验
+bash scripts/run_human.sh
+bash scripts/run_celegans.sh
+
+# 4) 回归主实验（示例：分 seed 跑）
+bash scripts/run_davis.sh 100
+bash scripts/run_kiba.sh 100
+```
+
+## 五、注意事项
+
+- 分类任务的旧 fold 结果不要再和当前结果混用
+- 重新划分后，必须重新运行 `create_data_Human_Celegans.py`
+- `scripts/statistical_tests.py` 已同时兼容：
+  - 回归 `*_classic_random.csv`
+  - 分类 `*_random.csv`
+- `run_kiba_single.sh` 现在是 classic 单 seed 版本，不再需要 fold 参数
