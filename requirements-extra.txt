@@ -1,0 +1,11 @@
+# Extra pip dependencies for the revision experiments in code_base/
+# Base environment is still defined in environment.yml.
+# Install with: pip install -r requirements-extra.txt
+
+# Needed by create_data_transformercpi.py
+# Word2Vec loader for word2vec_30.model
+gensim==4.3.3
+
+# Needed by the HAG-DTA / GraphDTA training & data pipeline in code_base/
+# Match the version documented in the revision environment
+torch-geometric==2.6.1
