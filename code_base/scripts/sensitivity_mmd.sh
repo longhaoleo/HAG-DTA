@@ -4,6 +4,9 @@
 # Usage:
 #   cd ~/HAG-DTA/code_base
 #   bash scripts/sensitivity_mmd.sh
+#
+# Optional:
+#   SEED=1000 bash scripts/sensitivity_mmd.sh
 
 set -e
 
@@ -11,6 +14,7 @@ cd "$(dirname "$0")/.."
 
 DID=0    # Davis
 MID=0    # GIN
+SEED=${SEED:-100}
 OUTPUT="${HAG_DTA_OUTPUT_ROOT:-/root/autodl-tmp/HAG-DTA-runs}"
 mkdir -p "$OUTPUT/sensitivity_mmd"
 
@@ -18,6 +22,7 @@ BETAS=(0 0.01 0.05 0.1 0.5 1.0)
 
 echo "============================================"
 echo " MMD Loss Coefficient Ablation — Davis + GIN"
+echo " seed=$SEED"
 echo "============================================"
 echo ""
 
@@ -30,7 +35,7 @@ for beta in "${BETAS[@]}"; do
     HAG_DTA_N1=4 HAG_DTA_N2=2 HAG_DTA_MMD_BETA=$beta \
     python3 -c "
 import config.training as ct
-ct.SEEDS = [100]
+ct.SEEDS = [$SEED]
 import sys
 sys.argv = ['training_davis_kiba.py', '$DID', '$MID']
 exec(open('training_davis_kiba.py').read())
