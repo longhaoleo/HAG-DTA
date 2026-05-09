@@ -7,13 +7,9 @@ import networkx as nx
 import numpy as np
 import pandas as pd
 from rdkit import Chem
-from sklearn.model_selection import KFold, train_test_split
 
-from config.paths import CACHE_ROOT, DATA_ROOT, FOLD_DIR, ensure_runtime_dirs, processed_file, raw_data_dir
+from config.paths import CACHE_ROOT, ensure_runtime_dirs, processed_file, raw_data_dir
 from utils import *
-
-NUM_FOLDS = 5
-TEST_RATIO = 0.2
 
 
 class MyFilter(object):
@@ -115,38 +111,6 @@ def rebuild_processed_dataset(dataset_name, drugs, prots, labels, smile_graph, p
     )
 
 
-def save_fold_pt(dataset, fold_id, fold_indices, drugs, prots, labels, smile_graph, pre_transform, pre_filter=None):
-    """Save pre-split .pt files for a single fold (instead of Subset at runtime)."""
-    for split_name in ['train', 'val', 'test']:
-        idx = fold_indices[split_name]
-        ds_name = f'{dataset}_fold{fold_id}_{split_name}'
-        print(f'  creating {ds_name}.pt ({len(idx)} samples) ...')
-        rebuild_processed_dataset(
-            ds_name,
-            drugs[idx], prots[idx], labels[idx],
-            smile_graph, pre_transform, pre_filter
-        )
-
-
-def write_fold_indices(dataset, num_samples):
-    all_indices = np.arange(num_samples)
-    trainval_idx, test_idx = train_test_split(all_indices, test_size=TEST_RATIO, random_state=42)
-    kf = KFold(n_splits=NUM_FOLDS, shuffle=True, random_state=42)
-
-    for fold_id, (inner_train_pos, val_pos) in enumerate(kf.split(trainval_idx)):
-        train_idx = trainval_idx[inner_train_pos]
-        val_idx = trainval_idx[val_pos]
-        fold_indices = {
-            'train': train_idx.tolist(),
-            'val': val_idx.tolist(),
-            'test': test_idx.tolist(),
-        }
-        fold_path = os.path.join(FOLD_DIR, f'{dataset}_fold{fold_id}.json')
-        with open(fold_path, 'w') as f:
-            json.dump(fold_indices, f)
-        print(f'fold {fold_id}: train={len(train_idx)} val={len(val_idx)} test={len(test_idx)}')
-
-
 seq_voc = "ABCDEFGHIKLMNOPQRSTUVWXYZ"
 seq_dict = {v: (i + 1) for i, v in enumerate(seq_voc)}
 seq_dict_len = len(seq_dict)
@@ -212,8 +176,8 @@ for dataset in ['davis', 'kiba']:
     fpath = raw_data_dir(dataset) + '/'
     train_fold = json.load(open(fpath + 'folds/train_fold_setting1.txt'))
     test_fold = json.load(open(fpath + 'folds/test_fold_setting1.txt'))
-    train_flat = [ee for e in train_fold for ee in e]
-    test_flat = [ee for e in test_fold for ee in e]
+    train_flat = [ee for e in train_fold for ee in e]  # list of lists → flatten
+    test_flat = test_fold  # already flat list of ints
 
     df = full_frames[dataset]
     all_drugs, all_prots, all_y = encode_dataframe(df)
