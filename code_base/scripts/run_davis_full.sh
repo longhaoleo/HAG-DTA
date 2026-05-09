@@ -1,17 +1,18 @@
 #!/bin/bash
-# run_davis_full.sh — Davis 全量 (5 seeds × 5 models, 单机串行)
-# Usage: bash scripts/run_davis_full.sh
+# run_davis_full.sh - Davis full seed run.
+# Usage: bash scripts/run_davis_full.sh [models]
 
 set -e
 cd "$(dirname "$0")/.."
 
+MODELS=${1:-gin}
+
 echo "============================================"
-echo " Davis — full run (5 seeds × 5 models)"
-echo " 预计耗时：较长（串行 25 次训练）"
+echo " Davis - full seed run (models=$MODELS)"
 echo "============================================"
 
 for seed in 100 1000 2000 3000 4000; do
-    bash scripts/run_davis.sh $seed
+    bash scripts/run_davis.sh "$seed" "$MODELS"
 done
 
 echo "============================================"
