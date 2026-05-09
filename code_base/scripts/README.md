@@ -13,15 +13,16 @@
 
 ### 1. 回归：Davis / KIBA
 
-每个 `run_*.sh` 都是“单 seed、5 个模型串行”，便于多机分布式。
+每个 `run_*.sh` 都是单 seed 脚本。默认只跑 HAG-DTA GIN；第二个参数可选择其它模型或 `all`。
 
 | 脚本 | 数据集 | 模式 | 输入 | 实际运行 |
 |------|--------|------|------|----------|
-| `run_davis.sh` | Davis | classic split | `<seed>` | HAG-DTA GIN + GraphDTA GCN/GAT/GIN/SAGE |
-| `run_kiba.sh` | KIBA | classic split | `<seed>` | HAG-DTA GIN + GraphDTA GCN/GAT/GIN/SAGE |
-| `run_davis_full.sh` | Davis | classic split | 无 | 5 seeds × 5 models |
-| `run_kiba_full.sh` | KIBA | classic split | 无 | 5 seeds × 5 models |
-| `run_kiba_single.sh` | KIBA | classic split | `<seed>` | 仅 HAG-DTA GIN，单 seed |
+| `run_davis.sh` | Davis | classic split | `<seed> [models]` | 默认 HAG-DTA GIN |
+| `run_kiba.sh` | KIBA | classic split | `<seed> [models]` | 默认 HAG-DTA GIN |
+| `run_davis_full.sh` | Davis | classic split | `[models]` | 默认 5 seeds × HAG-DTA GIN |
+| `run_kiba_full.sh` | KIBA | classic split | `[models]` | 默认 5 seeds × HAG-DTA GIN |
+
+回归 `models` 可选：`gin`、`graphdta-gcn`、`graphdta-gat`、`graphdta-gin`、`graphdta-sage`、`graphdta`、`all`。
 
 示例：
 
@@ -29,24 +30,31 @@
 cd ~/HAG-DTA/code_base
 bash scripts/run_davis.sh 100
 bash scripts/run_kiba.sh 100
+bash scripts/run_davis.sh 100 graphdta
+bash scripts/run_kiba_full.sh all
 ```
 
 ### 2. 分类：Human / C.elegans
 
-分类任务现在不是 k-fold，而是单次 `80/10/10` 随机划分；每个脚本内部自动跑 5 seeds。
+分类任务现在不是 k-fold，而是单次 `80/10/10` 随机划分。单 seed 脚本默认只跑 HAG-DTA GIN；第二个参数可选择其它 HAG-DTA 变体或 `all`。
 
-| 脚本 | 数据集 | 模式 | 实际运行 |
-|------|--------|------|----------|
-| `run_human.sh` | Human | single random split (80/10/10, seed=1234) | HAG-DTA GIN, 5 seeds |
-| `run_celegans.sh` | C.elegans | single random split (80/10/10, seed=1234) | HAG-DTA GIN, 5 seeds |
+| 脚本 | 数据集 | 模式 | 输入 | 实际运行 |
+|------|--------|------|------|----------|
+| `run_human.sh` | Human | single random split (80/10/10, seed=1234) | `<seed> [models]` | 默认 HAG-DTA GIN |
+| `run_celegans.sh` | C.elegans | single random split (80/10/10, seed=1234) | `<seed> [models]` | 默认 HAG-DTA GIN |
+| `run_human_full.sh` | Human | single random split (80/10/10, seed=1234) | `[models]` | 默认 5 seeds × HAG-DTA GIN |
+| `run_celegans_full.sh` | C.elegans | single random split (80/10/10, seed=1234) | `[models]` | 默认 5 seeds × HAG-DTA GIN |
+
+分类 `models` 可选：`gin`、`gcn`、`gat`、`sage`、`all`。
 
 示例：
 
 ```bash
 cd ~/HAG-DTA/code_base
 python create_data_Human_Celegans.py
-bash scripts/run_human.sh
-bash scripts/run_celegans.sh
+bash scripts/run_human.sh 100
+bash scripts/run_celegans.sh 100
+bash scripts/run_human_full.sh all
 ```
 
 ## 二、敏感性分析与基线
@@ -125,8 +133,8 @@ bash scripts/sensitivity_n1n2_human.sh
 bash scripts/sensitivity_mmd.sh
 
 # 3) 分类主实验
-bash scripts/run_human.sh
-bash scripts/run_celegans.sh
+bash scripts/run_human_full.sh
+bash scripts/run_celegans_full.sh
 
 # 4) 回归主实验（示例：分 seed 跑）
 bash scripts/run_davis.sh 100
@@ -140,4 +148,3 @@ bash scripts/run_kiba.sh 100
 - `scripts/statistical_tests.py` 已同时兼容：
   - 回归 `*_random.csv`
   - 分类 `*_random.csv`
-- `run_kiba_single.sh` 现在是 classic 单 seed 版本，不再需要 fold 参数

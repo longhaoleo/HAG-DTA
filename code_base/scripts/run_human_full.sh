@@ -1,16 +1,18 @@
 #!/bin/bash
-# run_human_full.sh — Human 全量 (5 seeds, 单机串行)
-# Usage: bash scripts/run_human_full.sh
+# run_human_full.sh - Human full seed run.
+# Usage: bash scripts/run_human_full.sh [models]
 
 set -e
 cd "$(dirname "$0")/.."
 
+MODELS=${1:-gin}
+
 echo "============================================"
-echo " Human — full run (5 seeds)"
+echo " Human - full seed run (models=$MODELS)"
 echo "============================================"
 
 for seed in 100 1000 2000 3000 4000; do
-    bash scripts/run_human.sh $seed
+    bash scripts/run_human.sh "$seed" "$MODELS"
 done
 
 echo "============================================"

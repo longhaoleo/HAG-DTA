@@ -17,7 +17,7 @@ import torch
 import torch.nn as nn
 from torch_geometric.data import DenseDataLoader
 
-from config.paths import CACHE_ROOT, ensure_runtime_dirs, output_file, processed_file
+from config.paths import CACHE_ROOT, OUTPUT_ROOT, ensure_runtime_dirs, output_file, processed_file
 from config.training import CUDA_NAME, REGRESSION_TRAINING, SEEDS
 from MMDLoss import *
 from model import Diff_DTA_GAT, Diff_DTA_GCN, Diff_DTA_GIN, Diff_DTA_SAGE
@@ -74,6 +74,35 @@ def reg_metrics(y, p):
     return {'mse': mse(y,p), 'r2': get_rm2(y,p), 'ci': ci(y,p)}
 
 
+def safe_token(value):
+    return ''.join(ch if ch.isalnum() or ch in ('-', '_') else 'p' for ch in str(value))
+
+
+def write_regression_results(dataset_name, model_name, seed, metrics, signature):
+    per_seed_name = f'{dataset_name}_{model_name}_seed{seed}_{signature}.csv'
+    pd.DataFrame([metrics], columns=['mse', 'ci', 'r2']).to_csv(output_file(per_seed_name), index=0)
+
+    prefix = f'{dataset_name}_{model_name}_seed'
+    suffix = f'_{signature}.csv'
+    rows = []
+    for filename in os.listdir(OUTPUT_ROOT):
+        if not (filename.startswith(prefix) and filename.endswith(suffix)):
+            continue
+        seed_text = filename[len(prefix):-len(suffix)]
+        try:
+            result_seed = int(seed_text)
+        except ValueError:
+            continue
+        result_df = pd.read_csv(os.path.join(OUTPUT_ROOT, filename))
+        if result_df.empty:
+            continue
+        rows.append((result_seed, result_df.loc[0, ['mse', 'ci', 'r2']].to_dict()))
+
+    rows.sort(key=lambda item: item[0])
+    pd.DataFrame([row for _, row in rows], columns=['mse', 'ci', 'r2']).to_csv(
+        output_file(f'{dataset_name}_{model_name}_random.csv'), index=0)
+
+
 # ── Main ────────────────────────────────────────────────────────────
 dataset_name = ['davis','kiba'][int(sys.argv[1])]
 model_cls = [Diff_DTA_GIN, Diff_DTA_GCN, Diff_DTA_GAT, Diff_DTA_SAGE][int(sys.argv[2])]
@@ -90,17 +119,25 @@ print(f'{mname} | {dataset_name} | classic | cuda={CUDA_NAME}')
 print(f'LR={LR} epochs={EP} val_interval={VI} patience={PA}')
 ensure_runtime_dirs()
 
-mse_list, ci_list, r2_list = [], [], []
-
 for seed in SEEDS:
     same_seeds(seed)
     loss_tr, loss_val, a_list = [], [], []
     print(f'\n--- {dataset_name} seed={seed} ---')
 
-    train_pt = processed_file(f'{dataset_name}_train')
-    test_pt = processed_file(f'{dataset_name}_test')
-    if not (os.path.isfile(train_pt) and os.path.isfile(test_pt)):
-        print(f'ERROR: {train_pt} or {test_pt} not found. Run create_data_davis_kiba.py first.')
+    required_pts = [
+        processed_file(f'{dataset_name}_train'),
+        processed_file(f'{dataset_name}_test'),
+    ]
+    if dataset_name == 'kiba':
+        required_pts.extend([
+            processed_file(f'{dataset_name}_train1'),
+            processed_file(f'{dataset_name}_test1'),
+        ])
+    missing_pts = [path for path in required_pts if not os.path.isfile(path)]
+    if missing_pts:
+        print('ERROR: Missing processed files. Run create_data_davis_kiba.py first.')
+        for path in missing_pts:
+            print(f'  {path}')
         sys.exit(1)
     train_data = TestbedDataset(root=CACHE_ROOT, dataset=f'{dataset_name}_train')
     test_data = TestbedDataset(root=CACHE_ROOT, dataset=f'{dataset_name}_test')
@@ -118,6 +155,7 @@ for seed in SEEDS:
     n1_default, n2_default = (6,2)
     n1 = int(os.environ.get('HAG_DTA_N1', n1_default))
     n2 = int(os.environ.get('HAG_DTA_N2', n2_default))
+    result_signature = f'n1-{n1}_n2-{n2}_mmd-{safe_token(os.environ.get("HAG_DTA_MMD_BETA", "0.05"))}'
     print(f'n1={n1} n2={n2}')
     model = model_cls(num_nodes_1=n1, num_nodes_2=n2).to(device)
     loss_fn = nn.MSELoss()
@@ -181,7 +219,4 @@ for seed in SEEDS:
         tm = reg_metrics(G, P)
     print(f'final test | epoch {best_epoch} | mse={tm["mse"]:.4f} ci={tm["ci"]:.4f} rm2={tm["r2"]:.4f}')
 
-    mse_list.append(tm['mse']); ci_list.append(tm['ci']); r2_list.append(tm['r2'])
-
-pd.DataFrame({'mse': mse_list, 'ci': ci_list, 'r2': r2_list}).to_csv(
-    output_file(f'{dataset_name}_{mname}_random.csv'), index=0)
+    write_regression_results(dataset_name, mname, seed, tm, result_signature)
