@@ -13,7 +13,7 @@
 
 ### 1. 回归：Davis / KIBA
 
-每个 `run_*.sh` 都是单 seed 脚本。默认只跑 HAG-DTA GIN；第二个参数可选择其它模型或 `all`。
+每个 `run_*.sh` 都是单 seed 脚本。默认只跑 HAG-DTA GIN；第二个参数可选择你自己的其它 HAG-DTA 变体或 `all`。
 
 | 脚本 | 数据集 | 模式 | 输入 | 实际运行 |
 |------|--------|------|------|----------|
@@ -22,7 +22,7 @@
 | `run_davis_full.sh` | Davis | classic split | `[models]` | 默认 5 seeds × HAG-DTA GIN |
 | `run_kiba_full.sh` | KIBA | classic split | `[models]` | 默认 5 seeds × HAG-DTA GIN |
 
-回归 `models` 可选：`gin`、`graphdta-gcn`、`graphdta-gat`、`graphdta-gin`、`graphdta-sage`、`graphdta`、`all`。
+HAG-DTA 回归 `models` 可选：`gin`、`gcn`、`gat`、`sage`、`all`。
 
 示例：
 
@@ -30,7 +30,7 @@
 cd ~/HAG-DTA/code_base
 bash scripts/run_davis.sh 100
 bash scripts/run_kiba.sh 100
-bash scripts/run_davis.sh 100 graphdta
+bash scripts/run_davis.sh 100 gat
 bash scripts/run_kiba_full.sh all
 ```
 
@@ -72,7 +72,28 @@ bash scripts/run_human_full.sh all
 |------|--------|------|---|
 | `sensitivity_mmd.sh` | Davis | classic split | `0, 0.01, 0.05, 0.1, 0.5, 1.0` |
 
-### 3. TransformerCPI 基线
+### 3. GraphDTA 基线
+
+GraphDTA baseline 单独运行，不混在 HAG-DTA 主脚本里。
+
+| 脚本 | 数据集 | 模式 | 输入 | 实际运行 |
+|------|--------|------|------|----------|
+| `run_davis_graphdta.sh` | Davis | classic split | `<seed> [models]` | 默认 GraphDTA GIN |
+| `run_kiba_graphdta.sh` | KIBA | classic split | `<seed> [models]` | 默认 GraphDTA GIN |
+| `run_davis_graphdta_full.sh` | Davis | classic split | `[models]` | 默认 5 seeds × GraphDTA GIN |
+| `run_kiba_graphdta_full.sh` | KIBA | classic split | `[models]` | 默认 5 seeds × GraphDTA GIN |
+
+GraphDTA `models` 可选：`gin`、`gcn`、`gat`、`sage`、`all`。
+
+示例：
+
+```bash
+cd ~/HAG-DTA/code_base
+bash scripts/run_davis_graphdta.sh 100
+bash scripts/run_kiba_graphdta_full.sh all
+```
+
+### 4. TransformerCPI 基线
 
 新增文件：
 

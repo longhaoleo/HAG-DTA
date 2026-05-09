@@ -1,13 +1,13 @@
 #!/bin/bash
-# run_davis.sh - Davis HAG-DTA, single seed.
-# Usage: bash scripts/run_davis.sh <seed> [models]
+# run_davis_graphdta.sh - Davis GraphDTA baseline, single seed.
+# Usage: bash scripts/run_davis_graphdta.sh <seed> [models]
 #   seed: 100, 1000, 2000, 3000, 4000
 #   models: gin (default), gcn, gat, sage, all
 
 set -e
 
 usage() {
-    echo "Usage: bash scripts/run_davis.sh <seed> [models]"
+    echo "Usage: bash scripts/run_davis_graphdta.sh <seed> [models]"
     echo "models: gin (default), gcn, gat, sage, all"
 }
 
@@ -15,7 +15,7 @@ SEED=${1:?$(usage)}
 MODELS=${2:-gin}
 
 case "$MODELS" in
-    gin|gcn|gat|sage|all) ;;
+    gcn|gat|gin|sage|all) ;;
     *)
         usage
         exit 2
@@ -27,7 +27,7 @@ cd "$(dirname "$0")/.."
 OUTPUT="${HAG_DTA_OUTPUT_ROOT:-/root/autodl-tmp/HAG-DTA-runs}"
 mkdir -p "$OUTPUT/logs"
 
-LOG_NAME="davis_s${SEED}.log"
+LOG_NAME="davis_graphdta_s${SEED}.log"
 log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$OUTPUT/logs/$LOG_NAME"; }
 
 selected() {
@@ -35,25 +35,25 @@ selected() {
     [[ "$MODELS" == all || "$MODELS" == "$name" ]]
 }
 
-run_hag() {
+run_graphdta() {
     local model_id="$1"
     local label="$2"
-    log "START HAG-DTA $label"
+    log "START GraphDTA $label"
     python -u -c "
 import config.training as ct
 ct.SEEDS = [$SEED]
 import sys
-sys.argv = ['training_davis_kiba.py', '0', '$model_id']
-exec(open('training_davis_kiba.py').read())
+sys.argv = ['training_graphdta.py', '0', '$model_id']
+exec(open('training_graphdta.py').read())
 " >> "$OUTPUT/logs/$LOG_NAME" 2>&1
-    log "DONE  HAG-DTA $label"
+    log "DONE  GraphDTA $label"
 }
 
-log "========== Davis HAG-DTA seed=$SEED models=$MODELS =========="
+log "========== Davis GraphDTA seed=$SEED models=$MODELS =========="
 
-selected gin && run_hag 0 GIN
-selected gcn && run_hag 1 GCN
-selected gat && run_hag 2 GAT
-selected sage && run_hag 3 SAGE
+selected gcn && run_graphdta 0 GCN
+selected gat && run_graphdta 1 GAT
+selected gin && run_graphdta 2 GIN
+selected sage && run_graphdta 3 SAGE
 
-log "========== Davis HAG-DTA seed=$SEED COMPLETE =========="
+log "========== Davis GraphDTA seed=$SEED COMPLETE =========="

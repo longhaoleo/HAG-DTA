@@ -1,22 +1,21 @@
 #!/bin/bash
-# run_kiba.sh - KIBA, single seed.
+# run_kiba.sh - KIBA HAG-DTA, single seed.
 # Usage: bash scripts/run_kiba.sh <seed> [models]
 #   seed: 100, 1000, 2000, 3000, 4000
-#   models: gin (default), graphdta-gcn, graphdta-gat, graphdta-gin,
-#           graphdta-sage, graphdta, all
+#   models: gin (default), gcn, gat, sage, all
 
 set -e
 
 usage() {
     echo "Usage: bash scripts/run_kiba.sh <seed> [models]"
-    echo "models: gin (default), graphdta-gcn, graphdta-gat, graphdta-gin, graphdta-sage, graphdta, all"
+    echo "models: gin (default), gcn, gat, sage, all"
 }
 
 SEED=${1:?$(usage)}
 MODELS=${2:-gin}
 
 case "$MODELS" in
-    gin|graphdta-gcn|graphdta-gat|graphdta-gin|graphdta-sage|graphdta|all) ;;
+    gin|gcn|gat|sage|all) ;;
     *)
         usage
         exit 2
@@ -33,51 +32,28 @@ log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$OUTPUT/logs/$LOG_NAME"; }
 
 selected() {
     local name="$1"
-    case "$MODELS" in
-        all) return 0 ;;
-        graphdta)
-            [[ "$name" == graphdta-* ]]
-            return
-            ;;
-        *)
-            [[ "$MODELS" == "$name" ]]
-            return
-            ;;
-    esac
+    [[ "$MODELS" == all || "$MODELS" == "$name" ]]
 }
 
-run_hag_gin() {
-    log "START HAG-DTA GIN"
-    python -u -c "
-import config.training as ct
-ct.SEEDS = [$SEED]
-import sys
-sys.argv = ['training_davis_kiba.py', '1', '0']
-exec(open('training_davis_kiba.py').read())
-" >> "$OUTPUT/logs/$LOG_NAME" 2>&1
-    log "DONE  HAG-DTA GIN"
-}
-
-run_graphdta() {
+run_hag() {
     local model_id="$1"
     local label="$2"
-    log "START GraphDTA $label"
+    log "START HAG-DTA $label"
     python -u -c "
 import config.training as ct
 ct.SEEDS = [$SEED]
 import sys
-sys.argv = ['training_graphdta.py', '1', '$model_id']
-exec(open('training_graphdta.py').read())
+sys.argv = ['training_davis_kiba.py', '1', '$model_id']
+exec(open('training_davis_kiba.py').read())
 " >> "$OUTPUT/logs/$LOG_NAME" 2>&1
-    log "DONE  GraphDTA $label"
+    log "DONE  HAG-DTA $label"
 }
 
-log "========== KIBA seed=$SEED models=$MODELS =========="
+log "========== KIBA HAG-DTA seed=$SEED models=$MODELS =========="
 
-selected gin && run_hag_gin
-selected graphdta-gcn && run_graphdta 0 GCN
-selected graphdta-gat && run_graphdta 1 GAT
-selected graphdta-gin && run_graphdta 2 GIN
-selected graphdta-sage && run_graphdta 3 SAGE
+selected gin && run_hag 0 GIN
+selected gcn && run_hag 1 GCN
+selected gat && run_hag 2 GAT
+selected sage && run_hag 3 SAGE
 
-log "========== KIBA seed=$SEED COMPLETE =========="
+log "========== KIBA HAG-DTA seed=$SEED COMPLETE =========="
