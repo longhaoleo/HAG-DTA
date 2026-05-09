@@ -1,19 +1,27 @@
 #!/bin/bash
-# run_celegans.sh — C.elegans + GIN | 80/10/10 单次随机划分(seed=1234) × 5 seeds
+# run_celegans.sh — C.elegans + HAG-DTA GIN, 单 seed | 80/10/10 split(seed=1234)
+# Usage: bash scripts/run_celegans.sh <seed>
+
 set -e
 
+SEED=${1:?Usage: bash scripts/run_celegans.sh <seed>}
 cd "$(dirname "$0")/.."
+
 MODEL_ID=0
 OUTPUT="${HAG_DTA_OUTPUT_ROOT:-/root/autodl-tmp/HAG-DTA-runs}"
 mkdir -p "$OUTPUT/logs"
-log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$OUTPUT/logs/celegans.log"; }
 
-log "========== C.elegans + GIN | single split × 5 seeds =========="
-set +e
-python -u training_Human_Celegans.py 1 "$MODEL_ID" > "$OUTPUT/logs/celegans.log.run" 2>&1
-rc=$?
-set -e
-cat "$OUTPUT/logs/celegans.log.run" >> "$OUTPUT/logs/celegans.log"
-rm -f "$OUTPUT/logs/celegans.log.run"
-[ $rc -eq 0 ] && log "DONE  C.elegans" || log "FAIL  C.elegans (exit $rc)"
-exit $rc
+LOG_NAME="celegans_s${SEED}.log"
+log() { echo "[$(date '+%H:%M:%S')] $*" | tee -a "$OUTPUT/logs/$LOG_NAME"; }
+
+log "========== C.elegans seed=$SEED =========="
+log "START HAG-DTA GIN"
+python -u -c "
+import config.training as ct
+ct.SEEDS = [$SEED]
+import sys
+sys.argv = ['training_Human_Celegans.py', '1', '$MODEL_ID']
+exec(open('training_Human_Celegans.py').read())
+" >> "$OUTPUT/logs/$LOG_NAME" 2>&1
+log "DONE  HAG-DTA GIN"
+log "========== C.elegans seed=$SEED COMPLETE =========="
