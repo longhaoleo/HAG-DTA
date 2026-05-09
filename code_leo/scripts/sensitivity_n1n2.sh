@@ -1,12 +1,9 @@
 #!/bin/bash
-# sensitivity_n1n2.sh — n1/n2 敏感性分析 (Davis + GIN, 1 fold, 1 seed)
-#
-# 测试 n1 ∈ {4,5,6,7,8} × n2 ∈ {2,3,4} (n2 < n1)
-# 每组只跑 1 fold + 1 seed 即可，共 11 组
+# sensitivity_n1n2.sh — n1/n2 网格搜索 (Davis + GIN, 5 seeds, classic split)
 #
 # Usage:
 #   cd ~/HAG-DTA/code_leo
-#   bash sensitivity_n1n2.sh
+#   bash scripts/sensitivity_n1n2.sh
 
 set -e
 
@@ -14,7 +11,6 @@ cd "$(dirname "$0")/.."
 
 DID=0     # Davis
 MID=0     # GIN
-FOLD=0
 
 # 临时覆盖种子为单个（加速）
 export HAG_DTA_SEED_OVERRIDE=100
@@ -55,25 +51,24 @@ for combo in "${combos[@]}"; do
 
     echo "--- n1=$n1 n2=$n2 ---"
 
-    # 用单种子跑单个 fold
-    # 临时在 config 里设 SEEDS=[100]
+    # 跑完整 5 seeds, classic 模式 (fold=0)
     HAG_DTA_N1=$n1 HAG_DTA_N2=$n2 \
     python3 -c "
-import config.training as ct
-ct.SEEDS = [100]
 import sys
-sys.argv = ['training_davis_kiba.py', '$DID', '$MID', '$FOLD']
+sys.argv = ['training_davis_kiba.py', '$DID', '$MID']
 exec(open('training_davis_kiba.py').read())
 " > "$log" 2>&1
 
-    # 提取最终指标
-    CSV="$OUTPUT/davis_Diff_DTA_GIN_fold${FOLD}_random.csv"
+    # 提取 mean±std
+    CSV="$OUTPUT/davis_Diff_DTA_GIN_classic_random.csv"
     if [ -f "$CSV" ]; then
         result=$(python3 -c "
-import pandas as pd
+import pandas as pd, numpy as np
 df = pd.read_csv('$CSV')
-r = df.iloc[-1]
-print(f'MSE={r[\"mse\"]:.4f} CI={r[\"ci\"]:.4f} rm²={r[\"r2\"]:.4f}')
+m_mse = df['mse'].mean(); s_mse = df['mse'].std(ddof=1)
+m_ci  = df['ci'].mean();  s_ci  = df['ci'].std(ddof=1)
+m_r2  = df['r2'].mean();  s_r2  = df['r2'].std(ddof=1)
+print(f'MSE={m_mse:.4f}±{s_mse:.4f} CI={m_ci:.4f}±{s_ci:.4f} rm²={m_r2:.4f}±{s_r2:.4f}')
 ")
         echo "  $result"
     else

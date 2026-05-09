@@ -12,7 +12,7 @@ run_one() {
     local log_name="davis_f${fold}.log"
     log "START fold=$fold"
     set +e
-    python -u training_davis_kiba.py 0 "$MODEL_ID" "$fold" > "$OUTPUT/logs/$log_name" 2>&1
+    python -u training_davis_kiba.py 0 "$MODEL_ID" > "$OUTPUT/logs/$log_name" 2>&1
     local rc=$?
     set -e
     [ $rc -eq 0 ] && log "DONE  fold=$fold" || log "FAIL  fold=$fold (exit $rc)"

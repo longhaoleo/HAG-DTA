@@ -32,7 +32,7 @@ python3 -c "
 import config.training as ct
 ct.SEEDS = [$SEED]
 import sys
-sys.argv = ['training_davis_kiba.py', '1', '$MODEL_ID', '$FOLD']
+sys.argv = ['training_davis_kiba.py', '1', '$MODEL_ID']
 exec(open('training_davis_kiba.py').read())
 " >> "$OUTPUT/logs/$LOG_NAME" 2>&1
 
