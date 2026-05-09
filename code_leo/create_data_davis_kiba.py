@@ -181,7 +181,6 @@ for dataset in datasets:
     print('\ndataset:', dataset)
     print('num_samples:', len(full_df))
     print('len(set(drugs)),len(set(prots)):', len(set(drugs)), len(set(prots)))
-    write_fold_indices(dataset, len(full_df))
 
 
 print('\nCreating graph for all SMILES...')
@@ -195,29 +194,19 @@ for smile in compound_iso_smiles:
 print('Finished.')
 
 
-for dataset in datasets:
+for dataset in ['davis', 'kiba']:
     df = full_frames[dataset]
     all_drugs, all_prots, all_y = encode_dataframe(df)
 
-    # 仍生成 _all.pt（兼容）但训练不再用它
+    # 兼容文件（_all.pt）
     rebuild_processed_dataset(dataset + '_all', all_drugs, all_prots, all_y, smile_graph, T.ToDense(46), MyFilter())
     if dataset == 'kiba':
         rebuild_processed_dataset(dataset + '_all1', all_drugs, all_prots, all_y, smile_graph, T.ToDense(268), MyFilter1())
 
-    # ⚡ 核心优化：预生成 per-fold 分割 .pt 文件（避免训练时 Subset + DenseDataLoader 极慢）
-    print(f'\nGenerating per-fold .pt files for {dataset} ...')
-    for fold_id in range(NUM_FOLDS):
-        fold_path = os.path.join(FOLD_DIR, f'{dataset}_fold{fold_id}.json')
-        with open(fold_path, 'r') as f:
-            fold_indices = json.load(f)
-        save_fold_pt(dataset, fold_id, fold_indices, all_drugs, all_prots, all_y, smile_graph, T.ToDense(46), MyFilter())
-        if dataset == 'kiba':
-            save_fold_pt(dataset + '_sub1', fold_id, fold_indices, all_drugs, all_prots, all_y, smile_graph, T.ToDense(268), MyFilter1())
-
 # ═══════════════════════════════════════════════════════════════════════
-# Classic train/test .pt 文件（DeepDTA 原始 split，保存到 CACHE_ROOT/processed/）
+# Classic .pt 文件（DeepDTA 原始 split，训练用）
 # ═══════════════════════════════════════════════════════════════════════
-print('\nGenerating classic train/test .pt files (DeepDTA original split) ...')
+print('\nGenerating classic train/test .pt files ...')
 
 for dataset in ['davis', 'kiba']:
     fpath = raw_data_dir(dataset) + '/'
