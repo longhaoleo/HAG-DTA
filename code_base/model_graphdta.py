@@ -13,7 +13,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn import Sequential, Linear, ReLU
 from torch_geometric.nn import (DenseGINConv, DenseGCNConv,
-                                DenseGATConv, GraphNorm)
+                                DenseGATConv, DenseSAGEConv, GraphNorm)
 
 
 # ── Drug GNNs ───────────────────────────────────────────────────────
@@ -68,7 +68,7 @@ class DrugGNN_GIN(nn.Module):
             cin = in_dim if i == 0 else hidden
             nn_seq = Sequential(Linear(cin, hidden), ReLU(), Linear(hidden, hidden))
             self.convs.append(DenseGINConv(nn_seq))
-            self.bns.append(nn.BatchNorm1d(hidden))
+            self.bns.append(GraphNorm(hidden))
         self.fc = nn.Linear(hidden, 128)
 
     def forward(self, x, adj, mask=None):
