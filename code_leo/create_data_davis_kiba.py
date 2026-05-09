@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from rdkit import Chem
 
-from config.paths import CACHE_ROOT, ensure_runtime_dirs, processed_file, raw_data_dir
+from config.paths import CACHE_ROOT, DATA_ROOT, ensure_runtime_dirs, processed_file, raw_data_dir
 from utils import *
 
 
