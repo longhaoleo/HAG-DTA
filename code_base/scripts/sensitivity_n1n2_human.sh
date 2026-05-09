@@ -1,9 +1,12 @@
 #!/bin/bash
-# sensitivity_n1n2_human.sh — n1/n2 网格搜索 (Human + GIN, 5 seeds, 80/10/10 单次随机划分)
+# sensitivity_n1n2_human.sh - n1/n2 sensitivity (Human + HAG-DTA GIN, 1 seed).
 #
 # Usage:
 #   cd ~/HAG-DTA/code_base  # Human 使用 80/10/10, seed=1234
 #   bash scripts/sensitivity_n1n2_human.sh
+#
+# Optional:
+#   SEED=1000 bash scripts/sensitivity_n1n2_human.sh
 
 set -e
 
@@ -11,6 +14,7 @@ cd "$(dirname "$0")/.."
 
 DID=0     # Human
 MID=0     # GIN
+SEED=${SEED:-100}
 
 OUTPUT="${HAG_DTA_OUTPUT_ROOT:-/root/autodl-tmp/HAG-DTA-runs}"
 mkdir -p "$OUTPUT/sensitivity_human"
@@ -41,7 +45,9 @@ run_one() {
 
     HAG_DTA_N1=$n1 HAG_DTA_N2=$n2 \
     python3 -c "
+import config.training as ct
 import sys
+ct.SEEDS = [$SEED]
 sys.argv = ['training_Human_Celegans.py', '$DID', '$MID']
 exec(open('training_Human_Celegans.py').read())
 " > "$log" 2>&1
@@ -66,6 +72,7 @@ print()
 
 echo "============================================"
 echo " n1/n2 Sensitivity — Human + GIN"
+echo " seed=$SEED combos=${#combos[@]}"
 echo "============================================"
 echo ""
 

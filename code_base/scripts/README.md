@@ -63,14 +63,14 @@ bash scripts/run_human_full.sh all
 
 | 脚本 | 数据集 | 模式 | 组合数 | 说明 |
 |------|--------|------|--------|------|
-| `sensitivity_n1n2.sh` | Davis | classic split | 14 | 5 seeds |
-| `sensitivity_n1n2_human.sh` | Human | 80/10/10 single split | 14 | 5 seeds |
+| `sensitivity_n1n2.sh` | Davis | classic split | 默认 5，`full` 为 14 | 单 seed，默认 `SEED=100` |
+| `sensitivity_n1n2_human.sh` | Human | 80/10/10 single split | 14 | 单 seed，默认 `SEED=100` |
 
 ### 2. MMD β 消融
 
 | 脚本 | 数据集 | 模式 | β |
 |------|--------|------|---|
-| `sensitivity_mmd.sh` | Davis | classic split | `0, 0.01, 0.05, 0.1, 0.5, 1.0` |
+| `sensitivity_mmd.sh` | Davis | classic split，单 seed，默认 `SEED=100` | `0, 0.01, 0.05, 0.1, 0.5, 1.0` |
 
 ### 3. GraphDTA 基线
 
