@@ -114,7 +114,8 @@ for seed in SEEDS:
         test_loader1 = DenseDataLoader(test_data1, batch_size=TB, shuffle=False)
 
     device = torch.device(CUDA_NAME if torch.cuda.is_available() else "cpu")
-    n1_default, n2_default = (4,2) if dataset_name=='davis' else (6,2)
+    # set n1, n2 from env vars or defaults (for model variants with different node counts)
+    n1_default, n2_default = (6,2)
     n1 = int(os.environ.get('HAG_DTA_N1', n1_default))
     n2 = int(os.environ.get('HAG_DTA_N2', n2_default))
     print(f'n1={n1} n2={n2}')
