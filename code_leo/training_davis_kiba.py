@@ -154,17 +154,17 @@ for seed in SEEDS:
                 best_epoch = epoch+1
                 best_mse = vm['mse']; best_ci = vm['ci']; best_r2 = vm['r2']
                 no_improve = 0
-                print(f'epoch {best_epoch:4d} | mse={best_mse:.4f} ci={best_ci:.4f} rm2={best_r2:.4f} | {dataset_name} s={seed}')
+                print(f'[FIND BEST!] epoch {best_epoch:4d} | mse={best_mse:.4f} ci={best_ci:.4f} rm2={best_r2:.4f}')
             else:
                 no_improve += 1
-                print(f'epoch {epoch+1:4d} | mse={vm["mse"]:.4f} ci={vm["ci"]:.4f} rm2={vm["r2"]:.4f} | {dataset_name} s={seed}')
+                print(f'epoch {epoch+1:4d} | mse={vm["mse"]:.4f} ci={vm["ci"]:.4f} rm2={vm["r2"]:.4f}')
         else:
             loss_val.append(np.nan)
 
         pd.DataFrame({'train_loss': loss_tr, 'val_loss': loss_val}).to_csv(
-            output_file(f'{dataset_name}训练损失_classic_{seed}_{mname}.csv'), index=0)
+            output_file(f'{dataset_name}训练损失_{seed}_{mname}.csv'), index=0)
         pd.DataFrame(a_list, columns=['x_H_1','x_H_2','xt','x_G']).to_csv(
-            output_file(f'{dataset_name}注意力分数_classic_{seed}_{mname}.csv'), index=0)
+            output_file(f'{dataset_name}注意力分数_{seed}_{mname}.csv'), index=0)
 
         if no_improve >= PA:
             print(f'early stop at epoch {epoch+1}')
@@ -183,4 +183,4 @@ for seed in SEEDS:
     mse_list.append(tm['mse']); ci_list.append(tm['ci']); r2_list.append(tm['r2'])
 
 pd.DataFrame({'mse': mse_list, 'ci': ci_list, 'r2': r2_list}).to_csv(
-    output_file(f'{dataset_name}_{mname}_classic_random.csv'), index=0)
+    output_file(f'{dataset_name}_{mname}_random.csv'), index=0)

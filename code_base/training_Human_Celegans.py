@@ -3,6 +3,7 @@ import sys
 
 import numpy as np
 import pandas as pd
+from regex import F
 import torch
 import torch.nn as nn
 from sklearn.metrics import auc, precision_recall_curve, precision_score, recall_score, roc_auc_score
@@ -175,13 +176,20 @@ for seed in SEEDS:
             G_test, P_test, pred_test = predicting(model, device, test_loader)
             best_ret = evaluate_binary_metrics(G_test, P_test, pred_test)
             print(
-                f'epoch {best_epoch} | '
-                f'val AUROC={val_ret[0]:.4f} AUPRC={val_ret[1]:.4f} | '
+                f'[FIND BEST!] epoch {best_epoch} | '
+                f'val AUROC={val_ret[0]:.4f} AUPRC={val_ret[1]:.4f}'
+                f' Precision={val_ret[2]:.4f} Recall={val_ret[3]:.4f}|'
+                '\n'
                 f'test AUROC={best_ret[0]:.4f} AUPRC={best_ret[1]:.4f} '
                 f'Precision={best_ret[2]:.4f} Recall={best_ret[3]:.4f}'
             )
         else:
             epochs_since_improvement += 1
+            print(
+                f'epoch {epoch + 1} | '
+                f'val AUROC={val_ret[0]:.4f} AUPRC={val_ret[1]:.4f} '
+                f'Precision={val_ret[2]:.4f} Recall={val_ret[3]:.4f}'
+            )
 
         if epochs_since_improvement >= EARLY_STOP_PATIENCE:
             print(f'early stopping at epoch {epoch + 1}')

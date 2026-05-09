@@ -143,7 +143,7 @@ for seed in SEEDS:
             loss_val.append(np.nan)
 
         pd.DataFrame({'train_loss': loss_tr, 'val_loss': loss_val}).to_csv(
-            output_file(f'{dataset_name}_graphdta_loss_classic_{seed}_{mname}.csv'), index=0)
+            output_file(f'{dataset_name}_graphdta_loss_{seed}_{mname}.csv'), index=0)
 
         if no_improve >= PA:
             print(f'early stop at epoch {epoch+1}')
@@ -162,4 +162,4 @@ for seed in SEEDS:
     mse_list.append(tm['mse']); ci_list.append(tm['ci']); r2_list.append(tm['r2'])
 
 pd.DataFrame({'mse': mse_list, 'ci': ci_list, 'r2': r2_list}).to_csv(
-    output_file(f'{dataset_name}_{mname}_graphdta_classic_random.csv'), index=0)
+    output_file(f'{dataset_name}_{mname}_graphdta_random.csv'), index=0)
