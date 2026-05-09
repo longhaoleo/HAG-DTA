@@ -1,6 +1,10 @@
 # Extra pip dependencies for the revision experiments in code_base/
 # Base environment is still defined in environment.yml.
-# Install with: pip install -r requirements-extra.txt
+# Install with: python -m pip install -r requirements-extra.txt
+
+# Override flaky/partial mirror defaults when installing this file.
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple
+--extra-index-url https://pypi.org/simple
 
 # Needed by create_data_transformercpi.py
 # Word2Vec loader for word2vec_30.model
