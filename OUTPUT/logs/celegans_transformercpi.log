@@ -1,0 +1,44 @@
+[02:04:38] ========== C.elegans + TransformerCPI | single split × 5 seeds ==========
+TransformerCPI
+dataset: Celegans
+split: single random 80/10/10 (seed=1234)
+model selection: official-style best test AUROC after evaluating dev/test each epoch
+hyperparams: {'protein_dim': 100, 'atom_dim': 34, 'hid_dim': 64, 'n_layers': 3, 'n_heads': 8, 'pf_dim': 256, 'dropout': 0.1, 'batch': 64, 'lr': 0.001, 'weight_decay': 0.0001, 'decay_interval': 5, 'lr_decay': 0.5, 'iteration': 40, 'kernel_size': 5}
+
+running on Celegans, seed=100
+epoch 1 | loss=40.8792 | dev AUROC=0.9636 | test AUROC=0.9703 AUPRC=0.9712 Precision=0.7972 Recall=0.9532
+epoch 2 | loss=21.0534 | dev AUROC=0.9812 | test AUROC=0.9803 AUPRC=0.9808 Precision=0.9610 Recall=0.8815
+epoch 3 | loss=15.2183 | dev AUROC=0.9777 | test AUROC=0.9831 AUPRC=0.9819 Precision=0.9311 Recall=0.9311
+
+running on Celegans, seed=1000
+epoch 1 | loss=39.2825 | dev AUROC=0.9693 | test AUROC=0.9672 AUPRC=0.9701 Precision=0.8090 Recall=0.9449
+epoch 3 | loss=15.1456 | dev AUROC=0.9785 | test AUROC=0.9773 AUPRC=0.9765 Precision=0.9046 Recall=0.9146
+epoch 5 | loss=8.2018 | dev AUROC=0.9874 | test AUROC=0.9825 AUPRC=0.9825 Precision=0.9589 Recall=0.9008
+epoch 6 | loss=5.6178 | dev AUROC=0.9881 | test AUROC=0.9827 AUPRC=0.9818 Precision=0.9251 Recall=0.9532
+epoch 7 | loss=4.3088 | dev AUROC=0.9871 | test AUROC=0.9837 AUPRC=0.9815 Precision=0.9359 Recall=0.9256
+epoch 10 | loss=3.0823 | dev AUROC=0.9892 | test AUROC=0.9843 AUPRC=0.9802 Precision=0.9478 Recall=0.9504
+
+running on Celegans, seed=2000
+epoch 1 | loss=40.7989 | dev AUROC=0.9479 | test AUROC=0.9485 AUPRC=0.9533 Precision=0.9302 Recall=0.8072
+epoch 2 | loss=22.4347 | dev AUROC=0.9753 | test AUROC=0.9722 AUPRC=0.9732 Precision=0.8618 Recall=0.9449
+epoch 3 | loss=17.1879 | dev AUROC=0.9775 | test AUROC=0.9768 AUPRC=0.9771 Precision=0.8868 Recall=0.9284
+epoch 4 | loss=13.8699 | dev AUROC=0.9772 | test AUROC=0.9810 AUPRC=0.9805 Precision=0.9173 Recall=0.9477
+epoch 5 | loss=9.1514 | dev AUROC=0.9847 | test AUROC=0.9816 AUPRC=0.9801 Precision=0.9501 Recall=0.8926
+epoch 6 | loss=5.8763 | dev AUROC=0.9855 | test AUROC=0.9827 AUPRC=0.9817 Precision=0.9005 Recall=0.9477
+epoch 7 | loss=5.3209 | dev AUROC=0.9859 | test AUROC=0.9828 AUPRC=0.9815 Precision=0.9465 Recall=0.9256
+epoch 9 | loss=4.4079 | dev AUROC=0.9877 | test AUROC=0.9844 AUPRC=0.9826 Precision=0.9156 Recall=0.9559
+
+running on Celegans, seed=3000
+epoch 1 | loss=38.9366 | dev AUROC=0.9609 | test AUROC=0.9653 AUPRC=0.9680 Precision=0.8051 Recall=0.9559
+epoch 2 | loss=20.9819 | dev AUROC=0.9770 | test AUROC=0.9778 AUPRC=0.9762 Precision=0.9708 Recall=0.8237
+epoch 3 | loss=16.2919 | dev AUROC=0.9777 | test AUROC=0.9818 AUPRC=0.9822 Precision=0.9126 Recall=0.9201
+epoch 4 | loss=12.5229 | dev AUROC=0.9812 | test AUROC=0.9852 AUPRC=0.9854 Precision=0.8171 Recall=0.9725
+
+running on Celegans, seed=4000
+epoch 1 | loss=39.1870 | dev AUROC=0.9550 | test AUROC=0.9635 AUPRC=0.9645 Precision=0.9490 Recall=0.8209
+epoch 2 | loss=22.9341 | dev AUROC=0.9722 | test AUROC=0.9709 AUPRC=0.9689 Precision=0.9041 Recall=0.9091
+epoch 3 | loss=16.3718 | dev AUROC=0.9763 | test AUROC=0.9755 AUPRC=0.9773 Precision=0.9252 Recall=0.9201
+epoch 4 | loss=14.4084 | dev AUROC=0.9769 | test AUROC=0.9812 AUPRC=0.9807 Precision=0.9037 Recall=0.9311
+epoch 5 | loss=8.3798 | dev AUROC=0.9849 | test AUROC=0.9861 AUPRC=0.9858 Precision=0.9545 Recall=0.9256
+epoch 11 | loss=2.0307 | dev AUROC=0.9871 | test AUROC=0.9862 AUPRC=0.9853 Precision=0.9688 Recall=0.9421
+[13:47:35] DONE  C.elegans TransformerCPI
