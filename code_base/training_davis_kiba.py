@@ -46,8 +46,9 @@ def train(model, device, train_loader, optimizer):
         output, l_loss, e_loss, a, x_local, x_global = model(data)
         loss = loss_fn(output, data.y.view(-1, 1).float().to(device))
         cl_loss = criterion(x_local, x_global)
+        pool_alpha = float(os.environ.get('HAG_DTA_POOL_ALPHA', 0.05))
         mmd_beta = float(os.environ.get('HAG_DTA_MMD_BETA', 0.05))
-        loss_all = loss + mmd_beta*l_loss + mmd_beta*e_loss + mmd_beta*cl_loss
+        loss_all = loss + pool_alpha * (l_loss + e_loss) + mmd_beta * cl_loss
         loss_all.backward()
         loss_train = loss_train + data.y.shape[0] * loss.detach()
         num_sample = num_sample + data.y.shape[0]
@@ -155,8 +156,10 @@ for seed in SEEDS:
     n1_default, n2_default = (6,2)
     n1 = int(os.environ.get('HAG_DTA_N1', n1_default))
     n2 = int(os.environ.get('HAG_DTA_N2', n2_default))
-    result_signature = f'n1-{n1}_n2-{n2}_mmd-{safe_token(os.environ.get("HAG_DTA_MMD_BETA", "0.05"))}'
-    print(f'n1={n1} n2={n2}')
+    pool_alpha = os.environ.get("HAG_DTA_POOL_ALPHA", "0.05")
+    mmd_beta = os.environ.get("HAG_DTA_MMD_BETA", "0.05")
+    result_signature = f'n1-{n1}_n2-{n2}_alpha-{safe_token(pool_alpha)}_mmd-{safe_token(mmd_beta)}'
+    print(f'n1={n1} n2={n2} pool_alpha={pool_alpha} mmd_beta={mmd_beta}')
     model = model_cls(num_nodes_1=n1, num_nodes_2=n2).to(device)
     loss_fn = nn.MSELoss()
     opt = torch.optim.Adam(model.parameters(), lr=LR)

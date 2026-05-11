@@ -7,6 +7,7 @@ Output: mmd_beta_davis.png
 
 import os, re
 import numpy as np
+import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -26,10 +27,27 @@ plt.rcParams['axes.unicode_minus'] = False
 # ── Parse MMD logs ──────────────────────────────────────────────────
 def parse_mmd():
     base = os.path.join(OUTPUT_ROOT, 'sensitivity_mmd')
+    summary = os.path.join(base, 'mmd_beta_summary.csv')
+    if os.path.exists(summary):
+        df = pd.read_csv(summary)
+        grouped = df.groupby('beta', as_index=False).agg({
+            'mse': ['mean', 'std'],
+            'ci': ['mean', 'std'],
+            'rm2': ['mean', 'std'],
+        })
+        grouped.columns = [
+            'beta', 'mse', 'mse_std', 'ci', 'ci_std', 'r2', 'r2_std'
+        ]
+        return grouped.sort_values('beta').to_dict('records')
+
     results = []
     for beta in BETAS:
-        fpath = os.path.join(base, f'mmd_beta_{beta}.log')
-        if not os.path.exists(fpath):
+        candidates = [
+            os.path.join(base, f'mmd_beta_{beta}.log'),
+            os.path.join(base, f'mmd_beta_{beta}_seed_100.log'),
+        ]
+        fpath = next((p for p in candidates if os.path.exists(p)), None)
+        if fpath is None:
             continue
         with open(fpath, errors='ignore') as fp:
             content = fp.read()
@@ -56,6 +74,16 @@ def parse_mmd():
                         if r2_m:
                             metrics['r2'] = float(r2_m.group(1))
                     break
+        if not metrics:
+            for line in content.split('\n'):
+                if 'final test | epoch' in line:
+                    mse_m = re.search(r'mse=([\d.]+)', line)
+                    ci_m = re.search(r'ci=([\d.]+)', line)
+                    r2_m = re.search(r'rm2=([\d.]+)', line)
+                    if mse_m and ci_m and r2_m:
+                        metrics = {'mse': float(mse_m.group(1)),
+                                   'ci': float(ci_m.group(1)),
+                                   'r2': float(r2_m.group(1))}
         if metrics:
             metrics['beta'] = beta
             results.append(metrics)

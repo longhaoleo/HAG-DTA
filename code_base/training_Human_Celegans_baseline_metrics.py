@@ -47,8 +47,9 @@ def train(model, device, train_loader, optimizer):
         loss = loss_fn(output, data.y.view(-1, 1).float().to(device))
         criterion = MMDLoss()
         cl_loss = criterion(x_local, x_global)
+        pool_alpha = float(os.environ.get('HAG_DTA_POOL_ALPHA', 0.05))
         mmd_beta = float(os.environ.get('HAG_DTA_MMD_BETA', 0.05))
-        loss_all = loss + mmd_beta * l_loss + mmd_beta * e_loss + mmd_beta * cl_loss
+        loss_all = loss + pool_alpha * (l_loss + e_loss) + mmd_beta * cl_loss
         loss_all.backward()
         optimizer.step()
         loss_train += data.y.shape[0] * loss.item()
