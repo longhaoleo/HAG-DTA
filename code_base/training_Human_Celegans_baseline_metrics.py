@@ -91,6 +91,10 @@ def evaluate_binary_metrics(y_true, y_score, y_pred):
 if len(sys.argv) != 3:
     raise SystemExit('Usage: python training_Human_Celegans_baseline_metrics.py <dataset_id> <model_id>')
 
+# cd code_base
+# python training_Human_Celegans_baseline_metrics.py 0 0  # Human, GIN
+# python training_Human_Celegans_baseline_metrics.py 1 0  # Celegans, GIN
+
 dataset_name = ['Human', 'Celegans'][int(sys.argv[1])]
 model_select = [Diff_DTA_GIN, Diff_DTA_GCN, Diff_DTA_GAT, Diff_DTA_SAGE][int(sys.argv[2])]
 model_name = model_select.__name__
