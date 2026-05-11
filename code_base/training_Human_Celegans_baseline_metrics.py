@@ -22,7 +22,7 @@ from model import Diff_DTA_GAT, Diff_DTA_GCN, Diff_DTA_GIN, Diff_DTA_SAGE
 from utils import *
 
 
-RESULT_COLUMNS = ['Setting', 'AUROC/AUC ↑', 'AUPRC/AUPR ↑', 'Accuracy ↑', 'F1 ↑', 'MCC ↑']
+RESULT_COLUMNS = ['Setting', 'AUROC/AUC', 'AUPRC/AUPR', 'Accuracy', 'F1', 'MCC']
 
 
 def same_seeds(seed):
@@ -79,11 +79,11 @@ def predicting(model, device, loader):
 def evaluate_binary_metrics(y_true, y_score, y_pred):
     precision_curve, recall_curve, _ = precision_recall_curve(y_true, y_score)
     return {
-        'AUROC/AUC ↑': roc_auc_score(y_true, y_score),
-        'AUPRC/AUPR ↑': auc(recall_curve, precision_curve),
-        'Accuracy ↑': accuracy_score(y_true, y_pred),
-        'F1 ↑': f1_score(y_true, y_pred, zero_division=0),
-        'MCC ↑': matthews_corrcoef(y_true, y_pred),
+        'AUROC/AUC': roc_auc_score(y_true, y_score),
+        'AUPRC/AUPR': auc(recall_curve, precision_curve),
+        'Accuracy': accuracy_score(y_true, y_pred),
+        'F1': f1_score(y_true, y_pred, zero_division=0),
+        'MCC': matthews_corrcoef(y_true, y_pred),
     }
 
 
@@ -170,33 +170,33 @@ for seed in SEEDS:
 
         G_val, P_val, pred_val = predicting(model, device, val_loader)
         val_ret = evaluate_binary_metrics(G_val, P_val, pred_val)
-        val_auroc_list.append(val_ret['AUROC/AUC ↑'])
-        val_auprc_list.append(val_ret['AUPRC/AUPR ↑'])
-        val_accuracy_list.append(val_ret['Accuracy ↑'])
-        val_f1_list.append(val_ret['F1 ↑'])
-        val_mcc_list.append(val_ret['MCC ↑'])
+        val_auroc_list.append(val_ret['AUROC/AUC'])
+        val_auprc_list.append(val_ret['AUPRC/AUPR'])
+        val_accuracy_list.append(val_ret['Accuracy'])
+        val_f1_list.append(val_ret['F1'])
+        val_mcc_list.append(val_ret['MCC'])
 
-        if val_ret['AUROC/AUC ↑'] > best_val_roc:
+        if val_ret['AUROC/AUC'] > best_val_roc:
             best_epoch = epoch + 1
-            best_val_roc = val_ret['AUROC/AUC ↑']
+            best_val_roc = val_ret['AUROC/AUC']
             epochs_since_improvement = 0
 
             G_test, P_test, pred_test = predicting(model, device, test_loader)
             best_ret = evaluate_binary_metrics(G_test, P_test, pred_test)
             print(
                 f'[FIND BEST!] epoch {best_epoch} | '
-                f'val AUROC={val_ret["AUROC/AUC ↑"]:.4f} AUPRC={val_ret["AUPRC/AUPR ↑"]:.4f} '
-                f'ACC={val_ret["Accuracy ↑"]:.4f} F1={val_ret["F1 ↑"]:.4f} MCC={val_ret["MCC ↑"]:.4f}|'
+                f'val AUROC={val_ret["AUROC/AUC"]:.4f} AUPRC={val_ret["AUPRC/AUPR"]:.4f} '
+                f'ACC={val_ret["Accuracy"]:.4f} F1={val_ret["F1"]:.4f} MCC={val_ret["MCC"]:.4f}|'
                 '\n'
-                f'test AUROC={best_ret["AUROC/AUC ↑"]:.4f} AUPRC={best_ret["AUPRC/AUPR ↑"]:.4f} '
-                f'ACC={best_ret["Accuracy ↑"]:.4f} F1={best_ret["F1 ↑"]:.4f} MCC={best_ret["MCC ↑"]:.4f}'
+                f'test AUROC={best_ret["AUROC/AUC"]:.4f} AUPRC={best_ret["AUPRC/AUPR"]:.4f} '
+                f'ACC={best_ret["Accuracy"]:.4f} F1={best_ret["F1"]:.4f} MCC={best_ret["MCC"]:.4f}'
             )
         else:
             epochs_since_improvement += 1
             print(
                 f'epoch {epoch + 1} | '
-                f'val AUROC={val_ret["AUROC/AUC ↑"]:.4f} AUPRC={val_ret["AUPRC/AUPR ↑"]:.4f} '
-                f'ACC={val_ret["Accuracy ↑"]:.4f} F1={val_ret["F1 ↑"]:.4f} MCC={val_ret["MCC ↑"]:.4f}'
+                f'val AUROC={val_ret["AUROC/AUC"]:.4f} AUPRC={val_ret["AUPRC/AUPR"]:.4f} '
+                f'ACC={val_ret["Accuracy"]:.4f} F1={val_ret["F1"]:.4f} MCC={val_ret["MCC"]:.4f}'
             )
 
         if epochs_since_improvement >= EARLY_STOP_PATIENCE:
