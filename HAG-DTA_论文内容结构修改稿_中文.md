@@ -29,7 +29,7 @@ Table 1 给出了四个数据集的基本信息、任务类型、数据划分方
 
 实验使用 PyTorch 2.0.0、PyTorch Geometric 2.6.1 和 CUDA 11.8。模型采用 Adam 优化器进行训练，其他训练参数与 GraphDTA 的设置保持一致，以减少训练策略差异对模型比较的影响。
 
-在药物分子图编码部分，本文分别采用 DenseGINConv、DenseGCNConv、DenseGATConv 和 DenseSAGEConv 作为图卷积算子，以验证不同 GNN backbone 对 HAG-DTA 模型性能的影响。蛋白质序列统一截断或填充至长度 1000，并输入 TextCNN 模块进行特征提取。层次化池化模块中，默认设置为 $n_1=4$、$n_2=2$；在超参数敏感性分析中，进一步对 $n_1$ 和 $n_2$ 的不同组合进行了系统检验。MMD loss 的默认权重系数为 $\beta=0.05$，并在消融实	验中对其影响进行了分析。
+在药物分子图编码部分，本文分别采用 DenseGINConv、DenseGCNConv、DenseGATConv 和 DenseSAGEConv 作为图卷积算子，以验证不同 GNN backbone 对 HAG-DTA 模型性能的影响。蛋白质序列统一截断或填充至长度 1000，并输入 TextCNN 模块进行特征提取。层次化池化模块中，默认设置为 $n_1=4$、$n_2=2$；在超参数敏感性分析中，进一步对 $n_1$ 和 $n_2$ 的不同组合进行了系统检验。MMD loss 的默认权重系数为 $\beta=0.05$，并在消融实验中对其影响进行了分析。
 
 Table 2 给出了本文实验使用的主要超参数设置。与原论文相比，返修版中建议将 $n_1$、$n_2$ 的搜索空间与当前实际返修实验保持一致。
 
