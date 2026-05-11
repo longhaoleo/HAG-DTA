@@ -8,6 +8,8 @@
 # Optional:
 #   SEED=1000 bash scripts/sensitivity_mmd.sh
 #   SEEDS="100 1000 2000 3000 4000" bash scripts/sensitivity_mmd.sh
+#   BETAS="0.05" bash scripts/sensitivity_mmd.sh
+#   BETAS="0 1.0" SEEDS="100 1000" bash scripts/sensitivity_mmd.sh
 #   ALPHA=0.05 bash scripts/sensitivity_mmd.sh
 
 set -e
@@ -23,20 +25,23 @@ ALPHA=${ALPHA:-0.05}
 OUTPUT="${HAG_DTA_OUTPUT_ROOT:-/root/autodl-tmp/HAG-DTA-runs}"
 mkdir -p "$OUTPUT/sensitivity_mmd"
 
-BETAS=(0 0.01 0.05 0.1 0.5 1.0)
+BETAS=${BETAS:-"0 0.01 0.05 0.1 0.5 1.0"}
 SUMMARY="$OUTPUT/sensitivity_mmd/mmd_beta_summary.csv"
 
 echo "============================================"
 echo " MMD Loss Coefficient Ablation — Davis + GIN"
 echo " seeds=$SEEDS"
+echo " betas=$BETAS"
 echo " n1=$N1 n2=$N2 alpha=$ALPHA"
 echo "============================================"
 echo ""
 
-echo "beta,seed,n1,n2,alpha,mse,ci,rm2,best_epoch,log" > "$SUMMARY"
+if [ ! -f "$SUMMARY" ]; then
+    echo "beta,seed,n1,n2,alpha,mse,ci,rm2,best_epoch,log" > "$SUMMARY"
+fi
 
 for seed in $SEEDS; do
-    for beta in "${BETAS[@]}"; do
+    for beta in $BETAS; do
         tag="mmd_beta_${beta}_seed_${seed}"
         log="$OUTPUT/sensitivity_mmd/${tag}.log"
 
