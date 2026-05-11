@@ -16,13 +16,14 @@ from sklearn.metrics import (
 from torch_geometric.data import DenseDataLoader
 
 from config.paths import CACHE_ROOT, ensure_runtime_dirs, output_file, processed_file
-from config.training import CLASSIFICATION_TRAINING, CUDA_NAME, SEEDS
+from config.training import CLASSIFICATION_TRAINING, CUDA_NAME
 from MMDLoss import *
 from model import Diff_DTA_GAT, Diff_DTA_GCN, Diff_DTA_GIN, Diff_DTA_SAGE
 from utils import *
 
 
 RESULT_COLUMNS = ['Setting', 'AUROC/AUC', 'AUPRC/AUPR', 'Accuracy', 'F1', 'MCC']
+BASELINE_SEEDS = [100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000]
 
 
 def same_seeds(seed):
@@ -121,7 +122,7 @@ if not all(os.path.isfile(p) for p in [train_pt, val_pt, test_pt]):
         f'Missing processed files for {dataset_name}. Please run create_data_Human_Celegans.py first.'
     )
 
-for seed in SEEDS:
+for seed in BASELINE_SEEDS:
     same_seeds(seed)
     print(f'\nrunning on {dataset_name}, seed={seed}')
 
