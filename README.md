@@ -88,6 +88,6 @@ GCN/GAT/SAGE 改脚本内 `MODEL_ID` 后同样执行。
 
 | 实验 | 脚本 |
 |------|------|
-| MMD β 消融 | `bash scripts/sensitivity_mmd.sh` |
-| n1/n2 网格 | `bash scripts/sensitivity_n1n2.sh` |
-
+| Davis MMD β 消融 | `bash scripts/sensitivity_mmd_davis.sh` |
+| Human MMD β 消融 | `bash scripts/sensitivity_mmd_human.sh` |
+| n1/n2 敏感性分析 | `bash scripts/sensitivity_n1n2_all.sh` |

@@ -80,7 +80,8 @@ SEED=1000 bash scripts/sensitivity_n1n2_all.sh
 
 | 脚本 | 数据集 | 模式 | β |
 |------|--------|------|---|
-| `sensitivity_mmd.sh` | Davis | classic split，单 seed，默认 `SEED=100` | `0, 0.01, 0.05, 0.1, 0.5, 1.0` |
+| `sensitivity_mmd_davis.sh` | Davis | classic split，单 seed，默认 `SEED=100` | `0, 0.01, 0.05, 0.1, 0.5, 1.0` |
+| `sensitivity_mmd_human.sh` | Human | 80/10/10 single split，单 seed，默认 `SEED=100` | `0, 0.01, 0.05, 0.1, 0.5, 1.0` |
 
 ### 3. GraphDTA 基线
 
@@ -161,7 +162,8 @@ python create_data_Human_Celegans.py
 # 2) 快速验证
 bash scripts/sensitivity_n1n2_davis.sh
 bash scripts/sensitivity_n1n2_all.sh
-bash scripts/sensitivity_mmd.sh
+bash scripts/sensitivity_mmd_davis.sh
+bash scripts/sensitivity_mmd_human.sh
 
 # 3) 分类主实验
 bash scripts/run_human_full.sh
