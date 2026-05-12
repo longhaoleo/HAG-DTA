@@ -107,7 +107,12 @@ for seed in [100,1000,2000]:# 设置随机种子
             # training the model
             device = torch.device(cuda_name if torch.cuda.is_available() else "cpu")
             # n1 n2
-            model = model_select(num_nodes_1=6,num_nodes_2 = 3)
+            default_nodes = {
+                'davis': (4, 2),
+                'kiba': (6, 2),
+            }
+            n1_default, n2_default = default_nodes[dataset]
+            model = model_select(num_nodes_1=n1_default, num_nodes_2=n2_default)
             model = model.to(device)
             # model.load_state_dict(torch.load('model_GINConvNet_davis.model')) # 导入网络的参数
             loss_fn = nn.MSELoss()

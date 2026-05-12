@@ -140,7 +140,11 @@ for seed in BASELINE_SEEDS:
     test_loader = DenseDataLoader(test_data, batch_size=TEST_BATCH_SIZE, shuffle=False)
 
     device = torch.device(cuda_name if torch.cuda.is_available() else 'cpu')
-    n1_default, n2_default = (6, 3)
+    default_nodes = {
+        'Human': (7, 3),
+        'Celegans': (7, 3),
+    }
+    n1_default, n2_default = default_nodes[dataset_name]
     n1 = int(os.environ.get('HAG_DTA_N1', n1_default))
     n2 = int(os.environ.get('HAG_DTA_N2', n2_default))
     print(f'Hierarchical pooling: n1={n1}, n2={n2}')

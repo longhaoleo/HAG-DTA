@@ -235,7 +235,7 @@ HAG-DTA first extracts hierarchical structural features and global graph feature
 \label{fig1}
 \end{figure*}
 
-\subsection{Hierarchical graph representation learning module}\label{subsec:hierarchical_graph_module}
+\subsection{Hierarchical graph representation learning module(HGNN)}\label{subsec:hierarchical_graph_module}
 
 Drug molecules naturally have hierarchical structures. Atoms are connected by chemical bonds to form local chemical structures, and these local structures further constitute higher-level molecular fragments. To capture such progressive structural information, we design a two-layer hierarchical graph pooling module to coarsen the drug molecular graph. This process is illustrated in Fig.~\ref{fig2}(c).
 
@@ -264,11 +264,11 @@ A^{(l+1)}={S^{(l)}}^T A^{(l)}S^{(l)},
 \end{equation}
 where $X^{(l+1)}$ and $A^{(l+1)}$ represent the feature matrix and adjacency matrix of the coarsened graph, respectively.
 
-The first graph pooling layer compresses the atom-level molecular graph into a higher-level graph with $n_1$ nodes, which is used to approximate functional group-level structural information. The second graph pooling layer further compresses the graph into a higher-level graph with $n_2$ nodes, which is used to characterize molecular fragment-level representation. In the default setting of the model, $n_1=4$ and $n_2=2$. These two hyperparameters jointly determine the granularity of molecular structural abstraction.
+The first graph pooling layer compresses the atom-level molecular graph into a higher-level graph with $n_1$ nodes, which is used to approximate functional group-level structural information. The second graph pooling layer further compresses the graph into a higher-level graph with $n_2$ nodes, which is used to characterize molecular fragment-level representation. These two hyperparameters jointly determine the granularity of molecular structural abstraction.
 
 The node features obtained from the first and second pooling layers are processed by flattening and fully connected layers, respectively, and both are mapped into 128-dimensional feature vectors for subsequent multi-scale feature fusion. In addition, DiffPool introduces a link prediction loss and an entropy regularization loss during training. The link prediction loss helps preserve the topological consistency before and after pooling, while the entropy regularization loss encourages clearer node-to-cluster assignments.
 
-\subsection{Deep graph neural network module}\label{subsec:deep_graph_module}
+\subsection{Deep graph neural network module(DGNN)}\label{subsec:deep_graph_module}
 
 The hierarchical graph pooling module progressively extracts functional group-level and molecular fragment-level representations from the atom-level molecular graph. To further preserve the global topological information of the original molecular graph, we introduce a deep graph neural network module to directly extract global molecular topological features from the original graph. This process is shown in Fig.~\ref{fig2}(a).
 
@@ -285,7 +285,40 @@ Z^{(l)}=\sigma\left(W_1H^{(l)}+W_2\tilde{H}^{(l-1)}+b\right),
 \end{equation}
 where $H^{(l)}$ denotes the node feature output of the $l$-th GNN layer, $\tilde{H}^{(l-1)}$ denotes the retained feature after gated fusion from the previous layer, $Z^{(l)}$ denotes the gate coefficient, $\sigma(\cdot)$ denotes the sigmoid function, $\odot$ denotes element-wise multiplication, and $W_1$, $W_2$, and $b$ are trainable parameters.
 
-After obtaining the node-level global graph representation, the model performs graph-level pooling to obtain the global representation of the whole drug molecule. This graph-level feature is further processed by a self-attention mechanism and a fully connected layer to obtain a 128-dimensional global molecular topological feature. The obtained global feature is then fused with the hierarchical graph features and the protein sequence feature for final prediction.
+
+\subsection{Interaction between HGNN and DGNN}
+\label{subsec:hgnn_dgnn_interaction}
+
+The HGNN and DGNN modules are designed as two complementary graph representation learning branches. Given the same atom-level molecular graph, the HGNN branch explicitly changes the graph resolution through learnable graph pooling, while the DGNN branch preserves the original molecular topology and increases the receptive field through deep message passing. Therefore, the transition from local structural learning to global topological learning is realized by jointly modeling the molecule from different graph resolutions.
+
+Specifically, the HGNN branch follows a progressive coarsening path:
+\begin{equation}
+G^{(0)} \rightarrow G^{(1)} \rightarrow G^{(2)},
+\end{equation}
+where $G^{(0)}$ denotes the original atom-level molecular graph, $G^{(1)}$ denotes the first-level coarsened graph with $n_1$ structural nodes, and $G^{(2)}$ denotes the second-level coarsened graph with $n_2$ structural nodes. In this way, the model first aggregates atom-level information into functional group-level representations and then further abstracts them into molecular fragment-level representations. The two hierarchical graph features are defined as:
+\begin{equation}
+\mathbf{X}_{H1}=f_{H1}(G^{(1)}), \quad
+\mathbf{X}_{H2}=f_{H2}(G^{(2)}),
+\end{equation}
+where $\mathbf{h}_{H1}$ and $\mathbf{h}_{H2}$ represent the local hierarchical molecular features extracted from two structural scales.
+
+In parallel, the DGNN branch operates on the original molecular graph $G^{(0)}$ and performs multi-layer message passing without changing the graph resolution. This branch is used to capture long-range atom dependencies and preserve the global molecular topology. The global graph representation extracted by the DGNN branch is defined as:
+\begin{equation}
+\mathbf{X}_{G}=f_{G}(G^{(0)}).
+\end{equation}
+
+The three graph-level representations describe the same molecule from different structural perspectives. The hierarchical features $\mathbf{h}_{H1}$ and $\mathbf{h}_{H2}$ emphasize local and mesoscopic chemical substructures, whereas the global feature $\mathbf{h}_{G}$ characterizes the overall topological dependency of the molecular graph. To make these features comparable and suitable for subsequent fusion, they are projected into a shared latent space:
+\begin{equation}
+\mathbf{z}_{H1}=W_{H1}\mathbf{X}_{H1}+b_{H1}, \quad
+\mathbf{z}_{H2}=W_{H2}\mathbf{X}_{H2}+b_{H2}, \quad
+\mathbf{z}_{G}=W_{G}\mathbf{X}_{G}+b_{G},
+\end{equation}
+where $\mathbf{z}_{H1}$, $\mathbf{z}_{H2}$, and $\mathbf{z}_{G}$ are 128-dimensional graph representations.
+
+After this projection, the hierarchical and global graph features are jointly fed into the attention-based fusion module together with the protein sequence representation. The attention mechanism adaptively assigns different importance weights to functional group-level, molecular fragment-level, global molecular topology, and protein sequence features. Therefore, HAG-DTA can integrate local chemical substructures and global molecular dependencies in a unified prediction framework.
+
+In addition, the MMD loss is introduced to reduce the distribution discrepancy between the hierarchical graph features and the global graph feature. This constraint encourages the local structural representations and the global topological representation to be aligned in the shared latent space, thereby improving the consistency of multi-scale molecular representation learning.
+
 
 \subsection{Protein sequence feature extraction module}\label{subsec:protein_cnn_module}
 
@@ -376,9 +409,6 @@ For the Human and \textit{C.elegans} classification tasks, the model output is c
 \end{equation}
 where $\hat{p}_i$ denotes the predicted probability that the $i$-th drug-target pair has an interaction, and $y_i$ denotes the ground-truth label.
 
-
-\section{Results and Discussion}
-
 \subsection{Experience details}
 
 \subsubsection{Datasets and data splits}
@@ -458,7 +488,7 @@ All experiments were implemented using PyTorch 2.0.0, PyTorch Geometric 2.6.1, a
 
 For drug molecular graph encoding, GINConv, GCNConv, GATConv, and SAGEConv were adopted as graph convolution operators to evaluate the influence of different GNN backbones on HAG-DTA. Protein sequences were truncated or padded to a fixed length of 1000 and then fed into the TextCNN module for feature extraction. In the hierarchical GNN module, two DiffPool layers were used to generate two coarsened graphs. The first coarsened graph is designed to capture functional group-level representations, while the second coarsened graph is used to capture higher-level molecular fragment representations.
 
-Since the numbers of nodes in the two coarsened graphs need to be predefined, they are important structural hyperparameters in HAG-DTA. For clarity, we denote the number of nodes in the first coarsened graph as $n_1$ and the number of nodes in the second coarsened graph as $n_2$. In the main experiments, the default setting was $n_1=6$ and $n_2=2$. The effects of $n_1$ and $n_2$ were further discussed in the hyperparameter sensitivity analysis. The default weight of the MMD loss was set to $\beta=0.05$, and its influence was analyzed in the ablation study. Table~\ref{table2} summarizes the main hyperparameters used in this study. The final three rows list the candidate structural settings and GNN backbones considered in the model analysis.
+Since the numbers of nodes in the two coarsened graphs need to be predefined, they are important structural hyperparameters in HAG-DTA. In the main experiments, the settings of $n_1$ and $n_2$ were specified for each dataset. For the regression task, $n_1=4$ and $n_2=2$ were used on the Davis dataset, while $n_1=6$ and $n_2=2$ were used on the KIBA dataset. For the binary classification task, $n_1=7$ and $n_2=3$ were used on both the Human and \textit{C. elegans} datasets. The effects of $n_1$ and $n_2$ were further discussed in the hyperparameter sensitivity analysis. The default weight of the MMD loss was set to $\beta=0.05$, and its influence was analyzed in the ablation study. Table~\ref{table2} summarizes the main hyperparameters used in this study. The final three rows list the candidate structural settings and GNN backbones considered in the model analysis.
 
 \begin{table}[!t]
 \caption{Hyperparameters used in this study.\label{table2}}%
@@ -482,9 +512,18 @@ Dropout rate & 0.2\\
 \end{table}
 
 
-\subsection{Comparisons with other models}
 
-To comprehensively evaluate the performance of our proposed HAG-DTA model, we compare it with the following models: KronRLS\cite{pahikkala2015toward} and SimBoost\cite{He2017SimBoost} based on traditional machine learning methods; TransformerCPI\cite{chen2020transformercpi}, MolTrans\cite{huang2021moltrans}, MATT\_DTI\cite{zeng2021deep}, DeepDTA\cite{ozturk2018deepdta}, AttentionDTA\cite{zhao2019attentiondta}, and WideDTA\cite{ozturk2019widedta} based on deep learning methods; GNN-CNN\cite{tsubaki2019compound}, MFR-DTA\cite{hua2023mfr}, TrimNet-CNN\cite{li2021trimnet}, GraphDTA\cite{nguyen2021graphdta}, and IIFDTI\cite{cheng2022iifdti} based on graph-based methods. All the above-mentioned baseline models take sequence features or drug molecule graphs as inputs. Additionally, to ensure a fair comparison of model performances, we exclude WGNN-DTA\cite{jiang2022sequence} because they utilize protein-weighted graphs as model inputs.
+\section{Results and Analysis}
+
+\subsection{Comparisons with baseline methods}
+
+To comprehensively evaluate the effectiveness of HAG-DTA, we compare it with representative baseline methods from different modeling paradigms. Among them, GraphDTA\cite{nguyen2021graphdta} is the core baseline of this study. HAG-DTA follows the same high-level drug-target affinity modeling route as GraphDTA, namely joint modeling of drug molecular graphs and protein sequences, but further extends the drug-side representation by introducing hierarchical graph structure learning, multi-scale molecular feature extraction, deep graph feature modeling, and attention-based feature fusion. Therefore, the comparison with GraphDTA directly reflects whether the proposed structural extensions improve the basic graph-based DTA framework.
+
+GraphDTA represents each drug molecule as a graph, where atoms are treated as nodes and chemical bonds as edges, and uses graph neural networks to extract molecular topology features. For the target protein, GraphDTA usually adopts one-dimensional convolutional networks to extract local sequence features. The drug and protein representations are then concatenated and fed into fully connected layers for affinity prediction. This design makes GraphDTA a strong graph-based baseline because it directly utilizes molecular graph topology instead of relying only on molecular fingerprints or SMILES strings.
+
+In contrast, the drug encoder of HAG-DTA is designed to model molecular structures at multiple levels. The hierarchical GNN branch progressively learns atom-level, functional group-level, and molecular fragment-level representations through graph coarsening. The deep GNN branch complements this local hierarchical information by capturing global molecular topology. Finally, an attention-based fusion module adaptively integrates local hierarchical features, global graph features, and protein sequence features. TransformerCPI\cite{chen2020transformercpi} is included as a supplementary baseline from another modeling paradigm. It represents sequence-attention-based CPI prediction methods and is used to examine whether explicit molecular graph modeling can provide advantages over sequence-centered interaction modeling.
+
+In addition to GraphDTA and TransformerCPI, we also compare HAG-DTA with classical machine learning methods including KronRLS\cite{pahikkala2015toward} and SimBoost\cite{He2017SimBoost}, deep learning methods including MolTrans\cite{huang2021moltrans}, MATT\_DTI\cite{zeng2021deep}, DeepDTA\cite{ozturk2018deepdta}, AttentionDTA\cite{zhao2019attentiondta}, and WideDTA\cite{ozturk2019widedta}, and graph-based methods including GNN-CNN\cite{tsubaki2019compound}, MFR-DTA\cite{hua2023mfr}, TrimNet-CNN\cite{li2021trimnet}, and IIFDTI\cite{cheng2022iifdti}. WGNN-DTA\cite{jiang2022sequence} is not included in the main comparison because it uses protein-weighted graphs as additional model inputs, which makes its input setting different from the baselines considered here.
 
 \begin{table}[t]
 \caption{Prediction performance on the Davis and KIBA datasets, sorted by MSE.\label{table3}}
@@ -540,12 +579,43 @@ HAG-DTA(GAT)                                 & Ours & \textbf{0.962(0.004)} & 0.
 \end{tablenotes}
 \end{table}
 
-According to the results of Section~3.2, we selected the optimal hyperparameter settings and repeated the experiments with five different random seeds to calculate the mean and standard deviation of the results. Meanwhile, for the GNN layer, we experimented with four different GNN frameworks. Table~\ref{table3} summarizes the model comparison results on the regression datasets, while Table~\ref{table4} summarizes the model comparison results on the classification datasets. It can be observed that the HAG-DTA method outperforms other baseline models, showing significant improvements in most metrics. Notably, the GIN framework demonstrates superior performance in the HAG-DTA model. However, the differences in model metrics among the four GNN frameworks are relatively small. These results indicate that the HAG-DTA method proposed in this study captures more comprehensive characteristic information and exhibits superior generalization ability for DTA prediction tasks. The utilization of multiscale feature fusion enables precise capture of local structural information related to functional groups in drug molecules and helps preserve the overall structural details of compounds.
+According to the results of the hyperparameter analysis, we selected the dataset-specific structural settings and repeated the experiments with five different random seeds to calculate the mean and standard deviation. Meanwhile, four GNN backbones were evaluated in HAG-DTA. Table~\ref{table3} summarizes the comparison results on the regression datasets, while Table~\ref{table4} summarizes the comparison results on the classification datasets.
 
-To further evaluate the competitiveness of HAG-DTA against recently proposed DTA models, we additionally include a comparison with several recent state-of-the-art methods. For models that can be reproduced under the same experimental protocol, we preferentially use the same dataset split and evaluation metrics as this study. For models whose official implementation or training setting cannot be fully reproduced, we report the results from the original papers and specify the corresponding source and experimental setting in the table. Since different studies may use different data splits, preprocessing strategies, or evaluation protocols, the results in Table~\ref{table:sota_recent} are mainly used as a reference comparison.
+On the Davis and KIBA regression datasets, HAG-DTA achieves competitive or superior performance compared with GraphDTA and other baseline methods. In particular, on Davis, HAG-DTA(GIN) obtains the best MSE, CI, and $r_m^2$ among the compared methods, indicating that hierarchical and global molecular graph representations can improve affinity prediction under the same basic graph-protein modeling framework. On KIBA, HAG-DTA also achieves the best MSE with the GCN backbone and the best $r_m^2$ with the SAGE backbone, showing that the proposed architecture remains effective across different regression datasets.
+
+On the Human and \textit{C. elegans} classification datasets, HAG-DTA is compared mainly with TransformerCPI and other CPI/DTI baselines. Compared with TransformerCPI, HAG-DTA explicitly preserves molecular graph topology and further extracts functional group-level and fragment-level features. The results in Table~\ref{table4} show that HAG-DTA obtains strong performance in Precision, Recall, and AUC. These results suggest that sequence-attention modeling is useful for CPI prediction, but explicit hierarchical molecular graph modeling provides complementary structural information that is beneficial for drug-target interaction prediction.
+
+To further evaluate whether the improvement over the main baselines is statistically reliable, we performed significance tests using the repeated runs with shared random seeds. For Davis, HAG-DTA(GIN) was compared with GraphDTA(GIN). For Human and \textit{C. elegans}, HAG-DTA(GIN) was compared with TransformerCPI. Table~\ref{tab:baseline_significance} reports the mean, standard deviation, and paired $t$-test results. The results show that HAG-DTA significantly improves all three Davis metrics over GraphDTA. On Human, HAG-DTA shows higher mean AUROC, AUPRC, Precision, and Recall than TransformerCPI, with the Precision improvement reaching statistical significance and the AUROC improvement close to the $0.05$ threshold. On \textit{C. elegans}, the improvements in AUROC and AUPRC are statistically significant. These findings support that the proposed hierarchical multi-scale graph representation improves the GraphDTA-style framework and also provides advantages over a representative sequence-attention CPI baseline.
 
 \begin{table}[t]
-\caption{Prediction performance on the Davis and KIBA datasets for recent state-of-the-art DTA prediction methods, sorted by year and MSE.\label{table:sota_recent}}
+\caption{Statistical comparison with the core baseline GraphDTA and the sequence-attention baseline TransformerCPI.\label{tab:baseline_significance}}
+\tabcolsep=0pt
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lllccc@{}}
+\toprule
+Dataset & Baseline & Metric & HAG-DTA & Baseline & $p$-value \\
+\midrule
+Davis & GraphDTA(GIN) & MSE($\downarrow$) & 0.199(0.002) & 0.228(0.002) & $8.86\times10^{-6}$ \\
+Davis & GraphDTA(GIN) & CI($\uparrow$) & 0.907(0.003) & 0.892(0.002) & $5.12\times10^{-4}$ \\
+Davis & GraphDTA(GIN) & $r_m^2$($\uparrow$) & 0.737(0.010) & 0.708(0.005) & $9.13\times10^{-4}$ \\
+Human & TransformerCPI & AUROC($\uparrow$) & 0.976(0.003) & 0.972(0.002) & $5.15\times10^{-2}$ \\
+Human & TransformerCPI & AUPRC($\uparrow$) & 0.973(0.005) & 0.970(0.003) & $2.49\times10^{-1}$ \\
+Human & TransformerCPI & Precision($\uparrow$) & 0.932(0.007) & 0.898(0.015) & $1.43\times10^{-2}$ \\
+Human & TransformerCPI & Recall($\uparrow$) & 0.934(0.002) & 0.924(0.011) & $8.48\times10^{-2}$ \\
+\textit{C. elegans} & TransformerCPI & AUROC($\uparrow$) & 0.990(0.001) & 0.985(0.001) & $8.01\times10^{-6}$ \\
+\textit{C. elegans} & TransformerCPI & AUPRC($\uparrow$) & 0.990(0.001) & 0.983(0.002) & $7.26\times10^{-4}$ \\
+\textit{C. elegans} & TransformerCPI & Precision($\uparrow$) & 0.947(0.020) & 0.916(0.059) & $3.58\times10^{-1}$ \\
+\textit{C. elegans} & TransformerCPI & Recall($\uparrow$) & 0.953(0.013) & 0.950(0.015) & $8.27\times10^{-1}$ \\
+\bottomrule
+\end{tabular*}
+\begin{tablenotes}
+\item Note: Values are reported as mean(std) over five random seeds. The $p$-values are calculated by two-sided paired $t$-tests. For MSE, lower is better; for the other metrics, higher is better.
+\end{tablenotes}
+\end{table}
+
+To further evaluate the competitiveness of our proposed HAG-DTA model against state-of-the-art DTA prediction methods proposed in recent years, detailed results are presented in Table~\ref{table:table5}.
+
+\begin{table}[t]
+\caption{Prediction performance on the Davis and KIBA datasets for recent state-of-the-art DTA prediction methods, sorted by Year and MSE.\label{table:table5}}
 \tabcolsep=0pt
 \centering
 \begin{tabular}{lccccccc}
@@ -572,9 +642,8 @@ HAG-DTA(GIN)                              & Ours & \textbf{0.198(0.001)} & \text
 \end{tablenotes}
 \end{table}
 
-To further evaluate the competitiveness of HAG-DTA on classification tasks, we also compare it with recent representative DTI or CPI prediction methods on the Human and \textit{C. elegans} datasets. The reported results of recent baseline methods are collected from their original publications. For MGNDTI\cite{Peng2024MGNDTI}, DO-GMA\cite{Peng2025DOGMA}, LAM-DTI\cite{Wei2025LAMDTI}, and BiMA-DTI\cite{Shui2025BiMADTI}, we use the results obtained under the E1 setting. The E1 setting corresponds to the conventional random split protocol, where drug-target interaction pairs are randomly divided into training, validation, and test sets. Drugs and targets may appear in both training and test sets, while identical interaction pairs are not duplicated across different splits. The reported baseline results are averaged over 10 independent runs. Therefore, this setting is the closest to the random-split protocol adopted in this study.
-
-Since different studies may report different classification metrics, we use AUROC/AUC, AUPRC/AUPR, Accuracy, F1, and MCC to provide a broader comparison with recent state-of-the-art methods. The HAG-DTA results are reserved in Tables~\ref{table_human} and~\ref{table_celegans} and will be filled after completing the corresponding experiments under the same random-split setting.
+To further assess the classification performance of the proposed HAG-DTA model, we conduct comparative experiments with several state-of-the-art DTI and CPI prediction methods on the Human and \textit{C. elegans} datasets. All baseline results of competing approaches are retrieved from their original publications. For MGNDTI\cite{Peng2024MGNDTI}, DO-GMA\cite{Peng2025DOGMA}, LAM-DTI\cite{Wei2025LAMDTI}, and BiMA-DTI\cite{Shui2025BiMADTI}, we adopt their experimental results under the standard E1 protocol. The E1 setting follows the widely used random split strategy, which randomly partitions all drug-target interaction pairs into training, validation, and test subsets. Under this scheme, drugs and target proteins can be distributed across different subsets, whereas duplicate interaction pairs are strictly excluded. All baseline results are reported as the average of ten independent runs, making this protocol highly consistent with the random split strategy employed in our work.
+In accordance with the evaluation metrics widely adopted in existing literature, we utilize AUROC/AUC, AUPRC/AUPR, Accuracy, F1-score, and MCC to enable a comprehensive comparison with contemporary state-of-the-art methods. The quantitative results of HAG-DTA are summarized in Tables~\ref{table_human} and~\ref{table_celegans}, which will be supplemented upon the completion of experiments under the identical random-split configuration.
 
 \begin{table}[t]
 \caption{Prediction performance on the Human dataset for recent state-of-the-art DTI prediction methods.\label{table_human}}
@@ -593,9 +662,6 @@ HAG-DTA(GIN)                    & Ours &  &  &  &  &  \\
 HAG-DTA(GAT)                    & Ours &  &  &  &  &  \\
 \bottomrule
 \end{tabular*}
-\begin{tablenotes}
-\item Note: Values in parentheses denote standard deviations. Blank entries for HAG-DTA variants are reserved for our experimental results.
-\end{tablenotes}
 \end{table}
 
 \begin{table}[t]
@@ -615,19 +681,47 @@ HAG-DTA(GIN)                    & Ours &  &  &  &  &  \\
 HAG-DTA(GAT)                    & Ours &  &  &  &  &  \\
 \bottomrule
 \end{tabular*}
-\begin{tablenotes}
-\item Note: Values in parentheses denote standard deviations. Blank entries for HAG-DTA variants are reserved for our experimental results.
-\end{tablenotes}
 \end{table}
+
 
 Tables~\ref{table_human} and~\ref{table_celegans} summarize the reported performance of recent DTI prediction methods on the Human and \textit{C. elegans} datasets, respectively. These methods represent recent advances in multimodal representation learning, gated feature fusion, cross-modal feature mapping, and Mamba-attention-based interaction modeling. Compared with these methods, HAG-DTA focuses on hierarchical molecular graph representation. Specifically, it learns functional group-level and molecular fragment-level representations through hierarchical graph pooling, while the deep GNN branch preserves global molecular topology.
 
-This design allows HAG-DTA to capture both local chemical substructures and global graph-level information. Therefore, compared with sequence-based methods and single-scale graph representation methods, HAG-DTA is expected to provide a more comprehensive molecular representation for DTI prediction. Since the baseline results in Tables~\ref{table_human} and~\ref{table_celegans} are collected from the original publications, they are used as literature-level reference values. To avoid overclaiming performance gains caused by inconsistent preprocessing strategies or implementation details, we mainly use these results to evaluate whether HAG-DTA remains competitive with recently published methods under comparable random-split settings.
+This design allows HAG-DTA to capture both local chemical substructures and global graph-level information. Therefore, compared with sequence-based methods and single-scale graph representation methods, HAG-DTA is expected to provide a more comprehensive molecular representation for DTI prediction. Since the baseline results in Tables~\ref{table_human} and~\ref{table_celegans} are collected from the original publications, they are used as literature-level reference values. 
+
+\subsection{Hyperparameter Sensitivity Analysis}
+
+The key hyperparameters in HAG-DTA mainly include the structural hyperparameters $n_1$ and $n_2$ in the hierarchical graph pooling module, and the weight coefficient $\beta$ of the MMD loss. Specifically, $n_1$ and $n_2$ denote the numbers of nodes retained in the two coarsened graphs, respectively, which directly determine the representation granularity when the drug molecular graph is progressively aggregated from atom-level structures to local structural units and higher-level molecular fragments. The coefficient $\beta$ controls the contribution of the MMD loss to the total objective function, thereby regulating the distribution constraint between local hierarchical features and global graph features.
+
+This section analyzes the influence of $n_1/n_2$ and $\beta$ on model performance. It should be noted that $n_1$ and $n_2$ are not purely empirical parameters. Instead, they have explicit structural meanings in the hierarchical graph coarsening process. They correspond to the numbers of retained nodes in the two DiffPool layers applied to the drug molecular graph, and can therefore be interpreted from the perspectives of small-molecule structural composition and graph pooling compression ratio.
+
+\subsubsection{Sensitivity Analysis of $n_1$ and $n_2$}
+
+The hierarchical GNN module of HAG-DTA contains two DiffPool layers and outputs two coarsened graphs. The first coarsened graph is used to learn local structural information from the atom-level molecular graph, while the second coarsened graph further captures higher-level molecular fragment information. In this study, the number of nodes in the first coarsened graph is defined as $n_1$, and the number of nodes in the second coarsened graph is defined as $n_2$. Since this module operates on the drug molecular graph, $n_1$ and $n_2$ essentially control the coarsening degree of ligand-side structural representation, determining how the model progressively forms local structural units and higher-level fragment representations from atom-level structures.
+
+For general small molecules, the molecular graph usually consists of several chemically meaningful local structures, such as aromatic rings, heterocycles, linkers, hydrogen bond donor or acceptor groups, hydrophobic fragments, charged groups, and halogen-substituted regions. These structural units may affect the interaction between the drug molecule and the target binding pocket through hydrogen bonding, hydrophobic interactions, electrostatic interactions, $\pi$-$\pi$ stacking, halogen bonding, or spatial conformational fitting. Therefore, in molecular graph representation, preserving atom-level details helps enhance local expressiveness, but may also introduce redundant information. Excessive graph compression may lead to the loss of key functional groups and local interaction units. The settings of $n_1$ and $n_2$ should thus balance structural preservation and hierarchical abstraction.
+
+From the perspective of graph pooling ratio, $n_1$ should retain a relatively sufficient number of local structural nodes to avoid premature merging of atom clusters with different chemical roles in the first pooling layer. If $n_1$ is too small, multiple functional groups, ring structures, or substituents may be compressed into the same supernode, weakening local structural differences. If $n_1$ is too large, the first coarsened graph remains close to the original atom-level graph, which weakens the hierarchical abstraction effect and may introduce redundant supernodes, increasing the learning difficulty of the model.
+
+By comparison, $n_2$ corresponds to the coarser fragment-level representation after the second pooling layer, which further compresses the local structural units obtained from the first layer. If $n_2$ is too small, the model may fail to retain the synergistic relationships among different molecular fragments. If $n_2$ is too large, the second pooling layer may have limited ability to summarize higher-level molecular regions. Therefore, a reasonable setting is to make $n_2$ smaller than $n_1$ while maintaining an appropriate compression ratio. According to the experimental observations in this study, when $n_2$ is approximately one-half to one-quarter of $n_1$, the model usually achieves relatively stable performance.
+
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\linewidth]{image/figure3.pdf}
+\caption{Exploration of the effects of $n_1$ and $n_2$ settings on model performance. $n_1$ increases from left to right, and $n_2$ is shown in the legend. (a), (b), (c), and (d) represent the results on the Davis, KIBA, Human, and \textit{C.elegans} datasets, respectively.}
+\label{fig3}
+\end{figure*}
+
+As shown in Figure~\ref{fig3}, for the regression tasks, the relatively optimal parameter setting on the Davis dataset is $n_1=4$ and $n_2=2$, achieving an MSE of $0.198 \pm 0.001$ and a CI of $0.908 \pm 0.002$. On the KIBA dataset, the relatively optimal setting is $n_1=6$ and $n_2=2$, achieving an MSE of $0.130 \pm 0.001$ and a CI of $0.892 \pm 0.002$. For the binary classification tasks, the relatively optimal setting on the Human dataset is $n_1=7$ and $n_2=3$, achieving an AUC of $0.987 \pm 0.001$ and a Precision of $0.958 \pm 0.005$. On the \textit{C.elegans} dataset, the relatively optimal setting is also $n_1=7$ and $n_2=3$, achieving an AUC of $0.993 \pm 0.001$ and a Precision of $0.963 \pm 0.010$. These results indicate that the preferred pooling granularity varies across datasets, which may be related to differences in molecular structural complexity, sample size, and task type.
+
+Further observation of different parameter combinations shows that although changes in $n_1$ and $n_2$ lead to certain performance fluctuations, the model maintains good predictive performance within a reasonable parameter range. In particular, when $n_1 \geq 2$, $n_2 < 10$, and $n_2$ is approximately one-half to one-quarter of $n_1$, HAG-DTA usually obtains stable performance. This phenomenon suggests that the hierarchical graph pooling module is more suitable for progressive structural compression. An excessively small coarsened graph may cause structural information loss, while an excessively large coarsened graph may weaken the abstraction ability of the pooling process for higher-level molecular structures.
+
+\subsubsection{Sensitivity Analysis of $\beta$}
+
 
 \subsection{Ablation study}
 In our design, the extraction of multi-scale feature information in drug molecules relies on hierarchical GNN networks and deep GNN networks. Layered clustering is employed to extract the local structural information of drug molecules, while the deep GNN networks focus on extracting the global structural information. Furthermore, attention mechanisms are utilized to effectively fuse the multi-scale features. Consequently, to investigate the crucial factors influencing the predictive performance of the model, we generate variants of HAG-DTA through the removal or replacement of specific modules, and subsequently conduct a comprehensive series of ablation experiments in the Davis dataset.
-\newline
-\hspace*{1em}The results of the ablation experiments are presented in \autoref{table5}. The table clearly demonstrates that the HAG-DTA model exhibits superior performance compared to other variants. Importantly, the performance significantly declines when the attention mechanism or hierarchical GNN network is removed. These findings indicate that incorporating the hierarchical GNN network allows the model to extract more comprehensive topological information from the drug molecules, consequently enhancing the model's predictive capability. Moreover, the attention-based multiscale feature fusion plays a pivotal role in adaptively integrating features, which is essential for affinity prediction.
+
+The results of the ablation experiments are presented in \autoref{table5}. The table clearly demonstrates that the HAG-DTA model exhibits superior performance compared to other variants. Importantly, the performance significantly declines when the attention mechanism or hierarchical GNN network is removed. These findings indicate that incorporating the hierarchical GNN network allows the model to extract more comprehensive topological information from the drug molecules, consequently enhancing the model's predictive capability. Moreover, the attention-based multiscale feature fusion plays a pivotal role in adaptively integrating features, which is essential for affinity prediction.
 \begin{table}[!t]
 \caption{Performance comparison of ablation experiments.\label{table5}}
 \tabcolsep=0pt%%
@@ -649,16 +743,18 @@ HAG-DTA(GIN) & \checkmark                             & \checkmark              
 \end{tablenotes}
 \end{table}
 
+
 \subsection{Model interpretation}
 During the period from 2015 to 2020, analysis of data concerning 164 small molecule drugs approved by the FDA\cite{bhutani2021us} revealed that 87\% (142 drug molecules) possessed N-heterocycles and aromatic skeletons. Chiral molecules accounted for 63\%. In contrast, the occurrence of heterocyclic oxygen compounds was relatively low. These findings suggest a regularity in the composition of drug molecules, where specific structures confer distinct chemical properties to such molecules. Hence, in the realm of computer-aided drug discovery, comprehending how models extract feature information and understanding the impact of these features on the model's performance can offer valuable insights for optimizing the structure of drug molecules.
-\newline
-\hspace*{1em}The HAG-DTA model utilizes hierarchical GNN networks and deep GNN networks to capture the multi-scale features of drug molecules. By analyzing the cluster allocation matrix and attention scores generated by the model, we can easily understand which functional groups and important atoms are extracted from the drug molecules. We chose the best model trained on the Davis dataset for model interpretation, with hyperparameters $n_1=4$ and $n_2=2$. In this configuration, the first coarsened graph has 4 nodes, while the second coarsened graph has 2 nodes. The model interpretation results for three drug molecules (a), (b), and (c) with CIDs of 9818231, 24779724, and 123631 respectively, in the PubChem database\cite{kim2016pubchem}, are illustrated in Figure 5. Based on the two cluster allocation matrices output by the hierarchical GNN network, we visualized the clustering results. The clustering results of the first layer are labeled with four colors, and the clustering results of the second layer are labeled with black dashed irregular circles, as shown on the left side of \autoref{fig4}. Furthermore, the attention scores for each atom, derived from the output of the deep GNN network, are depicted on the right side of \autoref{fig4}. From the figure, it can be seen that the model extracts the features of the pyrimidine (orange part) and piperidinepropanenitrile (green part) structures of drug molecule (a) during the first layer clustering. During the second layer clustering, the model merges the blue and orange parts and extracts the features of the molecular fragment pyrrole and pyrimidine. Additionally, the model identifies and extracts the functional group information of triazole and quinoline in drug molecule (b), as well as the functional group information of morpholinopropoxy and quinazoline in drug molecule (c). Moreover, the model's global attention scores demonstrate a higher focus on the atoms at the connection points of the two molecular fragments, such as the sulfur atom in drug molecule (b). The above results demonstrate that the HAG-DTA model can accurately identify and extract the features of functional groups and molecular fragments, and it has good interpretability for the DTA task.
+
+The HAG-DTA model utilizes hierarchical GNN networks and deep GNN networks to capture the multi-scale features of drug molecules. By analyzing the cluster allocation matrix and attention scores generated by the model, we can easily understand which functional groups and important atoms are extracted from the drug molecules. We chose the best model trained on the Davis dataset for model interpretation, with hyperparameters $n_1=4$ and $n_2=2$. In this configuration, the first coarsened graph has 4 nodes, while the second coarsened graph has 2 nodes. The model interpretation results for three drug molecules (a), (b), and (c) with CIDs of 9818231, 24779724, and 123631 respectively, in the PubChem database\cite{kim2016pubchem}, are illustrated in Figure 5. Based on the two cluster allocation matrices output by the hierarchical GNN network, we visualized the clustering results. The clustering results of the first layer are labeled with four colors, and the clustering results of the second layer are labeled with black dashed irregular circles, as shown on the left side of \autoref{fig4}. Furthermore, the attention scores for each atom, derived from the output of the deep GNN network, are depicted on the right side of \autoref{fig4}. From the figure, it can be seen that the model extracts the features of the pyrimidine (orange part) and piperidinepropanenitrile (green part) structures of drug molecule (a) during the first layer clustering. During the second layer clustering, the model merges the blue and orange parts and extracts the features of the molecular fragment pyrrole and pyrimidine. Additionally, the model identifies and extracts the functional group information of triazole and quinoline in drug molecule (b), as well as the functional group information of morpholinopropoxy and quinazoline in drug molecule (c). Moreover, the model's global attention scores demonstrate a higher focus on the atoms at the connection points of the two molecular fragments, such as the sulfur atom in drug molecule (b). The above results demonstrate that the HAG-DTA model can accurately identify and extract the features of functional groups and molecular fragments, and it has good interpretability for the DTA task.
 \begin{figure}[!t]%
 \centering
 \includegraphics[width=\linewidth]{image/figure4.pdf}
 \caption{The clustering results obtained by HGNN are shown on the left side. The first-layer clustering results are annotated with four different colors, while the second-layer clustering results are annotated with irregular black dashed circles. The attention scores for each atom, derived from the output of DGNN, are depicted on the right side. }\label{fig4}
 \end{figure}
-\section{Conclusion}
+
+\section{Discussion and Conclusion}
 This work presents the HAG-DTA model, which aims to predict Drug-Target Affinity (DTA) by capturing multi-scale feature information of drug molecules. The HAG-DTA model comprises two modules: the hierarchical GNN module and the deep GNN module. The hierarchical GNN module extracts functional groups and molecular fragment features of drug molecules through hierarchical clustering. The deep GNN module employs a gate skipping connection mechanism to fuse multi-level information of molecules and extract global features of drug molecules. Meanwhile, we introduced the MMD loss function to limit the distribution difference between the substructure features and global features. Moreover, the HAG-DTA model incorporates an attention mechanism to adaptively integrate the extracted multi-scale features. Extensive experiments on four publicly available datasets have showcased the superiority of this approach. Furthermore, we performed model interpretation based on hierarchical clustering and attention scores. The results show that the HAG-DTA model exhibits good interpretability, thereby contributing to the advancement of research on drug structure optimization.
 \\
 \\

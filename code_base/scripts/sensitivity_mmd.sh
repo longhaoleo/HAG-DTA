@@ -19,7 +19,7 @@ cd "$(dirname "$0")/.."
 DID=0    # Davis
 MID=0    # GIN
 SEEDS=${SEEDS:-${SEED:-100}}
-N1=${N1:-6}
+N1=${N1:-4}
 N2=${N2:-2}
 ALPHA=${ALPHA:-0.05}
 OUTPUT="${HAG_DTA_OUTPUT_ROOT:-/root/autodl-tmp/HAG-DTA-runs}"

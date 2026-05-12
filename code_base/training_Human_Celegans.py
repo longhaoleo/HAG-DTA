@@ -125,7 +125,11 @@ for seed in SEEDS:
 
     device = torch.device(cuda_name if torch.cuda.is_available() else 'cpu')
     # set n1, n2 from env vars or defaults (for model variants with different node counts)    
-    n1_default, n2_default = (6,3)
+    default_nodes = {
+        'Human': (7, 3),
+        'Celegans': (7, 3),
+    }
+    n1_default, n2_default = default_nodes[dataset_name]
     n1 = int(os.environ.get('HAG_DTA_N1', n1_default))
     n2 = int(os.environ.get('HAG_DTA_N2', n2_default))
     print(f'Hierarchical pooling: n1={n1}, n2={n2}')

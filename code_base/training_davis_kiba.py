@@ -153,7 +153,11 @@ for seed in SEEDS:
 
     device = torch.device(CUDA_NAME if torch.cuda.is_available() else "cpu")
     # set n1, n2 from env vars or defaults (for model variants with different node counts)
-    n1_default, n2_default = (6,2)
+    default_nodes = {
+        'davis': (4, 2),
+        'kiba': (6, 2),
+    }
+    n1_default, n2_default = default_nodes[dataset_name]
     n1 = int(os.environ.get('HAG_DTA_N1', n1_default))
     n2 = int(os.environ.get('HAG_DTA_N2', n2_default))
     pool_alpha = os.environ.get("HAG_DTA_POOL_ALPHA", "0.05")
