@@ -47,14 +47,18 @@ for seed in $SEEDS; do
 
         echo "--- Davis seed=$seed beta=$beta ---"
 
-        HAG_DTA_N1=$N1 HAG_DTA_N2=$N2 HAG_DTA_POOL_ALPHA=$ALPHA HAG_DTA_MMD_BETA=$beta \
+        if ! HAG_DTA_N1=$N1 HAG_DTA_N2=$N2 HAG_DTA_POOL_ALPHA=$ALPHA HAG_DTA_MMD_BETA=$beta \
         python3 -c "
 import config.training as ct
 import sys
 ct.SEEDS = [$seed]
 sys.argv = ['training_davis_kiba.py', '$DID', '$MID']
 exec(open('training_davis_kiba.py').read())
-" > "$log" 2>&1
+" > "$log" 2>&1; then
+            echo "  FAILED (training crashed; see $log)"
+            echo ""
+            continue
+        fi
 
         result=$(python3 -c "
 import re

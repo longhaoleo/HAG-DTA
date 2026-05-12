@@ -24,6 +24,11 @@ from model import Diff_DTA_GAT, Diff_DTA_GCN, Diff_DTA_GIN, Diff_DTA_SAGE
 from utils import *
 
 
+POOL_ALPHA = float(os.environ.get('HAG_DTA_POOL_ALPHA', 0.05))
+MMD_BETA = float(os.environ.get('HAG_DTA_MMD_BETA', 0.05))
+GRAD_CLIP = float(os.environ.get('HAG_DTA_GRAD_CLIP', 0) or 0)
+
+
 def same_seeds(seed):
     torch.manual_seed(seed)
     if torch.cuda.is_available():
@@ -46,10 +51,17 @@ def train(model, device, train_loader, optimizer):
         output, l_loss, e_loss, a, x_local, x_global = model(data)
         loss = loss_fn(output, data.y.view(-1, 1).float().to(device))
         cl_loss = criterion(x_local, x_global)
-        pool_alpha = float(os.environ.get('HAG_DTA_POOL_ALPHA', 0.05))
-        mmd_beta = float(os.environ.get('HAG_DTA_MMD_BETA', 0.05))
-        loss_all = loss + pool_alpha * (l_loss + e_loss) + mmd_beta * cl_loss
+        loss_all = loss + POOL_ALPHA * (l_loss + e_loss) + MMD_BETA * cl_loss
+        if not torch.isfinite(loss_all):
+            raise FloatingPointError(
+                'Non-finite training loss: '
+                f'mse={loss.item():.6g}, link={l_loss.item():.6g}, '
+                f'entropy={e_loss.item():.6g}, mmd={cl_loss.item():.6g}, '
+                f'total={loss_all.item():.6g}'
+            )
         loss_all.backward()
+        if GRAD_CLIP > 0:
+            torch.nn.utils.clip_grad_norm_(model.parameters(), GRAD_CLIP)
         loss_train = loss_train + data.y.shape[0] * loss.detach()
         num_sample = num_sample + data.y.shape[0]
         optimizer.step()
@@ -72,6 +84,8 @@ def evaluate(model, device, loader):
 
 
 def reg_metrics(y, p):
+    if not np.isfinite(p).all():
+        raise ValueError('Non-finite prediction scores were produced during evaluation.')
     return {'mse': mse(y,p), 'r2': get_rm2(y,p), 'ci': ci(y,p)}
 
 
@@ -100,8 +114,9 @@ def write_regression_results(dataset_name, model_name, seed, metrics, signature)
         rows.append((result_seed, result_df.loc[0, ['mse', 'ci', 'r2']].to_dict()))
 
     rows.sort(key=lambda item: item[0])
-    pd.DataFrame([row for _, row in rows], columns=['mse', 'ci', 'r2']).to_csv(
-        output_file(f'{dataset_name}_{model_name}_random.csv'), index=0)
+    result_df = pd.DataFrame([row for _, row in rows], columns=['mse', 'ci', 'r2'])
+    result_df.to_csv(output_file(f'{dataset_name}_{model_name}_random_{signature}.csv'), index=0)
+    result_df.to_csv(output_file(f'{dataset_name}_{model_name}_random.csv'), index=0)
 
 
 # ── Main ────────────────────────────────────────────────────────────
@@ -118,6 +133,9 @@ PA = REGRESSION_TRAINING['early_stop_patience']
 
 print(f'{mname} | {dataset_name} | classic | cuda={CUDA_NAME}')
 print(f'LR={LR} epochs={EP} val_interval={VI} patience={PA}')
+print(f'pool_alpha={POOL_ALPHA} mmd_beta={MMD_BETA}')
+if GRAD_CLIP > 0:
+    print(f'grad_clip={GRAD_CLIP}')
 ensure_runtime_dirs()
 
 for seed in SEEDS:
@@ -160,10 +178,8 @@ for seed in SEEDS:
     n1_default, n2_default = default_nodes[dataset_name]
     n1 = int(os.environ.get('HAG_DTA_N1', n1_default))
     n2 = int(os.environ.get('HAG_DTA_N2', n2_default))
-    pool_alpha = os.environ.get("HAG_DTA_POOL_ALPHA", "0.05")
-    mmd_beta = os.environ.get("HAG_DTA_MMD_BETA", "0.05")
-    result_signature = f'n1-{n1}_n2-{n2}_alpha-{safe_token(pool_alpha)}_mmd-{safe_token(mmd_beta)}'
-    print(f'n1={n1} n2={n2} pool_alpha={pool_alpha} mmd_beta={mmd_beta}')
+    result_signature = f'n1-{n1}_n2-{n2}_alpha-{safe_token(POOL_ALPHA)}_mmd-{safe_token(MMD_BETA)}'
+    print(f'n1={n1} n2={n2} pool_alpha={POOL_ALPHA} mmd_beta={MMD_BETA}')
     model = model_cls(num_nodes_1=n1, num_nodes_2=n2).to(device)
     loss_fn = nn.MSELoss()
     opt = torch.optim.Adam(model.parameters(), lr=LR)
@@ -174,25 +190,40 @@ for seed in SEEDS:
     no_improve = 0
 
     for epoch in range(EP):
-        if dataset_name == 'kiba':
-            l1, a = train(model, device, train_loader, opt)
-            l2, a2 = train(model, device, train_loader1, opt)
-            n_all = len(train_data) + len(train_data1)
-            loss_tr.append((l1*len(train_data) + l2*len(train_data1))/n_all)
-            a_list.append(list((a*len(train_data) + a2*len(train_data1))/n_all))
-        else:
-            l, a = train(model, device, train_loader, opt)
-            loss_tr.append(l)
-            a_list.append(list(a))
+        try:
+            if dataset_name == 'kiba':
+                l1, a = train(model, device, train_loader, opt)
+                l2, a2 = train(model, device, train_loader1, opt)
+                n_all = len(train_data) + len(train_data1)
+                loss_tr.append((l1*len(train_data) + l2*len(train_data1))/n_all)
+                a_list.append(list((a*len(train_data) + a2*len(train_data1))/n_all))
+            else:
+                l, a = train(model, device, train_loader, opt)
+                loss_tr.append(l)
+                a_list.append(list(a))
+        except FloatingPointError as exc:
+            print(f'non-finite loss at epoch {epoch+1}: {exc}')
+            print(f'stopping seed={seed} and keeping best epoch={best_epoch}')
+            break
 
         if (epoch+1)==1 or (epoch+1)%VI==0:
             if dataset_name == 'kiba':
                 G,P = evaluate(model, device, test_loader)
                 G1,P1 = evaluate(model, device, test_loader1)
-                vm = reg_metrics(np.concatenate((G,G1)), np.concatenate((P,P1)))
+                try:
+                    vm = reg_metrics(np.concatenate((G,G1)), np.concatenate((P,P1)))
+                except ValueError as exc:
+                    print(f'non-finite validation metrics at epoch {epoch+1}: {exc}')
+                    print(f'stopping seed={seed} and keeping best epoch={best_epoch}')
+                    break
             else:
                 G,P = evaluate(model, device, test_loader)
-                vm = reg_metrics(G, P)
+                try:
+                    vm = reg_metrics(G, P)
+                except ValueError as exc:
+                    print(f'non-finite validation metrics at epoch {epoch+1}: {exc}')
+                    print(f'stopping seed={seed} and keeping best epoch={best_epoch}')
+                    break
             loss_val.append(vm['mse'])
 
             if vm['mse'] < best_mse:
@@ -216,6 +247,8 @@ for seed in SEEDS:
             print(f'early stop at epoch {epoch+1}')
             break
 
+    if best_state is None:
+        raise RuntimeError(f'No finite validation result was recorded for {dataset_name}, seed={seed}.')
     model.load_state_dict(best_state)
     if dataset_name == 'kiba':
         G,P = evaluate(model, device, test_loader)

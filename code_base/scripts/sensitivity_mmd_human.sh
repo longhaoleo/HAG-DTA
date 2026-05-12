@@ -47,21 +47,34 @@ for seed in $SEEDS; do
 
         echo "--- Human seed=$seed beta=$beta ---"
 
-        HAG_DTA_N1=$N1 HAG_DTA_N2=$N2 HAG_DTA_POOL_ALPHA=$ALPHA HAG_DTA_MMD_BETA=$beta \
+        if ! HAG_DTA_N1=$N1 HAG_DTA_N2=$N2 HAG_DTA_POOL_ALPHA=$ALPHA HAG_DTA_MMD_BETA=$beta \
         python3 -c "
 import config.training as ct
 import sys
 ct.SEEDS = [$seed]
 sys.argv = ['training_Human_Celegans.py', '$DID', '$MID']
 exec(open('training_Human_Celegans.py').read())
-" > "$log" 2>&1
+" > "$log" 2>&1; then
+            echo "  FAILED (training crashed; see $log)"
+            echo ""
+            continue
+        fi
 
         result=$(python3 -c "
 import pandas as pd
 from pathlib import Path
 
 csv_path = Path('$OUTPUT') / 'Human_Diff_DTA_GIN_random.csv'
-if not csv_path.exists():
+def safe_token(value):
+    return ''.join(ch if ch.isalnum() or ch in ('-', '_') else 'p' for ch in str(value))
+
+signature = f'n1-$N1_n2-$N2_alpha-{safe_token(\"$ALPHA\")}_mmd-{safe_token(\"$beta\")}'
+candidates = [
+    Path('$OUTPUT') / f'Human_Diff_DTA_GIN_random_{signature}.csv',
+    csv_path,
+]
+csv_path = next((path for path in candidates if path.exists()), None)
+if csv_path is None:
     print('FAILED')
     raise SystemExit(0)
 df = pd.read_csv(csv_path)

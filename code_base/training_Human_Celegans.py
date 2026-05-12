@@ -8,11 +8,20 @@ import torch.nn as nn
 from sklearn.metrics import auc, precision_recall_curve, precision_score, recall_score, roc_auc_score
 from torch_geometric.data import DenseDataLoader
 
-from config.paths import CACHE_ROOT, ensure_runtime_dirs, output_file, processed_file
+from config.paths import CACHE_ROOT, OUTPUT_ROOT, ensure_runtime_dirs, output_file, processed_file
 from config.training import CLASSIFICATION_TRAINING, CUDA_NAME, SEEDS
 from MMDLoss import *
 from model import Diff_DTA_GAT, Diff_DTA_GCN, Diff_DTA_GIN, Diff_DTA_SAGE
 from utils import *
+
+
+POOL_ALPHA = float(os.environ.get('HAG_DTA_POOL_ALPHA', 0.05))
+MMD_BETA = float(os.environ.get('HAG_DTA_MMD_BETA', 0.05))
+GRAD_CLIP = float(os.environ.get('HAG_DTA_GRAD_CLIP', 0) or 0)
+USE_PARAM_SIGNATURE = any(
+    key in os.environ
+    for key in ('HAG_DTA_N1', 'HAG_DTA_N2', 'HAG_DTA_POOL_ALPHA', 'HAG_DTA_MMD_BETA')
+)
 
 
 def same_seeds(seed):
@@ -27,6 +36,7 @@ def same_seeds(seed):
 
 def train(model, device, train_loader, optimizer):
     model.train()
+    criterion = MMDLoss()
     loss_train = 0.0
     num_sample = 0
     for data in train_loader:
@@ -34,12 +44,18 @@ def train(model, device, train_loader, optimizer):
         optimizer.zero_grad()
         output, l_loss, e_loss, _, x_local, x_global = model(data)
         loss = loss_fn(output, data.y.view(-1, 1).float().to(device))
-        criterion = MMDLoss()
         cl_loss = criterion(x_local, x_global)
-        pool_alpha = float(os.environ.get('HAG_DTA_POOL_ALPHA', 0.05))
-        mmd_beta = float(os.environ.get('HAG_DTA_MMD_BETA', 0.05))
-        loss_all = loss + pool_alpha * (l_loss + e_loss) + mmd_beta * cl_loss
+        loss_all = loss + POOL_ALPHA * (l_loss + e_loss) + MMD_BETA * cl_loss
+        if not torch.isfinite(loss_all):
+            raise FloatingPointError(
+                'Non-finite training loss: '
+                f'bce={loss.item():.6g}, link={l_loss.item():.6g}, '
+                f'entropy={e_loss.item():.6g}, mmd={cl_loss.item():.6g}, '
+                f'total={loss_all.item():.6g}'
+            )
         loss_all.backward()
+        if GRAD_CLIP > 0:
+            torch.nn.utils.clip_grad_norm_(model.parameters(), GRAD_CLIP)
         optimizer.step()
         loss_train += data.y.shape[0] * loss.item()
         num_sample += data.y.shape[0]
@@ -68,6 +84,8 @@ def predicting(model, device, loader):
 
 
 def evaluate_binary_metrics(y_true, y_score, y_pred):
+    if not np.isfinite(y_score).all():
+        raise ValueError('Non-finite prediction scores were produced during evaluation.')
     precision_curve, recall_curve, _ = precision_recall_curve(y_true, y_score)
     return [
         roc_auc_score(y_true, y_score),
@@ -76,6 +94,36 @@ def evaluate_binary_metrics(y_true, y_score, y_pred):
         recall_score(y_true, y_pred),
     ]
 
+
+def safe_token(value):
+    return ''.join(ch if ch.isalnum() or ch in ('-', '_') else 'p' for ch in str(value))
+
+
+def write_classification_results(dataset_name, model_name, seed, metrics, signature):
+    columns = ['AUROC', 'AUPRC', 'Precision', 'Recall']
+    if USE_PARAM_SIGNATURE:
+        per_seed_name = f'{dataset_name}_{model_name}_seed{seed}_{signature}.csv'
+        pd.DataFrame([metrics], columns=columns).to_csv(output_file(per_seed_name), index=0)
+
+        prefix = f'{dataset_name}_{model_name}_seed'
+        suffix = f'_{signature}.csv'
+        rows = []
+        for filename in os.listdir(OUTPUT_ROOT):
+            if not (filename.startswith(prefix) and filename.endswith(suffix)):
+                continue
+            seed_text = filename[len(prefix):-len(suffix)]
+            try:
+                result_seed = int(seed_text)
+            except ValueError:
+                continue
+            result_df = pd.read_csv(os.path.join(OUTPUT_ROOT, filename))
+            if result_df.empty:
+                continue
+            rows.append((result_seed, result_df.loc[0, columns].to_dict()))
+
+        rows.sort(key=lambda item: item[0])
+        pd.DataFrame([row for _, row in rows], columns=columns).to_csv(
+            output_file(f'{dataset_name}_{model_name}_random_{signature}.csv'), index=0)
 
 
 if len(sys.argv) != 3:
@@ -99,6 +147,10 @@ print('Learning rate:', LR)
 print('Epochs:', NUM_EPOCHS)
 print('Validation interval:', VAL_INTERVAL)
 print('Early stop patience:', EARLY_STOP_PATIENCE)
+print('pool_alpha:', POOL_ALPHA)
+print('mmd_beta:', MMD_BETA)
+if GRAD_CLIP > 0:
+    print('grad_clip:', GRAD_CLIP)
 
 ensure_runtime_dirs()
 ret_list = []
@@ -132,6 +184,7 @@ for seed in SEEDS:
     n1_default, n2_default = default_nodes[dataset_name]
     n1 = int(os.environ.get('HAG_DTA_N1', n1_default))
     n2 = int(os.environ.get('HAG_DTA_N2', n2_default))
+    result_signature = f'n1-{n1}_n2-{n2}_alpha-{safe_token(POOL_ALPHA)}_mmd-{safe_token(MMD_BETA)}'
     print(f'Hierarchical pooling: n1={n1}, n2={n2}')
 
     model = model_select(num_nodes_1=n1, num_nodes_2=n2).to(device)
@@ -150,7 +203,12 @@ for seed in SEEDS:
     epochs_since_improvement = 0
 
     for epoch in range(NUM_EPOCHS):
-        train_loss = train(model, device, train_loader, optimizer)
+        try:
+            train_loss = train(model, device, train_loader, optimizer)
+        except FloatingPointError as exc:
+            print(f'non-finite loss at epoch {epoch + 1}: {exc}')
+            print(f'stopping seed={seed} and keeping best epoch={best_epoch}')
+            break
         loss_train_list.append(train_loss)
 
         should_validate = ((epoch + 1) == 1) or ((epoch + 1) % VAL_INTERVAL == 0)
@@ -162,19 +220,33 @@ for seed in SEEDS:
             continue
 
         G_val, P_val, pred_val = predicting(model, device, val_loader)
-        val_ret = evaluate_binary_metrics(G_val, P_val, pred_val)
+        try:
+            val_ret = evaluate_binary_metrics(G_val, P_val, pred_val)
+        except ValueError as exc:
+            val_auroc_list.append(np.nan)
+            val_auprc_list.append(np.nan)
+            val_precision_list.append(np.nan)
+            val_recall_list.append(np.nan)
+            print(f'non-finite validation metrics at epoch {epoch + 1}: {exc}')
+            print(f'stopping seed={seed} and keeping best epoch={best_epoch}')
+            break
         val_auroc_list.append(val_ret[0])
         val_auprc_list.append(val_ret[1])
         val_precision_list.append(val_ret[2])
         val_recall_list.append(val_ret[3])
 
         if val_ret[0] > best_val_roc:
+            G_test, P_test, pred_test = predicting(model, device, test_loader)
+            try:
+                candidate_ret = evaluate_binary_metrics(G_test, P_test, pred_test)
+            except ValueError as exc:
+                epochs_since_improvement += 1
+                print(f'skipping non-finite test metrics at epoch {epoch + 1}: {exc}')
+                continue
             best_epoch = epoch + 1
             best_val_roc = val_ret[0]
+            best_ret = candidate_ret
             epochs_since_improvement = 0
-
-            G_test, P_test, pred_test = predicting(model, device, test_loader)
-            best_ret = evaluate_binary_metrics(G_test, P_test, pred_test)
             print(
                 f'[FIND BEST!] epoch {best_epoch} | '
                 f'val AUROC={val_ret[0]:.4f} AUPRC={val_ret[1]:.4f}'
@@ -198,15 +270,19 @@ for seed in SEEDS:
     if best_ret is None:
         raise RuntimeError(f'No validation result was recorded for {dataset_name}, seed={seed}.')
 
+    loss_name = f'{dataset_name}训练损失_{seed}_{model_name}.csv'
+    if USE_PARAM_SIGNATURE:
+        loss_name = f'{dataset_name}训练损失_{seed}_{model_name}_{result_signature}.csv'
     pd.DataFrame({
         'train_loss': loss_train_list,
         'val_AUROC': val_auroc_list,
         'val_AUPRC': val_auprc_list,
         'val_precision': val_precision_list,
         'val_recall': val_recall_list,
-    }).to_csv(output_file(f'{dataset_name}训练损失_{seed}_{model_name}.csv'), index=0)
+    }).to_csv(output_file(loss_name), index=0)
 
     ret_list.append(best_ret)
+    write_classification_results(dataset_name, model_name, seed, best_ret, result_signature)
 
 pd.DataFrame(ret_list, columns=['AUROC', 'AUPRC', 'Precision', 'Recall']).to_csv(
     output_file(f'{dataset_name}_{model_name}_random.csv'), index=0
