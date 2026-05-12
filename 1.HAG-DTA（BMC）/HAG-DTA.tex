@@ -515,15 +515,9 @@ Dropout rate & 0.2\\
 
 \section{Results and Analysis}
 
-\subsection{Comparisons with baseline methods}
+\subsection{Comparisons with other models}
 
-To comprehensively evaluate the effectiveness of HAG-DTA, we compare it with representative baseline methods from different modeling paradigms. Among them, GraphDTA\cite{nguyen2021graphdta} is the core baseline of this study. HAG-DTA follows the same high-level drug-target affinity modeling route as GraphDTA, namely joint modeling of drug molecular graphs and protein sequences, but further extends the drug-side representation by introducing hierarchical graph structure learning, multi-scale molecular feature extraction, deep graph feature modeling, and attention-based feature fusion. Therefore, the comparison with GraphDTA directly reflects whether the proposed structural extensions improve the basic graph-based DTA framework.
-
-GraphDTA represents each drug molecule as a graph, where atoms are treated as nodes and chemical bonds as edges, and uses graph neural networks to extract molecular topology features. For the target protein, GraphDTA usually adopts one-dimensional convolutional networks to extract local sequence features. The drug and protein representations are then concatenated and fed into fully connected layers for affinity prediction. This design makes GraphDTA a strong graph-based baseline because it directly utilizes molecular graph topology instead of relying only on molecular fingerprints or SMILES strings.
-
-In contrast, the drug encoder of HAG-DTA is designed to model molecular structures at multiple levels. The hierarchical GNN branch progressively learns atom-level, functional group-level, and molecular fragment-level representations through graph coarsening. The deep GNN branch complements this local hierarchical information by capturing global molecular topology. Finally, an attention-based fusion module adaptively integrates local hierarchical features, global graph features, and protein sequence features. TransformerCPI\cite{chen2020transformercpi} is included as a supplementary baseline from another modeling paradigm. It represents sequence-attention-based CPI prediction methods and is used to examine whether explicit molecular graph modeling can provide advantages over sequence-centered interaction modeling.
-
-In addition to GraphDTA and TransformerCPI, we also compare HAG-DTA with classical machine learning methods including KronRLS\cite{pahikkala2015toward} and SimBoost\cite{He2017SimBoost}, deep learning methods including MolTrans\cite{huang2021moltrans}, MATT\_DTI\cite{zeng2021deep}, DeepDTA\cite{ozturk2018deepdta}, AttentionDTA\cite{zhao2019attentiondta}, and WideDTA\cite{ozturk2019widedta}, and graph-based methods including GNN-CNN\cite{tsubaki2019compound}, MFR-DTA\cite{hua2023mfr}, TrimNet-CNN\cite{li2021trimnet}, and IIFDTI\cite{cheng2022iifdti}. WGNN-DTA\cite{jiang2022sequence} is not included in the main comparison because it uses protein-weighted graphs as additional model inputs, which makes its input setting different from the baselines considered here.
+To comprehensively evaluate the performance of our proposed HAG-DTA model, we compare it with the following models: KronRLS\cite{pahikkala2015toward} and SimBoost\cite{He2017SimBoost} based on traditional machine learning methods; TransformerCPI\cite{chen2020transformercpi}, MolTrans\cite{huang2021moltrans}, MATT\_DTI\cite{zeng2021deep}, DeepDTA\cite{ozturk2018deepdta}, AttentionDTA\cite{zhao2019attentiondta}, and WideDTA\cite{ozturk2019widedta} based on deep learning methods; GNN-CNN\cite{tsubaki2019compound}, MFR-DTA\cite{hua2023mfr}, TrimNet-CNN\cite{li2021trimnet}, GraphDTA\cite{nguyen2021graphdta}, and IIFDTI\cite{cheng2022iifdti} based on graph-based methods. All the above-mentioned baseline models take sequence features or drug molecule graphs as inputs. Additionally, to ensure a fair comparison of model performances, we exclude WGNN-DTA\cite{jiang2022sequence} because they utilize protein-weighted graphs as model inputs.
 
 \begin{table}[t]
 \caption{Prediction performance on the Davis and KIBA datasets, sorted by MSE.\label{table3}}
@@ -579,38 +573,9 @@ HAG-DTA(GAT)                                 & Ours & \textbf{0.962(0.004)} & 0.
 \end{tablenotes}
 \end{table}
 
-According to the results of the hyperparameter analysis, we selected the dataset-specific structural settings and repeated the experiments with five different random seeds to calculate the mean and standard deviation. Meanwhile, four GNN backbones were evaluated in HAG-DTA. Table~\ref{table3} summarizes the comparison results on the regression datasets, while Table~\ref{table4} summarizes the comparison results on the classification datasets.
+According to the results of Section~4.3, we selected the optimal hyperparameter settings and repeated the experiments with five different random seeds to calculate the mean and standard deviation of the results. Meanwhile, for the GNN layer, we experimented with four different GNN frameworks. Table~\ref{table3} summarizes the model comparison results on the regression datasets, while Table~\ref{table4} summarizes the model comparison results on the classification datasets.
 
-On the Davis and KIBA regression datasets, HAG-DTA achieves competitive or superior performance compared with GraphDTA and other baseline methods. In particular, on Davis, HAG-DTA(GIN) obtains the best MSE, CI, and $r_m^2$ among the compared methods, indicating that hierarchical and global molecular graph representations can improve affinity prediction under the same basic graph-protein modeling framework. On KIBA, HAG-DTA also achieves the best MSE with the GCN backbone and the best $r_m^2$ with the SAGE backbone, showing that the proposed architecture remains effective across different regression datasets.
-
-On the Human and \textit{C. elegans} classification datasets, HAG-DTA is compared mainly with TransformerCPI and other CPI/DTI baselines. Compared with TransformerCPI, HAG-DTA explicitly preserves molecular graph topology and further extracts functional group-level and fragment-level features. The results in Table~\ref{table4} show that HAG-DTA obtains strong performance in Precision, Recall, and AUC. These results suggest that sequence-attention modeling is useful for CPI prediction, but explicit hierarchical molecular graph modeling provides complementary structural information that is beneficial for drug-target interaction prediction.
-
-To further evaluate whether the improvement over the main baselines is statistically reliable, we performed significance tests using the repeated runs with shared random seeds. For Davis, HAG-DTA(GIN) was compared with GraphDTA(GIN). For Human and \textit{C. elegans}, HAG-DTA(GIN) was compared with TransformerCPI. Table~\ref{tab:baseline_significance} reports the mean, standard deviation, and paired $t$-test results. The results show that HAG-DTA significantly improves all three Davis metrics over GraphDTA. On Human, HAG-DTA shows higher mean AUROC, AUPRC, Precision, and Recall than TransformerCPI, with the Precision improvement reaching statistical significance and the AUROC improvement close to the $0.05$ threshold. On \textit{C. elegans}, the improvements in AUROC and AUPRC are statistically significant. These findings support that the proposed hierarchical multi-scale graph representation improves the GraphDTA-style framework and also provides advantages over a representative sequence-attention CPI baseline.
-
-\begin{table}[t]
-\caption{Statistical comparison with the core baseline GraphDTA and the sequence-attention baseline TransformerCPI.\label{tab:baseline_significance}}
-\tabcolsep=0pt
-\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lllccc@{}}
-\toprule
-Dataset & Baseline & Metric & HAG-DTA & Baseline & $p$-value \\
-\midrule
-Davis & GraphDTA(GIN) & MSE($\downarrow$) & 0.199(0.002) & 0.228(0.002) & $8.86\times10^{-6}$ \\
-Davis & GraphDTA(GIN) & CI($\uparrow$) & 0.907(0.003) & 0.892(0.002) & $5.12\times10^{-4}$ \\
-Davis & GraphDTA(GIN) & $r_m^2$($\uparrow$) & 0.737(0.010) & 0.708(0.005) & $9.13\times10^{-4}$ \\
-Human & TransformerCPI & AUROC($\uparrow$) & 0.976(0.003) & 0.972(0.002) & $5.15\times10^{-2}$ \\
-Human & TransformerCPI & AUPRC($\uparrow$) & 0.973(0.005) & 0.970(0.003) & $2.49\times10^{-1}$ \\
-Human & TransformerCPI & Precision($\uparrow$) & 0.932(0.007) & 0.898(0.015) & $1.43\times10^{-2}$ \\
-Human & TransformerCPI & Recall($\uparrow$) & 0.934(0.002) & 0.924(0.011) & $8.48\times10^{-2}$ \\
-\textit{C. elegans} & TransformerCPI & AUROC($\uparrow$) & 0.990(0.001) & 0.985(0.001) & $8.01\times10^{-6}$ \\
-\textit{C. elegans} & TransformerCPI & AUPRC($\uparrow$) & 0.990(0.001) & 0.983(0.002) & $7.26\times10^{-4}$ \\
-\textit{C. elegans} & TransformerCPI & Precision($\uparrow$) & 0.947(0.020) & 0.916(0.059) & $3.58\times10^{-1}$ \\
-\textit{C. elegans} & TransformerCPI & Recall($\uparrow$) & 0.953(0.013) & 0.950(0.015) & $8.27\times10^{-1}$ \\
-\bottomrule
-\end{tabular*}
-\begin{tablenotes}
-\item Note: Values are reported as mean(std) over five random seeds. The $p$-values are calculated by two-sided paired $t$-tests. For MSE, lower is better; for the other metrics, higher is better.
-\end{tablenotes}
-\end{table}
+It can be observed that the HAG-DTA method outperforms other baseline models, showing significant improvements in most metrics. Notably, the GIN framework demonstrates superior performance in the HAG-DTA model. However, the differences in model metrics among the four GNN frameworks are relatively small. These results indicate that the HAG-DTA method proposed in this study captures more comprehensive characteristic information and exhibits superior generalization ability for DTA prediction tasks. The utilization of multiscale feature fusion enables precise capture of local structural information related to functional groups in drug molecules and helps preserve the overall structural details of compounds.
 
 To further evaluate the competitiveness of our proposed HAG-DTA model against state-of-the-art DTA prediction methods proposed in recent years, detailed results are presented in Table~\ref{table:table5}.
 
@@ -687,6 +652,46 @@ HAG-DTA(GAT)                    & Ours &  &  &  &  &  \\
 Tables~\ref{table_human} and~\ref{table_celegans} summarize the reported performance of recent DTI prediction methods on the Human and \textit{C. elegans} datasets, respectively. These methods represent recent advances in multimodal representation learning, gated feature fusion, cross-modal feature mapping, and Mamba-attention-based interaction modeling. Compared with these methods, HAG-DTA focuses on hierarchical molecular graph representation. Specifically, it learns functional group-level and molecular fragment-level representations through hierarchical graph pooling, while the deep GNN branch preserves global molecular topology.
 
 This design allows HAG-DTA to capture both local chemical substructures and global graph-level information. Therefore, compared with sequence-based methods and single-scale graph representation methods, HAG-DTA is expected to provide a more comprehensive molecular representation for DTI prediction. Since the baseline results in Tables~\ref{table_human} and~\ref{table_celegans} are collected from the original publications, they are used as literature-level reference values. 
+
+\subsection{Comparisons with baseline methods}
+
+Although the preceding section provides an overall comparison with a broad range of existing methods, the most direct baseline for HAG-DTA is GraphDTA\cite{nguyen2021graphdta}. Both methods follow the same basic DTA modeling framework, in which the drug molecule is represented as a graph and the target protein is represented as a sequence. Therefore, the comparison with GraphDTA is particularly important for evaluating whether the proposed hierarchical graph representation and multi-scale fusion strategy improve the original graph-based DTA framework.
+
+GraphDTA uses a single graph neural network to extract drug molecular graph features and a one-dimensional convolutional neural network to extract protein sequence features. The two representations are then concatenated and passed through fully connected layers for affinity prediction. This design allows GraphDTA to preserve molecular topology more effectively than methods based only on molecular fingerprints or SMILES strings, making it a strong and appropriate graph-based baseline for HAG-DTA.
+
+Compared with GraphDTA, HAG-DTA extends the drug-side encoder in three main aspects. First, the hierarchical graph neural network module progressively learns atom-level, functional group-level, and molecular fragment-level representations through graph coarsening, thereby capturing local chemical substructures at multiple scales. Second, the deep graph neural network module extracts global molecular topology and complements the local hierarchical representation. Third, the attention-based fusion module adaptively integrates hierarchical graph features, deep graph features, and protein sequence features, allowing the model to assign different importance to different information sources for different drug-target pairs.
+
+TransformerCPI\cite{chen2020transformercpi} is considered as a supplementary baseline rather than a structurally homologous baseline. It represents sequence-attention-based CPI prediction methods and mainly relies on self-attention to model latent associations between compound and protein sequences. Including TransformerCPI helps evaluate whether explicit molecular graph modeling can provide additional advantages over sequence-centered interaction modeling. Unlike TransformerCPI, HAG-DTA explicitly preserves atomic connectivity and molecular topology, and further extracts functional group-level and fragment-level structural features through hierarchical graph learning.
+
+To assess whether the improvement over these main baselines is statistically reliable, we performed significance tests using repeated runs with shared random seeds. For the regression task, HAG-DTA(GIN) was compared with GraphDTA(GIN) on Davis. For the classification task, HAG-DTA(GIN) was compared with TransformerCPI on Human and \textit{C. elegans}. Table~\ref{tab:baseline_significance} reports the mean, standard deviation, and paired $t$-test results.
+
+\begin{table}[t]
+\caption{Statistical comparison with the core baseline GraphDTA and the sequence-attention baseline TransformerCPI.\label{tab:baseline_significance}}
+\tabcolsep=0pt
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lllccc@{}}
+\toprule
+Dataset & Baseline & Metric & HAG-DTA & Baseline & $p$-value \\
+\midrule
+Davis & GraphDTA(GIN) & MSE($\downarrow$) & 0.199(0.002) & 0.228(0.002) & $8.86\times10^{-6}$ \\
+Davis & GraphDTA(GIN) & CI($\uparrow$) & 0.907(0.003) & 0.892(0.002) & $5.12\times10^{-4}$ \\
+Davis & GraphDTA(GIN) & $r_m^2$($\uparrow$) & 0.737(0.010) & 0.708(0.005) & $9.13\times10^{-4}$ \\
+Human & TransformerCPI & AUROC($\uparrow$) & 0.976(0.003) & 0.972(0.002) & $5.15\times10^{-2}$ \\
+Human & TransformerCPI & AUPRC($\uparrow$) & 0.973(0.005) & 0.970(0.003) & $2.49\times10^{-1}$ \\
+Human & TransformerCPI & Precision($\uparrow$) & 0.932(0.007) & 0.898(0.015) & $1.43\times10^{-2}$ \\
+Human & TransformerCPI & Recall($\uparrow$) & 0.934(0.002) & 0.924(0.011) & $8.48\times10^{-2}$ \\
+\textit{C. elegans} & TransformerCPI & AUROC($\uparrow$) & 0.990(0.001) & 0.985(0.001) & $8.01\times10^{-6}$ \\
+\textit{C. elegans} & TransformerCPI & AUPRC($\uparrow$) & 0.990(0.001) & 0.983(0.002) & $7.26\times10^{-4}$ \\
+\textit{C. elegans} & TransformerCPI & Precision($\uparrow$) & 0.947(0.020) & 0.916(0.059) & $3.58\times10^{-1}$ \\
+\textit{C. elegans} & TransformerCPI & Recall($\uparrow$) & 0.953(0.013) & 0.950(0.015) & $8.27\times10^{-1}$ \\
+\bottomrule
+\end{tabular*}
+\begin{tablenotes}
+\item Note: Values are reported as mean(std) over five random seeds. The $p$-values are calculated by two-sided paired $t$-tests. For MSE, lower is better; for the other metrics, higher is better.
+\end{tablenotes}
+\end{table}
+
+The significance results further support the effectiveness of the proposed extensions. On Davis, HAG-DTA significantly outperforms GraphDTA on MSE, CI, and $r_m^2$, indicating that hierarchical multi-scale graph representation can improve the GraphDTA-style affinity prediction framework. On Human, HAG-DTA obtains higher mean AUROC, AUPRC, Precision, and Recall than TransformerCPI, with the Precision improvement reaching statistical significance and the AUROC improvement close to the $0.05$ threshold. On \textit{C. elegans}, the improvements in AUROC and AUPRC are statistically significant. These results indicate that HAG-DTA not only strengthens the graph-based baseline framework represented by GraphDTA, but also shows advantages over a representative sequence-attention CPI model.
+
 
 \subsection{Hyperparameter Sensitivity Analysis}
 
