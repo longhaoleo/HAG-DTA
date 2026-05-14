@@ -1,0 +1,52 @@
+[02:03:57] ========== Human + TransformerCPI | single split × 5 seeds ==========
+TransformerCPI
+dataset: Human
+split: single random 80/10/10 (seed=1234)
+model selection: official-style best test AUROC after evaluating dev/test each epoch
+hyperparams: {'protein_dim': 100, 'atom_dim': 34, 'hid_dim': 64, 'n_layers': 3, 'n_heads': 8, 'pf_dim': 256, 'dropout': 0.1, 'batch': 64, 'lr': 0.001, 'weight_decay': 0.0001, 'decay_interval': 5, 'lr_decay': 0.5, 'iteration': 40, 'kernel_size': 5}
+
+running on Human, seed=100
+epoch 1 | loss=37.1084 | dev AUROC=0.9014 | test AUROC=0.8862 AUPRC=0.9100 Precision=0.9375 Recall=0.7031
+epoch 2 | loss=24.5036 | dev AUROC=0.9568 | test AUROC=0.9500 AUPRC=0.9539 Precision=0.9660 Recall=0.7094
+epoch 3 | loss=19.2686 | dev AUROC=0.9674 | test AUROC=0.9568 AUPRC=0.9564 Precision=0.8847 Recall=0.8875
+epoch 5 | loss=9.8927 | dev AUROC=0.9729 | test AUROC=0.9650 AUPRC=0.9625 Precision=0.9241 Recall=0.8750
+epoch 7 | loss=5.3326 | dev AUROC=0.9717 | test AUROC=0.9659 AUPRC=0.9676 Precision=0.9324 Recall=0.8625
+epoch 8 | loss=5.3173 | dev AUROC=0.9751 | test AUROC=0.9695 AUPRC=0.9669 Precision=0.8930 Recall=0.9125
+epoch 11 | loss=1.8526 | dev AUROC=0.9824 | test AUROC=0.9717 AUPRC=0.9706 Precision=0.9211 Recall=0.9125
+epoch 14 | loss=1.4973 | dev AUROC=0.9763 | test AUROC=0.9734 AUPRC=0.9723 Precision=0.8976 Recall=0.9313
+
+running on Human, seed=1000
+epoch 1 | loss=39.1069 | dev AUROC=0.9353 | test AUROC=0.9344 AUPRC=0.9395 Precision=0.8833 Recall=0.8281
+epoch 2 | loss=24.8409 | dev AUROC=0.9684 | test AUROC=0.9544 AUPRC=0.9546 Precision=0.8141 Recall=0.9031
+epoch 4 | loss=14.8341 | dev AUROC=0.9707 | test AUROC=0.9619 AUPRC=0.9655 Precision=0.9564 Recall=0.8219
+epoch 5 | loss=9.9167 | dev AUROC=0.9784 | test AUROC=0.9680 AUPRC=0.9701 Precision=0.9003 Recall=0.9031
+epoch 10 | loss=3.3528 | dev AUROC=0.9790 | test AUROC=0.9683 AUPRC=0.9687 Precision=0.9154 Recall=0.9125
+epoch 14 | loss=1.4749 | dev AUROC=0.9799 | test AUROC=0.9694 AUPRC=0.9693 Precision=0.9320 Recall=0.9000
+epoch 15 | loss=1.0462 | dev AUROC=0.9814 | test AUROC=0.9696 AUPRC=0.9690 Precision=0.8795 Recall=0.9125
+
+running on Human, seed=2000
+epoch 1 | loss=34.0359 | dev AUROC=0.9497 | test AUROC=0.9489 AUPRC=0.9522 Precision=0.8882 Recall=0.8688
+epoch 2 | loss=20.6046 | dev AUROC=0.9587 | test AUROC=0.9560 AUPRC=0.9541 Precision=0.8202 Recall=0.9406
+epoch 4 | loss=14.2626 | dev AUROC=0.9663 | test AUROC=0.9586 AUPRC=0.9579 Precision=0.9485 Recall=0.8063
+epoch 5 | loss=9.2477 | dev AUROC=0.9737 | test AUROC=0.9678 AUPRC=0.9671 Precision=0.8724 Recall=0.9187
+epoch 6 | loss=6.2274 | dev AUROC=0.9746 | test AUROC=0.9711 AUPRC=0.9696 Precision=0.8862 Recall=0.9250
+epoch 10 | loss=2.8761 | dev AUROC=0.9826 | test AUROC=0.9750 AUPRC=0.9722 Precision=0.9211 Recall=0.9125
+
+running on Human, seed=3000
+epoch 1 | loss=36.4253 | dev AUROC=0.9457 | test AUROC=0.9341 AUPRC=0.9374 Precision=0.8343 Recall=0.8969
+epoch 2 | loss=22.7301 | dev AUROC=0.9706 | test AUROC=0.9575 AUPRC=0.9617 Precision=0.8571 Recall=0.9187
+epoch 3 | loss=17.6775 | dev AUROC=0.9700 | test AUROC=0.9639 AUPRC=0.9639 Precision=0.8862 Recall=0.9250
+epoch 5 | loss=8.7656 | dev AUROC=0.9773 | test AUROC=0.9645 AUPRC=0.9631 Precision=0.9196 Recall=0.8938
+epoch 6 | loss=6.5075 | dev AUROC=0.9783 | test AUROC=0.9653 AUPRC=0.9652 Precision=0.9046 Recall=0.9187
+epoch 7 | loss=4.7136 | dev AUROC=0.9793 | test AUROC=0.9679 AUPRC=0.9710 Precision=0.9206 Recall=0.9062
+epoch 10 | loss=2.2434 | dev AUROC=0.9801 | test AUROC=0.9703 AUPRC=0.9705 Precision=0.9437 Recall=0.8906
+epoch 14 | loss=0.8407 | dev AUROC=0.9814 | test AUROC=0.9714 AUPRC=0.9692 Precision=0.8902 Recall=0.9375
+
+running on Human, seed=4000
+epoch 1 | loss=37.7229 | dev AUROC=0.9475 | test AUROC=0.9296 AUPRC=0.9347 Precision=0.7129 Recall=0.9469
+epoch 2 | loss=23.3089 | dev AUROC=0.9557 | test AUROC=0.9532 AUPRC=0.9561 Precision=0.8978 Recall=0.8781
+epoch 3 | loss=18.5288 | dev AUROC=0.9622 | test AUROC=0.9628 AUPRC=0.9669 Precision=0.8801 Recall=0.9406
+epoch 7 | loss=5.5992 | dev AUROC=0.9759 | test AUROC=0.9671 AUPRC=0.9642 Precision=0.8836 Recall=0.9250
+epoch 8 | loss=4.2655 | dev AUROC=0.9774 | test AUROC=0.9676 AUPRC=0.9593 Precision=0.8926 Recall=0.9094
+epoch 11 | loss=2.1139 | dev AUROC=0.9761 | test AUROC=0.9700 AUPRC=0.9654 Precision=0.9027 Recall=0.9281
+[12:12:21] DONE  Human TransformerCPI
