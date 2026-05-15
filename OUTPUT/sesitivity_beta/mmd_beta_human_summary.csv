@@ -1,9 +1,0 @@
-dataset,beta,seed,n1,n2,alpha,AUROC,AUPRC,Precision,Recall,log
-Human,0,100,7,3,0.05,0.974244593140029,0.9668965897532564,0.9392857142857144,0.942652329749104,/root/autodl-tmp/HAG-DTA-runs/sensitivity_mmd_human/mmd_beta_0_seed_100.log
-Human,0.01,100,7,3,0.05,0.9722915765060977,0.9731078284108656,0.9481481481481482,0.9175627240143368,/root/autodl-tmp/HAG-DTA-runs/sensitivity_mmd_human/mmd_beta_0.01_seed_100.log
-Human,0.05,100,7,3,0.05,0.9759479343520092,0.9761643838917518,0.8931034482758621,0.92831541218638,/root/autodl-tmp/HAG-DTA-runs/sensitivity_mmd_human/mmd_beta_0.05_seed_100.log
-Human,0.1,100,7,3,0.05,0.9766858639324432,0.978867310810737,0.9323843416370108,0.9390681003584228,/root/autodl-tmp/HAG-DTA-runs/sensitivity_mmd_human/mmd_beta_0.1_seed_100.log
-Human,0.5,100,7,3,0.05,0.9769077976408448,0.9779433020935944,0.913793103448276,0.949820788530466,/root/autodl-tmp/HAG-DTA-runs/sensitivity_mmd_human/mmd_beta_0.5_seed_100.log
-Human,0.75,100,7,3,0.05,0.9756705172165074,0.9761421986787636,0.9479553903345724,0.913978494623656,/root/autodl-tmp/HAG-DTA-runs/sensitivity_mmd_human/mmd_beta_0.75_seed_100.log
-Human,1.0,100,7,3,0.05,0.9753265199684856,0.9743858114595582,0.9,0.967741935483871,/root/autodl-tmp/HAG-DTA-runs/sensitivity_mmd_human/mmd_beta_1.0_seed_100.log
-Human,1.5,100,7,3,0.05,0.9734844701887546,0.974120996179022,0.9375,0.913978494623656,/root/autodl-tmp/HAG-DTA-runs/sensitivity_mmd_human/mmd_beta_1.5_seed_100.log

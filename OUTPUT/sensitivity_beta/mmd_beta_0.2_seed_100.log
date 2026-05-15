@@ -1,0 +1,264 @@
+Diff_DTA_GIN
+dataset: Human
+Learning rate: 0.0005
+Epochs: 1000
+Validation interval: 1
+Early stop patience: 200
+pool_alpha: 0.05
+mmd_beta: 0.2
+
+running on Human, seed=100
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/Human_train.pt, loading ...
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/Human_val.pt, loading ...
+Pre-processed data found: /root/autodl-tmp/HAG-DTA-cache/processed/Human_test.pt, loading ...
+Hierarchical pooling: n1=7, n2=3
+[FIND BEST!] epoch 1 | val AUROC=0.8972 AUPRC=0.9091 Precision=0.8894 Recall=0.6768|
+test AUROC=0.8951 AUPRC=0.8986 Precision=0.8484 Recall=0.7419
+[FIND BEST!] epoch 2 | val AUROC=0.9428 AUPRC=0.9513 Precision=0.8447 Recall=0.8788|
+test AUROC=0.9332 AUPRC=0.9366 Precision=0.8039 Recall=0.8817
+[FIND BEST!] epoch 3 | val AUROC=0.9511 AUPRC=0.9574 Precision=0.8428 Recall=0.9024|
+test AUROC=0.9489 AUPRC=0.9557 Precision=0.8252 Recall=0.9140
+[FIND BEST!] epoch 4 | val AUROC=0.9735 AUPRC=0.9774 Precision=0.9586 Recall=0.8586|
+test AUROC=0.9642 AUPRC=0.9662 Precision=0.9407 Recall=0.8530
+[FIND BEST!] epoch 5 | val AUROC=0.9746 AUPRC=0.9777 Precision=0.9340 Recall=0.9057|
+test AUROC=0.9634 AUPRC=0.9675 Precision=0.9213 Recall=0.8817
+[FIND BEST!] epoch 6 | val AUROC=0.9797 AUPRC=0.9815 Precision=0.9617 Recall=0.8451|
+test AUROC=0.9699 AUPRC=0.9724 Precision=0.9667 Recall=0.8315
+[FIND BEST!] epoch 7 | val AUROC=0.9826 AUPRC=0.9842 Precision=0.8555 Recall=0.9764|
+test AUROC=0.9695 AUPRC=0.9545 Precision=0.8339 Recall=0.9534
+epoch 8 | val AUROC=0.9772 AUPRC=0.9808 Precision=0.9658 Recall=0.8552
+epoch 9 | val AUROC=0.9813 AUPRC=0.9835 Precision=0.9384 Recall=0.9226
+[FIND BEST!] epoch 10 | val AUROC=0.9856 AUPRC=0.9871 Precision=0.9741 Recall=0.8855|
+test AUROC=0.9736 AUPRC=0.9759 Precision=0.9562 Recall=0.8602
+epoch 11 | val AUROC=0.9851 AUPRC=0.9874 Precision=0.8580 Recall=0.9764
+epoch 12 | val AUROC=0.9853 AUPRC=0.9879 Precision=0.9316 Recall=0.9630
+epoch 13 | val AUROC=0.9827 AUPRC=0.9858 Precision=0.9479 Recall=0.9192
+epoch 14 | val AUROC=0.9852 AUPRC=0.9881 Precision=0.8735 Recall=0.9764
+[FIND BEST!] epoch 15 | val AUROC=0.9862 AUPRC=0.9889 Precision=0.8954 Recall=0.9798|
+test AUROC=0.9713 AUPRC=0.9716 Precision=0.8576 Recall=0.9498
+epoch 16 | val AUROC=0.9840 AUPRC=0.9871 Precision=0.9779 Recall=0.8923
+epoch 17 | val AUROC=0.9861 AUPRC=0.9886 Precision=0.9681 Recall=0.9192
+epoch 18 | val AUROC=0.9858 AUPRC=0.9878 Precision=0.9422 Recall=0.9327
+epoch 19 | val AUROC=0.9839 AUPRC=0.9864 Precision=0.9105 Recall=0.9596
+[FIND BEST!] epoch 20 | val AUROC=0.9870 AUPRC=0.9887 Precision=0.8455 Recall=0.9764|
+test AUROC=0.9738 AUPRC=0.9730 Precision=0.8323 Recall=0.9606
+[FIND BEST!] epoch 21 | val AUROC=0.9890 AUPRC=0.9893 Precision=0.9710 Recall=0.9024|
+test AUROC=0.9705 AUPRC=0.9725 Precision=0.9427 Recall=0.8853
+epoch 22 | val AUROC=0.9881 AUPRC=0.9891 Precision=0.9524 Recall=0.9428
+epoch 23 | val AUROC=0.9890 AUPRC=0.9907 Precision=0.9387 Recall=0.9798
+epoch 24 | val AUROC=0.9868 AUPRC=0.9877 Precision=0.9459 Recall=0.9428
+epoch 25 | val AUROC=0.9861 AUPRC=0.9880 Precision=0.9206 Recall=0.9764
+epoch 26 | val AUROC=0.9885 AUPRC=0.9886 Precision=0.9404 Recall=0.9562
+[FIND BEST!] epoch 27 | val AUROC=0.9903 AUPRC=0.9900 Precision=0.9745 Recall=0.8990|
+test AUROC=0.9758 AUPRC=0.9774 Precision=0.9609 Recall=0.8817
+epoch 28 | val AUROC=0.9893 AUPRC=0.9903 Precision=0.9228 Recall=0.9663
+epoch 29 | val AUROC=0.9895 AUPRC=0.9901 Precision=0.9655 Recall=0.9428
+epoch 30 | val AUROC=0.9895 AUPRC=0.9899 Precision=0.9161 Recall=0.9562
+[FIND BEST!] epoch 31 | val AUROC=0.9914 AUPRC=0.9921 Precision=0.9500 Recall=0.9596|
+test AUROC=0.9745 AUPRC=0.9764 Precision=0.9228 Recall=0.9427
+epoch 32 | val AUROC=0.9907 AUPRC=0.9915 Precision=0.9119 Recall=0.9764
+[FIND BEST!] epoch 33 | val AUROC=0.9932 AUPRC=0.9934 Precision=0.9589 Recall=0.9428|
+test AUROC=0.9749 AUPRC=0.9766 Precision=0.9370 Recall=0.9068
+epoch 34 | val AUROC=0.9914 AUPRC=0.9918 Precision=0.9465 Recall=0.9529
+epoch 35 | val AUROC=0.9880 AUPRC=0.9899 Precision=0.9404 Recall=0.9562
+epoch 36 | val AUROC=0.9876 AUPRC=0.9887 Precision=0.9218 Recall=0.9529
+epoch 37 | val AUROC=0.9893 AUPRC=0.9901 Precision=0.9430 Recall=0.9461
+epoch 38 | val AUROC=0.9884 AUPRC=0.9889 Precision=0.9527 Recall=0.9495
+epoch 39 | val AUROC=0.9903 AUPRC=0.9905 Precision=0.9615 Recall=0.9259
+epoch 40 | val AUROC=0.9893 AUPRC=0.9888 Precision=0.9497 Recall=0.9529
+epoch 41 | val AUROC=0.9899 AUPRC=0.9907 Precision=0.9580 Recall=0.9226
+epoch 42 | val AUROC=0.9888 AUPRC=0.9897 Precision=0.9288 Recall=0.9663
+epoch 43 | val AUROC=0.9891 AUPRC=0.9904 Precision=0.9524 Recall=0.9428
+epoch 44 | val AUROC=0.9889 AUPRC=0.9895 Precision=0.9283 Recall=0.9596
+epoch 45 | val AUROC=0.9881 AUPRC=0.9893 Precision=0.9652 Recall=0.9327
+epoch 46 | val AUROC=0.9891 AUPRC=0.9902 Precision=0.9586 Recall=0.9360
+epoch 47 | val AUROC=0.9876 AUPRC=0.9892 Precision=0.9550 Recall=0.9293
+epoch 48 | val AUROC=0.9891 AUPRC=0.9899 Precision=0.9342 Recall=0.9562
+epoch 49 | val AUROC=0.9880 AUPRC=0.9888 Precision=0.9293 Recall=0.9731
+epoch 50 | val AUROC=0.9904 AUPRC=0.9910 Precision=0.9751 Recall=0.9226
+epoch 51 | val AUROC=0.9903 AUPRC=0.9905 Precision=0.9253 Recall=0.9596
+epoch 52 | val AUROC=0.9907 AUPRC=0.9910 Precision=0.9550 Recall=0.9293
+epoch 53 | val AUROC=0.9904 AUPRC=0.9907 Precision=0.9408 Recall=0.9630
+epoch 54 | val AUROC=0.9908 AUPRC=0.9909 Precision=0.9320 Recall=0.9697
+epoch 55 | val AUROC=0.9928 AUPRC=0.9929 Precision=0.9583 Recall=0.9293
+epoch 56 | val AUROC=0.9907 AUPRC=0.9911 Precision=0.9199 Recall=0.9663
+epoch 57 | val AUROC=0.9885 AUPRC=0.9897 Precision=0.9302 Recall=0.9428
+epoch 58 | val AUROC=0.9895 AUPRC=0.9906 Precision=0.9025 Recall=0.9663
+epoch 59 | val AUROC=0.9901 AUPRC=0.9915 Precision=0.9716 Recall=0.9226
+epoch 60 | val AUROC=0.9905 AUPRC=0.9921 Precision=0.9437 Recall=0.9596
+epoch 61 | val AUROC=0.9894 AUPRC=0.9909 Precision=0.9720 Recall=0.9360
+epoch 62 | val AUROC=0.9883 AUPRC=0.9900 Precision=0.9091 Recall=0.9764
+epoch 63 | val AUROC=0.9888 AUPRC=0.9901 Precision=0.9547 Recall=0.9226
+epoch 64 | val AUROC=0.9884 AUPRC=0.9902 Precision=0.9465 Recall=0.9529
+epoch 65 | val AUROC=0.9884 AUPRC=0.9899 Precision=0.9379 Recall=0.9663
+epoch 66 | val AUROC=0.9885 AUPRC=0.9900 Precision=0.9588 Recall=0.9394
+epoch 67 | val AUROC=0.9882 AUPRC=0.9899 Precision=0.9433 Recall=0.9529
+epoch 68 | val AUROC=0.9870 AUPRC=0.9877 Precision=0.9522 Recall=0.9394
+epoch 69 | val AUROC=0.9879 AUPRC=0.9894 Precision=0.9467 Recall=0.9562
+epoch 70 | val AUROC=0.9853 AUPRC=0.9845 Precision=0.9461 Recall=0.9461
+epoch 71 | val AUROC=0.9850 AUPRC=0.9847 Precision=0.9585 Recall=0.9327
+epoch 72 | val AUROC=0.9855 AUPRC=0.9864 Precision=0.9320 Recall=0.9697
+epoch 73 | val AUROC=0.9879 AUPRC=0.9894 Precision=0.9822 Recall=0.9293
+epoch 74 | val AUROC=0.9867 AUPRC=0.9881 Precision=0.9340 Recall=0.9529
+epoch 75 | val AUROC=0.9906 AUPRC=0.9920 Precision=0.9535 Recall=0.9663
+epoch 76 | val AUROC=0.9879 AUPRC=0.9887 Precision=0.9448 Recall=0.9798
+epoch 77 | val AUROC=0.9892 AUPRC=0.9891 Precision=0.9495 Recall=0.9495
+epoch 78 | val AUROC=0.9897 AUPRC=0.9904 Precision=0.9258 Recall=0.9663
+epoch 79 | val AUROC=0.9890 AUPRC=0.9896 Precision=0.9412 Recall=0.9697
+epoch 80 | val AUROC=0.9875 AUPRC=0.9887 Precision=0.9647 Recall=0.9192
+epoch 81 | val AUROC=0.9888 AUPRC=0.9896 Precision=0.9353 Recall=0.9731
+epoch 82 | val AUROC=0.9895 AUPRC=0.9897 Precision=0.9295 Recall=0.9764
+epoch 83 | val AUROC=0.9902 AUPRC=0.9909 Precision=0.9685 Recall=0.9327
+epoch 84 | val AUROC=0.9874 AUPRC=0.9887 Precision=0.9009 Recall=0.9798
+epoch 85 | val AUROC=0.9871 AUPRC=0.9880 Precision=0.9681 Recall=0.9192
+epoch 86 | val AUROC=0.9860 AUPRC=0.9868 Precision=0.9463 Recall=0.9495
+epoch 87 | val AUROC=0.9877 AUPRC=0.9884 Precision=0.9521 Recall=0.9360
+epoch 88 | val AUROC=0.9875 AUPRC=0.9888 Precision=0.9433 Recall=0.9529
+epoch 89 | val AUROC=0.9877 AUPRC=0.9893 Precision=0.9681 Recall=0.9192
+epoch 90 | val AUROC=0.9884 AUPRC=0.9894 Precision=0.9402 Recall=0.9529
+epoch 91 | val AUROC=0.9854 AUPRC=0.9872 Precision=0.9553 Recall=0.9360
+epoch 92 | val AUROC=0.9877 AUPRC=0.9893 Precision=0.9454 Recall=0.9327
+epoch 93 | val AUROC=0.9880 AUPRC=0.9886 Precision=0.9169 Recall=0.9663
+epoch 94 | val AUROC=0.9865 AUPRC=0.9868 Precision=0.9051 Recall=0.9630
+epoch 95 | val AUROC=0.9898 AUPRC=0.9905 Precision=0.9615 Recall=0.9259
+epoch 96 | val AUROC=0.9900 AUPRC=0.9905 Precision=0.9533 Recall=0.9630
+epoch 97 | val AUROC=0.9891 AUPRC=0.9897 Precision=0.9492 Recall=0.9428
+epoch 98 | val AUROC=0.9901 AUPRC=0.9905 Precision=0.9433 Recall=0.9529
+epoch 99 | val AUROC=0.9922 AUPRC=0.9923 Precision=0.9597 Recall=0.9630
+epoch 100 | val AUROC=0.9892 AUPRC=0.9893 Precision=0.9784 Recall=0.9158
+epoch 101 | val AUROC=0.9885 AUPRC=0.9897 Precision=0.9231 Recall=0.9697
+epoch 102 | val AUROC=0.9907 AUPRC=0.9910 Precision=0.9683 Recall=0.9259
+epoch 103 | val AUROC=0.9901 AUPRC=0.9903 Precision=0.9349 Recall=0.9663
+epoch 104 | val AUROC=0.9898 AUPRC=0.9898 Precision=0.9433 Recall=0.9529
+epoch 105 | val AUROC=0.9894 AUPRC=0.9902 Precision=0.9057 Recall=0.9697
+epoch 106 | val AUROC=0.9914 AUPRC=0.9924 Precision=0.9786 Recall=0.9259
+epoch 107 | val AUROC=0.9905 AUPRC=0.9907 Precision=0.9194 Recall=0.9596
+epoch 108 | val AUROC=0.9887 AUPRC=0.9894 Precision=0.9502 Recall=0.9630
+epoch 109 | val AUROC=0.9880 AUPRC=0.9895 Precision=0.9400 Recall=0.9495
+epoch 110 | val AUROC=0.9874 AUPRC=0.9890 Precision=0.9500 Recall=0.9596
+epoch 111 | val AUROC=0.9862 AUPRC=0.9866 Precision=0.9231 Recall=0.9697
+epoch 112 | val AUROC=0.9897 AUPRC=0.9904 Precision=0.9656 Recall=0.9461
+epoch 113 | val AUROC=0.9875 AUPRC=0.9870 Precision=0.9199 Recall=0.9663
+epoch 114 | val AUROC=0.9891 AUPRC=0.9891 Precision=0.9623 Recall=0.9461
+epoch 115 | val AUROC=0.9892 AUPRC=0.9895 Precision=0.9406 Recall=0.9596
+epoch 116 | val AUROC=0.9904 AUPRC=0.9906 Precision=0.9497 Recall=0.9529
+epoch 117 | val AUROC=0.9870 AUPRC=0.9868 Precision=0.8978 Recall=0.9764
+epoch 118 | val AUROC=0.9913 AUPRC=0.9912 Precision=0.9654 Recall=0.9394
+epoch 119 | val AUROC=0.9880 AUPRC=0.9886 Precision=0.9223 Recall=0.9596
+epoch 120 | val AUROC=0.9888 AUPRC=0.9889 Precision=0.9233 Recall=0.9731
+epoch 121 | val AUROC=0.9905 AUPRC=0.9909 Precision=0.9533 Recall=0.9630
+epoch 122 | val AUROC=0.9895 AUPRC=0.9899 Precision=0.9532 Recall=0.9596
+epoch 123 | val AUROC=0.9880 AUPRC=0.9885 Precision=0.9406 Recall=0.9596
+epoch 124 | val AUROC=0.9892 AUPRC=0.9895 Precision=0.9406 Recall=0.9596
+epoch 125 | val AUROC=0.9881 AUPRC=0.9884 Precision=0.9377 Recall=0.9630
+epoch 126 | val AUROC=0.9895 AUPRC=0.9895 Precision=0.9439 Recall=0.9630
+epoch 127 | val AUROC=0.9878 AUPRC=0.9876 Precision=0.9465 Recall=0.9529
+epoch 128 | val AUROC=0.9906 AUPRC=0.9909 Precision=0.9625 Recall=0.9495
+epoch 129 | val AUROC=0.9879 AUPRC=0.9843 Precision=0.9592 Recall=0.9495
+epoch 130 | val AUROC=0.9883 AUPRC=0.9880 Precision=0.9529 Recall=0.9529
+epoch 131 | val AUROC=0.9861 AUPRC=0.9839 Precision=0.9377 Recall=0.9630
+epoch 132 | val AUROC=0.9878 AUPRC=0.9884 Precision=0.9497 Recall=0.9529
+epoch 133 | val AUROC=0.9873 AUPRC=0.9885 Precision=0.9461 Recall=0.9461
+epoch 134 | val AUROC=0.9883 AUPRC=0.9890 Precision=0.9406 Recall=0.9596
+epoch 135 | val AUROC=0.9899 AUPRC=0.9896 Precision=0.9402 Recall=0.9529
+epoch 136 | val AUROC=0.9887 AUPRC=0.9887 Precision=0.9621 Recall=0.9394
+epoch 137 | val AUROC=0.9898 AUPRC=0.9897 Precision=0.9505 Recall=0.9697
+epoch 138 | val AUROC=0.9889 AUPRC=0.9895 Precision=0.9535 Recall=0.9663
+epoch 139 | val AUROC=0.9882 AUPRC=0.9880 Precision=0.9653 Recall=0.9360
+epoch 140 | val AUROC=0.9883 AUPRC=0.9894 Precision=0.9290 Recall=0.9697
+epoch 141 | val AUROC=0.9880 AUPRC=0.9894 Precision=0.9615 Recall=0.9259
+epoch 142 | val AUROC=0.9862 AUPRC=0.9864 Precision=0.9435 Recall=0.9562
+epoch 143 | val AUROC=0.9868 AUPRC=0.9872 Precision=0.9379 Recall=0.9663
+epoch 144 | val AUROC=0.9872 AUPRC=0.9879 Precision=0.9288 Recall=0.9663
+epoch 145 | val AUROC=0.9892 AUPRC=0.9900 Precision=0.9349 Recall=0.9663
+epoch 146 | val AUROC=0.9900 AUPRC=0.9906 Precision=0.9565 Recall=0.9630
+epoch 147 | val AUROC=0.9882 AUPRC=0.9883 Precision=0.9562 Recall=0.9562
+epoch 148 | val AUROC=0.9894 AUPRC=0.9908 Precision=0.9529 Recall=0.9529
+epoch 149 | val AUROC=0.9894 AUPRC=0.9907 Precision=0.9500 Recall=0.9596
+epoch 150 | val AUROC=0.9911 AUPRC=0.9914 Precision=0.9662 Recall=0.9630
+epoch 151 | val AUROC=0.9901 AUPRC=0.9909 Precision=0.9233 Recall=0.9731
+epoch 152 | val AUROC=0.9873 AUPRC=0.9886 Precision=0.9431 Recall=0.9495
+epoch 153 | val AUROC=0.9860 AUPRC=0.9869 Precision=0.9402 Recall=0.9529
+epoch 154 | val AUROC=0.9865 AUPRC=0.9880 Precision=0.9623 Recall=0.9461
+epoch 155 | val AUROC=0.9868 AUPRC=0.9877 Precision=0.9412 Recall=0.9697
+epoch 156 | val AUROC=0.9873 AUPRC=0.9891 Precision=0.9562 Recall=0.9562
+epoch 157 | val AUROC=0.9859 AUPRC=0.9866 Precision=0.9493 Recall=0.9461
+epoch 158 | val AUROC=0.9848 AUPRC=0.9859 Precision=0.9433 Recall=0.9529
+epoch 159 | val AUROC=0.9863 AUPRC=0.9877 Precision=0.9351 Recall=0.9697
+epoch 160 | val AUROC=0.9867 AUPRC=0.9874 Precision=0.9463 Recall=0.9495
+epoch 161 | val AUROC=0.9851 AUPRC=0.9871 Precision=0.9353 Recall=0.9731
+epoch 162 | val AUROC=0.9864 AUPRC=0.9880 Precision=0.9625 Recall=0.9495
+epoch 163 | val AUROC=0.9878 AUPRC=0.9890 Precision=0.9377 Recall=0.9630
+epoch 164 | val AUROC=0.9869 AUPRC=0.9884 Precision=0.9320 Recall=0.9697
+epoch 165 | val AUROC=0.9883 AUPRC=0.9900 Precision=0.9590 Recall=0.9461
+epoch 166 | val AUROC=0.9869 AUPRC=0.9880 Precision=0.9565 Recall=0.9630
+epoch 167 | val AUROC=0.9890 AUPRC=0.9901 Precision=0.9503 Recall=0.9663
+epoch 168 | val AUROC=0.9885 AUPRC=0.9899 Precision=0.9593 Recall=0.9529
+epoch 169 | val AUROC=0.9892 AUPRC=0.9907 Precision=0.9441 Recall=0.9663
+epoch 170 | val AUROC=0.9893 AUPRC=0.9909 Precision=0.9660 Recall=0.9562
+epoch 171 | val AUROC=0.9885 AUPRC=0.9901 Precision=0.9631 Recall=0.9663
+epoch 172 | val AUROC=0.9887 AUPRC=0.9906 Precision=0.9627 Recall=0.9562
+epoch 173 | val AUROC=0.9887 AUPRC=0.9907 Precision=0.9562 Recall=0.9562
+epoch 174 | val AUROC=0.9893 AUPRC=0.9911 Precision=0.9437 Recall=0.9596
+epoch 175 | val AUROC=0.9897 AUPRC=0.9915 Precision=0.9404 Recall=0.9562
+epoch 176 | val AUROC=0.9877 AUPRC=0.9876 Precision=0.9404 Recall=0.9562
+epoch 177 | val AUROC=0.9872 AUPRC=0.9864 Precision=0.9626 Recall=0.9529
+epoch 178 | val AUROC=0.9873 AUPRC=0.9872 Precision=0.9437 Recall=0.9596
+epoch 179 | val AUROC=0.9873 AUPRC=0.9879 Precision=0.9458 Recall=0.9394
+epoch 180 | val AUROC=0.9874 AUPRC=0.9875 Precision=0.9338 Recall=0.9495
+epoch 181 | val AUROC=0.9891 AUPRC=0.9893 Precision=0.9649 Recall=0.9259
+epoch 182 | val AUROC=0.9912 AUPRC=0.9913 Precision=0.9530 Recall=0.9562
+epoch 183 | val AUROC=0.9883 AUPRC=0.9883 Precision=0.9430 Recall=0.9461
+epoch 184 | val AUROC=0.9878 AUPRC=0.9891 Precision=0.9530 Recall=0.9562
+epoch 185 | val AUROC=0.9866 AUPRC=0.9869 Precision=0.9459 Recall=0.9428
+epoch 186 | val AUROC=0.9881 AUPRC=0.9892 Precision=0.9465 Recall=0.9529
+epoch 187 | val AUROC=0.9874 AUPRC=0.9888 Precision=0.9340 Recall=0.9529
+epoch 188 | val AUROC=0.9882 AUPRC=0.9900 Precision=0.9623 Recall=0.9461
+epoch 189 | val AUROC=0.9880 AUPRC=0.9895 Precision=0.9433 Recall=0.9529
+epoch 190 | val AUROC=0.9873 AUPRC=0.9889 Precision=0.9406 Recall=0.9596
+epoch 191 | val AUROC=0.9869 AUPRC=0.9890 Precision=0.9402 Recall=0.9529
+epoch 192 | val AUROC=0.9853 AUPRC=0.9873 Precision=0.9586 Recall=0.9360
+epoch 193 | val AUROC=0.9867 AUPRC=0.9882 Precision=0.9431 Recall=0.9495
+epoch 194 | val AUROC=0.9868 AUPRC=0.9884 Precision=0.9191 Recall=0.9562
+epoch 195 | val AUROC=0.9870 AUPRC=0.9891 Precision=0.9375 Recall=0.9596
+epoch 196 | val AUROC=0.9867 AUPRC=0.9886 Precision=0.9465 Recall=0.9529
+epoch 197 | val AUROC=0.9885 AUPRC=0.9900 Precision=0.9465 Recall=0.9529
+epoch 198 | val AUROC=0.9887 AUPRC=0.9897 Precision=0.9349 Recall=0.9663
+epoch 199 | val AUROC=0.9887 AUPRC=0.9900 Precision=0.9585 Recall=0.9327
+epoch 200 | val AUROC=0.9893 AUPRC=0.9903 Precision=0.9468 Recall=0.9596
+epoch 201 | val AUROC=0.9893 AUPRC=0.9904 Precision=0.9621 Recall=0.9394
+epoch 202 | val AUROC=0.9880 AUPRC=0.9891 Precision=0.9406 Recall=0.9596
+epoch 203 | val AUROC=0.9889 AUPRC=0.9897 Precision=0.9439 Recall=0.9630
+epoch 204 | val AUROC=0.9885 AUPRC=0.9894 Precision=0.9558 Recall=0.9461
+/root/HAG-DTA/py38_env/lib/python3.8/site-packages/torch_geometric/deprecation.py:26: UserWarning: 'data.DenseDataLoader' is deprecated, use 'loader.DenseDataLoader' instead
+  warnings.warn(out)
+epoch 205 | val AUROC=0.9882 AUPRC=0.9898 Precision=0.9461 Recall=0.9461
+epoch 206 | val AUROC=0.9889 AUPRC=0.9902 Precision=0.9497 Recall=0.9529
+epoch 207 | val AUROC=0.9894 AUPRC=0.9913 Precision=0.9623 Recall=0.9461
+epoch 208 | val AUROC=0.9857 AUPRC=0.9871 Precision=0.9342 Recall=0.9562
+epoch 209 | val AUROC=0.9885 AUPRC=0.9897 Precision=0.9054 Recall=0.9663
+epoch 210 | val AUROC=0.9848 AUPRC=0.9874 Precision=0.9579 Recall=0.9192
+epoch 211 | val AUROC=0.9875 AUPRC=0.9897 Precision=0.9400 Recall=0.9495
+epoch 212 | val AUROC=0.9861 AUPRC=0.9889 Precision=0.9558 Recall=0.9461
+epoch 213 | val AUROC=0.9855 AUPRC=0.9878 Precision=0.9463 Recall=0.9495
+epoch 214 | val AUROC=0.9853 AUPRC=0.9873 Precision=0.9498 Recall=0.9562
+epoch 215 | val AUROC=0.9858 AUPRC=0.9881 Precision=0.9470 Recall=0.9630
+epoch 216 | val AUROC=0.9869 AUPRC=0.9890 Precision=0.9619 Recall=0.9360
+epoch 217 | val AUROC=0.9877 AUPRC=0.9896 Precision=0.9618 Recall=0.9327
+epoch 218 | val AUROC=0.9877 AUPRC=0.9901 Precision=0.9589 Recall=0.9428
+epoch 219 | val AUROC=0.9886 AUPRC=0.9909 Precision=0.9316 Recall=0.9630
+epoch 220 | val AUROC=0.9863 AUPRC=0.9886 Precision=0.9622 Recall=0.9428
+epoch 221 | val AUROC=0.9875 AUPRC=0.9897 Precision=0.9593 Recall=0.9529
+epoch 222 | val AUROC=0.9894 AUPRC=0.9914 Precision=0.9561 Recall=0.9529
+epoch 223 | val AUROC=0.9869 AUPRC=0.9878 Precision=0.9527 Recall=0.9495
+epoch 224 | val AUROC=0.9882 AUPRC=0.9896 Precision=0.9680 Recall=0.9158
+epoch 225 | val AUROC=0.9890 AUPRC=0.9891 Precision=0.9589 Recall=0.9428
+epoch 226 | val AUROC=0.9896 AUPRC=0.9900 Precision=0.9590 Recall=0.9461
+epoch 227 | val AUROC=0.9880 AUPRC=0.9895 Precision=0.9685 Recall=0.9327
+epoch 228 | val AUROC=0.9893 AUPRC=0.9905 Precision=0.9463 Recall=0.9495
+epoch 229 | val AUROC=0.9874 AUPRC=0.9890 Precision=0.9492 Recall=0.9428
+epoch 230 | val AUROC=0.9887 AUPRC=0.9896 Precision=0.9592 Recall=0.9495
+epoch 231 | val AUROC=0.9870 AUPRC=0.9885 Precision=0.9428 Recall=0.9428
+epoch 232 | val AUROC=0.9896 AUPRC=0.9914 Precision=0.9524 Recall=0.9428
+epoch 233 | val AUROC=0.9912 AUPRC=0.9918 Precision=0.9592 Recall=0.9495
+early stopping at epoch 233

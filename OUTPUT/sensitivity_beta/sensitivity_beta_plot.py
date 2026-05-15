@@ -17,15 +17,11 @@ plt.rcParams["ps.fonttype"] = 42
 colors = {
     "AUROC": "#1F4E79",
     "AUPRC": "#2A9D8F",
-    "Precision": "#3A7D44",
-    "Recall": "#64B5CD"
 }
 
 markers = {
     "AUROC": "o",
     "AUPRC": "s",
-    "Precision": "^",
-    "Recall": "D"
 }
 
 def plot_beta_sensitivity(metric_list, filename, title):
@@ -51,9 +47,7 @@ def plot_beta_sensitivity(metric_list, filename, title):
     ax.set_ylabel("Score", fontsize=13)
     ax.set_title(title, fontsize=14, pad=10)
 
-    y_min = df[metric_list].min().min() - 0.004
-    y_max = df[metric_list].max().max() + 0.004
-    ax.set_ylim(y_min, y_max)
+    ax.set_ylim(0.9, 1.0)
 
     ax.grid(True, linestyle=":", linewidth=0.8, alpha=0.45)
 
@@ -91,10 +85,4 @@ plot_beta_sensitivity(
     ["AUROC", "AUPRC"],
     "beta_sensitivity_auc",
     r"Sensitivity Analysis of $\beta$ on AUROC and AUPRC"
-)
-
-plot_beta_sensitivity(
-    ["Precision", "Recall"],
-    "beta_sensitivity_pr",
-    r"Sensitivity Analysis of $\beta$ on Precision and Recall"
 )
